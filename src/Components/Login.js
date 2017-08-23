@@ -2,91 +2,102 @@ import React, { Component } from 'react';
 import axios from 'axios';
 var ReactRouter = require('flux-react-router');
 
- let imgStyle;
+let imgStyle;
 let divStyle;
 
 class Login extends Component {
-    
-    constructor(){  
-        super();  
-        axios.defaults.baseURL = 'https://Halan-poi.herokuapp.com';
-       /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+  constructor() {
+    super();
+    // axios.defaults.baseURL = 'https://halanapp.herokuapp.com/';
+     axios.defaults.baseURL = 'http://192.168.1.29:4000';
+    /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+  }
+
+
+  componentWillMount() {
+
+    imgStyle = {
+      width: "100%"
     }
-    
-    
-     componentWillMount(){
-
-imgStyle = {
-  width:"100%"
-}
-        divStyle = {
-  width:"50%"
-}
-     }
-   static defaultProps = {
- 
-      
-   }
-    
-    
-   handleSubmit(e){
-     console.log("asdasd");
-       if(this.refs.email.value === ''|| this.refs.password.value === '')
-       {
-           alert('Title is required');
-           
-       }
-       else{
-           var object = {email:  this.refs.email.value,  
-            password:  this.refs.password.value}
-        
-       }
+    divStyle = {
+      width: "50%"
+    }
+  }
+  static defaultProps = {
 
 
-       axios.post('/cp/login', object).then(function(response){
-           console.log(response)
-           window.localStorage.setItem('sessionToken', response.data);
-           ReactRouter.goTo("/DashBoard")
-        
-       }).catch(function(error) {
-           alert(error.message);
-           console.log(error)
-       })
-       
-       
-       
+  }
+
+
+  handleSubmit(e) {
+    console.log("asdasd");
+    if (this.refs.email.value === '' || this.refs.password.value === '') {
+      alert('Title is required');
+
+    }
+    else {
+      var object = {
+        phoneNumber: this.refs.email.value,
+        password: this.refs.password.value
+      }
+
+    }
+
+
+    axios.post('/api/operator/login', object).then(function (response) {
+      console.log(response)
+      window.localStorage.setItem('sessionToken', response.data.data.access_token);
+      ReactRouter.goTo("/DashBoard")
+
+    }).catch(function (error) {
+      alert(error.message);
+      console.log(error)
+    })
+
+
+
 
     e.preventDefault();
-   }
-   
+  }
 
- 
-    
+
+
+
   render() {
-   
+
     return (
-      <div>
-        
-            <div className="w3-container">
-  <div className="w3-card-2" style={divStyle}>
-    <img className="imgg" src="./img_avatar3.png" alt="person" style={imgStyle} />
-  </div>
-  <br />
-</div>  
-        
+      <div className="loginbody">
+
+        <div className=" ">
+          <div className=" " >
+            <img className=" " src="./Group 1.png" alt="Logo" />
+          </div>
+          <br />
+        </div>
         <div>
-        <label>E-mail: </label>
-        <input value="admin@poi.halan.com" type="email" ref="email" required />
+
+          <div >
+            <div>
+
+              <input type="email" className="login" ref="email"  placeholder=":البريد الالكتروني" required />
+               {/*value="admin@poi.halan.com"*/}
+              {/*<label className="login">  </label>*/}
+            </div>
+
+            <div>
+
+              <input  type="password" ref="password" className="login"  placeholder=":كلمة المرور" required />
+              {/*value="Sort64321"*/}
+              {/*<label className="login"> :كلمة المرور </label>*/}
+            </div>
+          </div>
+          <div className="button">
+            <input type="button" value="دخول" className="button" onClick={this.handleSubmit.bind(this)} className="cool"/>
+          </div>
         </div>
-        
-          <div>
-        <label>Password: </label>
-        <input value="Sort64321" type="password" ref="password" required />
-        </div>
-    
-        <input type="button" value="Submit" onClick={this.handleSubmit.bind(this)} />
-        
       </div>
     );
   }

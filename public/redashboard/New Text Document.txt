@@ -1,0 +1,41 @@
+ <div className="upload-button-div"> 
+                    <label className="upload-button">??? ?????????< input type="file" ref="artwork" onChange={this.aoo.bind(this)} /> 
+                    <img src="./redashboard/Group 1538.png" className="hello" />
+                    </label>
+                </div>
+
+                <div className="upload-button-div">
+                    <label className="upload-button">??? ?????????< input type="file" ref="artwork" onChange={this.boo.bind(this)} />
+                     <img src="./redashboard/Group 1538.png" className="hello" />
+                    </label>
+                </div>
+
+                <div className="upload-button-div">
+                    <label className="upload-button">??? ?????????< input type="file" ref="artwork" onChange={this.coo.bind(this)} />
+                     <img src="./redashboard/Group 1538.png" className="hello" />
+                    </label>
+                </div>
+
+                <div className="upload-button-div">
+                    <label className="upload-button">??? ?????????< input type="file" ref="artwork" onChange={this.doo.bind(this)} />
+                     <img src="./redashboard/Group 1538.png" className="hello" />
+                    </label>
+                </div>
+
+                <div className="upload-button-div">
+                    <label className="upload-button">??? ?????????< input type="file" ref="artwork" onChange={this.eoo.bind(this)} />
+                     <img src="./redashboard/Group 1538.png" className="hello" />
+                    </label>
+                </div>
+
+                <div className="upload-button-div">
+                    <label className="upload-button">??? ?????????< input type="file" ref="artwork" onChange={this.foo.bind(this)} />
+                     <img src="./redashboard/Group 1538.png" className="hello" />
+                    </label>
+                </div>
+
+                <div className="upload-button-div">
+                    <label className="upload-button">??? ?????????< input type="file" ref="artwork" onChange={this.goo.bind(this)} />
+                     <img src="./redashboard/Group 1538.png" className="hello" />
+                    </label>
+                </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -9,30 +9,36 @@ import Flux from 'flux-react-router';
 import Application from './App';
 import Login from './Components/Login';
 import CreateUser from './Components/CreateUser';
-import DashBoard from './Components/Dashboard';     
-import PointsList from './Components/PointsList';          
-import PointsTBA from './Components/PointsTBA';     
+import UpdateUser from './Components/UpdateUser';
+import DashBoard from './Components/Dashboard';
+import PointsList from './Components/PointsList';
+import PointsTBA from './Components/PointsTBA';
+import AddVehicle from './Components/AddVehicle';
+import AddDriverPapers from './Components/AddDriverPapers';
+import Promo from './Components/Promo';
 
-localStorage.setItem('baseURL', 'https://Halan-poi.herokuapp.com');
+// localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/');
+localStorage.setItem('baseURL', 'http://192.168.1.29:4000');
 
 
 
-Flux.createRoute('/', function() {
+
+Flux.createRoute('/', function () {
     unmountComponentAtNode(document.getElementById('root'));
-/*    unmountComponentAtNode(document.getElementById('menu'));*/
-    if(localStorage.getItem('sessionToken')) {
+    /*    unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
         Flux.goTo("/DashBoard")
-     /*   render(<BranchesMenu />, document.getElementById('menu'));*/
+        /*   render(<BranchesMenu />, document.getElementById('menu'));*/
     } else {
         render(<Application />, document.getElementById('root'));
     }
 });
 
 
-Flux.createRoute('/Login', function() {
+Flux.createRoute('/Login', function () {
     unmountComponentAtNode(document.getElementById('root'));
-  /*  unmountComponentAtNode(document.getElementById('menu'));*/
-    if(localStorage.getItem('sessionToken')) {
+    /*  unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
         render(<Login />, document.getElementById('root'))
         /*render(<BranchesMenu />, document.getElementById('menu'));*/
     } else {
@@ -40,10 +46,10 @@ Flux.createRoute('/Login', function() {
     }
 });
 
-Flux.createRoute('/DashBoard', function() {
+Flux.createRoute('/DashBoard', function () {
     unmountComponentAtNode(document.getElementById('root'));
-  /*  unmountComponentAtNode(document.getElementById('menu'));*/
-    if(localStorage.getItem('sessionToken')) {
+    /*  unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
         render(<DashBoard />, document.getElementById('root'))
         /*render(<BranchesMenu />, document.getElementById('menu'));*/
     } else {
@@ -51,64 +57,66 @@ Flux.createRoute('/DashBoard', function() {
     }
 });
 
-Flux.createRoute('/CreateUser', function() {
+Flux.createRoute('/CreateUser', function () {
     unmountComponentAtNode(document.getElementById('root'));
-   /* unmountComponentAtNode(document.getElementById('menu'));*/
-    if(localStorage.getItem('sessionToken')) {
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
         render(<CreateUser />, document.getElementById('root'));
-      /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));
     }
 });
 
-Flux.createRoute('/PointsList', function() {
+Flux.createRoute('/UpdateUser', function () {
     unmountComponentAtNode(document.getElementById('root'));
-  /*  unmountComponentAtNode(document.getElementById('menu'));*/
-    if(localStorage.getItem('sessionToken')) {
-        render(<PointsList />, document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<UpdateUser />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/AddVehicle/{id}', function (p) {
+    // Flux.createRoute('/addvehicle/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+
+    if (localStorage.getItem('sessionToken')) {
+        render(<AddVehicle pID={p.id} />, document.getElementById('root'));
+        // render(<AddVehicle  pID={p.id}  />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/AddDriverPapers/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<AddDriverPapers pID={p.id}/>, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/Promo', function () {
+    unmountComponentAtNode(document.getElementById('root'));
+    /*  unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<Promo />, document.getElementById('root'));
         /*render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));
     }
 });
 
-Flux.createRoute('/PointsTBA', function() {
-    unmountComponentAtNode(document.getElementById('root'));
-    if(localStorage.getItem('sessionToken')) {
-        render(<PointsTBA />, document.getElementById('root'));
-    } else {
-        render(<Application />, document.getElementById('root'));
-    }
-});
 
 
-
-
-/*
-ReactRouter.createRoute('/Home', function() {
-    unmountComponentAtNode(document.getElementById('root'));
-    unmountComponentAtNode(document.getElementById('menu'));
-    if(localStorage.getItem('sessionToken')) {
-        render(<Home />, document.getElementById('root'));
-        render(<BranchesMenu />, document.getElementById('menu'));
-    } else {
-        render(<SRS />, document.getElementById('root'));
-    }
-})
-
-*/
-
-
-/*
-export default (
-    <Route component={app} path='/'>
-      <IndexRoute component={Login} />
-      <Route component={Login} path='login' />
-      <Route component={CreateUser} path='createuser' />
-      <Route component={NotFoundSection} path='*' />
-    </Route>
-);*/
 
 
 registerServiceWorker();

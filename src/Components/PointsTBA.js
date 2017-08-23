@@ -107,14 +107,7 @@ class PointsTBA extends Component {
 
 
        axios.post('/cp/points/approve',xyz).then(function(response){
-           console.log(response)
-           
-            
-
-    
-
-           
-        
+           console.log(response) 
        }).catch(function(error) {
            alert(error.message);
            console.log(error)
