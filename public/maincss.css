@@ -457,18 +457,19 @@ background-position: left;
     padding-left: 8%;
     position: absolute;
 }
-
-.fake-input-left-search {
-    width: 23%;
-    /*padding-left: 50%;*/
-    float: right;
-}
 img#profile-Img {
     padding-left: 50%;
 }
 .profileP {
     margin-top: -12px;
 }
+
+.fake-input-left-search {
+    width: 23%;
+    /*padding-left: 50%;*/
+    float: right;
+}
+
 
 .Driversdiv {
     font-size: 12px;
@@ -966,4 +967,72 @@ ul.react-tabs__tab-list {
     background-color: white;
   margin-left: -25%;
   margin-top: -4%;
+}
+
+
+
+.Driver {
+            float: right;
+    text-align: center;
+    padding-right: 0%;
+    /* position: absolute; */
+    width: 100%;
+}
+img#Driver-Img {
+    /*padding-left: 50%;*/
+}
+.DriverP {
+    margin-top: -12px;
+}
+.DriverI {
+      width: 50%;
+    float: right;
+}
+
+.DriverSearch {
+    width: 23%;
+    /*padding-left: 50%;*/
+    float: right;
+}
+.DriverSearchText{
+
+}
+
+
+
+.DriverRight{
+        width: 50%;
+    float: right;
+}
+.DriverLeft{
+        width: 50%;
+    float: left;
+}
+
+
+.DriverPDiv {
+    width: 50%;
+    float: right;
+    margin-right: -35%;
+        margin-top: 5%;
+}
+
+.DriverRightInner{
+     width: 100%;
+}
+
+img.tdImgDriver {
+    margin-top: 10%;
+}
+
+td.PTDDriver{
+
+font-size: 14px;
+
+}
+
+p.DriverPParag {
+    color: #2C2D72;
+    font-family: Cairo;
+    font-size: 16px;
 }

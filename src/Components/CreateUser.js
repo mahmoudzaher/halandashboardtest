@@ -19,11 +19,12 @@ class CreateUser extends Component {
 
   constructor() {
     super();
+    axios.defaults.baseURL = localStorage.getItem('baseURL');
     // axios.defaults.baseURL = 'https://halanapp.herokuapp.com/';
-    axios.defaults.baseURL = 'http://192.168.1.29:4000';
+    // axios.defaults.baseURL = 'http://192.168.0.111:4000';
     /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
- 
+
     this.state = {
       startdayoptions: [],
       startmonthoptions: [],
@@ -209,9 +210,9 @@ class CreateUser extends Component {
       //   address: this.refs.address.value,
       // }
       var vehicleLicence = {
-                number: this.refs.driverLicenseNumber.value,
-                expirationDate: timestamppE
-            }
+        number: this.refs.driverLicenseNumber.value,
+        expirationDate: timestamppE
+      }
       const data = new FormData();
       data.append('picture', this.state.img)
       data.append('action', 'ADD');
@@ -234,11 +235,11 @@ class CreateUser extends Component {
         var ID = response.data.data._id;
         console.log(ID)
         var ObjectID = {
-          ID : ID
+          ID: ID
         }
         // ReactRouter.goTo("AddVehicle?id=7amda",)
         // ReactRouter.goTo(`addvehicle/${ID}`);
-          ReactRouter.goTo(`/AddVehicle/${ID}`);
+        ReactRouter.goTo(`/AddVehicle/${ID}`);
       }).catch(function (error) {
         alert(error.message);
         console.log(error)
@@ -257,43 +258,43 @@ class CreateUser extends Component {
 
 
   handleDayoptionsE(type, value) {
-        this.setState({ [type]: value });
-        //  artistID = value.value;
-        if (value) {
-            dayIDE = value.value;
-        } else {
-            dayIDE = "";
-        }
-
-        console.log(value);
-        console.log(dayIDE);
+    this.setState({ [type]: value });
+    //  artistID = value.value;
+    if (value) {
+      dayIDE = value.value;
+    } else {
+      dayIDE = "";
     }
 
-    handleMonthoptionsE(type, value) {
-        this.setState({ [type]: value });
-        //  artistID = value.value;
-        if (value) {
-            monthIDE = value.value;
-        } else {
-            monthIDE = "";
-        }
+    console.log(value);
+    console.log(dayIDE);
+  }
 
-        console.log(value);
-        console.log(monthIDE);
+  handleMonthoptionsE(type, value) {
+    this.setState({ [type]: value });
+    //  artistID = value.value;
+    if (value) {
+      monthIDE = value.value;
+    } else {
+      monthIDE = "";
     }
 
-    handleYearoptionsE(type, value) {
-        this.setState({ [type]: value });
-        //  artistID = value.value;
-        if (value) {
-            yearIDE = value.value;
-        } else {
-            yearIDE = "";
-        }
-        this.handleBirthday()
-        console.log(value);
-        console.log(yearIDE);
+    console.log(value);
+    console.log(monthIDE);
+  }
+
+  handleYearoptionsE(type, value) {
+    this.setState({ [type]: value });
+    //  artistID = value.value;
+    if (value) {
+      yearIDE = value.value;
+    } else {
+      yearIDE = "";
     }
+    this.handleBirthday()
+    console.log(value);
+    console.log(yearIDE);
+  }
 
   handleDate(e) {
 

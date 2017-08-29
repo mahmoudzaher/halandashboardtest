@@ -11,15 +11,16 @@ import Login from './Components/Login';
 import CreateUser from './Components/CreateUser';
 import UpdateUser from './Components/UpdateUser';
 import DashBoard from './Components/Dashboard';
-import PointsList from './Components/PointsList';
-import PointsTBA from './Components/PointsTBA';
 import AddVehicle from './Components/AddVehicle';
 import AddDriverPapers from './Components/AddDriverPapers';
+import DriverTrips from './Components/DriverTrips';
 import Promo from './Components/Promo';
 
 // localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/');
-localStorage.setItem('baseURL', 'http://192.168.1.29:4000');
-
+// localStorage.setItem('baseURL', 'http://192.168.0.111:4000');
+localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com');
+// localStorage.setItem('baseURL', 'http://192.168.0.126:4000');
+        // axios.defaults.baseURL = localStorage.getItem('http://192.168.0.126:4000');
 
 
 
@@ -97,7 +98,21 @@ Flux.createRoute('/AddDriverPapers/{id}', function (p) {
     unmountComponentAtNode(document.getElementById('root'));
     /* unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
-        render(<AddDriverPapers pID={p.id}/>, document.getElementById('root'));
+        render(<AddDriverPapers pID={p.id} />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/DriverTrips/{id}', function (p) {
+    // Flux.createRoute('/addvehicle/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+
+    if (localStorage.getItem('sessionToken')) {
+        render(<DriverTrips pID={p.id} />, document.getElementById('root'));
+        // render(<AddVehicle  pID={p.id}  />, document.getElementById('root'));
         /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));

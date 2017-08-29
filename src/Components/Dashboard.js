@@ -3,12 +3,17 @@ import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 var ReactRouter = require('flux-react-router');
 
+
+
+let searchArray = [];
 class Dashboard extends Component {
 
   constructor() {
     super();
-    // axios.defaults.baseURL = 'https://halanapp.herokuapp.com/';
-    axios.defaults.baseURL = 'http://192.168.0.111:4000';
+            // axios.defaults.baseURL = localStorage.getItem('http://192.168.0.126:4000');
+    axios.defaults.baseURL = localStorage.getItem('baseURL');
+    // axios.defaults.baseURL = 'http://192.168.0.111:4000';
+    // axios.defaults.baseURL = 'https://halan-dev.herokuapp.com';
     /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -22,6 +27,7 @@ class Dashboard extends Component {
       a: "UpB.png",
       b: "RepB.png",
       c: "NotB.png",
+      searchfilter: ""
     })
 
     var that = this;
@@ -36,6 +42,7 @@ class Dashboard extends Component {
         objects.push(item);
 
       })
+      
 
       that.setState({
 
@@ -47,27 +54,54 @@ class Dashboard extends Component {
       alert(error.message);
       console.log(error)
     })
+
   }
   static defaultProps = {
 
   }
 
 
-SuspendDriver(event, id){
-  console.log(event,id)
-  var object = {
-    driverId: event,
-    newStatus: "suspended"
-  }
+  SuspendDriver(event, id) {
+    console.log(event, id)
+    var object = {
+      driverId: event,
+      newStatus: "suspended"
+    }
     axios.post('api/operator/changedriverstatus', object).then(function (response) {
-        console.log(response)
-        // window.localStorage.setItem('sessionToken', response.data);
-        alert("dirver suspended")
-      }).catch(function (error) {
-        alert(error.message);
-        console.log(error)
-      })
-}
+      console.log(response)
+      // window.localStorage.setItem('sessionToken', response.data);
+      alert("dirver suspended")
+    }).catch(function (error) {
+      alert(error.message);
+      console.log(error)
+    })
+  }
+
+
+  ReactivateDriver(event, id) {
+    console.log(event, id)
+    var object = {
+      driverId: event,
+      newStatus: "active"
+    }
+    axios.post('api/operator/changedriverstatus', object).then(function (response) {
+      console.log(response)
+      // window.localStorage.setItem('sessionToken', response.data);
+      alert("dirver suspended")
+    }).catch(function (error) {
+      alert(error.message);
+      console.log(error)
+    })
+  }
+
+
+  GotoShowTripsOfDriverById(event, id) {
+    console.log(event, id)
+    var id = event;
+    console.log("WoHOOOOOOOOOOOOOOOO");
+    // ReactRouter.goTo("/DriverTrips")
+     ReactRouter.goTo(`/DriverTrips/${event}`);
+  }
 
 
 
@@ -98,48 +132,52 @@ SuspendDriver(event, id){
           that.state.objects.map(function (row, index) {
             let re = [];
             // console.log(row)
+            if (row.phoneNumber.includes(that.state.searchfilter)) {
+              var Id = row._id;
 
-            var Id = row._id;
-
-            re.push("./Group 1433.png")
-            re.push("./Path 1161.png")
-            re.push("./Group 1410.png")
-            if (row.phoneNumber.length < 12) {
-              re.push(row.phoneNumber)
-            }
-            else {
-              re.push("-")
-            }
-            if (row.vehicle) {
-              if (row.vehicle.vehicletype === "toktok") {
-
-                re.push("./Group 1367.png")
+              re.push("./Group 1433.png")
+              re.push("./Path 1161.png")
+              re.push("./Group 1410.png")
+              if (row.phoneNumber.length < 12) {
+                re.push(row.phoneNumber)
               }
-
-              if (row.vehicle.vehicletype === "motorcycle") {
-
-                re.push("./Group 1355.png")
+              else {
+                re.push("-")
               }
+              if (row.vehicle) {
+                if (row.vehicle.vehicletype === "toktok") {
 
-              if (row.vehicle.vehicletype === "tricycle") {
+                  re.push("./Group 1367.png")
+                }
 
-                re.push("./Group 1368.png")
+                if (row.vehicle.vehicletype === "motorcycle") {
+
+                  re.push("./Group 1355.png")
+                }
+
+                if (row.vehicle.vehicletype === "tricycle") {
+
+                  re.push("./Group 1368.png")
+                }
               }
+              else {
+                re.push("-")
+              }
+              re.push(row.firstName)
             }
-            else {
-              re.push("-")
-            }
-            re.push(row.firstName)
             // re.push("محمد")
             {/*<img src="./Group 1433.png" />*/ }
             return (
               <tr key={index}>
                 {
                   re.map(function (col, index) {
-                    {/*console.log(col)*/ } 
-                    
+                    {/*console.log(col)*/ }
+
                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)}/></td>
+                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></td>
+                    }
+                    else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
+                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
@@ -186,8 +224,8 @@ SuspendDriver(event, id){
           that.state.objects.map(function (row, index) {
             let re = [];
             // console.log(row)
-
-            if (row.status === "active") {
+            // 
+            if (row.status === "active" && row.phoneNumber.includes(that.state.searchfilter)) {
               re.push("./Group 1433.png")
               re.push("./Path 1161.png")
               re.push("./Group 1410.png")
@@ -255,7 +293,13 @@ SuspendDriver(event, id){
                 {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
-                    if (typeof col === "string" && col.slice(0, 2) === "./") {
+                    if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
+                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></td>
+                    }
+                    else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
+                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></td>
+                    }
+                    else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
                     }
                     else {
@@ -301,8 +345,8 @@ SuspendDriver(event, id){
             let re = [];
             // console.log(row)
 
-            if (row.status === "suspended") {
-              re.push("./Group 1433.png")
+            if (row.status === "suspended" && row.phoneNumber.includes(that.state.searchfilter)) {
+              re.push("./Group 1792.png")
               re.push("./Path 1161.png")
               re.push("./Group 1410.png")
               if (row.phoneNumber.length < 12) {
@@ -369,7 +413,10 @@ SuspendDriver(event, id){
                 {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
-                    if (typeof col === "string" && col.slice(0, 2) === "./") {
+                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1792") {
+                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.ReactivateDriver.bind(this, row._id)} /></td>
+                    }
+                    else  if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
                     }
                     else {
@@ -396,7 +443,7 @@ SuspendDriver(event, id){
       React.DOM.table({ className: "tableclass" },
         React.DOM.thead({ className: "tablehead" },
           <tr className="tableheadrow">
-            <td className="tableheadDT" >وقف</td>
+            {/*<td className="tableheadDT" >وقف</td>*/}
 
             <td className="tableheadDT" >تعديل</td>
 
@@ -415,8 +462,8 @@ SuspendDriver(event, id){
             // console.log(row)
 
 
-            if (row.status === "pending") {
-              re.push("./Group 1433.png")
+            if (row.status === "pending" && row.phoneNumber.includes(that.state.searchfilter)) {
+              // re.push("./Group 1433.png")
               re.push("./Path 1161.png")
               re.push("./Group 1410.png")
               if (row.phoneNumber.length < 12) {
@@ -573,21 +620,6 @@ SuspendDriver(event, id){
     e.preventDefault();
   }
 
-  handleList(e) {
-
-    console.log("WoHOOOOOOOOOOOOOOOO");
-    ReactRouter.goTo("/PointsList")
-
-    e.preventDefault();
-  }
-
-  handlePointsTBA(e) {
-
-    console.log("WoHOOOOOOOOOOOOOOOO");
-    ReactRouter.goTo("/PointsTBA")
-
-    e.preventDefault();
-  }
 
   handleUpdate(e) {
 
@@ -620,33 +652,33 @@ SuspendDriver(event, id){
 
     e.preventDefault();
   }
-  // handleSubmit(e) {
-  //   var that = this;
-  //   console.log("asdasd");
 
-  //   axios.get('/api/operator/getalldrivers').then(function (response) {
-  //     console.log(response)
-  //     var x = response.data.data;
-  //     var objects = [];
 
-  //     x.forEach(function (item) {
-  //       console.log(item)
-  //       objects.push(item);
+  searchtable(event) {
+    var that = this;
+    var searchText = event.target.value;
+    var searchTextLength = searchText.length;
+    this.setState({
+      searchfilter: searchText
+    })
+    console.log(searchTextLength)
+    console.log(this.state.objects, "all drivers log")
+    console.log(searchText, "searchtext now")
+    console.log(searchText, "searchtext now in forEach")
+    searchArray = [];
+    this.state.objects.forEach(function (item) {
 
-  //     })
+      if (item.phoneNumber.slice(0, searchTextLength) === searchText) {
+        if (searchArray.indexOf(searchText) === -1) {
+          searchArray.push(item)
+        }
+      }
+      else {
 
-  //     that.setState({
-
-  //       objects: objects
-
-  //     })
-
-  //   }).catch(function (error) {
-  //     alert(error.message);
-  //     console.log(error)
-  //   })
-  //   e.preventDefault();
-  // }
+      }
+    })
+    console.log(searchArray, "search array")
+  }
 
   table() {
 
@@ -761,7 +793,7 @@ SuspendDriver(event, id){
         <div className="fake-input">
           <div className="fake-input-left">
             <div className="fake-input-left-search">
-              <input type="text" placeholder="بحث" className="fake-input-left-text" />
+              <input type="text" placeholder="بحث" className="fake-input-left-text" onChange={this.searchtable.bind(this)} />
               <img src="./Group 1392.png" />
             </div>
 
@@ -776,7 +808,7 @@ SuspendDriver(event, id){
                
               </ul>*/}
 
-                {this.tabs()}
+              {this.tabs()}
             </div>
           </div>
         </div>
@@ -791,7 +823,7 @@ SuspendDriver(event, id){
 
 
 
-         {/*{this.tabs()}*/}
+        {/*{this.tabs()}*/}
 
 
 
