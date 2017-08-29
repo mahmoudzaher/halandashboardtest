@@ -11,14 +11,12 @@ import Login from './Components/Login';
 import CreateUser from './Components/CreateUser';
 import UpdateUser from './Components/UpdateUser';
 import DashBoard from './Components/Dashboard';
-import PointsList from './Components/PointsList';
-import PointsTBA from './Components/PointsTBA';
 import AddVehicle from './Components/AddVehicle';
 import AddDriverPapers from './Components/AddDriverPapers';
 import Promo from './Components/Promo';
 
-// localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/');
-localStorage.setItem('baseURL', 'http://192.168.1.29:4000');
+localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/');
+// localStorage.setItem('baseURL', 'http://192.168.1.29:4000');
 
 
 

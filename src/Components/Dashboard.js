@@ -8,7 +8,8 @@ class Dashboard extends Component {
   constructor() {
     super();
     // axios.defaults.baseURL = 'https://halanapp.herokuapp.com/';
-    axios.defaults.baseURL = 'http://192.168.0.111:4000';
+    // axios.defaults.baseURL = 'http://192.168.0.111:4000';
+    axios.defaults.baseURL = localStorage.getItem('baseURL');
     /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
