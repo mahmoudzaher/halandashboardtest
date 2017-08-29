@@ -10,10 +10,7 @@ class Dashboard extends Component {
 
   constructor() {
     super();
-            // axios.defaults.baseURL = localStorage.getItem('http://192.168.0.126:4000');
     axios.defaults.baseURL = localStorage.getItem('baseURL');
-    // axios.defaults.baseURL = 'http://192.168.0.111:4000';
-    // axios.defaults.baseURL = 'https://halan-dev.herokuapp.com';
     /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -42,7 +39,7 @@ class Dashboard extends Component {
         objects.push(item);
 
       })
-      
+
 
       that.setState({
 
@@ -100,7 +97,7 @@ class Dashboard extends Component {
     var id = event;
     console.log("WoHOOOOOOOOOOOOOOOO");
     // ReactRouter.goTo("/DriverTrips")
-     ReactRouter.goTo(`/DriverTrips/${event}`);
+    ReactRouter.goTo(`/DriverTrips/${event}`);
   }
 
 
@@ -413,10 +410,10 @@ class Dashboard extends Component {
                 {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
-                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1792") {
+                    if (typeof col === "string" && col.slice(0, 12) === "./Group 1792") {
                       return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.ReactivateDriver.bind(this, row._id)} /></td>
                     }
-                    else  if (typeof col === "string" && col.slice(0, 2) === "./") {
+                    else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
                     }
                     else {

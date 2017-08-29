@@ -17,10 +17,9 @@ import DriverTrips from './Components/DriverTrips';
 import Promo from './Components/Promo';
 
 // localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/');
-// localStorage.setItem('baseURL', 'http://192.168.0.111:4000');
 localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com');
-// localStorage.setItem('baseURL', 'http://192.168.0.126:4000');
-        // axios.defaults.baseURL = localStorage.getItem('http://192.168.0.126:4000');
+
+
 
 
 

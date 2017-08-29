@@ -20,8 +20,6 @@ class CreateUser extends Component {
   constructor() {
     super();
     axios.defaults.baseURL = localStorage.getItem('baseURL');
-    // axios.defaults.baseURL = 'https://halanapp.herokuapp.com/';
-    // axios.defaults.baseURL = 'http://192.168.0.111:4000';
     /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -29,6 +27,9 @@ class CreateUser extends Component {
       startdayoptions: [],
       startmonthoptions: [],
       startyearoptions: [],
+      enddayoptions: [],
+      endmonthoptions: [],
+      endyearoptions: [],
 
     };
   }
@@ -37,6 +38,9 @@ class CreateUser extends Component {
     var itemIds = [];
     var itemIds2 = [];
     var itemIds3 = [];
+    var itemIds4 = [];
+    var itemIds5 = [];
+    var itemIds6 = [];
     for (var i = 0; i < 32; i++) {
       itemIds.push(
         {
@@ -61,11 +65,41 @@ class CreateUser extends Component {
         }
       );
     }
+
+    for (var i = 0; i < 32; i++) {
+      itemIds4.push(
+        {
+          value: i,
+          label: i
+        }
+      );
+    }
+    for (var i = 0; i < 13; i++) {
+      itemIds5.push(
+        {
+          value: i,
+          label: i
+        }
+      );
+    }
+    for (var i = 1920; i < 2028; i++) {
+      itemIds6.push(
+        {
+          value: i,
+          label: i
+        }
+      );
+    }
+
     console.log(itemIds)
+    var x = itemIds3+10
     this.setState({
       startdayoptions: itemIds,
       startmonthoptions: itemIds2,
       startyearoptions: itemIds3,
+      enddayoptions: itemIds4,
+      endmonthoptions: itemIds5,
+      endyearoptions: itemIds6,
     })
 
   }
@@ -219,15 +253,24 @@ class CreateUser extends Component {
       data.append('param', 0);
       data.append('firstName', this.refs.Fname.value)
       // data.append('lastName', this.refs.Lname.value)
-      data.append('email', this.refs.email.value)
+      data.append('address', this.refs.address.value)
       data.append('password', this.refs.password.value)
       data.append('phoneNumber', this.refs.pNumber.value)
       data.append('birthday', timestampp)
       // data.append('gender', this.refs.gender.value)
-      data.append('address', this.refs.address.value)
+      if(this.refs.email.value === "" || this.refs.email.value === null){
+        // data.append('email', null)
+      }
+      else{
+        data.append('email', this.refs.email.value)
+      }
+      
       data.append('driverLicense', vehicleLicence)
       // data.append('address', this.refs.address.value)
-
+      
+     for (var pair of data.entries()) {
+       console.log(pair)
+     }
       axios.post('/api/operator/adddriver', data).then(function (response) {
         console.log(response)
         // window.localStorage.setItem('sessionToken', response.data);
@@ -362,7 +405,7 @@ class CreateUser extends Component {
               <div className="CreateBigDivPDiv">
                 <input type="text" className="CreateBigDivP" ref="Fname" required />
                 <input type="text" className="CreateBigDivP" ref="pNumber" required />
-                <input type="email" className="CreateBigDivP" ref="email" required />
+                <input type="email" className="CreateBigDivP" ref="email"  />
                 <input type="password" className="CreateBigDivP" ref="password" required />
               </div>
 
@@ -431,31 +474,31 @@ class CreateUser extends Component {
               <div className="Options-GroupsT">
                 <div className="OptionsOT">
                   <Select
-                    ref="startyear"
+                    ref="endyear"
                     placeholder="سنة"
-                    value={this.state.startyear}
-                    options={this.state.startyearoptions}
-                    onChange={this.handleYearoptionsE.bind(this, "startyear")}
+                    value={this.state.endyear}
+                    options={this.state.endyearoptions}
+                    onChange={this.handleYearoptionsE.bind(this, "endyear")}
                   />
                 </div>
 
                 <div className="OptionsTT">
                   <Select
-                    ref="startmonth"
+                    ref="endmonth"
                     placeholder="شهر"
-                    value={this.state.startmonth}
-                    options={this.state.startmonthoptions}
-                    onChange={this.handleMonthoptionsE.bind(this, "startmonth")}
+                    value={this.state.endmonth}
+                    options={this.state.endmonthoptions}
+                    onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
                   />
                 </div>
 
                 <div className="OptionsThT">
                   <Select
-                    ref="startday"
+                    ref="endday"
                     placeholder="يوم"
-                    value={this.state.startday}
-                    options={this.state.startdayoptions}
-                    onChange={this.handleDayoptionsE.bind(this, "startday")}
+                    value={this.state.endday}
+                    options={this.state.enddayoptions}
+                    onChange={this.handleDayoptionsE.bind(this, "endday")}
                   />
                 </div>
               </div>
