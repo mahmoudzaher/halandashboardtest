@@ -3,7 +3,7 @@
     padding-bottom: 1%;
 }
 li.NavP{
-    padding-right: 30%;
+    padding-right: 29%;
 }
 
 /*td {
@@ -40,15 +40,12 @@ td:nth-child(5) {
 }*/
 
 .Tablediv {
-    /*width: 100%;
-        padding-top: 1%;*/
-
-
-    margin-left: -47%;
-    width: 200%;
+    margin-left: -40%;
+    width: 175%;
+    margin-top: -2%;
 }
 table.tableclass {
-       width: 40%;
+           width: 40%;
     margin-left: 30%;
     margin-right: 30%;
     border: transparent;
@@ -71,6 +68,10 @@ table, tablehead,tr, th {
 td.PTD{
 
 font-size: 14px;
+    padding: 7px 0;
+    text-align: center;
+        padding-left: 1%;
+    padding-right: 1%;
 
 }
 
@@ -122,103 +123,9 @@ table {
     border-collapse: collapse;
 }
 img.tdImg {
-    margin-top: 10%;
+    /*margin-top: 10%;*/
+        vertical-align: middle;
 }
-
-/*thead.tablehead {
-    border-top:  transparent !important;
-     border: none;
-}*/
-
-/*tr.tableheadrow {
-    border: none;
-}
-
-tr.tablehead {
-    border: none;
-}
-
-td.tablehead {
-    border: none;
-}*/
-
-
-/*td.tableheadD {
-    border: none;
-    border: thick double transparent;
-    border-bottom: #BEC0C2;
-    
-    
-}*/
-
-
-  
-
-/*
-.table-fit{
-    width: 1px;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-th, td {
-    text-align: center;
-}
-div.PTD{
-
-   
-    text-align: center;
-    font-family: Cairo;
-    padding-left: 25%;
-    padding-right: 25%;
-    font-size: 12px;
-
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-
-thead.tablehead {
-    border-top:  transparent !important;
-}
-
-tr.tableheadrow {
-    border: none;
-}
-
-thead.tablehead {
-    border: none;
-}
-
-tr.tablehead {
-    border: none;
-}
-
-td.tablehead {
-    border: none;
-}
-
-
-td.tableheadD {
-    border: none;
-    border: thick double transparent;
-    border-bottom: #BEC0C2;
-    
-    
-}
-
-
-table, th, td {
-   border: 1px solid #BEC0C2;
-}*/
 
 input.login{
 
@@ -297,10 +204,22 @@ color: white;
 
 body {margin:0;
 overflow-x: hidden;
+font-family: Cairo !important;
 }
 
 ul {
-    list-style-type: none;
+    /*list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2C2D72;
+    top: 0;
+    width: 100%;
+    height: 115px;
+    color: #BEC0C2;*/
+}
+ul.NavdivUl{
+   list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -310,25 +229,25 @@ ul {
     width: 100%;
     height: 115px;
     /*float:right;*/
-    color: #BEC0C2;
+    color: #BEC0C2; 
 }
 
 li {
-    float: right;
+       float: right;
     font-family: Cairo;
-    font-size: 16px;
+    /* font-size: 38px; */
     padding-top: 27px;
-    padding-right: 1%;
+    padding-right: 2%;
 }
 
 li a {
-    display: block;
-    /*color: white;*/
+      display: block;
+    /* color: white; */
     text-align: center;
-    /*padding: 14px 16px;*/
+    /* padding: 14px 16px; */
     text-decoration: none;
     color: #BEC0C2;
-    /*padding-bottom: 50%;*/
+    /* padding-bottom: 50%; */
     margin: 10px;
     font-family: Cairo;
     font-size: 16px;
@@ -341,7 +260,7 @@ li p {
     color: white;
     margin: 10px;
     float: left;
-     font-family: Cairo;
+    font-family: Cairo;
     font-size: 16px;
    
 }
@@ -363,7 +282,7 @@ a.active {
 }
 
 li.active.li {
-    padding-right: 35%;
+    padding-right: 32%;
 }
 
 li.Header.Logo {
@@ -372,17 +291,6 @@ li.Header.Logo {
 
 }
 
-    /*input.logOut {
-        font-family: Cairo;
-    font-size: 16px;
-        color: #BEC0C2;
-    border: none;
-    outline: none;
-    display: block;
-    background-color: transparent;
-        margin: 10px;
-        padding-right: 90%;
-}*/ 
 p {
     font-family: Cairo;
     color: #848080;
@@ -473,7 +381,7 @@ img#profile-Img {
 
 .Driversdiv {
     font-size: 12px;
-    padding-right: 7%;
+    /*padding-right: 25%;*/
 }
 
 p.DriversdivP{
@@ -487,6 +395,17 @@ li.DriversdivLi {
 ul.DriversdivUl {
     background-color: white;
     margin-left: -23%;
+    list-style-type: none;
+    /*margin: 0;*/
+    padding: 0;
+    overflow: hidden;
+    /*background-color: #2C2D72;*/
+    /*position: fixed;*/
+    top: 0;
+    width: 100%;
+    height: 115px;
+    /*float:right;*/
+    color: #BEC0C2; 
     /* text-align: center; */
 }
 li.DriversdivLiActive {
@@ -502,6 +421,8 @@ p.DriversdivPActive {
 .DriversdivT {
     font-size: 12px;
     padding-right: 25%;
+    margin-top: -5%;
+        margin-bottom: -1%;
 }
 
 
@@ -651,7 +572,33 @@ margin-top: 1%;
     margin-left: 50%;
 }
 
+
 input.coolT {
+   
+background-repeat: no-repeat;
+background-position: left;
+padding-left: 500px;
+    border-radius: 40px;
+    padding: 20px;
+    width: 200px;
+    font-family: Cairo;
+    font-size: 20px;
+        line-height: 5px;
+  background: #2C2D72;
+  background-image: -webkit-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: -moz-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: -ms-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: -o-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: linear-gradient(to right, #2C2D72, #28B8A8);
+color: white;
+}
+
+.buttonTT{
+        margin-top: 20%;
+    margin-left: 45%;
+}
+
+input.coolTT {
    
 background-repeat: no-repeat;
 background-position: left;
@@ -685,7 +632,7 @@ color: white;
     outline: none;
     overflow: hidden;
     position: relative;
-    /* width: 100%; */
+     width: 121%  !important;
     text-align: right;
         width: 20px;
         /*padding-left: 25px;*/
@@ -749,20 +696,40 @@ input[type="file"] {
 }
 
 
-
+.BOOMMM {
+    margin-right: 40%;
+        margin-bottom: -1%;
+}
 
 .CreateBigDiv{
         width: 100%;
+            padding-top: 5%;
 }
 
 .CreateBigDiv-right{
         width: 50%;
     float: right;
+        /*padding-top: 5%;*/
 }
 
 .CreateBigDiv-right-right{
         width: 50%;
     float: right;
+    /*margin-top: 2%;*/
+}
+
+.CreateBigDiv-right-rightDis{
+           width: 50%;
+    float: right;
+    margin-top: 0%;
+}
+
+
+.CreateBigDiv-right-right7aram{
+          width: 50%;
+    float: right;
+    /* margin-top: 2%; */
+    text-align: right;
 }
 
 .CreateBigDiv-right-left{
@@ -770,96 +737,359 @@ input[type="file"] {
     float: left;
 }
 
-.CreateBigDiv-left{
+
+
+.CreateBigDiv-right-lefthmm{
+          width: 50%;
+    margin-top: 2%;
+    float: left;
+}
+
+
+.CreateBigDiv-right-leftLollll{
+      width: 50%;
+    float: left;
+    padding-top: 2%;
+}
+
+
+.CreateBigDiv-right-leftLol{
         width: 50%;
     float: left;
 }
 
+.CreateBigDiv-left{
+            width: 41%;
+    float: left;
+    /*margin-top: -14%;*/
+}
+.CreateBigDiv-leftLol{
+            width: 41%;
+    float: left;
+    margin-top: 1%;
+}
+
+.CreateBigDiv-left-what{
+               width: 41%;
+    float: right;
+    /* margin-top: -14%; */
+    /* text-align: right; */
+}
 
 .CreateBigDiv-left-right{
-        width: 50%;
+           /*width: 50%; */
     float: right;
+    text-align: -webkit-right;
+    display: inline-grid;
+    margin-right: 10%;
+    /*margin-top: 2%;*/
 }
 
-.CreateBigDiv-left-left{
-        width: 50%;
+.CreateBigDiv-left-rightLol{
+         /*width: 50%; */
+    float: right;
+    text-align: -webkit-right;
+    display: inline-grid;
+    margin-right: 10%;
+    margin-top: -8%;
+}
+
+
+
+.CreateBigDiv-left-leftDis{
+            width: 50%;
     float: left;
-        text-align: center;
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 28%;
+}
+
+.CreateBigDiv-left-leftLol{
+         width: 50%;
+    float: right;
+    text-align: center;
+    margin-top: -6%;
+    /* margin-left: 72%; */
+    margin-right: -20%;
+}
+
+.CreateBigDiv-left-leftLolLol{
+         width: 50%;
+    float: left;
+    text-align: center;
+    /* margin-top: 2%; */
+}
+
+.CreateBigDiv-left-leftLolLolLLL{
+         width: 50%;
+    float: left;
+    text-align: center;
+     margin-top: 2%; 
 }
 
 
 
 .CreateBigDivPDiv{
-    width: 75%;
+        /* margin-top: -5%; */
+    margin-right: -10%;
+    /* padding-left: 17%; */
+    text-align: right;
 }
 input.CreateBigDivP {
-       width: 55%;
+         width: 70%;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border: 1px solid #2C2D72;
-    height: 25px;
+    height: 40px;
     /* width: 62%; */
     margin-left: 20%;
-    margin-bottom: 6%;
-    margin-top: 4%;
+    margin-bottom: 4%;
+    margin-top: 0%;
+}
+
+input.CreateBigDivPTTTT {
+           width: 70%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    height: 40px;
+    /* width: 62%; */
+    margin-left: 66%;
+    margin-bottom: 4%;
+    margin-top: 6%;
 }
 
 p.CreateBigDiv {
-       margin-bottom: 7%;
-        font-size: 16px;
+        /*margin-bottom: 7%;
+    margin-top: 35%;
+    font-size: 16px;
+    font-family: Cairo;*/
+
+    margin-bottom: 7%;
+    margin-top: 35%;
+    font-size: 16px;
+    /* text-align: right; */
+    margin-right: -200%;
     font-family: Cairo;
+}
+
+p.CreateBigDivDis {
+     margin-bottom: 10%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    /* text-align: right; */
+    margin-right: -200%;
+    font-family: Cairo;
+}
+
+
+p.CreateBigDiv7aram {
+         margin-bottom: 8%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    /* text-align: right; */
+    /* margin-right: -200%; */
+    margin-right: 50%;
+    font-family: Cairo;
+}
+
+p.CreateBigDivLol {
+        margin-bottom: 7%;
+    margin-top: 35%;
+    font-size: 16px;
+    /* text-align: right; */
+    margin-right: -200%;
+    font-family: Cairo;
+}
+p.CreateBigDivPapers{
+   margin-bottom: 10%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    /* text-align: right; */
+    margin-right: -200%;
+    font-family: Cairo;
+}
+p.CreateBigDivPapersFml{
+     margin-bottom: 9%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    /* text-align: right; */
+    margin-right: -200%;
+    font-family: Cairo;
+}
+
+p.CreateBigDivPapersLol{
+   margin-bottom: 30%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    /* text-align: right; */
+    margin-right: -200%;
+    font-family: Cairo;
+    height: 30px;
+}
+input.checkmate {
+    /* padding-bottom: 27%; */
+    margin-top: 0%;
+    /* font-size: 16px; */
+    /* text-align: right; */
+    /* float: right; */
+    margin-right: 60%;
+    float: right;
+}
+
+p.CreateBigDivNew {
+         margin-bottom: 8%;
+    margin-top: 0%;
+    font-size: 16px;
+    text-align: right;
+    /* float: right; */
+    margin-right: 60%;
+}
+
+p.CreateBigDivNewLol {
+           /* margin-bottom: 8%; */
+    margin-top: 8%;
+    font-size: 16px;
+    text-align: right;
+    /* float: right; */
+    margin-bottom: 0%;
+    margin-right: 60%;
+}
+
+p.CreateBigDivLeft {
+                /* width: 35%; */
+    /* margin-top: 26%; */
+    font-size: 16px;
+    text-align: right;
+    font-family: Cairo;
+    margin-left: 0% !important;
+    margin-right: 0%;
+    margin-bottom: 0%;
+    float: right;
+    height: 30px;
+    margin-top: 0%;
+    padding-bottom: 26%;
 }
 
 img.custom-file-upload-img {
     width: 100%;
+        border-radius: 50%;
 }
-
+.Options-GroupsTTTT{
+         width: 100%;
+    margin-left: 50%;
+    /* padding-bottom: 10%; */
+    /* margin-top: -4%; */
+}
 
 .Options-GroupsT{
-    width: 100%;
-        margin-left: 23%;
-    /*padding-bottom: 10%;*/
+        width: 100%;
+    margin-left: 50%;
+    /* padding-bottom: 10%; */
+    /* margin-top: -4%; */
 }
+.Options-GroupsF{
+        width: 100%;
+    margin-left: 50%;
+    /* padding-bottom: 10%; */
+    margin-top: 4%;
+}
+
+.Options-GroupsFi{
+           width: 100%;
+    margin-left: 5%;
+    /* padding-bottom: 10%; */
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
 .OptionsOT{
-    float: left;
+        float: left;
     margin-left: 15%;
-    margin-right: 10%;
+    margin-right: 15%;
     width: 10%;
-}
-.OptionsTT{
-    float: left;
-    width: 10%;
-    /* padding-left: 4%; */
-    margin-right: 10%;
-    /* padding-right: 5%; */
 }
 .OptionsThT{
+        float: left;
      float: left;
     /* padding-right: 10%; */
     width: 10%;
     /* padding-left: 10%; */
 }
+.OptionsTT{
+       float: left;
+    width: 10%;
+    /* padding-left: 4%; */
+    margin-right: 15%;
+     padding-right: 5%
+}
+/*.OptionsThT{
+        float: left;
+     float: left;
+}*/
 /*
 .CreateBigDivPT{
     width: 75%;
 }*/
 
 input.CreateBigDivPT {
-     width: 55%;
+         width: 70%;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border: 1px solid #2C2D72;
-    height: 25px;
+    height: 40px;
     /* width: 62%; */
-    margin-left: 30%;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-right: -10%;
+    padding-left: 0%;
+    margin-bottom: 1%;
+    margin-top: 4%;
 }
+
+
+input.CreateBigDivPTTT {
+            width: 70%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    height: 40px;
+    /* width: 62%; */
+    /* margin-right: -10%; */
+    padding-left: 0%;
+    margin-bottom: 1%;
+    margin-top: 4%;
+    margin-left: 66%;
+}
+
+input.CreateBigDivPTLol {
+          width: 70%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    height: 40px;
+    /* width: 62%; */
+    margin-right: -10%;
+    padding-left: 0%;
+    margin-bottom: 1%;
+    margin-top: 5%;
+}
+
+
 
 .custom-file-upload-inner-div{
         width: 100%;
+}
+
+.custom-file-upload-inner-divLol{
+          width: 100%;
+    padding-bottom: 25%;
+    margin-left: 40%;
+    margin-top: -10%;
 }
 
 .custom-file-upload-inner-div-right{
@@ -876,15 +1106,57 @@ input.CreateBigDivPT {
 }
 
 
-
-
+.nextprevious {
+    /*position: absolute;*/
+    /*top: 96%;*/
+}
+.disdis {
+    float: left;
+    width: 100%;
+    margin-left: 30%;
+}
 
 
 
 .upload-button-div {
-    padding-top: 6%;
-        padding-left: 10%;
+       /* padding-top: 6%; */
+    display: flow-root;
+    padding-right: 10%;
 }
+.upload-button-divDis {
+       /* padding-top: 6%; */
+    display: flow-root;
+    padding-right: 10%;
+    padding-bottom: 10%;
+    width: 100%;
+}
+
+.uploadWhat {
+    /* margin-left: -198%; */
+    width: 100%;
+    margin-left: 30%;
+}
+
+.upload-button-divLolll {
+          /* padding-top: 6%; */
+    display: flow-root;
+    padding-right: 10%;
+    PADDING-BOTTOM: 7%;
+}
+.upload-button-divLolllFml {
+              /* padding-top: 6%; */
+    display: flow-root;
+    padding-right: 10%;
+    PADDING-BOTTOM: 10%;
+}
+
+
+.upload-button-divLol {
+       /* padding-top: 6%; */
+    display: flow-root;
+    padding-right: 10%;
+}
+
 
 label.upload-button {
         padding: 8px;
@@ -901,10 +1173,70 @@ label.upload-button {
     font-size: 14px;
 }
 
+
+label.upload-buttonWhat {
+         padding: 8px;
+    padding-left: 17%;
+    border: 1px solid #BEC0C2;
+    background-color: #BEC0C2;
+    color: white;
+    text-align: center;
+    padding-right: 13%;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 10px;
+    font-family: Cairo;
+    font-size: 14px;
+    float: right;
+    margin-right: -100%;
+}
+
+
+label.upload-buttonWhatisThis {
+          padding: 8px;
+    padding-left: 17%;
+    border: 1px solid #BEC0C2;
+    background-color: #BEC0C2;
+    color: white;
+    text-align: center;
+    padding-right: 13%;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 10px;
+    font-family: Cairo;
+    font-size: 14px;
+    float: right;
+    height: 26px;
+    margin-right: -100%;
+    margin-bottom: 3%;
+}
+
+
+label.upload-buttonWhatisThisLol {
+          padding: 8px;
+    padding-left: 17%;
+    border: 1px solid #BEC0C2;
+    background-color: #BEC0C2;
+    color: white;
+    text-align: center;
+    padding-right: 13%;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 10px;
+    font-family: Cairo;
+    font-size: 14px;
+    float: right;
+    height: 26px;
+    margin-right: -100%;
+    margin-bottom: 3%;
+}
+
+
 img.hello {
    float: left;
     margin-left: -120px;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
+        top: 75%;
     position: absolute;
 }
 
@@ -914,22 +1246,60 @@ p.CreateBigDivP{
     margin-right: -20%;
 }
 
+p.CreateBigDivPIdk{
+          margin-top: 0%;
+    float: right;
+    font-size: 14px;
+    margin-right: -65%;
+    font-size: 14px;
+}
+
 
 div#maincontainer{
         margin-left: 30%;
+    padding-top: 2%;
 }
-
+div#maincontainerLol{
+        margin-left: 25%;
+    padding-top: 2%;
+}
     /*padding-right: 2%;*/
 
     img.one {
-    padding-right: 2%;
+    opacity: 0.5;
+    filter: alpha(opacity=50); 
+    
+}
+
+img.one.active{
+    opacity: 1;
+    filter: alpha(opacity=100); 
 }
 
 img.two {
     padding-right: 2%;
 }
 
+    .three {
+        float: left;
+        border: 1px;
+    padding: 10px;
+}
+  .three.active{
+       float: left;
+    /*border-radius: 50%;
+    border: 1px solid red;
+    padding: 10px;*/
+}
 
+
+.four {
+    float: left;
+        padding-left: 10px;
+    padding-right: 10px;
+    border: 1px;
+    padding: 10px;
+}
 
 
 #tabss {
@@ -965,8 +1335,19 @@ img.two {
 
 ul.react-tabs__tab-list {
     background-color: white;
-  margin-left: -25%;
+  margin-left: -30%;
   margin-top: -4%;
+  list-style-type: none;
+    /*margin: 0;*/
+    padding: 0;
+    overflow: hidden;
+    /*background-color: #2C2D72;*/
+    /*position: fixed;*/
+    top: 0;
+    width: 100%;
+    height: 115px;
+    /*float:right;*/
+    color: #BEC0C2; 
 }
 
 
@@ -994,6 +1375,15 @@ img#Driver-Img {
     /*padding-left: 50%;*/
     float: right;
 }
+
+.DriverSearchLol {
+        width: 23%;
+    /* padding-left: 50%; */
+    float: right;
+    margin-right: 125%;
+    padding-bottom: 20%;
+}
+
 .DriverSearchText{
 
 }
@@ -1035,4 +1425,347 @@ p.DriverPParag {
     color: #2C2D72;
     font-family: Cairo;
     font-size: 16px;
+}
+
+input.DriverProfileText{
+          width: 70%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    height: 40px;
+    /* width: 62%; */
+    margin-left: 30%;
+    margin-top: 4%;
+    margin-bottom: 0%;
+    text-align: right;
+}
+
+input.DriverProfileTextT{
+            width: 70%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    height: 40px;
+    /* width: 62%; */
+    margin-left: 65%;
+    margin-top: 4%;
+    margin-bottom: 0%;
+    text-align: right;
+}
+input.DriverProfileTextF{
+           width: 70%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    height: 40px;
+    /* width: 62%; */
+    margin-left: 65%;
+    margin-top: 4%;
+    /* margin-bottom: 3%; */
+    text-align: right;
+}
+.Driver-Right-Right-P {
+          margin-top: -6%;
+    width: 100px;
+    /* padding-right: 90%; */
+    text-align: right;
+    margin-left: 23%
+}
+img.browser {
+    width: 10%;
+        padding-bottom: 4%;
+    float: right;
+}
+
+img.browserDis {
+    width: 0%;
+    padding-bottom: 4%;
+    float: left;
+}
+
+img.browserLol {
+       width: 12%;
+    padding-bottom: 4%;
+    float: right;
+    margin-right: -100%;
+}
+
+
+ul.SubdivUl{
+   list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /*background-color: #2C2D72;*/
+    /*position: fixed;*/
+    top: 0;
+    width: 100%;
+    height: 115px;
+    /*float:right;*/
+    color: #BEC0C2; 
+}
+
+li.active.li.Sub{
+    padding-right: 0%;
+}
+
+a.active.selected {
+    border-bottom: 0px;
+    color: #2C2D72;
+}
+li.active.li.Sub {
+    padding-right: 3%;
+}
+.Subdiv {
+    padding-right: 38%;
+}
+.nextpreviousButtons{
+        border: none;
+    background: white;
+        color: #BEC0C2;
+    font-size: 20px;
+    float: left;
+}
+p.nextpreviousP {
+    float: left;
+    margin-top: 0%;
+}
+
+.whatwhat{
+        float: right;
+}
+.what {
+       width: 100%;
+    float: right;
+    /* padding-bottom: 50%; */
+    /* padding-right: 5%; */
+    margin-right: 15%;
+}
+
+.duuuude {
+         float: right;
+    margin-top: 4%;
+    margin-right: 2%;
+    /* margin-top: 35%; */
+    /* margin-right: 104%; */
+    /* padding-right: 50%; */
+}
+.dunno {
+   border-bottom: 2px solid #BEC0C2;
+    width: 70%;
+    /* padding-left: 43%; */
+    margin-left: 15%;
+    padding-top: 20%;
+}
+
+
+
+
+
+
+
+.x {
+            background-color: #fff;
+    border-color: #d9d9d9 #ccc #b3b3b3;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #333;
+    cursor: default;
+    display: table;
+    border-spacing: 0;
+    border-collapse: separate;
+    height: 40px;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    width: 60px;
+    text-align: center;
+}
+p.supP {
+    float: right;
+    font-size: 20px;
+    margin-right: 23%;
+    color: #2C2D72;
+}
+
+.supman {
+    width: 100%;
+       padding-top: 3%;
+}
+
+p.dudeP{
+        font-size: 20px;
+            color: #2C2D72;
+}
+
+/*.Select-menu-outer{
+    width: 100% !important;
+}*/
+/*div.Select-menu-outer{
+    width: 117% !important;
+    background-color: red !important;
+    color: red !important;
+    overflow-y: hidden;
+}*/
+div.Select.Select--single.is-clearable.is-focused.is-open.is-searchable .Select-control{
+    overflow-y: scroll !important;
+    /*position: absolute;*/
+/*background: #00FECD;*/
+}
+.menu-outer-top .Select-control {
+/*background: red;*/
+
+}
+.Select-option:last-child  {
+/*border-color: red !important;*/
+}
+.menu-outer-top .Select-menu-outer:last-child  {
+/*border-color: red !important;*/
+    
+}
+.Select--single.is-clearable.is-focused.is-open.is-searchable .Select-arrow-zone{
+display: none;
+}
+/*Select menu-outer-top Select--single is-clearable is-focused is-open is-searchable*/
+.div.Select-menu-outer{
+
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px!important;
+}
+.menu-outer-top .Select-menu-outer {
+    /*bottom: 35px!important;*/
+    /*border-bottom-right-radius: 25px !important;
+    border-bottom-left-radius: 25px!important;*/
+    
+    /*border-top-right-radius: 4px!important;
+    border-top-left-radius: 4px!important;*/
+    width: 121%;
+    /*background-color: red !important;*/
+    /*background: red !important;*/
+    
+    /*overflow-y: hidden;*/
+    /*overflow-y:scroll !important;*/
+}
+.Select-option {
+	/*box-sizing: border-box;
+	background-color: red !important;
+	cursor: pointer;
+	display: block;*/
+    /*color: red !important;*/
+    /*background: white !important;*/
+
+}
+span.Select-arrow
+/*.Select-option.is-focused {
+
+    color: white !important;
+    background: red !important;
+border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px!important;
+}*/
+/*.Select-option:nth-child(6n+0)  {
+border-bottom-right-radius: 25px !important;
+    border-bottom-left-radius: 25px!important;
+}*/
+.Select-option:nth-child(6n)  {
+    /*background: red !important;*/
+/*border-bottom-right-radius: 25px !important;
+    border-bottom-left-radius: 25px!important;*/
+}
+.Select-option:nth-child(n+6)  {
+    /*background: red !important;*/
+/*border-bottom-right-radius: 25px !important;
+    border-bottom-left-radius: 25px!important;*/
+}
+/*.Select-option:last-child {
+	 border-bottom-right-radius: 20px!important;
+    border-bottom-left-radius: 20px!important;
+	}*/
+.Select-menu {
+	/*max-height: ($select-menu-max-height - 2px);*/
+	/*border-bottom-right-radius: 20px !important;
+    5aly balaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaak
+    border-bottom-left-radius: 20px!important;*/
+    /*overflow-y:  hidden !important;*/
+    /*position: relative;*/
+}
+.div.Select-menu-outer{
+    /*border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px!important;*/
+}
+.Select-option  {
+
+/*border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px!important;*/
+
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px!important;
+    border-bottom: 0px!important;
+
+ /*border-bottom-right-radius: 1px solid rgb(127, 0, 0);
+    border-bottom-left-radius: 1px solid rgba(255, 0, 0, .5);
+    -webkit-background-clip: padding-box; 
+    background-clip: padding-box;*/
+}
+.Select-option.is-focused {
+		background: #00FECD !important;
+        border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px!important;
+    }
+   
+/*.Select-container.condensed .Select .Select-control {
+    width: auto;
+}
+.Select-container.condensed:not(.multi) .Select .Select-value,
+.Select-container.condensed .Select .Select-placeholder {
+    position: static;
+    display: table-cell;
+    padding-right: 0;
+}
+.Select-container.condensed .Select .Select-loading-zone {
+    padding-left: 5px;
+}
+.Select-container.condensed:not(.multi) .Select .Select-value ~ .Select-input,
+.Select-container.condensed .Select .Select-placeholder ~ .Select-input {
+    position: absolute;
+    left: 0;
+}
+.Select-container.condensed .Select .Select-menu-outer {
+    width: auto;
+    min-width: 100%;
+    background-color: red;
+}
+.Select-container.condensed .Select .Select-menu {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.Select-container.condensed:not(.multi) .Select .Select-option {
+    white-space: nowrap;
+    padding-right: 25px; 
+}
+.Select-container.condensed.multi .Select .Select-multi-value-wrapper {
+    display: initial;
+    position: initial;
+}*/
+
+.lolz {
+       text-align: center;
+    /* font-size: 14px; */
+    /* margin-left: 5%; */
+    /* margin-right: 5%; */
+    /*padding-right: 5%;
+    padding-left: 5%;*/
+}
+
+table.tableclasstwo {
+          width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border: transparent;
+}
+img.dude{
+        width: 115%;
 }

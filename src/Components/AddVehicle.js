@@ -27,10 +27,40 @@ class AddVehicle extends Component {
             startdayoptions: [],
             startmonthoptions: [],
             startyearoptions: [],
+            TokTokActive: "not",
+            TricycleActive: "not",
+            MotocycleActive: "not",
 
         };
 
     }
+
+
+    componentWillMount() {
+
+        imgStyle = {
+            width: "100%"
+        }
+        divStyle = {
+            width: "50%"
+        }
+        this.state = {
+            unixTimestamp: "",
+            img: "",
+            imgdata: new FormData(),
+        }
+        this.setState({
+            startday: "",
+            startmonth: "",
+            startyear: "",
+            endday: "",
+            endmonth: "",
+            endyear: "",
+            userID: this.props.pID
+        })
+    }
+
+
     componentDidMount() {
         var itemIds = [];
         var itemIds2 = [];
@@ -68,29 +98,7 @@ class AddVehicle extends Component {
 
     }
 
-    componentWillMount() {
 
-        imgStyle = {
-            width: "100%"
-        }
-        divStyle = {
-            width: "50%"
-        }
-        this.state = {
-            unixTimestamp: "",
-            img: "",
-            imgdata: new FormData(),
-        }
-        this.setState({
-            startday: "",
-            startmonth: "",
-            startyear: "",
-            endday: "",
-            endmonth: "",
-            endyear: "",
-            userID: this.props.pID
-        })
-    }
     static defaultProps = {
 
 
@@ -198,23 +206,54 @@ class AddVehicle extends Component {
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
+    // handleVehicleType1(value) {
+    //     this.setState({
+    //         vehicleTypee: "tricycle"
+    //     })
+    //     console.log("tricycle")
+    // }
+
+    // handleVehicleType2(value) {
+    //     this.setState({
+    //         vehicleTypee: "motorcycle"
+    //     })
+    //     console.log("motorcycle")
+    // }
+
+    // handleVehicleType3(value) {
+    //     this.setState({
+    //         vehicleTypee: "toktok"
+    //     })
+    //     console.log("toktok")
+    // }
+
+
     handleVehicleType1(value) {
         this.setState({
-            vehicleTypee: "tricycle"
+            vehicleTypee: "tricycle",
+            TricycleActive: "active",
+            MotocycleActive: "not",
+            TokTokActive: "not"
         })
         console.log("tricycle")
     }
 
     handleVehicleType2(value) {
         this.setState({
-            vehicleTypee: "motorcycle"
+            vehicleTypee: "motorcycle",
+            TricycleActive: "not",
+            MotocycleActive: "active",
+            TokTokActive: "not"
         })
         console.log("motorcycle")
     }
 
     handleVehicleType3(value) {
         this.setState({
-            vehicleTypee: "toktok"
+            vehicleTypee: "toktok",
+            TricycleActive: "not",
+            MotocycleActive: "not",
+            TokTokActive: "active"
         })
         console.log("toktok")
     }
@@ -324,135 +363,45 @@ class AddVehicle extends Component {
     render() {
         console.log(this.state.userID, "user ID prop in render")
         return (
-            // <div>
-
-
-            //     <input type="button" value="Back" onClick={this.handleBack.bind(this)} />
-
-
-            //     <div>
-            //         <label>Driver ID: </label>
-            //         <input type="text" ref="driver" required /> 
-            //     </div>
-
-            //     <div>
-            //         <label>Vehicle Type: </label>
-            //         <input type="text" ref="vehicleType" placeholder="toktok/motorcycle" required />
-            //     </div>
-
-            //     <div>
-            //         <label>Model: </label>
-            //         <input type="text" ref="model" placeholder="Year of make" required />
-            //     </div>
-
-            //     <div>
-            //         <label>Make: </label>
-            //         <input type="text" ref="make" placeholder="BMW" required />
-            //     </div>
-
-            //     <div>
-            //         <label>Label: </label>
-            //         <input type="text" ref="label" placeholder="ABC|123" required />
-            //     </div>
-
-            //     <div>
-            //         <label>Vehicle Licence Number: </label>
-            //         <input type="text" ref="vehicleLicenceNumber" />
-            //     </div>
-
-            //     <div>
-            //         <label>Vehicle Expiration Date: </label>
-            //         <input type="date" ref="expirationDate" />
-            //     </div>
-
-            //     <div>
-            //         <label>Owner Name: </label>
-            //         <input type="text" ref="oName" />
-            //     </div>
-
-
-            //     <div>
-            //         <label>Owner Phonenumber: </label>
-            //         <input type="text" ref="OPNumber" placeholder="#### ### ####" />
-            //     </div>
-
-            //     <div>
-            //         <label>Owner National ID : </label>
-            //         <input type="text" ref="nID" />
-            //     </div>
-
-            //     <div>
-            //         <label>Change Artwork  < input type="file" ref="artwork" onChange={this.voo.bind(this)} /> </label>
-            //     </div>
-
-            //     <input type="button" value="Submit" onClick={this.handleSubmit.bind(this)} />
-
-            // </div>
-
             <div>
 
                 <div className="Navdiv">
-                    <ul>
+                    <ul className="NavdivUl">
                         <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
-                        <li className="active li" ><a className="active" onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
-                        {/*<li className="active li"><a className="active" href="#home">السائقين</a></li>*/}
-                        <li><a href="#news">رحلات</a></li>
-                        <li><a href="#contact" onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-                        <li><a href="#about">دعم</a></li>
+                        <li className="active li"><a className="active" >السائقين</a></li>
+                        <li><a >رحلات</a></li>
+                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a >دعم</a></li>
+                        <li><a >تقارير</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
                 <br />
-                {/*<input type="button" value="Back" onClick={this.handleBack.bind(this)} />*/}
+
+                <div className="Subdiv">
+                    <ul className="SubdivUl">
+                        <li className=""><a>&lt; بيانات شخصية</a> </li>
+                        <li className="active li Sub" ><a className="active selected" >&lt; بيانات المركبة</a></li>
+                        <li><a href="#news">صور مستندات و أوراق</a></li>
+                    </ul>
+                </div>
+
+
                 <div className="CreateBigDiv">
 
                     <div className="CreateBigDiv-right">
 
                         <div className="CreateBigDiv-right-right">
-                            {/*<p className="CreateBigDiv">رقم رخصة السائق</p>
-                            <p className="CreateBigDiv">تاريخ إنتهاء الرخصة</p>*/}
-                            <input type="checkbox" />
-                            <p className="CreateBigDiv">أسم مالك المركبة</p>
-                            <p className="CreateBigDiv">رقم المالك</p>
-                            <p className="CreateBigDiv">رقم بطاقة المالك</p>
+                            <input type="checkbox" className="checkmate" />
+                            <p className="CreateBigDivNewLol">أسم مالك المركبة</p>
+                            <p className="CreateBigDivNewLol">رقم المالك</p>
+                            <p className="CreateBigDivNewLol">رقم بطاقة المالك</p>
                         </div>
 
                         <div className="CreateBigDiv-right-left">
                             <div className="CreateBigDivPDiv">
-                                {/*<input type="text" className="CreateBigDivP" ref="driver" required />
-                                <div className="Options-GroupsT">
-                                    <div className="OptionsOT">
-                                        <Select
-                                            ref="startyear"
-                                            placeholder="سنة"
-                                            value={this.state.startyear}
-                                            options={this.state.startyearoptions}
-                                            onChange={this.handleYearoptionsE.bind(this, "startyear")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsTT">
-                                        <Select
-                                            ref="startmonth"
-                                            placeholder="شهر"
-                                            value={this.state.startmonth}
-                                            options={this.state.startmonthoptions}
-                                            onChange={this.handleMonthoptionsE.bind(this, "startmonth")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsThT">
-                                        <Select
-                                            ref="startday"
-                                            placeholder="يوم"
-                                            value={this.state.startday}
-                                            options={this.state.startdayoptions}
-                                            onChange={this.handleDayoptionsE.bind(this, "startday")}
-                                        />
-                                    </div>
-                                </div>*/}
                                 <div className="BOOMMM">
-                                    <p className="CreateBigDivP">هل السائق هو نفس مالك المركبة</p>
+                                    <p className="CreateBigDivPIdk">هل السائق هو نفس مالك المركبة</p>
                                 </div>
                                 <input type="text" className="CreateBigDivP" ref="oName" required />
                                 <input type="text" className="CreateBigDivP" ref="OPNumber" required />
@@ -465,46 +414,39 @@ class AddVehicle extends Component {
 
                     <div className="CreateBigDiv-left">
 
-                        <div className="CreateBigDiv-left-right">
-                            <p className="CreateBigDiv">نوع المركبة</p>
-                            <p className="CreateBigDiv">الموديل</p>
-                            <p className="CreateBigDiv">رقم اللوحة</p>
-                            <p className="CreateBigDiv">تاريخ الإنتاج</p>
-                            <p className="CreateBigDiv">رقم الشاسيه</p>
-                            <p className="CreateBigDiv">رقم الموتور</p>
+                        <div className="CreateBigDiv-left-rightLol">
+                            <p className="CreateBigDivLol">نوع المركبة</p>
+                            <p className="CreateBigDivLol">الموديل</p>
+                            <p className="CreateBigDivLol">رقم اللوحة</p>
+                            <p className="CreateBigDivLol">تاريخ الإنتاج</p>
+                            <p className="CreateBigDivLol">رقم الشاسيه</p>
+                            <p className="CreateBigDivLol">رقم الموتور</p>
                         </div>
 
-                        <div className="CreateBigDiv-left-left">
-                            {/*<div className="custom-file-upload-inner-div">
-                                <div className="custom-file-upload-inner-div-right">
-                                    <label className="custom-file-upload">
-                                        <input type="file" onChange={this.voo.bind(this)} />
-                                        <img src="./redashboard/Group 1548.png" className="custom-file-upload-img" />
-                                    </label>
-                                </div >
-                                <div className="custom-file-upload-inner-div-left">
-                                    <p>اضغط لتحميل صورة شخصية</p>
+                        <div className="CreateBigDiv-left-leftLol">
+                            <div id="maincontainerLol">
+                                 <div className="three" >
+                                    <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
                                 </div>
-                            </div>*/}
+                                <div className="four">
+                                    <img src="\Line 515.png" className="two" />
+                                </div>
 
+                                <div className="three" >
+                                    <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
+                                </div>
+                                <div className="four">
+                                    <img src="\Line 515.png" className="two" />
+                                </div>
 
-                            <div id="maincontainer"> 
-                                <img src="\Group 1524.png" className="one" ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
-                                <img src="\Line 515.png" className="two" />
-                                <img src="\Group 1523.png" className="one" ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
-                                <img src="\Line 515.png" className="two" />
-                                <img src="\Group 1522.png" className="one" ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
-
-                                {/*<img src="http://www.iconsdb.com/icons/preview/black/car-xxl.png" className="one" ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
-                                <img src="http://www.iconsdb.com/icons/preview/black/car-xxl.png" className="two" />
-                                <img src="http://www.iconsdb.com/icons/preview/black/car-xxl.png" className="one" ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
-                                <img src="http://www.iconsdb.com/icons/preview/black/car-xxl.png" className="two" />
-                                <img src="http://www.iconsdb.com/icons/preview/black/car-xxl.png" className="one" ref="toktok" onClick={this.handleVehicleType3.bind(this)} />*/}
+                                <div className="three" >
+                                    <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
+                                </div>
                             </div>
 
-                            <input type="text" ref="make" className="CreateBigDivPT" />
-                            <input type="text" ref="label" className="CreateBigDivPT" />
-                            <div className="Options-GroupsT">
+                            <input type="text" ref="make" className="CreateBigDivPTLol" />
+                            <input type="text" ref="label" className="CreateBigDivPTLol" />
+                            <div className="Options-GroupsFi">
                                 <div className="OptionsOT">
                                     <Select
                                         ref="startyear"
@@ -535,8 +477,8 @@ class AddVehicle extends Component {
                                     />
                                 </div>
                             </div>
-                            <input type="text" ref="shaseehNo" className="CreateBigDivPT" />
-                            <input type="text" ref="motorNo" className="CreateBigDivPT" />
+                            <input type="text" ref="shaseehNo" className="CreateBigDivPTLol" />
+                            <input type="text" ref="motorNo" className="CreateBigDivPTLol" />
                         </div>
                     </div>
 
@@ -545,7 +487,7 @@ class AddVehicle extends Component {
 
                 <br /><br />
 
-                <div className="buttonT">
+                <div className="buttonTT">
                     <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
                     {/*onClick={this.handleSubmit.bind(this)}*/}
                 </div>

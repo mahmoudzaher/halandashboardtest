@@ -20,10 +20,6 @@ class Promo extends Component {
             startdayoptions: [],
 
         };
-        // var flightOffer = this.state.flightOffer;
-        // for (var i = 0; i <= 31; i++) {
-        //     this.setState({ startdayoptions: this.state.startdayoptions.concat(i) })
-        // }
 
 
     }
@@ -53,6 +49,8 @@ class Promo extends Component {
             endday: "",
             endmonth: "",
             endyear: "",
+            lessThanAll: -1,
+            greaterThanAll: 15,
 
         })
         axios.get('/api/operator/getallpromocodes').then(function (response) {
@@ -149,10 +147,7 @@ class Promo extends Component {
         // var sel = document.getElementById('SelectPopDayOptions');
         for (var i = 0; i <= 31; i++) {
             React.createElement('option')
-            // var opt = document.createElement('option');
-            // opt.innerHTML = i;
-            // opt.value = i;
-            // sel.appendChild(opt);
+
         }
 
     }
@@ -168,6 +163,45 @@ class Promo extends Component {
         console.log(value);
         console.log(artistID);
     }
+
+
+    nextAll(event) {
+        var that = this;
+        var length = this.state.objects.length;
+
+        if (this.state.lessThanAll + 15 < length) {
+            this.setState({
+                lessThanAll: this.state.lessThanAll + 15,
+                greaterThanAll: this.state.greaterThanAll + 15,
+            })
+        }
+        else {
+            this.setState({
+                lessThanAll: this.state.lessThanAll,
+                greaterThanAll: this.state.greaterThanAll,
+            })
+        }
+    }
+
+    previousAll(event) {
+        var that = this;
+        var length = this.state.objects.length;
+
+        if (this.state.lessThanAll > 0) {
+            this.setState({
+                lessThanAll: this.state.lessThanAll - 15,
+                greaterThanAll: this.state.greaterThanAll - 15,
+            })
+        }
+        else {
+            this.setState({
+                lessThanAll: this.state.lessThanAll,
+                greaterThanAll: this.state.greaterThanAll,
+            })
+        }
+    }
+
+
     table() {
 
         var that = this;
@@ -192,53 +226,22 @@ class Promo extends Component {
                     </tr>
                 ),
                 React.DOM.tbody(null,
-                    that.state.objects.map(function (row) {
+                    that.state.objects.map(function (row, index) {
                         let re = [];
                         // console.log(row)
-
-
-                        // re.push("./Group 1433.png")
-                        // re.push("./Path 1161.png")
-                        // re.push("./Group 1410.png")
-                        if (row.status === true) {
-                            re.push("enabled")
+                        if (that.state.lessThanAll < index && index < that.state.greaterThanAll) {
+                            if (row.status === true) {
+                                re.push("enabled")
+                            }
+                            else {
+                                re.push("disabled")
+                            }
+                            re.push("./Path 1161.png")
+                            re.push(row.expiryDate)
+                            re.push(row.startDate)
+                            re.push(row.codeType)
+                            re.push(row.codeValue)
                         }
-                        else {
-                            re.push("disabled")
-                        }
-                        re.push("./Path 1161.png")
-                        re.push(row.expiryDate)
-                        re.push(row.startDate)
-                        re.push(row.codeType)
-                        re.push(row.codeValue)
-                        // if (row.phoneNumber.length < 12) {
-                        //     re.push(row.phoneNumber)
-                        // }
-                        // else {
-                        //     re.push("-")
-                        // }
-                        // if (row.vehicle) {
-                        //     if (row.vehicle.vehicletype === "toktok") {
-
-                        //         re.push("./Group 1367.png")
-                        //     }
-
-                        //     if (row.vehicle.vehicletype === "motorcycle") {
-
-                        //         re.push("./Group 1355.png")
-                        //     }
-
-                        //     if (row.vehicle.vehicletype === "tricycle") {
-
-                        //         re.push("./Group 1368.png")
-                        //     }
-                        // }
-                        // else {
-                        //     re.push("-")
-                        // }
-                        // re.push("row.firstName")
-                        // re.push("محمد")
-                        {/*<img src="./Group 1433.png" />*/ }
                         return (
                             <tr>
                                 {
@@ -267,12 +270,13 @@ class Promo extends Component {
             <div>
 
                 <div className="Navdiv">
-                    <ul>
+                    <ul className="NavdivUl">
                         <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
                         <li className="active li" ><a onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
                         <li><a href="#news">رحلات</a></li>
                         <li ><a href="#contact" className="active">برومو كود</a></li>
                         <li><a href="#about">دعم</a></li>
+                        <li><a >تقارير</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
@@ -345,17 +349,10 @@ class Promo extends Component {
                                 </div>
                                 <div className="Options-Groups">
                                     <div className="OptionsO">
-                                        {/*<select className="SelectPopD">
-                                            <option>Here is the unstyled select box</option>
-                                            <option>The second option</option>
-                                            <option>The third option</option>
-                                        </select>*/}
-                                        {/*<select id="SelectPopDayOptions" ref="SelectPopDayOptions" className="SelectPopD" onClick={this.Dayoptions.bind(this)}>
-                                            <option selected="selected">Day</option>
-                                        </select>*/}
                                         <Select
                                             ref="startday"
                                             placeholder="سنة"
+                                            className="menu-outer-top"
                                             value={this.state.startday}
                                             options={this.state.startdayoptions}
                                             onChange={this.handleDayoptions.bind(this, "startday")}
@@ -363,15 +360,12 @@ class Promo extends Component {
                                     </div>
 
                                     <div className="OptionsT">
-                                        {/*<select className="SelectPopM">
-                                            <option>Here is the unstyled select box</option>
-                                            <option>The second option</option>
-                                            <option>The third option</option>
-                                        </select>*/}
+
 
                                         <Select
                                             ref="startday"
                                             placeholder="شهر"
+                                            className="menu-outer-top"
                                             value={this.state.startday}
                                             options={this.state.startdayoptions}
                                             onChange={this.handleDayoptions.bind(this, "startday")}
@@ -379,14 +373,10 @@ class Promo extends Component {
                                     </div>
 
                                     <div className="OptionsTh">
-                                        {/*<select className="SelectPopY">
-                                            <option>Here is the unstyled select box</option>
-                                            <option>The second option</option>
-                                            <option>The third option</option>
-                                        </select>*/}
                                         <Select
                                             ref="startday"
                                             placeholder="يوم"
+                                            className="menu-outer-top"
                                             value={this.state.startday}
                                             options={this.state.startdayoptions}
                                             onChange={this.handleDayoptions.bind(this, "startday")}
@@ -396,14 +386,11 @@ class Promo extends Component {
 
                                 <div className="Options-Groups">
                                     <div className="OptionsO">
-                                        {/*<select className="SelectPopD">
-                                            <option>Here is the unstyled select box</option>
-                                            <option>The second option</option>
-                                            <option>The third option</option>
-                                        </select>*/}
+
                                         <Select
                                             ref="startday"
                                             placeholder="سنة"
+                                            className="menu-outer-top"
                                             value={this.state.startday}
                                             options={this.state.startdayoptions}
                                             onChange={this.handleDayoptions.bind(this, "startday")}
@@ -411,14 +398,11 @@ class Promo extends Component {
                                     </div>
 
                                     <div className="OptionsT">
-                                        {/*<select className="SelectPopM">
-                                            <option>Here is the unstyled select box</option>
-                                            <option>The second option</option>
-                                            <option>The third option</option>
-                                        </select>*/}
+
                                         <Select
                                             ref="startday"
                                             placeholder="شهر"
+                                            className="menu-outer-top"
                                             value={this.state.startday}
                                             options={this.state.startdayoptions}
                                             onChange={this.handleDayoptions.bind(this, "startday")}
@@ -426,14 +410,11 @@ class Promo extends Component {
                                     </div>
 
                                     <div className="OptionsTh">
-                                        {/*<select className="SelectPopY">
-                                            <option>Here is the unstyled select box</option>
-                                            <option>The second option</option>
-                                            <option>The third option</option>
-                                        </select>*/}
+
                                         <Select
                                             ref="startday"
                                             placeholder="يوم"
+                                            className="menu-outer-top"
                                             value={this.state.startday}
                                             options={this.state.startdayoptions}
                                             onChange={this.handleDayoptions.bind(this, "startday")}
@@ -448,16 +429,27 @@ class Promo extends Component {
                                 </div>
                             </div>
 
-                             <div className="buttonT">
-                            <input type="button" value="تفعيل" className="button"  className="coolT" /> 
-                            {/*onClick={this.handleSubmit.bind(this)}*/}
+                            <div className="buttonT">
+                                <input type="button" value="تفعيل" className="button" className="coolT" />
+                                {/*onClick={this.handleSubmit.bind(this)}*/}
+                            </div>
                         </div>
-                        </div>
-                       
+
                     </div>
 
                 </SkyLight>
-                {this.table()}
+                <div className="promotable" >
+                    {this.table()}
+                </div>
+                {/*<div className="nextprevious" >
+                    <button onClick={this.nextAll.bind(this)}>next</button>
+                    <button onClick={this.previousAll.bind(this)}>previous</button>
+                </div>*/}
+                <div className="nextprevious" >
+                    <button className="nextpreviousButtons" onClick={this.nextAll.bind(this)}>&lt;</button>
+                    <p className="nextpreviousP">{this.state.lessThanAll + 2} to {this.state.greaterThanAll}</p>
+                    <button className="nextpreviousButtons" onClick={this.previousAll.bind(this)}>&gt;</button>
+                </div>
                 {/*<br /> <br /> <br />*/}
 
 

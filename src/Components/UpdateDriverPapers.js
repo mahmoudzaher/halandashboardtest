@@ -4,26 +4,23 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import SkyLight from 'react-skylight';
 var ReactRouter = require('flux-react-router');
 
+class UpdateDriverPapers extends Component {
 
-let imgStyle;
-let divStyle;
-let isAdmin;
-class AddDriverPapers extends Component {
-
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        var that = this;
         axios.defaults.baseURL = localStorage.getItem('baseURL');
         /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
+        axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('sessionToken');
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        this.state = {
+            userID: that.props.pID,
+            driverId: that.props.pID,
+            vehicleId: "",
+        };
     }
 
     componentWillMount() {
-        imgStyle = {
-            width: "100%"
-        }
-        divStyle = {
-            width: "50%"
-        }
         this.state = {
             unixTimestamp: "",
             nationalIdimg: [],
@@ -37,11 +34,86 @@ class AddDriverPapers extends Component {
             newimg: "",
             img: "",
             newEntries: [],
-            displayobj: null
+            displayobj: null,
+            driverId: this.props.pID,
         }
         this.setState({
             userID: this.props.pID
         })
+
+        axios.get('/api/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
+            console.log(response, "getdriverpapers Response")
+            var x = response.data.data;
+
+            // that.setState({
+            //     // driverName: x.firstName,
+            //     // driverPNumber: x.phoneNumber,
+            //     // driverEmail: x.email,
+            //     // driverPassword: x.password,
+            //     driverBirthday: x.birthday,
+            //     // driverAddress: x.address,
+            //     driverPicture: x.picture,
+
+
+            //     Name: x.firstName,
+            //     PNumber: x.phoneNumber,
+            //     Email: x.email,
+            //     Password: x.birthday,
+            //     Address: x.address,
+            // })
+            // if (x.driverLicense) {
+            //     that.setState({
+            //         DriverLicense: x.driverLicense,
+            //         // driverLicenseNo: x.driverLicense.number,
+            //         LNumber: x.driverLicense.number,
+            //         driverLicenseExpDate: x.driverLicense.expirationDate,
+            //     })
+
+            // }
+
+        }).catch(function (error) {
+            alert(error.message);
+            console.log(error)
+        })
+    }
+
+    componentDidMount() {
+        var that = this;
+
+        // axios.get('/api/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
+        //     console.log(response, "getdriverpapers Response")
+        //     var x = response.data.data;
+
+        //     // that.setState({
+        //     //     // driverName: x.firstName,
+        //     //     // driverPNumber: x.phoneNumber,
+        //     //     // driverEmail: x.email,
+        //     //     // driverPassword: x.password,
+        //     //     driverBirthday: x.birthday,
+        //     //     // driverAddress: x.address,
+        //     //     driverPicture: x.picture,
+
+
+        //     //     Name: x.firstName,
+        //     //     PNumber: x.phoneNumber,
+        //     //     Email: x.email,
+        //     //     Password: x.birthday,
+        //     //     Address: x.address,
+        //     // })
+        //     // if (x.driverLicense) {
+        //     //     that.setState({
+        //     //         DriverLicense: x.driverLicense,
+        //     //         // driverLicenseNo: x.driverLicense.number,
+        //     //         LNumber: x.driverLicense.number,
+        //     //         driverLicenseExpDate: x.driverLicense.expirationDate,
+        //     //     })
+
+        //     // }
+
+        // }).catch(function (error) {
+        //     alert(error.message);
+        //     console.log(error)
+        // })
     }
     static defaultProps = {
 
@@ -309,96 +381,111 @@ class AddDriverPapers extends Component {
                         <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
                         <li className="active li" ><a className="active" onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
                         {/*<li className="active li"><a className="active" href="#home">السائقين</a></li>*/}
-                        <li><a href="#news">رحلات</a></li>
-                        <li><a href="#contact" onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-                        <li><a href="#about">دعم</a></li>
+                        <li><a  >رحلات</a></li>
+                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a  >دعم</a></li>
+                        <li><a >تقارير</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
                 <br />
-
                 <div className="Subdiv">
                     <ul className="SubdivUl">
                         <li className=""><a>&lt; بيانات شخصية</a> </li>
-                        <li className="active li Sub" ><a className="active selected" >&lt; بيانات المركبة</a></li>
-                        <li><a href="#news">صور مستندات و أوراق</a></li>
+                        <li ><a >&lt; بيانات المركبة</a></li>
+                        <li className="active li Sub"><a className="active selected" >صور مستندات و أوراق</a></li>
                     </ul>
                 </div>
-
 
                 <div className="CreateBigDiv">
 
                     <div className="CreateBigDiv-right">
-                        <div className="CreateBigDiv-right-right">
-                            <p className="CreateBigDivPapersFml">بطاقة السائق</p>
-                            <p className="CreateBigDivPapersFml">رخصة السائق</p>
-                            <p className="CreateBigDivPapersFml">رخصة المركبة</p>
-                            <p className="CreateBigDivPapersFml">مستندات التمليك</p>
+                        <div className="CreateBigDiv-right-rightDis">
+                            <p className="CreateBigDivDis">بطاقة السائق</p>
+                            <p className="CreateBigDivDis">رخصة السائق</p>
+                            <p className="CreateBigDivDis">رخصة المركبة</p>
+                            <p className="CreateBigDivDis">مستندات التمليك</p>
                         </div>
-                        <div className="CreateBigDiv-right-leftLollll">
-                            <div className="disdis" >
-                                <div className="upload-button-divLolllFml">
+                        <div className="CreateBigDiv-right-lefthmm">
+
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
-                                </div>
-
-                                <div className="upload-button-divLolllFml">
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
-                                </div>
-
-                                <div className="upload-button-divLolllFml">
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
-                                </div>
-
-                                <div className="upload-button-divLolllFml">
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.eoo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
                             </div>
 
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
+                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
+                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
+                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.eoo.bind(this)} multiple="multiple" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div className="CreateBigDiv-left">
                         <div className="CreateBigDiv-left-right">
-                            <p className="CreateBigDivPapersLol">صورة العنوان</p>
-                            <p className="CreateBigDivPapersLol">فيش و تشبيه</p>
-                            <p className="CreateBigDivPapersLol">تحليل مخدرات</p>
-                            <p className="CreateBigDivPapersLol">عقد شراكة</p>
+                            <p className="CreateBigDiv">صورة العنوان</p>
+                            <p className="CreateBigDiv">فيش و تشبيه</p>
+                            <p className="CreateBigDiv">تحليل مخدرات</p>
+                            <p className="CreateBigDiv">عقد شراكة</p>
                         </div>
-                        <div className="CreateBigDiv-left-leftLolLolLLL">
-                            <div className="whatisthis">
-                                <div className="upload-button-divLol">
-                                    <label className="upload-buttonWhatisThis">حمل المستندات< input type="file" ref="artwork" onChange={this.boo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="browserLol" />
-                                    </label>
-                                </div>
-
-                                <div className="upload-button-divLol">
-                                    <label className="upload-buttonWhatisThis">حمل المستندات< input type="file" ref="artwork" onChange={this.foo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="browserLol" />
-                                    </label>
-                                </div>
-
-                                <div className="upload-button-divLol">
-                                    <label className="upload-buttonWhatisThis">حمل المستندات< input type="file" ref="artwork" onChange={this.goo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="browserLol" />
-                                    </label>
-                                </div>
-
-                                <div className="upload-button-divLol">
-                                    <label className="upload-buttonWhatisThisLol">حمل المستندات< input type="file" ref="artwork" onChange={this.hoo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                        <div className="CreateBigDiv-left-leftDis">
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
+                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.boo.bind(this)} multiple="multiple" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
                             </div>
-
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
+                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.foo.bind(this)} multiple="multiple" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
+                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.goo.bind(this)} multiple="multiple" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="upload-button-divDis">
+                                <div className="uploadWhat" >
+                                    <img src="/browser.png" className="browserDis" />
+                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.hoo.bind(this)} multiple="multiple" />
+                                        <img src="./redashboard/Group 1538.png" className="hello" />
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -426,5 +513,5 @@ class AddDriverPapers extends Component {
     }
 }
 
-export default AddDriverPapers;
+export default UpdateDriverPapers;
 

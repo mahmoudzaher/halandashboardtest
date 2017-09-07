@@ -20,11 +20,29 @@ class Dashboard extends Component {
 
     this.setState({
       objects: [],
+      objectsActive: [],
+      objectsSuspended: [],
+      objectsPending: [],
+      activeN: 0,
+      pendingN: 0,
+      suspendedN: 0,
+      activeStart: 0,
+      pendingStart: 0,
+      suspendedStart: 0,
       playlists: "PlayW.png",
       a: "UpB.png",
       b: "RepB.png",
       c: "NotB.png",
-      searchfilter: ""
+      searchfilter: "",
+      lessThanAll: -1,
+      greaterThanAll: 15,
+      lessThanActive: -1,
+      greaterThanActive: 15,
+      lessThanSuspended: -1,
+      greaterThanSuspended: 15,
+      lessThanPending: -1,
+      greaterThanPending: 15,
+      objectsArray: []
     })
 
     var that = this;
@@ -33,18 +51,43 @@ class Dashboard extends Component {
       console.log(response, "helloooooooasdgkjuhasghdkjhasghdkjasgdkasgdakljshgdl")
       var x = response.data.data;
       var objects = [];
-
-      x.forEach(function (item) {
+      var objectsActive = [];
+      var objectsSuspended = [];
+      var objectsPending = [];
+      var active = 0;
+      var pending = 0;
+      var suspended = 0;
+      x.forEach(function (item, index) {
         // console.log(item)
         objects.push(item);
 
-      })
+        if (item.status === "active") {
+          objectsActive.push(item);
+        }
 
+
+
+        else if (item.status === "suspended") {
+          objectsSuspended.push(item);
+        }
+
+
+        else if (item.status === "pending") {
+          objectsPending.push(item);
+
+        }
+
+      })
 
       that.setState({
 
         objects: objects,
-
+        objectsActive: objectsActive,
+        objectsSuspended: objectsSuspended,
+        objectsPending: objectsPending,
+        activeN: active,
+        pendingN: pending,
+        suspendedN: suspended,
       })
 
     }).catch(function (error) {
@@ -74,7 +117,6 @@ class Dashboard extends Component {
     })
   }
 
-
   ReactivateDriver(event, id) {
     console.log(event, id)
     var object = {
@@ -92,6 +134,23 @@ class Dashboard extends Component {
   }
 
 
+  // ReactivateDriver(event, id) {
+  //   console.log(event, id)
+  //   var object = {
+  //     driverId: event,
+  //     newStatus: "active"
+  //   }
+  //   axios.post('api/operator/changedriverstatus', object).then(function (response) {
+  //     console.log(response)
+  //     // window.localStorage.setItem('sessionToken', response.data);
+  //     alert("dirver reactivated")
+  //   }).catch(function (error) {
+  //     alert(error.message);
+  //     console.log(error)
+  //   })
+  // }
+
+
   GotoShowTripsOfDriverById(event, id) {
     console.log(event, id)
     var id = event;
@@ -101,7 +160,159 @@ class Dashboard extends Component {
   }
 
 
+  nextAll(event) {
+    var that = this;
+    var length = this.state.objects.length;
 
+    if (this.state.lessThanAll + 15 < length) {
+      this.setState({
+        lessThanAll: this.state.lessThanAll + 15,
+        greaterThanAll: this.state.greaterThanAll + 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThanAll: this.state.lessThanAll,
+        greaterThanAll: this.state.greaterThanAll,
+      })
+    }
+  }
+
+  previousAll(event) {
+    var that = this;
+    var length = this.state.objects.length;
+
+    if (this.state.lessThanAll > 0) {
+      this.setState({
+        lessThanAll: this.state.lessThanAll - 15,
+        greaterThanAll: this.state.greaterThanAll - 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThanAll: this.state.lessThanAll,
+        greaterThanAll: this.state.greaterThanAll,
+      })
+    }
+  }
+
+  nextActive(event) {
+    var that = this;
+    var length = this.state.objectsActive.length;
+
+    if (this.state.lessThanActive + 15 < length) {
+      this.setState({
+        lessThanActive: this.state.lessThanActive + 15,
+        greaterThanActive: this.state.greaterThanActive + 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThanActive: this.state.lessThanActive,
+        greaterThanActive: this.state.greaterThanActive,
+      })
+    }
+  }
+
+  previousActive(event) {
+    var that = this;
+    var length = this.state.objectsActive.length;
+
+    console.log(length, "length")
+    if (this.state.lessThanActive > 0) {
+      this.setState({
+        lessThanActive: this.state.lessThanActive - 15,
+        greaterThanActive: this.state.greaterThanActive - 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThanActive: this.state.lessThanActive,
+        greaterThan: this.state.greaterThan,
+      })
+    }
+  }
+
+  nextSuspended(event) {
+    var that = this;
+    var length = this.state.objectsSuspended.length;
+
+    if (this.state.lessThanSuspended + 15 < length) {
+      this.setState({
+        lessThanSuspended: this.state.lessThanSuspended + 15,
+        greaterThanSuspended: this.state.greaterThanSuspended + 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThanSuspended: this.state.lessThanSuspended,
+        greaterThanSuspended: this.state.greaterThanSuspended,
+      })
+    }
+  }
+
+  previousSuspended(event) {
+    var that = this;
+    var length = this.state.objectsSuspended.length;
+
+    if (this.state.lessThanSuspended > 0) {
+      this.setState({
+        lessThanSuspended: this.state.lessThanSuspended - 15,
+        greaterThanSuspended: this.state.greaterThanSuspended - 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThan: this.state.lessThan,
+        greaterThanSuspended: this.state.greaterThanSuspended,
+      })
+    }
+  }
+
+  nextPending(event) {
+    var that = this;
+    var length = this.state.objectsPending.length;
+
+    if (this.state.lessThanPending + 15 < length) {
+      this.setState({
+        lessThanPending: this.state.lessThanPending + 15,
+        greaterThanPending: this.state.greaterThanPending + 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThanPending: this.state.lessThanPending,
+        greaterThanPending: this.state.greaterThanPending,
+      })
+    }
+  }
+
+  previousPending(event) {
+    var that = this;
+    var length = this.state.objectsPending.length;
+
+    if (this.state.lessThanPending > 0) {
+      this.setState({
+        lessThanPending: this.state.lessThanPending - 15,
+        greaterThanPending: this.state.greaterThanPending - 15,
+      })
+    }
+    else {
+      this.setState({
+        lessThanPending: this.state.lessThanPending,
+        greaterThanPending: this.state.greaterThanPending,
+      })
+    }
+  }
+
+  gotoDriverProfile(event, index) {
+    ReactRouter.goTo(`/DriverProfile/${event}`);
+  }
+
+  gotoUpdateDriver(event, index) {
+    console.log("yahoooooooooooooooooooooooooooooooooo")
+    ReactRouter.goTo(`/UpdateUser/${event}`);
+  }
 
   tableAll() {
 
@@ -129,41 +340,44 @@ class Dashboard extends Component {
           that.state.objects.map(function (row, index) {
             let re = [];
             // console.log(row)
-            if (row.phoneNumber.includes(that.state.searchfilter)) {
-              var Id = row._id;
 
-              re.push("./Group 1433.png")
-              re.push("./Path 1161.png")
-              re.push("./Group 1410.png")
-              if (row.phoneNumber.length < 12) {
-                re.push(row.phoneNumber)
-              }
-              else {
-                re.push("-")
-              }
-              if (row.vehicle) {
-                if (row.vehicle.vehicletype === "toktok") {
 
-                  re.push("./Group 1367.png")
+
+            if (that.state.lessThanAll < index && index < that.state.greaterThanAll) {
+              if (row.phoneNumber.includes(that.state.searchfilter)) {
+                var Id = row._id;
+
+                re.push("./Group 1433.png")
+                re.push("./Path 1161.png")
+                re.push("./Group 1410.png")
+                if (row.phoneNumber.length < 12) {
+                  re.push(row.phoneNumber)
                 }
-
-                if (row.vehicle.vehicletype === "motorcycle") {
-
-                  re.push("./Group 1355.png")
+                else {
+                  re.push("-")
                 }
+                if (row.vehicle) {
+                  if (row.vehicle.vehicletype === "toktok") {
 
-                if (row.vehicle.vehicletype === "tricycle") {
+                    re.push("./Group 1367.png")
+                  }
 
-                  re.push("./Group 1368.png")
+                  if (row.vehicle.vehicletype === "motorcycle") {
+
+                    re.push("./Group 1355.png")
+                  }
+
+                  if (row.vehicle.vehicletype === "tricycle") {
+
+                    re.push("./Group 1368.png")
+                  }
                 }
+                else {
+                  re.push("-")
+                }
+                re.push(row.firstName)
               }
-              else {
-                re.push("-")
-              }
-              re.push(row.firstName)
             }
-            // re.push("محمد")
-            {/*<img src="./Group 1433.png" />*/ }
             return (
               <tr key={index}>
                 {
@@ -175,6 +389,9 @@ class Dashboard extends Component {
                     }
                     else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
                       return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></td>
+                    }
+                     else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
@@ -218,73 +435,43 @@ class Dashboard extends Component {
           </tr>
         ),
         React.DOM.tbody(null,
-          that.state.objects.map(function (row, index) {
+          that.state.objectsActive.map(function (row, index) {
             let re = [];
             // console.log(row)
-            // 
-            if (row.status === "active" && row.phoneNumber.includes(that.state.searchfilter)) {
-              re.push("./Group 1433.png")
-              re.push("./Path 1161.png")
-              re.push("./Group 1410.png")
-              if (row.phoneNumber.length < 12) {
-                re.push(row.phoneNumber)
-              }
-              else {
-                re.push("-")
-              }
-              if (row.vehicle) {
-                if (row.vehicle.vehicletype === "toktok") {
 
-                  re.push("./Group 1367.png")
+            if (that.state.lessThanActive < index && index < that.state.greaterThanActive) {
+              if (row.phoneNumber.includes(that.state.searchfilter)) {
+                re.push("./Group 1433.png")
+                re.push("./Path 1161.png")
+                re.push("./Group 1410.png")
+                if (row.phoneNumber.length < 12) {
+                  re.push(row.phoneNumber)
                 }
-
-                if (row.vehicle.vehicletype === "motorcycle") {
-
-                  re.push("./Group 1355.png")
+                else {
+                  re.push("-")
                 }
+                if (row.vehicle) {
+                  if (row.vehicle.vehicletype === "toktok") {
 
-                if (row.vehicle.vehicletype === "tricycle") {
+                    re.push("./Group 1367.png")
+                  }
 
-                  re.push("./Group 1368.png")
+                  if (row.vehicle.vehicletype === "motorcycle") {
+
+                    re.push("./Group 1355.png")
+                  }
+
+                  if (row.vehicle.vehicletype === "tricycle") {
+
+                    re.push("./Group 1368.png")
+                  }
                 }
+                else {
+                  re.push("-")
+                }
+                re.push(row.firstName)
               }
-              else {
-                re.push("-")
-              }
-              re.push(row.firstName)
             }
-
-            // re.push("./Group 1433.png")
-            // re.push("./Path 1161.png")
-            // re.push("./Group 1410.png")
-            // if (row.phoneNumber.length < 12) {
-            //   re.push(row.phoneNumber)
-            // }
-            // else {
-            //   re.push("-")
-            // }
-            // if (row.vehicle) {
-            //   if (row.vehicle.vehicletype === "toktok") {
-
-            //     re.push("./Group 1367.png")
-            //   }
-
-            //   if (row.vehicle.vehicletype === "motorcycle") {
-
-            //     re.push("./Group 1355.png")
-            //   }
-
-            //   if (row.vehicle.vehicletype === "tricycle") {
-
-            //     re.push("./Group 1368.png")
-            //   }
-            // }
-            // else {
-            //   re.push("-")
-            // }
-            // re.push(row.firstName)
-            // re.push("محمد")
-            {/*<img src="./Group 1433.png" />*/ }
             return (
               <tr key={index}>
                 {
@@ -296,8 +483,17 @@ class Dashboard extends Component {
                     else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
                       return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></td>
                     }
+                    else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></td>
+                    }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
+                    }
+                    // else if (index === 1) {
+                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
+                    //  }
+                    else if (index === 5) {
+                      return <td className="PTD" key={index}> <div onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
                     }
                     else {
                       return <td className="PTD" key={index}><div >{col}</div></td>
@@ -338,73 +534,44 @@ class Dashboard extends Component {
           </tr>
         ),
         React.DOM.tbody(null,
-          that.state.objects.map(function (row, index) {
+          that.state.objectsSuspended.map(function (row, index) {
             let re = [];
-            // console.log(row)
+            // console.log(index, "index of suspended driver")
 
-            if (row.status === "suspended" && row.phoneNumber.includes(that.state.searchfilter)) {
-              re.push("./Group 1792.png")
-              re.push("./Path 1161.png")
-              re.push("./Group 1410.png")
-              if (row.phoneNumber.length < 12) {
-                re.push(row.phoneNumber)
-              }
-              else {
-                re.push("-")
-              }
-              if (row.vehicle) {
-                if (row.vehicle.vehicletype === "toktok") {
-
-                  re.push("./Group 1367.png")
+            // console.log(that.state.suspendedN, "suspendedN")
+            if (that.state.lessThanSuspended < index && index < that.state.greaterThanSuspended) {
+              if (row.phoneNumber.includes(that.state.searchfilter)) {
+                re.push("./Group 1792.png")
+                re.push("./Path 1161.png")
+                re.push("./Group 1410.png")
+                if (row.phoneNumber.length < 12) {
+                  re.push(row.phoneNumber)
                 }
-
-                if (row.vehicle.vehicletype === "motorcycle") {
-
-                  re.push("./Group 1355.png")
+                else {
+                  re.push("-")
                 }
+                if (row.vehicle) {
+                  if (row.vehicle.vehicletype === "toktok") {
 
-                if (row.vehicle.vehicletype === "tricycle") {
+                    re.push("./Group 1367.png")
+                  }
 
-                  re.push("./Group 1368.png")
+                  if (row.vehicle.vehicletype === "motorcycle") {
+
+                    re.push("./Group 1355.png")
+                  }
+
+                  if (row.vehicle.vehicletype === "tricycle") {
+
+                    re.push("./Group 1368.png")
+                  }
                 }
+                else {
+                  re.push("-")
+                }
+                re.push(row.firstName)
               }
-              else {
-                re.push("-")
-              }
-              re.push(row.firstName)
             }
-
-            // re.push("./Group 1433.png")
-            // re.push("./Path 1161.png")
-            // re.push("./Group 1410.png")
-            // if (row.phoneNumber.length < 12) {
-            //   re.push(row.phoneNumber)
-            // }
-            // else {
-            //   re.push("-")
-            // }
-            // if (row.vehicle) {
-            //   if (row.vehicle.vehicletype === "toktok") {
-
-            //     re.push("./Group 1367.png")
-            //   }
-
-            //   if (row.vehicle.vehicletype === "motorcycle") {
-
-            //     re.push("./Group 1355.png")
-            //   }
-
-            //   if (row.vehicle.vehicletype === "tricycle") {
-
-            //     re.push("./Group 1368.png")
-            //   }
-            // }
-            // else {
-            //   re.push("-")
-            // }
-            // re.push(row.firstName)
-            // re.push("محمد")
-            {/*<img src="./Group 1433.png" />*/ }
             return (
               <tr key={index}>
                 {
@@ -440,7 +607,6 @@ class Dashboard extends Component {
       React.DOM.table({ className: "tableclass" },
         React.DOM.thead({ className: "tablehead" },
           <tr className="tableheadrow">
-            {/*<td className="tableheadDT" >وقف</td>*/}
 
             <td className="tableheadDT" >تعديل</td>
 
@@ -454,75 +620,42 @@ class Dashboard extends Component {
           </tr>
         ),
         React.DOM.tbody(null,
-          that.state.objects.map(function (row, index) {
+          that.state.objectsPending.map(function (row, index) {
             let re = [];
             // console.log(row)
-
-
-            if (row.status === "pending" && row.phoneNumber.includes(that.state.searchfilter)) {
-              // re.push("./Group 1433.png")
-              re.push("./Path 1161.png")
-              re.push("./Group 1410.png")
-              if (row.phoneNumber.length < 12) {
-                re.push(row.phoneNumber)
-              }
-              else {
-                re.push("-")
-              }
-              if (row.vehicle) {
-                if (row.vehicle.vehicletype === "toktok") {
-
-                  re.push("./Group 1367.png")
+            // console.log(that.state.pendingN, "pendingN")
+            if (that.state.lessThanPending < index && index < that.state.greaterThanPending) {
+              if (row.phoneNumber.includes(that.state.searchfilter)) {
+                re.push("./Path 1161.png")
+                re.push("./Group 1410.png")
+                if (row.phoneNumber.length < 12) {
+                  re.push(row.phoneNumber)
                 }
-
-                if (row.vehicle.vehicletype === "motorcycle") {
-
-                  re.push("./Group 1355.png")
+                else {
+                  re.push("-")
                 }
+                if (row.vehicle) {
+                  if (row.vehicle.vehicletype === "toktok") {
 
-                if (row.vehicle.vehicletype === "tricycle") {
+                    re.push("./Group 1367.png")
+                  }
 
-                  re.push("./Group 1368.png")
+                  if (row.vehicle.vehicletype === "motorcycle") {
+
+                    re.push("./Group 1355.png")
+                  }
+
+                  if (row.vehicle.vehicletype === "tricycle") {
+
+                    re.push("./Group 1368.png")
+                  }
                 }
+                else {
+                  re.push("-")
+                }
+                re.push(row.firstName)
               }
-              else {
-                re.push("-")
-              }
-              re.push(row.firstName)
             }
-
-
-            // re.push("./Group 1433.png")
-            // re.push("./Path 1161.png")
-            // re.push("./Group 1410.png")
-            // if (row.phoneNumber.length < 12) {
-            //   re.push(row.phoneNumber)
-            // }
-            // else {
-            //   re.push("-")
-            // }
-            // if (row.vehicle) {
-            //   if (row.vehicle.vehicletype === "toktok") {
-
-            //     re.push("./Group 1367.png")
-            //   }
-
-            //   if (row.vehicle.vehicletype === "motorcycle") {
-
-            //     re.push("./Group 1355.png")
-            //   }
-
-            //   if (row.vehicle.vehicletype === "tricycle") {
-
-            //     re.push("./Group 1368.png")
-            //   }
-            // }
-            // else {
-            //   re.push("-")
-            // }
-            // re.push(row.firstName)
-            // re.push("محمد")
-            {/*<img src="./Group 1433.png" />*/ }
             return (
               <tr key={index}>
                 {
@@ -559,35 +692,48 @@ class Dashboard extends Component {
             <Tab >السائقين الناشطين</Tab>
             <Tab >موقوف</Tab>
             <Tab >في الإنتظار</Tab>
-            {/*<li className="DriversdivLiActive"><p className="DriversdivPActive" >كل السائقين</p></li>
-                <li className="DriversdivLi"><p className="DriversdivP"  >السائقين الناشطين</p></li>
-                <li className="DriversdivLi"><p className="DriversdivP">موقوف</p></li>
-                <li className="DriversdivLi"><p className="DriversdivP">في الإنتظار</p></li>*/}
 
           </TabList>
           <div id="tabspanels">
             <TabPanel>
-              {/*<h2>Just The UI</h2>*/}
               <div className="Tablediv">
                 {this.tableAll()}
               </div>
+
+              <div className="nextprevious" >
+                <button className="nextpreviousButtons" onClick={this.nextAll.bind(this)}>&lt;</button>
+                <p className="nextpreviousP">{this.state.lessThanAll + 2} to {this.state.greaterThanAll}</p>
+                <button className="nextpreviousButtons" onClick={this.previousAll.bind(this)}>&gt;</button>
+              </div>
             </TabPanel>
             <TabPanel>
-              {/*<h2>Just The UI</h2>*/}
               <div className="Tablediv">
                 {this.tableActive()}
               </div>
-            </TabPanel>
-            <TabPanel>
-              {/*<h2>Just The UI</h2>*/}
-              <div className="Tablediv">
-                {this.tableSuspended()}
+
+              <div className="nextprevious" >
+                <button className="nextpreviousButtons" onClick={this.nextActive.bind(this)}>&lt;</button>
+                <button className="nextpreviousButtons" onClick={this.previousActive.bind(this)}>&gt;</button>
               </div>
             </TabPanel>
             <TabPanel>
-              {/*<h2>Just The UI</h2>*/}
+              <div className="Tablediv">
+                {this.tableSuspended()}
+              </div>
+
+              <div className="nextprevious" >
+                <button className="nextpreviousButtons" onClick={this.nextSuspended.bind(this)}>&lt;</button>
+                <button className="nextpreviousButtons" onClick={this.previousSuspended.bind(this)}>&gt;</button>
+              </div>
+            </TabPanel>
+            <TabPanel>
               <div className="Tablediv">
                 {this.tablePending()}
+              </div>
+
+              <div className="nextprevious" >
+                <button className="nextpreviousButtons" onClick={this.nextPending.bind(this)}>&lt;</button>
+                <button className="nextpreviousButtons" onClick={this.previousPending.bind(this)}>&gt;</button>
               </div>
             </TabPanel>
           </div>
@@ -655,26 +801,44 @@ class Dashboard extends Component {
     var that = this;
     var searchText = event.target.value;
     var searchTextLength = searchText.length;
+    var joined = [];
     this.setState({
       searchfilter: searchText
     })
+    // if (row.phoneNumber.includes(that.state.searchfilter)) {
+
+    // }
+    var getloop = [];
+
+
     console.log(searchTextLength)
     console.log(this.state.objects, "all drivers log")
     console.log(searchText, "searchtext now")
-    console.log(searchText, "searchtext now in forEach")
-    searchArray = [];
-    this.state.objects.forEach(function (item) {
+    // console.log(searchText, "searchtext now in forEach")
+    // searchArray = [];
+    // this.state.objects.forEach(function (item) {
 
-      if (item.phoneNumber.slice(0, searchTextLength) === searchText) {
+    //   if (item.phoneNumber.slice(0, searchTextLength) === searchText) {
+    //     if (searchArray.indexOf(searchText) === -1) {
+    //       searchArray.push(item)
+    //     }
+    //   }
+    //   else {
+
+    //   }
+    // })
+
+    that.state.objects.forEach(function (item) {
+      console.log(item, "item")
+      if (item.phoneNumber.includes(that.state.searchfilter)) {
         if (searchArray.indexOf(searchText) === -1) {
-          searchArray.push(item)
+          joined.push(item)
+          // that.state.objectsArray.push(item)
         }
       }
-      else {
-
-      }
     })
-    console.log(searchArray, "search array")
+    that.setState({ objectsArray: joined })
+    console.log(this.state.objectsArray, "search array")
   }
 
   table() {
@@ -760,18 +924,18 @@ class Dashboard extends Component {
   }
 
   render() {
-
+    // console.log(this.state.objectsSuspended, "objectsSuspended: [],")
     return (
       <div>
 
         <div className="Navdiv">
-          <ul>
+          <ul className="NavdivUl">
             <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-            <li className="active li"><a className="active" href="#home">السائقين</a></li>
-            <li><a href="#news">رحلات</a></li>
-            <li><a href="#contact" onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-            <li><a href="#about">دعم</a></li>
-            <li><a href="#about">تقارير</a></li>
+            <li className="active li"><a className="active" >السائقين</a></li>
+            <li><a >رحلات</a></li>
+            <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+            <li><a >دعم</a></li>
+            <li><a >تقارير</a></li>
             <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
           </ul>
         </div>
@@ -814,17 +978,6 @@ class Dashboard extends Component {
         <br /> <br /> <br />
 
 
-        {/*<div className="Tablediv">
-          {this.table()}
-        </div>*/}
-
-
-
-        {/*{this.tabs()}*/}
-
-
-
-
 
 
       </div>
@@ -834,14 +987,6 @@ class Dashboard extends Component {
 
 export default Dashboard;
 
-{/*<input type="button" value="Submit" onClick={this.handleSubmit.bind(this)} />*/ }
-{/*<input type="button" value="Create User" onClick={this.handleCreate.bind(this)} />
 
-        <input type="button" value="Update User" onClick={this.handleUpdate.bind(this)} />
-
-        <input type="button" value="Add Vehicle" onClick={this.handleAddV.bind(this)} />
-
-        <input type="button" value="Add Driver's Papers" onClick={this.handleAddP.bind(this)} /> */}
-  /* ReactRouter.goTo('/createUser');*/
 
 

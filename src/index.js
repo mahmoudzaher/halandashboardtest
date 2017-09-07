@@ -10,11 +10,14 @@ import Application from './App';
 import Login from './Components/Login';
 import CreateUser from './Components/CreateUser';
 import UpdateUser from './Components/UpdateUser';
+import UpdateVehicle from './Components/UpdateVehicle';
+import UpdateDriverPapers from './Components/UpdateDriverPapers';
 import DashBoard from './Components/Dashboard';
 import AddVehicle from './Components/AddVehicle';
 import AddDriverPapers from './Components/AddDriverPapers';
 import DriverTrips from './Components/DriverTrips';
 import Promo from './Components/Promo';
+import DriverProfile from './Components/DriverProfile';
 
 // localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/');
 localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com');
@@ -68,11 +71,22 @@ Flux.createRoute('/CreateUser', function () {
     }
 });
 
-Flux.createRoute('/UpdateUser', function () {
+Flux.createRoute('/DriverProfile/{id}', function (p) {
     unmountComponentAtNode(document.getElementById('root'));
     /* unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
-        render(<UpdateUser />, document.getElementById('root'));
+        render(<DriverProfile pID={p.id} />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/UpdateUser/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<UpdateUser pID={p.id}/>, document.getElementById('root'));
         /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));
@@ -93,11 +107,34 @@ Flux.createRoute('/AddVehicle/{id}', function (p) {
     }
 });
 
+Flux.createRoute('/UpdateVehicle/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<UpdateVehicle pID={p.id}/>, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+
 Flux.createRoute('/AddDriverPapers/{id}', function (p) {
     unmountComponentAtNode(document.getElementById('root'));
     /* unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
         render(<AddDriverPapers pID={p.id} />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/UpdateDriverPapers/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<UpdateDriverPapers pID={p.id}/>, document.getElementById('root'));
         /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));
