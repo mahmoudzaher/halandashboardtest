@@ -10,6 +10,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-moment": "^0.6.0",
+    "react-scripts": "1.0.7",
     "react-select": "^1.0.0-rc.5",
     "react-skylight": "^0.4.2",
     "react-tabs": "^1.1.0",
