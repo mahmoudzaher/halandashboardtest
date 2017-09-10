@@ -320,8 +320,8 @@ class AddDriverPapers extends Component {
                 <div className="Subdiv">
                     <ul className="SubdivUl">
                         <li className=""><a>&lt; بيانات شخصية</a> </li>
-                        <li className="active li Sub" ><a className="active selected" >&lt; بيانات المركبة</a></li>
-                        <li><a href="#news">صور مستندات و أوراق</a></li>
+                        <li ><a >&lt; بيانات المركبة</a></li>
+                        <li className="active li Sub"><a className="active selected" >صور مستندات و أوراق</a></li>
                     </ul>
                 </div>
 
@@ -330,12 +330,12 @@ class AddDriverPapers extends Component {
 
                     <div className="CreateBigDiv-right">
                         <div className="CreateBigDiv-right-right">
-                            <p className="CreateBigDivPapersFml">بطاقة السائق</p>
-                            <p className="CreateBigDivPapersFml">رخصة السائق</p>
-                            <p className="CreateBigDivPapersFml">رخصة المركبة</p>
-                            <p className="CreateBigDivPapersFml">مستندات التمليك</p>
+                            <p className="CreateBigDivDis">بطاقة السائق</p>
+                            <p className="CreateBigDivDis">رخصة السائق</p>
+                            <p className="CreateBigDivDis">رخصة المركبة</p>
+                            <p className="CreateBigDivDis">مستندات التمليك</p>
                         </div>
-                        <div className="CreateBigDiv-right-leftLollll">
+                        <div className="CreateBigDiv-right-lefthmm">
                             <div className="disdis" >
                                 <div className="upload-button-divLolllFml">
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />

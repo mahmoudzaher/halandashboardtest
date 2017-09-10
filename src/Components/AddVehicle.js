@@ -451,6 +451,7 @@ class AddVehicle extends Component {
                                     <Select
                                         ref="startyear"
                                         placeholder="سنة"
+                                         className="menu-outer-top"
                                         value={this.state.startyear}
                                         options={this.state.startyearoptions}
                                         onChange={this.handleYearoptions.bind(this, "startyear")}
@@ -461,6 +462,7 @@ class AddVehicle extends Component {
                                     <Select
                                         ref="startmonth"
                                         placeholder="شهر"
+                                         className="menu-outer-top"
                                         value={this.state.startmonth}
                                         options={this.state.startmonthoptions}
                                         onChange={this.handleMonthoptions.bind(this, "startmonth")}
@@ -471,6 +473,7 @@ class AddVehicle extends Component {
                                     <Select
                                         ref="startday"
                                         placeholder="يوم"
+                                         className="menu-outer-top"
                                         value={this.state.startday}
                                         options={this.state.startdayoptions}
                                         onChange={this.handleDayoptions.bind(this, "startday")}

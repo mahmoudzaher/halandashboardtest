@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import moment from 'moment';
+import Select from 'react-select';
+import SkyLight from 'react-skylight';
 var ReactRouter = require('flux-react-router');
+// var stylePropType = require('react-style-proptype');
+// var injectTapEventPlugin = require("react-tap-event-plugin");
+// injectTapEventPlugin();
+// var ImageViewer = require ('react-image-viewer');
 
 
 
 let searchArray = [];
+let dayID = "";
+let monthID = "";
+let yearID = "";
 class DriverTrips extends Component {
 
     constructor(props) {
@@ -18,6 +27,9 @@ class DriverTrips extends Component {
         this.state = {
             id: this.props.pID,
             driverId: this.props.pID,
+            startdayoptions: [],
+            startmonthoptions: [],
+            startyearoptions: [],
         }
 
     }
@@ -29,8 +41,14 @@ class DriverTrips extends Component {
             searchfilter: "",
             driverRating: "",
             driverName: "",
+            startday: "",
+            startmonth: "",
+            startyear: "",
+            cash: 0,
+            tripsCount: 0,
         })
-
+        var money = 0;
+        var tripscounter = 0;
         axios.post('/api/operator/getPreviousTripsOfDriver', { "id": this.state.id }).then(function (response) {
             console.log(response.data.data, "getPreviousTripsOfDriver Response")
             var x = response.data.data;
@@ -39,12 +57,15 @@ class DriverTrips extends Component {
             x.forEach(function (item) {
                 // console.log(item)
                 objects.push(item);
+                money = money + item.tripCost;
+                tripscounter  = tripscounter+1;
 
             })
             that.setState({
 
                 objects: objects,
-
+                cash: money,
+                tripsCount: tripscounter
             })
 
         }).catch(function (error) {
@@ -223,7 +244,7 @@ class DriverTrips extends Component {
                                         else if (index === 1) {
                                             return <td className="PTDDriver" key={index} >{col} <img className="tdImgDriver" src={ColImg} /></td>
                                         }
-                                        else if (index === 3){
+                                        else if (index === 3) {
                                             return <td className="PTD" key={index}><div className="lolz">{col}</div></td>
                                         }
                                         else if (index === 4) {
@@ -272,6 +293,42 @@ class DriverTrips extends Component {
         e.preventDefault();
     }
 
+    handleDayoptions(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            dayID = value.value;
+        } else {
+            dayID = "";
+        }
+
+        console.log(value);
+        console.log(dayID);
+    }
+
+    handleMonthoptions(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            monthID = value.value;
+        } else {
+            monthID = "";
+        }
+
+        console.log(value);
+        console.log(monthID);
+    }
+
+    handleYearoptions(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            yearID = value.value;
+        } else {
+            yearID = "";
+        }
+        this.handleBirthday()
+        console.log(value);
+        console.log(yearID);
+    }
+
     searchtable(event) {
         var that = this;
         var searchText = event.target.value;
@@ -298,7 +355,7 @@ class DriverTrips extends Component {
         console.log(searchArray, "search array")
     }
 
-  handleDrivers(e) {
+    handleDrivers(e) {
 
         console.log("WoHOOOOOOOOOOOOOOOO");
         ReactRouter.goTo('/DashBoard')
@@ -307,32 +364,41 @@ class DriverTrips extends Component {
     }
 
     render() {
+        var sky = {
+            width: '25%',
+            height: '25%',
+            align: 'center',
+            textAlign: 'center',
+            fontFamily: 'Cairo',
+            fontSize: 'large'
+        };
 
         return (
             <div>
 
                 <div className="Navdiv">
-          <ul className="NavdivUl">
-            <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
-            <li className="active li" ><a className="active" onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
-            <li><a >رحلات</a></li>
-            <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-            <li><a >دعم</a></li>
-            <li><a >تقارير</a></li>
-            <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
-          </ul>
-        </div>
+                    <ul className="NavdivUl">
+                        <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
+                        <li className="active li" ><a className="active" onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
+                        <li><a >رحلات</a></li>
+                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a >دعم</a></li>
+                        <li><a >تقارير</a></li>
+                        <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+                    </ul>
+                </div>
 
                 <br />
                 <div className="Driver" >
                     {/*onClick={this.handleCreate.bind(this)}*/}
                     <div className="DriverRight">
+                        {/*<div className="DriverRight-Right" >*/}
                         <div className="DriverRightInner">
                             <div className="DriverI">
                                 <img src="/Group 1548.png" id="Driver-Img" />
                             </div>
                             <div className="DriverPDiv">
-                                <div className="DriverP">
+                                <div className="DriverPTTT">
                                     <p className="DriverPParag">{this.state.driverName} </p>
                                 </div>
                                 <div className="DriverPT">
@@ -340,31 +406,148 @@ class DriverTrips extends Component {
                                 </div>
 
                             </div>
+
+
+
                         </div>
+
+
+                        <div className="fake-inputFML">
+                            <div className="fake-input-leftFML">
+                                <div className="DriverSearchLol">
+                                    <img src="/Group 1392.png" />
+                                    <input type="text" placeholder="بحث" className="DriverSearchText" onChange={this.searchtable.bind(this)} />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
+
                     <div className="DriverLeft">
 
+
+
+                        <div className="yoyom8" >
+
+                            <div className="statistics" >
+                                <p className="statisticsP" >إحصائيات</p>
+                                <img src="/Group 1793.png" id="statisticsImg" onClick={() => this.refs.PromoDialog.show()} />
+                            </div>
+                            {/*<form className="hahahaxD">
+                                <fieldset className="yowazap">
+                                    <legend className="heyheyhey" >تاريخ الرحلات</legend>
+
+                                    <div className="rightidkm8">
+                                        <div className="idkm8Div">
+                                            <p className="idkm8" >من</p>
+                                        </div>
+
+                                        <div className="idkm8Div">
+                                            <p className="idkm8" >إلى</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="leftidkm8" >
+                                        <div className="Options-GroupsTheyyo">
+                                            <div className="OptionsOT">
+                                                <Select
+                                                    ref="startyear"
+                                                    placeholder="سنة"
+                                                    value={this.state.startyear}
+                                                    options={this.state.startyearoptions}
+                                                    onChange={this.handleYearoptions.bind(this, "startyear")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsTT">
+                                                <Select
+                                                    ref="startmonth"
+                                                    placeholder="شهر"
+                                                    value={this.state.startmonth}
+                                                    options={this.state.startmonthoptions}
+                                                    onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsThT">
+                                                <Select
+                                                    ref="startday"
+                                                    placeholder="يوم"
+                                                    value={this.state.startday}
+                                                    options={this.state.startdayoptions}
+                                                    onChange={this.handleDayoptions.bind(this, "startday")}
+                                                />
+                                            </div>
+                                        </div>
+
+
+                                        <div className="Options-GroupsTheyyoyo">
+                                            <div className="OptionsOT">
+                                                <Select
+                                                    ref="startyear"
+                                                    placeholder="سنة"
+                                                    value={this.state.startyear}
+                                                    options={this.state.startyearoptions}
+                                                    onChange={this.handleYearoptions.bind(this, "startyear")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsTT">
+                                                <Select
+                                                    ref="startmonth"
+                                                    placeholder="شهر"
+                                                    value={this.state.startmonth}
+                                                    options={this.state.startmonthoptions}
+                                                    onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsThT">
+                                                <Select
+                                                    ref="startday"
+                                                    placeholder="يوم"
+                                                    value={this.state.startday}
+                                                    options={this.state.startdayoptions}
+                                                    onChange={this.handleDayoptions.bind(this, "startday")}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>*/}
+                        </div>
                     </div>
 
                 </div>
 
-                <br /><br /><br />
-                <div className="fake-input">
-                    <div className="fake-input-left">
-                        <div className="DriverSearchLol">
-                            <input type="text" placeholder="بحث" className="DriverSearchText" onChange={this.searchtable.bind(this)} />
-                            <img src="/Group 1392.png" />
-                        </div>
-                    </div>
-                    <div className="fake-input-right" >
-                        <div className="Driversdiv">
-                            {this.tableActive()}
-                        </div>
+
+
+                <div className="fake-input-right" >
+                    <div className="Driversdiv">
+                        {this.tableActive()}
                     </div>
                 </div>
 
+                {/*<br /> <br /> <br />*/}
 
-                <br /> <br /> <br />
+                <SkyLight hideOnOverlayClicked ref="PromoDialog" dialogStyles={sky}>
+                    <img src="/Group 1793.png" id="statisticsImgPop" />
+                    <div className="statsPopInnerDiv" >
+                        <div className="statsPopInnerDiv-right">
+                        <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
+                        <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
+                        </div>
+                        <div className="statsPopInnerDiv-left">
+                            <p className="statsPopInnerDiv-left-p">{this.state.tripsCount}</p>
+                            <p className="statsPopInnerDiv-left-p">{this.state.cash}</p>
+                        </div>
+                    </div>
+                </SkyLight>
             </div>
         );
     }

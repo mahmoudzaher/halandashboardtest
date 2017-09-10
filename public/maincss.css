@@ -330,16 +330,8 @@ background-position: left;
     font-family: Cairo;
     font-size: 16px;
     }
-.fake-input-left img {
-       position: absolute;
-    margin-top: -10%;
-    margin-left: 180px;
-}
-.fake-input-right img { 
-    /*padding-left: 22%*/
-    }
 
-.fake-input-left {
+    .fake-input-left {
         /*width: 14%;
     float: right;
     padding-right: 12%;*/
@@ -349,6 +341,55 @@ background-position: left;
     margin-right: 13%;
     position: relative;
 }
+
+
+.fake-input-left img {
+       position: absolute;
+    margin-top: -10%;
+    margin-left: 180px;
+}
+
+
+
+
+
+.fake-inputFML {
+        width: 100%;
+    /* padding-right: 17%; */
+    padding-top: 25%;
+      }
+.fake-inputFML input { border:none; 
+background:#fff; 
+display:block; 
+/*width: 100%; */
+box-sizing: border-box; 
+background: #BEC0C2; 
+background-repeat: no-repeat;
+background-position: left;
+    padding-right: 40px;
+    border-radius: 40px; 
+    text-align: right;
+    font-family: Cairo;
+    font-size: 16px;
+    }
+
+    .fake-input-leftFML {
+       /* width: 14%; */
+    float: right;
+    margin-right: 25%;
+    position: relative;
+}
+
+
+.fake-input-leftFML img {
+        position: absolute;
+    margin-top: 6%;
+    margin-left: 150px;
+}
+
+
+
+
 
 .fake-input-right {
        /*width: 150%;
@@ -803,6 +844,13 @@ input[type="file"] {
     margin-top: 5%;
     margin-left: 28%;
 }
+.CreateBigDiv-left-leftDis2{
+    width: 50%;
+    float: left;
+    text-align: center;
+    margin-top: -32%;
+    margin-left: 35%;
+}
 
 .CreateBigDiv-left-leftLol{
          width: 50%;
@@ -1131,6 +1179,23 @@ input.CreateBigDivPTLol {
     width: 100%;
 }
 
+.upload-button-divDisHello {
+          /* padding-top: 6%; */
+    display: flow-root;
+    padding-right: 10%;
+    padding-bottom: 3%;
+    width: 100%;
+}
+
+img.helloimage {
+    margin-top: -10%;
+}
+
+img.helloimage2{
+        margin-top: -10%;
+    margin-right: 50%;
+}
+
 .uploadWhat {
     /* margin-left: -198%; */
     width: 100%;
@@ -1233,10 +1298,11 @@ label.upload-buttonWhatisThisLol {
 
 
 img.hello {
-   float: left;
-    margin-left: -120px;
-    /*margin-top: 5px;*/
-        top: 75%;
+     float: left;
+    margin-left: -125px;
+    /* margin-top: 5px; */
+    /* top: 75%; */
+    margin-top: 8px;
     position: absolute;
 }
 
@@ -1365,6 +1431,11 @@ img#Driver-Img {
 .DriverP {
     margin-top: -12px;
 }
+
+.DriverPTTT {
+    margin-top: -9%;
+}
+
 .DriverI {
       width: 50%;
     float: right;
@@ -1393,6 +1464,15 @@ img#Driver-Img {
 .DriverRight{
         width: 50%;
     float: right;
+}
+.DriverRight-Right{
+  width: 50%;
+    float: right;
+}
+
+DriverRight-Left{
+        width: 50%;
+    float: left;
 }
 .DriverLeft{
         width: 50%;
@@ -1769,3 +1849,97 @@ table.tableclasstwo {
 img.dude{
         width: 115%;
 }
+
+fieldset.yowazap{
+        border: none;
+    text-align: right;
+    /* float: right; */
+    color: #2C2D72;
+}
+
+legend.heyheyhey {
+    font-size: 18px;
+    color: #2C2D72;
+        padding-bottom: 1%;
+}
+
+.Options-GroupsTheyyo {
+        /* width: 100%; */
+    margin-left: 50%;
+    padding-bottom: 4%;
+    margin-top: 1%;
+}
+
+.Options-GroupsTheyyoyo {
+      /* width: 100%; */
+    margin-left: 50%;
+    /* padding-bottom: 10%; */
+    margin-top: 1%;
+}
+
+p.idkm8{
+        color: #2C2D72;
+    font-size: 14px;
+}
+
+.rightidkm8 {
+    float: right;
+}
+.leftidkm8 {
+    /* float: right; */
+}
+
+
+img.deletebutton {
+       margin-top: 30%;
+    /* padding-left: 50%; */
+    /* margin-right: 50%; */
+}
+
+
+
+
+
+
+.toolbarRightSide___1Sdfc {
+    margin-top: 1% !important;
+    padding-right: 5% !important;
+}
+
+
+.yoyom8{
+       padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+
+p.statisticsP {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #2C2D72;
+}
+
+img#statisticsImg{
+        float: left;
+    margin-left: 45%;
+    /* margin-bottom: -12%; */
+    margin-top: -2%;
+}  
+
+img#statisticsImgPop{
+           float: right;
+    margin-left: 45%;
+    /* margin-bottom: -12%; */
+    margin-top: -2%;
+    width: 10%;
+}
+
+
+.statistics {
+    /* float: right; */
+    padding-bottom: 5%;
+    margin-right: -90%;
+}
+/*button.ril-close.ril-toolbar__item__child.toolbarItemChild___2U_MP.builtinButton___1zqo6.closeButton___3BdAF{
+    display: none;
+}*/

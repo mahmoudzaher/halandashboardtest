@@ -587,6 +587,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startyear"
                                         placeholder="سنة"
+                                         className="menu-outer-top"
                                         value={this.state.startyear}
                                         options={this.state.startyearoptions}
                                         onChange={this.handleYearoptions.bind(this, "startyear")}
@@ -597,6 +598,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startmonth"
                                         placeholder="شهر"
+                                         className="menu-outer-top"
                                         value={this.state.startmonth}
                                         options={this.state.startmonthoptions}
                                         onChange={this.handleMonthoptions.bind(this, "startmonth")}
@@ -607,6 +609,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startday"
                                         placeholder="يوم"
+                                         className="menu-outer-top"
                                         value={this.state.startday}
                                         options={this.state.startdayoptions}
                                         onChange={this.handleDayoptions.bind(this, "startday")}
@@ -640,6 +643,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endyear"
                                         placeholder="سنة"
+                                         className="menu-outer-top"
                                         value={this.state.endyear}
                                         options={this.state.endyearoptions}
                                         onChange={this.handleYearoptionsE.bind(this, "endyear")}
@@ -650,6 +654,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endmonth"
                                         placeholder="شهر"
+                                         className="menu-outer-top"
                                         value={this.state.endmonth}
                                         options={this.state.endmonthoptions}
                                         onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
@@ -660,6 +665,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endday"
                                         placeholder="يوم"
+                                         className="menu-outer-top"
                                         value={this.state.endday}
                                         options={this.state.enddayoptions}
                                         onChange={this.handleDayoptionsE.bind(this, "endday")}
