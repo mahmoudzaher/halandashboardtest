@@ -3,6 +3,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import moment from 'moment';
+import Lightbox from 'react-image-lightbox';
 var ReactRouter = require('flux-react-router');
 
 
@@ -51,6 +52,17 @@ class DriverProfile extends Component {
             unixTimestamp: "",
             birthdaydate: "",
             img: "",
+            photoIndex: 0,
+            isOpen: false,
+            nationalIdPhotosArray: [],
+            driverLicensePhotosArray: [],
+            vehicleLicensePhotosArray: [],
+            ownershipDocumentsPhotosArray: [],
+            addressPhotosArray: [],
+            criminalRecordPhotosArray: [],
+            drugTestPhotosArray: [],
+            contractPhotosArray: [],
+            images: [],
             imgdata: new FormData()
 
         })
@@ -61,24 +73,158 @@ class DriverProfile extends Component {
             width: "50%"
         }
 
+        var IdArray = []
+        var licenseArray = []
+        var vehicleLicenseArray = []
+        var ownershipDocumentsArray = []
+        var addressArray = []
+        var criminalRecordArray = []
+        var drugTestArray = []
+        var contractArray = []
+
         axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getDriverById Response")
-            var x = response.data.data;
-            var parser = parseInt(x.birthday)
-            var birthdate = new Date(parser);
+            var y = response.data.data;
+            var parser = parseInt(y.birthday)
+            var birthdate = new Date(parser * 1000);
+
             that.setState({
-                driverName: x.firstName,
-                driverPNumber: x.phoneNumber,
-                driverEmail: x.email,
-                driverPassword: x.password,
-                driverBirthday: x.birthday,
-                driverAddress: x.address,
+                vehicleId: y.vehicle._id,
+                driverName: y.firstName,
+                driverPNumber: y.phoneNumber,
+                driverEmail: y.email,
+                driverPassword: y.password,
+                driverBirthday: y.birthday,
+                driverAddress: y.address,
+                driverImg: y.picture,
                 // driverEmail: x.email,
                 datee: birthdate,
                 Year: birthdate.getFullYear(),
-                Month: birthdate.getMonth(),
-                Day: birthdate.getDay(),
+                Month: birthdate.getMonth() + 1,
+                Day: birthdate.getDate(),
             })
+
+
+
+
+            axios.get('/api/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
+                console.log(response.data, "getdrivervehicle Response")
+                var x = response.data;
+                // console.log(x, "x Response")
+                if (x.vehicleOwner) {
+                    that.setState({
+                        vehicleOwnerName: x.vehicleOwner.name,
+                        vehicleOwnerId: x.vehicleOwner.nationalIdNo,
+                        vehicleOwnerPNumber: x.vehicleOwner.phoneNumber,
+
+                    })
+                }
+
+                var parser2 = parseInt(x.model)
+                var birthdate2 = new Date(parser2 * 1000);
+
+                that.setState({
+                    vehicleType: x.vehicletype,
+                    vehicleDateofMake: x.model,
+                    vehicleMake: x.make,
+                    vehicleLabel: x.label,
+                    vehicleShaseeh: x.shaseehNo,
+                    vehicleMotor: x.motorNo,
+
+                    Year2: birthdate2.getFullYear(),
+                    Month2: birthdate2.getMonth() + 1,
+                    Day2: birthdate2.getDate(),
+
+
+
+                })
+
+                if (that.state.vehicleType === "toktok") {
+                    that.setState({
+                        TokTokActive: "active"
+                    })
+                }
+                else if (that.state.vehicleType === "motorcycle") {
+                    that.setState({
+                        MotocycleActive: "active"
+                    })
+                }
+                else if (that.state.vehicleType === "tricycle") {
+                    that.setState({
+                        TricycleActive: "active"
+                    })
+                }
+
+            }).catch(function (error) {
+                alert(error.message, "what");
+                console.log(error.message)
+            })
+
+        }).catch(function (error) {
+            alert(error.message);
+            console.log(error)
+        })
+
+
+
+        axios.get('/api/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
+            console.log(response, "getdriverpapers Response")
+            var x = response.data.data;
+
+
+            x.nationalId.forEach(function (item) {
+                console.log(item.url, "item url")
+                IdArray.push(item.url)
+            })
+
+            x.drivingLicense.forEach(function (item) {
+                licenseArray.push(item.url)
+
+            })
+
+            x.vehicleLicence.forEach(function (item) {
+                vehicleLicenseArray.push(item.url)
+
+            })
+
+            x.ownershipDocuments.forEach(function (item) {
+                ownershipDocumentsArray.push(item.url)
+
+            })
+
+            x.address.forEach(function (item) {
+                addressArray.push(item.url)
+
+            })
+
+            x.criminalRecord.forEach(function (item) {
+                criminalRecordArray.push(item.url)
+
+            })
+
+            x.drugTest.forEach(function (item) {
+                drugTestArray.push(item.url)
+
+            })
+
+            x.contract.forEach(function (item) {
+                contractArray.push(item.url)
+
+            })
+
+
+
+            that.setState({
+                nationalIdPhotosArray: IdArray,
+                driverLicensePhotosArray: licenseArray,
+                vehicleLicensePhotosArray: vehicleLicenseArray,
+                ownershipDocumentsPhotosArray: ownershipDocumentsArray,
+                addressPhotosArray: addressArray,
+                criminalRecordPhotosArray: criminalRecordArray,
+                drugTestPhotosArray: drugTestArray,
+                contractPhotosArray: contractArray,
+            })
+
 
         }).catch(function (error) {
             alert(error.message);
@@ -215,71 +361,71 @@ class DriverProfile extends Component {
 
 
 
-    handleSubmit(e) {
-        var that = this;
-        { this.handleBirthday() }
+    // handleSubmit(e) {
+    //     var that = this;
+    //     { this.handleBirthday() }
 
-        console.log("asdasd");
-        // if (this.refs.email.value === '' || this.refs.password.value === '' || this.refs.Fname.value === '' || this.refs.Lname.value === '') {
-        if (false) {
-            alert('Something is missing');
+    //     console.log("asdasd");
+    //     // if (this.refs.email.value === '' || this.refs.password.value === '' || this.refs.Fname.value === '' || this.refs.Lname.value === '') {
+    //     if (false) {
+    //         alert('Something is missing');
 
-        }
-        else {
-            this.state.unixTimestamp = new Date().getTime();
-            console.log(this.state.birthdaydate, "asdafasdfasdgfasdfjkahsdflkasjnfkl")
-            let timestampp = Math.floor(this.state.birthdaydate / 1000);
-            let timestamppE = Math.floor(this.state.birthdaydate / 1000);
-            var Form = this.state.imgdata;
+    //     }
+    //     else {
+    //         this.state.unixTimestamp = new Date().getTime();
+    //         console.log(this.state.birthdaydate, "asdafasdfasdgfasdfjkahsdflkasjnfkl")
+    //         let timestampp = Math.floor(this.state.birthdaydate / 1000);
+    //         let timestamppE = Math.floor(this.state.birthdaydate / 1000);
+    //         var Form = this.state.imgdata;
 
-            var vehicleLicence = {
-                number: this.refs.driverLicenseNumber.value,
-                expirationDate: timestamppE
-            }
-            const data = new FormData();
-            data.append('picture', this.state.img)
-            data.append('action', 'ADD');
-            data.append('param', 0);
-            data.append('firstName', this.refs.Fname.value)
-            data.append('address', this.refs.address.value)
-            data.append('password', this.refs.password.value)
-            data.append('phoneNumber', this.refs.pNumber.value)
-            data.append('birthday', timestampp)
-            if (this.refs.email.value === "" || this.refs.email.value === null) {
-                // data.append('email', null)
-            }
-            else {
-                data.append('email', this.refs.email.value)
-            }
+    //         var vehicleLicence = {
+    //             number: this.refs.driverLicenseNumber.value,
+    //             expirationDate: timestamppE
+    //         }
+    //         const data = new FormData();
+    //         data.append('picture', this.state.img)
+    //         data.append('action', 'ADD');
+    //         data.append('param', 0);
+    //         data.append('firstName', this.refs.Fname.value)
+    //         data.append('address', this.refs.address.value)
+    //         data.append('password', this.refs.password.value)
+    //         data.append('phoneNumber', this.refs.pNumber.value)
+    //         data.append('birthday', timestampp)
+    //         if (this.refs.email.value === "" || this.refs.email.value === null) {
+    //             // data.append('email', null)
+    //         }
+    //         else {
+    //             data.append('email', this.refs.email.value)
+    //         }
 
-            data.append('driverLicense', vehicleLicence)
+    //         data.append('driverLicense', vehicleLicence)
 
-            for (var pair of data.entries()) {
-                console.log(pair)
-            }
-            axios.post('/api/operator/adddriver', data).then(function (response) {
-                console.log(response)
-                var ID = response.data.data._id;
-                console.log(ID)
-                var ObjectID = {
-                    ID: ID
-                }
-                ReactRouter.goTo(`/AddVehicle/${ID}`);
-            }).catch(function (error) {
-                alert(error.message);
-                console.log(error)
-            })
-        }
-
-
+    //         for (var pair of data.entries()) {
+    //             console.log(pair)
+    //         }
+    //         axios.post('/api/operator/adddriver', data).then(function (response) {
+    //             console.log(response)
+    //             var ID = response.data.data._id;
+    //             console.log(ID)
+    //             var ObjectID = {
+    //                 ID: ID
+    //             }
+    //             ReactRouter.goTo(`/AddVehicle/${ID}`);
+    //         }).catch(function (error) {
+    //             alert(error.message);
+    //             console.log(error)
+    //         })
+    //     }
 
 
 
 
 
 
-        e.preventDefault();
-    }
+
+
+    //     e.preventDefault();
+    // }
 
 
 
@@ -342,7 +488,7 @@ class DriverProfile extends Component {
                     <div className="boomboom">
                         <div className="whatwhat">
                             <label className="whatsup">
-                                <img src="/redashboard/Group 1548.png" className="dude" />
+                                <img src={this.state.driverImg} className="dudeHello" />
                             </label>
                         </div >
                         <div className="duuuude">
@@ -467,7 +613,7 @@ class DriverProfile extends Component {
 
 
                 <div className="supman">
-                   <p className="supP" >بيانات المركبة</p>
+                    <p className="supP" >بيانات المركبة</p>
                 </div>
 
 
@@ -488,8 +634,8 @@ class DriverProfile extends Component {
                                 {/*<div className="BOOMMM">
                                     <p className="CreateBigDivP">هل السائق هو نفس مالك المركبة</p>
                                 </div>*/}
-                                <input type="text" className="CreateBigDivP" ref="oName" value={this.state.vehicleOwnerName}  />
-                                <input type="text" className="CreateBigDivP" ref="OPNumber" value={this.state.vehicleOwnerPNumber}  />
+                                <input type="text" className="CreateBigDivP" ref="oName" value={this.state.vehicleOwnerName} />
+                                <input type="text" className="CreateBigDivP" ref="OPNumber" value={this.state.vehicleOwnerPNumber} />
                                 <input type="text" className="CreateBigDivP" ref="nID" value={this.state.vehicleOwnerId} />
                             </div>
 
@@ -511,21 +657,21 @@ class DriverProfile extends Component {
                         <div className="CreateBigDiv-left-leftLol">
                             <div id="maincontainerLol">
                                 <div className="three" >
-                                    <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle"  />
+                                    <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" />
                                 </div>
                                 <div className="four">
                                     <img src="\Line 515.png" className="two" />
                                 </div>
 
                                 <div className="three" >
-                                    <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle"  />
+                                    <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle" />
                                 </div>
                                 <div className="four">
                                     <img src="\Line 515.png" className="two" />
                                 </div>
 
                                 <div className="three" >
-                                    <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok"  />
+                                    <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" />
                                 </div>
 
                             </div>
@@ -543,7 +689,7 @@ class DriverProfile extends Component {
                                         options={this.state.startyearoptions}
                                         onChange={this.handleYearoptions.bind(this, "startyear")}
                                     />*/}
-                                    <input type="text" value={this.state.Year} className="x" />
+                                    <input type="text" value={this.state.Year2} className="x" />
                                 </div>
 
                                 <div className="OptionsTT">
@@ -554,7 +700,7 @@ class DriverProfile extends Component {
                                         options={this.state.startmonthoptions}
                                         onChange={this.handleMonthoptions.bind(this, "startmonth")}
                                     />*/}
-                                    <input type="text" value={this.state.Month} className="x" />
+                                    <input type="text" value={this.state.Month2} className="x" />
                                 </div>
 
                                 <div className="OptionsThT">
@@ -565,11 +711,11 @@ class DriverProfile extends Component {
                                         options={this.state.startdayoptions}
                                         onChange={this.handleDayoptions.bind(this, "startday")}
                                     />*/}
-                                    <input type="text" value={this.state.Day} className="x" />
+                                    <input type="text" value={this.state.Day2} className="x" />
                                 </div>
                             </div>
-                            <input type="text" ref="shaseehNo" className="CreateBigDivPTLol" value={this.state.vehicleShaseeh}  />
-                            <input type="text" ref="motorNo" className="CreateBigDivPTLol" value={this.state.vehicleMotor}  />
+                            <input type="text" ref="shaseehNo" className="CreateBigDivPTLol" value={this.state.vehicleShaseeh} />
+                            <input type="text" ref="motorNo" className="CreateBigDivPTLol" value={this.state.vehicleMotor} />
 
                             {/*that.setState({
                     vehicleOwnerName: x.vehicleOwner.name,
@@ -595,12 +741,12 @@ class DriverProfile extends Component {
 
 
 
-                     <div className="dunno">
+                <div className="dunno">
                     {/*<img src="\Line 515.png" className="lol" />*/}
                 </div>
 
                 <div className="supman">
-                   <p className="supP" >صور مستندات و أوراق</p>
+                    <p className="supP" >صور مستندات و أوراق</p>
                 </div>
 
 
@@ -617,7 +763,7 @@ class DriverProfile extends Component {
 
 
 
-                    <div className="CreateBigDiv">
+                <div className="CreateBigDiv">
 
                     <div className="CreateBigDiv-right">
                         <div className="CreateBigDiv-right-right">
@@ -628,7 +774,7 @@ class DriverProfile extends Component {
                         </div>
                         <div className="CreateBigDiv-right-left">
                             <div className="upload-button-div">
-                                <img src="/Group 1569.png" className="browser" />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.nationalIdPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />*/}
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork"/>
                                     <img src="./redashboard/Group 1538.png" className="hello" />
@@ -636,7 +782,7 @@ class DriverProfile extends Component {
                             </div>
 
                             <div className="upload-button-div">
-                                <img src="/Group 1569.png" className="browser" />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.driverLicensePhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
@@ -644,14 +790,14 @@ class DriverProfile extends Component {
                             </div>
 
                             <div className="upload-button-div">
-                                <img src="/Group 1569.png" className="browser" />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.vehicleLicensePhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-div">
-                                <img src="/Group 1569.png" className="browser" />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.ownershipDocumentsPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork"  />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
@@ -668,28 +814,28 @@ class DriverProfile extends Component {
                         </div>
                         <div className="CreateBigDiv-left-leftLolLol">
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" />
+                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" />
+                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork"/>
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" />
+                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" />
+                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
@@ -699,10 +845,27 @@ class DriverProfile extends Component {
                 </div>
 
 
+                <div>
+                    {this.state.isOpen &&
+                        <Lightbox
+
+                            mainSrc={this.state.images[this.state.photoIndex]}
+                            nextSrc={this.state.images[(this.state.photoIndex + 1) % this.state.images.length]}
+                            prevSrc={this.state.images[(this.state.photoIndex + this.state.images.length - 1) % this.state.images.length]}
+
+                            onCloseRequest={() => this.setState({ isOpen: false })}
+                            onMovePrevRequest={() => this.setState({
+                                photoIndex: (this.state.photoIndex + this.state.images.length - 1) % this.state.images.length,
+                            })}
+                            onMoveNextRequest={() => this.setState({
+                                photoIndex: (this.state.photoIndex + 1) % this.state.images.length,
+                            })}
+                        />
+                    }
+                </div>
 
 
 
-                
 
 
                 <br /> <br />

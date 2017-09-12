@@ -19,7 +19,7 @@ class AddVehicle extends Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.pID, "aaaaaaaaa");
+        // console.log(this.props.pID, "aaaaaaaaa");
         axios.defaults.baseURL = localStorage.getItem('baseURL');
         /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -30,14 +30,38 @@ class AddVehicle extends Component {
             TokTokActive: "not",
             TricycleActive: "not",
             MotocycleActive: "not",
+            vehicleOwnerName: "",
+            vehicleOwnerId: "",
+            vehicleOwnerPNumber: "",
 
         };
 
     }
+    getInitialState() {
+        return {
+            isChecked: true
+        };
+    }
+    handleCheckboxChange(event) {
+        // console.log("checkbox changed!", event);
+        console.log("checkbox changed!", event.target.checked);
+        this.setState({ isChecked: event.target.checked });
+        console.log("checkbox changed! isChecked", this.state.isChecked);
+        // if (event.target.checked === true) {
 
+        // }
+        // if(this.state.isChecked){
+        //     console.log("its Cheeecked")
+        // }
+        // else if(!this.state.isChecked){
+        //     console.log("oh nooooooo")
+        // }
+
+        // console.log(event.target.checked,"event.target.checked")
+    }
 
     componentWillMount() {
-
+        var that = this
         imgStyle = {
             width: "100%"
         }
@@ -58,6 +82,29 @@ class AddVehicle extends Component {
             endyear: "",
             userID: this.props.pID
         })
+
+
+        axios.get('/api/operator/getDriverById?' + "driverId=" + this.props.pID).then(function (response) {
+            console.log(response.data.data, "getdriver Response")
+            var x = response.data.data;
+            // console.log(x, "x Response")
+            console.log(x.firstName, "x.first")
+            that.setState({
+                vehicleOwnerName: x.firstName,
+                vehicleOwnerId: x.nationalIdNo,
+                vehicleOwnerPNumber: x.phoneNumber,
+
+            })
+
+
+        }).catch(function (error) {
+            alert(error.message, "what");
+            console.log(error.message)
+        })
+
+
+
+
     }
 
 
@@ -89,7 +136,7 @@ class AddVehicle extends Component {
                 }
             );
         }
-        console.log(itemIds)
+        // console.log(itemIds)
         this.setState({
             startdayoptions: itemIds,
             startmonthoptions: itemIds2,
@@ -294,25 +341,24 @@ class AddVehicle extends Component {
         else {
             let timestamp = Math.floor(this.state.birthdaydate / 1000);
             let timestampp = Math.floor(this.state.birthdaydateE / 1000);
-            // this.setState({
-            //     unixTimestamp: this.refs.expirationDate.value,
-            // })
-            // this.state.unixTimestamp = new Date().getTime();
-            // let expirationDate = Math.floor(this.state.unixTimestamp / 1000);
-            // var Form = this.state.imgdata;
 
-            //Form.append('email', 'aa@aa.com')   
-
-            var vehicleLicence = {
-                // number: this.refs.vehicleLicenceNumber.value,
-                expirationDate: timestampp
+            if (this.state.isChecked === false || this.state.isChecked === undefined ) {
+                console.log("isChecked is false")
+                var vehicleOwner = {
+                    name: this.state.vehicleOwnerName,
+                    phoneNumber: this.state.vehicleOwnerPNumber,
+                    nationalIdNo: this.state.vehicleOwnerId
+                }
+            }
+            else {
+                console.log("isChecked is true")
+                var vehicleOwner = {
+                    name: this.refs.oName.value,
+                    phoneNumber: this.refs.OPNumber.value,
+                    nationalIdNo: this.refs.nID.value
+                }
             }
 
-            var vehicleOwner = {
-                name: this.refs.oName.value,
-                phoneNumber: this.refs.OPNumber.value,
-                nationalIdNo: this.refs.nID.value
-            }
 
             var object = {
                 driver: this.state.userID,
@@ -320,7 +366,6 @@ class AddVehicle extends Component {
                 model: timestamp,
                 make: this.refs.make.value,
                 label: this.refs.label.value,
-                // vehicleLicence: vehicleLicence,
                 vehicleOwner: vehicleOwner,
                 shaseehNo: this.refs.shaseehNo.value,
                 motorNo: this.refs.motorNo.value
@@ -361,7 +406,7 @@ class AddVehicle extends Component {
 
 
     render() {
-        console.log(this.state.userID, "user ID prop in render")
+        // console.log(this.state.userID, "user ID prop in render")
         return (
             <div>
 
@@ -392,7 +437,8 @@ class AddVehicle extends Component {
                     <div className="CreateBigDiv-right">
 
                         <div className="CreateBigDiv-right-right">
-                            <input type="checkbox" className="checkmate" />
+                            {/*<input type="checkbox" className="checkmate" />*/}
+                            <input type="checkbox" className="checkmate" onChange={this.handleCheckboxChange.bind(this)} checked={this.state.isChecked} />
                             <p className="CreateBigDivNewLol">أسم مالك المركبة</p>
                             <p className="CreateBigDivNewLol">رقم المالك</p>
                             <p className="CreateBigDivNewLol">رقم بطاقة المالك</p>
@@ -403,9 +449,10 @@ class AddVehicle extends Component {
                                 <div className="BOOMMM">
                                     <p className="CreateBigDivPIdk">هل السائق هو نفس مالك المركبة</p>
                                 </div>
-                                <input type="text" className="CreateBigDivP" ref="oName" required />
-                                <input type="text" className="CreateBigDivP" ref="OPNumber" required />
-                                <input type="text" className="CreateBigDivP" ref="nID" required />
+                                <input type="text" className="CreateBigDivP" ref="oName" required disabled={this.state.isChecked} />
+                                {/*value={this.state.vehicleOwnerName} value={this.state.vehicleOwnerPNumber}  value={this.state.vehicleOwnerId}*/}
+                                <input type="text" className="CreateBigDivP" ref="OPNumber" required disabled={this.state.isChecked}  />
+                                <input type="text" className="CreateBigDivP" ref="nID" required disabled={this.state.isChecked} />
                             </div>
 
                         </div>
@@ -425,7 +472,7 @@ class AddVehicle extends Component {
 
                         <div className="CreateBigDiv-left-leftLol">
                             <div id="maincontainerLol">
-                                 <div className="three" >
+                                <div className="three" >
                                     <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
                                 </div>
                                 <div className="four">
@@ -451,7 +498,7 @@ class AddVehicle extends Component {
                                     <Select
                                         ref="startyear"
                                         placeholder="سنة"
-                                         className="menu-outer-top"
+                                        className="menu-outer-top"
                                         value={this.state.startyear}
                                         options={this.state.startyearoptions}
                                         onChange={this.handleYearoptions.bind(this, "startyear")}
@@ -462,7 +509,7 @@ class AddVehicle extends Component {
                                     <Select
                                         ref="startmonth"
                                         placeholder="شهر"
-                                         className="menu-outer-top"
+                                        className="menu-outer-top"
                                         value={this.state.startmonth}
                                         options={this.state.startmonthoptions}
                                         onChange={this.handleMonthoptions.bind(this, "startmonth")}
@@ -473,7 +520,7 @@ class AddVehicle extends Component {
                                     <Select
                                         ref="startday"
                                         placeholder="يوم"
-                                         className="menu-outer-top"
+                                        className="menu-outer-top"
                                         value={this.state.startday}
                                         options={this.state.startdayoptions}
                                         onChange={this.handleDayoptions.bind(this, "startday")}

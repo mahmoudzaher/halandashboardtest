@@ -604,13 +604,6 @@ class UpdateDriverPapers extends Component {
 
 
                 <div>
-                    {/*<button
-                        type="button"
-                        onClick={() => this.setState({ isOpen: true })}
-                    >
-                        Open Lightbox
-                </button>*/}
-
                     {this.state.isOpen &&
                         <Lightbox
                             toolbarButtons={this.loadButtonsArr.apply(this)}

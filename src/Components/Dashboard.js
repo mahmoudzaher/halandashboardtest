@@ -317,6 +317,8 @@ class Dashboard extends Component {
   tableAll() {
 
     var that = this;
+    let counter = 0;
+    let usedCounter = 0;
     // console.log(this.state.objects);
 
     return (
@@ -343,8 +345,12 @@ class Dashboard extends Component {
 
 
 
-            if (that.state.lessThanAll < index && index < that.state.greaterThanAll) {
+            if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
               if (row.phoneNumber.includes(that.state.searchfilter)) {
+                counter++;
+                usedCounter++;
+                // console.log(counter)
+                // console.log(row)
                 var Id = row._id;
 
                 re.push("./Group 1433.png")
@@ -377,28 +383,36 @@ class Dashboard extends Component {
                 }
                 re.push(row.firstName)
               }
+            } else {
+              counter++;
             }
             return (
               <tr key={index}>
                 {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
-
                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
                     }
-                     else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></td>
+                    else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
-                      return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
+                      return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
+                    }
+                    // else if (index === 1) {
+                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
+                    //  }
+                    else if (index === 5) {
+                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
                     }
                     else {
-                      return <td className="PTD" key={index}><div >{col}</div></td>
+                      return <td className="PTD" key={index}><div className="tdDiv"> {col}</div></td>
                     }
+
 
                   })
                 }
@@ -415,6 +429,7 @@ class Dashboard extends Component {
   tableActive() {
 
     var that = this;
+    let counter = 0;
     // console.log(this.state.objects);
 
     return (
@@ -439,8 +454,9 @@ class Dashboard extends Component {
             let re = [];
             // console.log(row)
 
-            if (that.state.lessThanActive < index && index < that.state.greaterThanActive) {
+            if (that.state.lessThanActive < counter && counter < that.state.greaterThanActive) {
               if (row.phoneNumber.includes(that.state.searchfilter)) {
+                counter++;
                 re.push("./Group 1433.png")
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
@@ -472,31 +488,34 @@ class Dashboard extends Component {
                 re.push(row.firstName)
               }
             }
+            else {
+              counter++;
+            }
             return (
               <tr key={index}>
                 {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
-                      return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
+                      return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
                     }
                     // else if (index === 1) {
                     //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
                     //  }
                     else if (index === 5) {
-                      return <td className="PTD" key={index}> <div onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
+                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
                     }
                     else {
-                      return <td className="PTD" key={index}><div >{col}</div></td>
+                      return <td className="PTD" key={index}><div className="tdDiv"> {col}</div></td>
                     }
 
                   })
@@ -514,6 +533,7 @@ class Dashboard extends Component {
   tableSuspended() {
 
     var that = this;
+    let counter = 0;
     // console.log(this.state.objects);
 
     return (
@@ -539,8 +559,9 @@ class Dashboard extends Component {
             // console.log(index, "index of suspended driver")
 
             // console.log(that.state.suspendedN, "suspendedN")
-            if (that.state.lessThanSuspended < index && index < that.state.greaterThanSuspended) {
+            if (that.state.lessThanSuspended < counter && counter < that.state.greaterThanSuspended) {
               if (row.phoneNumber.includes(that.state.searchfilter)) {
+                counter++;
                 re.push("./Group 1792.png")
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
@@ -572,20 +593,43 @@ class Dashboard extends Component {
                 re.push(row.firstName)
               }
             }
+            else {
+              counter++;
+            }
             return (
               <tr key={index}>
                 {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1792") {
-                      return <td className="PTDS" key={index} ><img className="tdImg" src={col} onClick={that.ReactivateDriver.bind(this, row._id)} /></td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.ReactivateDriver.bind(this, row._id)} /> </div> </td>
+                    }
+
+                    
+                    else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
+                    }
+                    else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
-                      return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
+                      return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
+                    }
+                    // else if (index === 1) {
+                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
+                    //  }
+                    else if (index === 5) {
+                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
                     }
                     else {
-                      return <td className="PTD" key={index}><div >{col}</div></td>
+                      return <td className="PTD" key={index}><div className="tdDiv"> {col}</div></td>
                     }
+                    {/*else if (typeof col === "string" && col.slice(0, 2) === "./") {
+                      return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
+                    }
+                    else {
+                      return <td className="PTD" key={index}> <div className="tdDiv"> {col}</div>  </td>
+                    }*/}
 
                   })
                 }
@@ -601,6 +645,7 @@ class Dashboard extends Component {
   tablePending() {
 
     var that = this;
+    let counter = 0;
     // console.log(this.state.objects);
 
     return (
@@ -624,8 +669,9 @@ class Dashboard extends Component {
             let re = [];
             // console.log(row)
             // console.log(that.state.pendingN, "pendingN")
-            if (that.state.lessThanPending < index && index < that.state.greaterThanPending) {
+            if (that.state.lessThanPending < counter && counter < that.state.greaterThanPending) {
               if (row.phoneNumber.includes(that.state.searchfilter)) {
+                counter++;
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
                 if (row.phoneNumber.length < 12) {
@@ -656,17 +702,41 @@ class Dashboard extends Component {
                 re.push(row.firstName)
               }
             }
+            else {
+              counter++;
+            }
             return (
               <tr key={index}>
                 {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
-                    if (typeof col === "string" && col.slice(0, 2) === "./") {
-                      return <td className="PTD" key={index} ><img className="tdImg" src={col} /></td>
+
+                     
+                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
+                    }
+                    else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></div> </td>
+                    }
+                    else if (typeof col === "string" && col.slice(0, 2) === "./") {
+                      return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
+                    }
+                    // else if (index === 1) {
+                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
+                    //  }
+                    else if (index === 4) {
+                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
                     }
                     else {
-                      return <td className="PTD" key={index}><div >{col}</div></td>
+                      return <td className="PTD" key={index}><div className="tdDiv"> {col}</div></td>
                     }
+
+                    {/*if (typeof col === "string" && col.slice(0, 2) === "./") {
+                      return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
+                    }
+                    else {
+                      return <td className="PTD" key={index}><div className="tdDiv">{col}</div></td>
+                    }*/}
 
                   })
                 }
@@ -803,7 +873,15 @@ class Dashboard extends Component {
     var searchTextLength = searchText.length;
     var joined = [];
     this.setState({
-      searchfilter: searchText
+      searchfilter: searchText,
+      lessThanAll: -1,
+      greaterThanAll: 15,
+      lessThanActive: -1,
+      greaterThanActive: 15,
+      lessThanSuspended: -1,
+      greaterThanSuspended: 15,
+      lessThanPending: -1,
+      greaterThanPending: 15,
     })
     // if (row.phoneNumber.includes(that.state.searchfilter)) {
 

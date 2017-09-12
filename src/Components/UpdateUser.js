@@ -63,22 +63,43 @@ class UpdateUser extends Component {
             console.log(response, "getDriverById Response")
             var x = response.data.data;
 
+
+            //  driverBirthday : new Date(parseInt(x.birthday))
+            //     Year : driverBirthday.getFullYear(),
+            //     Month : driverBirthday.getMonth() + 1,
+            //     Day : driverBirthday.getDate()
+              var parser = parseInt(x.birthday)
+            var birthdate = new Date(parser * 1000);
+
+            // var driverBirthdaydate= new Date(Date.UTC(parseInt(x.birthday)))
+            console.log(birthdate,"birthdate")
             that.setState({
                 // driverName: x.firstName,
                 // driverPNumber: x.phoneNumber,
                 // driverEmail: x.email,
                 // driverPassword: x.password,
-                driverBirthday: x.birthday,
                 // driverAddress: x.address,
 
                 // var someStr = 'He said "Hello, my name is Foo"';
                 //    driverPicture: x.picture.replace(/['"]+/g, ''),
 
 
+                // driverBirthday: x.birthday,
+
+
+                driverBirthday: x.birthday,
+                // Year: new Date(parseInt(x.birthday)).getFullYear(),
+                // Month: new Date(parseInt(x.birthday)).getMonth() + 1,
+                // Day: new Date(parseInt(x.birthday)).getDate(),
+                Year: birthdate.getFullYear(),
+                Month: birthdate.getMonth() + 1,
+                Day: birthdate.getDate(),
+
+
                 Name: x.firstName,
                 PNumber: x.phoneNumber,
                 Email: x.email,
-                Password: x.birthday,
+                Password: x.password,
                 Address: x.address,
             })
             if (x.picture) {
@@ -89,7 +110,7 @@ class UpdateUser extends Component {
             else {
                 console.log("wtf man wtf")
                 that.setState({
-                  driverPicture:  "/Group 1548.png"
+                    driverPicture: "/Group 1548.png"
                 })
             }
             if (x.driverLicense) {
@@ -217,7 +238,10 @@ class UpdateUser extends Component {
     }
 
     handleDayoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({
+            [type]: value,
+            Day: value
+        });
         if (value) {
             dayID = value.value;
         } else {
@@ -229,7 +253,10 @@ class UpdateUser extends Component {
     }
 
     handleMonthoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({
+            [type]: value,
+            Month: value
+        });
         if (value) {
             monthID = value.value;
         } else {
@@ -241,7 +268,10 @@ class UpdateUser extends Component {
     }
 
     handleYearoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({
+            [type]: value,
+            Year: value
+        });
         if (value) {
             yearID = value.value;
         } else {
@@ -253,12 +283,12 @@ class UpdateUser extends Component {
     }
 
     handleBirthday() {
-        console.log(yearID, monthID + 1, dayID)
+        console.log(yearID, monthID , dayID)
         this.setState({
-            birthdaydate: new Date(yearID, monthID + 1, dayID).getTime(),
-            birthdaydateE: new Date(yearIDE, monthIDE + 1, dayIDE).getTime(),
-            endday: "sadjkhasdk"
+            birthdaydate: new Date(yearID, monthID - 1, dayID).getTime(),
+            birthdaydateE: new Date(yearIDE, monthIDE - 1, dayIDE).getTime(),
         });
+        console.log(new Date(yearID, monthID + 1, dayID).getTime(), "new Date(yearID, monthID + 1, dayID).getTime()")
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
 
@@ -397,11 +427,78 @@ class UpdateUser extends Component {
         else {
             // console.log(this.state.birthdaydate, "asdafasdfasdgfasdfjkahsdflkasjnfkl")
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //        if (this.refs.songname.value) {
+        //     if (this.refs.albums.value) {
+        //         if (imgpost) {
+        //             if (artistID) {
+        //                 var track = {
+        //                     name: this.refs.songname.value,             //1
+        //                     album: this.refs.albums.value,           //2
+        //                     picture: imgpost,
+        //                     artist: artistID,
+        //                     genres: genrez,
+        //                     hash: hashz,
+        //                     Tags: tagz,
+        //                     path: tracka,
+        //                     fullSongPath: tracka,
+        //                     source: "offline",
+        //                     songType: songtyp,
+        //                 }
+        //             }
+        //             else {
+        //                 alert("Artist is missing");
+        //             }
+        //         }
+        //         else {
+        //             alert("Picture is missing");
+        //         }
+        //     }
+        //     else {
+        //         alert("Album is missing");
+        //     }
+        // }
+        // else {
+        //     alert("Label is missing");
+        // }
+
+
+
+
+
+
+
+
+
+
+
             var templicensenumber;
             var templicenseexpdate;
-            let timestampp = Math.floor(this.state.birthdaydate / 1000);
-            let timestamppE = Math.floor(this.state.birthdaydate / 1000);
-            var Form = this.state.imgdata;
+            if (this.state.birthdaydate){
+                var timestampp = Math.floor(this.state.birthdaydate / 1000);
+            }
+            if (this.state.birthdaydateE){
+                var timestamppE = Math.floor(this.state.birthdaydateE / 1000);
+            }
+
+
+            console.log(this.state.driverBirthday,"driverbirthday")
+            console.log(timestampp,"timestampp")
+
             const data = new FormData();
             data.append('action', 'ADD');
             data.append('param', 0);
@@ -464,26 +561,30 @@ class UpdateUser extends Component {
                 data.append('email', this.state.Email.value)
             }
 
-            if (this.state.DriverLicense) {
-                if (timestamppE) {
-                    templicenseexpdate = timestamppE;
-                }
-                else {
-                    templicenseexpdate = that.state.driverLicenseExpDate;
-                }
 
-                if (this.refs.driverLicenseNumber.value) {
-                    templicensenumber = this.refs.driverLicenseNumber.value;
-                }
-                else {
-                    // templicensenumber = that.state.driverLicenseNo;
-                    templicensenumber = that.state.LNumber;
-                }
-                var driverLicense = {
-                    number: templicensenumber,
-                    expirationDate: templicenseexpdate
-                }
-                data.append('driverLicense', driverLicense)
+            if (timestamppE) {
+                templicenseexpdate = timestamppE;
+            }
+            else {
+                templicenseexpdate = this.state.driverLicenseExpDate;
+            }
+
+            if (this.refs.driverLicenseNumber.value) {
+                templicensenumber = this.refs.driverLicenseNumber.value;
+            }
+            else {
+                // templicensenumber = that.state.driverLicenseNo;
+                templicensenumber = this.state.LNumber;
+            }
+
+
+            var driverLicense = {
+                number: templicensenumber,
+                expirationDate: templicenseexpdate
+            }
+            console.log(driverLicense, "driverLicense")
+            if (driverLicense) {
+                data.append('driverLicense', JSON.stringify(driverLicense))
             }
             else {
 
@@ -491,7 +592,7 @@ class UpdateUser extends Component {
 
 
             for (var pair of data.entries()) {
-                console.log(pair)
+                // console.log(pair)
             }
             axios.post('/api/operator/updatedriver', data).then(function (response) {
                 console.log(response)
@@ -512,7 +613,8 @@ class UpdateUser extends Component {
 
 
     render() {
-        console.log(this.state.birthdaydate, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
+        // console.log(this.state.birthdaydate, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
+        console.log(this.state.Day,"this.state.Day  ",this.state.Month,"this.state.Month    ",this.state.Year,"this.state.Year  ")
         return (
             <div>
 
@@ -587,8 +689,8 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startyear"
                                         placeholder="سنة"
-                                         className="menu-outer-top"
-                                        value={this.state.startyear}
+                                        className="menu-outer-top"
+                                        value={this.state.Year}
                                         options={this.state.startyearoptions}
                                         onChange={this.handleYearoptions.bind(this, "startyear")}
                                     />
@@ -598,8 +700,8 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startmonth"
                                         placeholder="شهر"
-                                         className="menu-outer-top"
-                                        value={this.state.startmonth}
+                                        className="menu-outer-top"
+                                        value={this.state.Month}
                                         options={this.state.startmonthoptions}
                                         onChange={this.handleMonthoptions.bind(this, "startmonth")}
                                     />
@@ -609,8 +711,8 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startday"
                                         placeholder="يوم"
-                                         className="menu-outer-top"
-                                        value={this.state.startday}
+                                        className="menu-outer-top"
+                                        value={this.state.Day}
                                         options={this.state.startdayoptions}
                                         onChange={this.handleDayoptions.bind(this, "startday")}
                                     />
@@ -643,7 +745,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endyear"
                                         placeholder="سنة"
-                                         className="menu-outer-top"
+                                        className="menu-outer-top"
                                         value={this.state.endyear}
                                         options={this.state.endyearoptions}
                                         onChange={this.handleYearoptionsE.bind(this, "endyear")}
@@ -654,7 +756,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endmonth"
                                         placeholder="شهر"
-                                         className="menu-outer-top"
+                                        className="menu-outer-top"
                                         value={this.state.endmonth}
                                         options={this.state.endmonthoptions}
                                         onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
@@ -665,7 +767,7 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endday"
                                         placeholder="يوم"
-                                         className="menu-outer-top"
+                                        className="menu-outer-top"
                                         value={this.state.endday}
                                         options={this.state.enddayoptions}
                                         onChange={this.handleDayoptionsE.bind(this, "endday")}

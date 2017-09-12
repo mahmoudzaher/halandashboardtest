@@ -177,7 +177,6 @@ class CreateUser extends Component {
     this.setState({
       birthdaydate: new Date(yearID, monthID + 1, dayID).getTime(),
       birthdaydateE: new Date(yearIDE, monthIDE + 1, dayIDE).getTime(),
-      endday: "sadjkhasdk"
     });
     console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
   }
@@ -220,22 +219,69 @@ class CreateUser extends Component {
       this.state.unixTimestamp = new Date().getTime();
       console.log(this.state.birthdaydate, "asdafasdfasdgfasdfjkahsdflkasjnfkl")
       let timestampp = Math.floor(this.state.birthdaydate / 1000);
-      let timestamppE = Math.floor(this.state.birthdaydate / 1000);
+      let timestamppE = Math.floor(this.state.birthdaydateE / 1000);
       var Form = this.state.imgdata;
-
-      var vehicleLicence = {
-        number: this.refs.driverLicenseNumber.value,
-        expirationDate: timestamppE
-      }
       const data = new FormData();
-      data.append('picture', this.state.img)
+      var vehicleLicence = {
+        // number: this.refs.driverLicenseNumber.value,
+        // expirationDate: timestamppE
+      }
+
+      if (this.state.birthdaydateE && this.refs.driverLicenseNumber.value) {
+        // vehicleLicence["number"] = this.refs.driverLicenseNumber.value;
+        // vehicleLicence["expirationDate"] = timestamppE;
+        var vehicleLicence = {
+          number: this.refs.driverLicenseNumber.value,
+          expirationDate: timestamppE
+        }
+        data.append('driverLicense', JSON.stringify(vehicleLicence))
+      }
+      else if (this.refs.driverLicenseNumber.value) {
+        vehicleLicence["number"] = this.refs.driverLicenseNumber.value
+        // data.append('driverLicense', JSON.stringify(vehicleLicence))
+        data.append('driverLicense', JSON.stringify(vehicleLicence))
+      }
+      else if (this.state.birthdaydateE) {
+        vehicleLicence["expirationDate"] = timestamppE
+        // data.append('driverLicense', JSON.stringify(vehicleLicence))
+        data.append('driverLicense', JSON.stringify(vehicleLicence))
+      }
+      else {
+
+      }
+      vehicleLicence["number"] = this.refs.driverLicenseNumber.value;
+      vehicleLicence["expirationDate"] = timestamppE;
+
+      if (this.state.birthdaydate) {
+        data.append('birthday', timestampp)
+      }
+      else {
+
+      }
+
+      if (this.refs.address.value) {
+        data.append('address', this.refs.address.value)
+      }
+      else {
+
+      }
+
+      if (this.state.img) {
+        data.append('picture', this.state.img)
+      }
+      else {
+
+      }
+
       data.append('action', 'ADD');
       data.append('param', 0);
       data.append('firstName', this.refs.Fname.value)
-      data.append('address', this.refs.address.value)
       data.append('password', this.refs.password.value)
       data.append('phoneNumber', this.refs.pNumber.value)
-      data.append('birthday', timestampp)
+
+      // data.append('birthday', timestampp)
+      // data.append('address', this.refs.address.value)
+      // data.append('picture', this.state.img)
       if (this.refs.email.value === "" || this.refs.email.value === null) {
         // data.append('email', null)
       }
@@ -243,7 +289,7 @@ class CreateUser extends Component {
         data.append('email', this.refs.email.value)
       }
 
-      data.append('driverLicense', vehicleLicence)
+      // data.append('driverLicense', JSON.stringify(vehicleLicence))
 
       for (var pair of data.entries()) {
         console.log(pair)
@@ -421,7 +467,7 @@ class CreateUser extends Component {
                   <Select
                     ref="startyear"
                     placeholder="سنة"
-                     className="menu-outer-top"
+                    className="menu-outer-top"
                     value={this.state.startyear}
                     options={this.state.startyearoptions}
                     onChange={this.handleYearoptions.bind(this, "startyear")}
@@ -432,7 +478,7 @@ class CreateUser extends Component {
                   <Select
                     ref="startmonth"
                     placeholder="شهر"
-                     className="menu-outer-top"
+                    className="menu-outer-top"
                     value={this.state.startmonth}
                     options={this.state.startmonthoptions}
                     onChange={this.handleMonthoptions.bind(this, "startmonth")}
@@ -443,7 +489,7 @@ class CreateUser extends Component {
                   <Select
                     ref="startday"
                     placeholder="يوم"
-                     className="menu-outer-top"
+                    className="menu-outer-top"
                     value={this.state.startday}
                     options={this.state.startdayoptions}
                     onChange={this.handleDayoptions.bind(this, "startday")}
@@ -458,7 +504,7 @@ class CreateUser extends Component {
                   <Select
                     ref="endyear"
                     placeholder="سنة"
-                     className="menu-outer-top"
+                    className="menu-outer-top"
                     value={this.state.endyear}
                     options={this.state.endyearoptions}
                     onChange={this.handleYearoptionsE.bind(this, "endyear")}
@@ -469,7 +515,7 @@ class CreateUser extends Component {
                   <Select
                     ref="endmonth"
                     placeholder="شهر"
-                     className="menu-outer-top"
+                    className="menu-outer-top"
                     value={this.state.endmonth}
                     options={this.state.endmonthoptions}
                     onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
@@ -480,7 +526,7 @@ class CreateUser extends Component {
                   <Select
                     ref="endday"
                     placeholder="يوم"
-                     className="menu-outer-top"
+                    className="menu-outer-top"
                     value={this.state.endday}
                     options={this.state.enddayoptions}
                     onChange={this.handleDayoptionsE.bind(this, "endday")}

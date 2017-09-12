@@ -501,6 +501,12 @@ p.Sky-P {
 .PopClass-Right-Div-Contents-Div {
       padding-bottom: 1%;
 }
+
+.PopClass-Right-Div-Contents-DivNew {
+         padding-bottom: 1%;
+    width: 125%;
+    text-align: right;
+}
 .PopClass-Left {
     width: 60%;
         float: left;
@@ -633,6 +639,37 @@ padding-left: 500px;
   background-image: linear-gradient(to right, #2C2D72, #28B8A8);
 color: white;
 }
+
+
+
+
+.buttonPop{
+      padding-top: 5%;
+    margin-left: 50%;
+}
+
+
+input.coolPop {
+   
+background-repeat: no-repeat;
+background-position: left;
+padding-left: 500px;
+    border-radius: 40px;
+    padding: 20px;
+    width: 200px;
+    font-family: Cairo;
+    font-size: 20px;
+        line-height: 5px;
+  background: #2C2D72;
+  background-image: -webkit-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: -moz-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: -ms-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: -o-linear-gradient(left, #2C2D72, #28B8A8);
+  background-image: linear-gradient(to right, #2C2D72, #28B8A8);
+color: white;
+}
+
+
 
 .buttonTT{
         margin-top: 20%;
@@ -1058,7 +1095,7 @@ img.custom-file-upload-img {
         float: left;
     margin-left: 15%;
     margin-right: 15%;
-    width: 10%;
+    width: 12%;
 }
 .OptionsThT{
         float: left;
@@ -1184,6 +1221,13 @@ input.CreateBigDivPTLol {
     display: flow-root;
     padding-right: 10%;
     padding-bottom: 3%;
+    width: 100%;
+}
+
+.upload-button-divDisHelloNew {
+    display: flow-root;
+    padding-right: 10%;
+    padding-bottom: 10%;
     width: 100%;
 }
 
@@ -1434,6 +1478,11 @@ img#Driver-Img {
 
 .DriverPTTT {
     margin-top: -9%;
+}
+
+.DriverPTTTNew {
+       margin-top: -10%;
+    margin-right: 10%;
 }
 
 .DriverI {
@@ -1695,6 +1744,16 @@ div.Select.Select--single.is-clearable.is-focused.is-open.is-searchable .Select-
     /*position: absolute;*/
 /*background: #00FECD;*/
 }
+.div.Select-menu-outer{
+
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px!important;
+}
+
+.menu-outer-top .Select-menu-outer {
+    /*width: 121%;*/
+     width: 123%;
+}
 .menu-outer-top .Select-control {
 /*background: red;*/
 
@@ -1710,25 +1769,8 @@ div.Select.Select--single.is-clearable.is-focused.is-open.is-searchable .Select-
 display: none;
 }
 /*Select menu-outer-top Select--single is-clearable is-focused is-open is-searchable*/
-.div.Select-menu-outer{
 
-    border-bottom-right-radius: 20px !important;
-    border-bottom-left-radius: 20px!important;
-}
-.menu-outer-top .Select-menu-outer {
-    /*bottom: 35px!important;*/
-    /*border-bottom-right-radius: 25px !important;
-    border-bottom-left-radius: 25px!important;*/
-    
-    /*border-top-right-radius: 4px!important;
-    border-top-left-radius: 4px!important;*/
-    width: 121%;
-    /*background-color: red !important;*/
-    /*background: red !important;*/
-    
-    /*overflow-y: hidden;*/
-    /*overflow-y:scroll !important;*/
-}
+
 .Select-option {
 	/*box-sizing: border-box;
 	background-color: red !important;
@@ -1849,6 +1891,10 @@ table.tableclasstwo {
 img.dude{
         width: 115%;
 }
+img.dudeHello{
+           width: 40%;
+    border-radius: 30%;
+}
 
 fieldset.yowazap{
         border: none;
@@ -1876,6 +1922,22 @@ legend.heyheyhey {
     /* padding-bottom: 10%; */
     margin-top: 1%;
 }
+
+.Options-GroupsTheyyomew {
+        /* width: 100%; */
+    /* margin-left: 50%; */
+    padding-bottom: 4%;
+    margin-top: 1%
+}
+
+.Options-GroupsTheyyoyonew {
+         /* width: 100%; */
+    /* margin-left: 50%; */
+    /* padding-bottom: 10%; */
+    margin-top: 1%;
+}
+
+
 
 p.idkm8{
         color: #2C2D72;
@@ -1919,9 +1981,23 @@ p.statisticsP {
     color: #2C2D72;
 }
 
+p.statisticsPNew {
+      font-size: 18px;
+    margin-bottom: 5px;
+    color: #2C2D72;
+    margin-right: 4%;
+}
+
 img#statisticsImg{
         float: left;
     margin-left: 45%;
+    /* margin-bottom: -12%; */
+    margin-top: -2%;
+}  
+
+img#statisticsImgnew{
+      float: left;
+    margin-left: 41%;
     /* margin-bottom: -12%; */
     margin-top: -2%;
 }  
@@ -1943,3 +2019,7 @@ img#statisticsImgPop{
 /*button.ril-close.ril-toolbar__item__child.toolbarItemChild___2U_MP.builtinButton___1zqo6.closeButton___3BdAF{
     display: none;
 }*/
+
+.tdDiv {
+    height: 20px;
+}

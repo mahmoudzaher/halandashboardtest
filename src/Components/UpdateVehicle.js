@@ -49,7 +49,15 @@ class UpdateVehicle extends Component {
     // state = {
     //     activeIndex: null
     // }
-
+     getInitialState() {
+        return {
+            isChecked: true
+        };
+    }
+    handleCheckboxChange(event) {
+        console.log("checkbox changed!", event);
+        this.setState({isChecked: event.target.checked});
+    }
     componentWillMount() {
 
         var that = this;
@@ -63,15 +71,25 @@ class UpdateVehicle extends Component {
             unixTimestamp: "",
             img: "",
             imgdata: new FormData(),
+            disabledd: "on",
+            checked: ''
         })
 
 
         axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getDriverById Response")
             var y = response.data.data;
+            // var parser = parseInt(y.birthday)
+            // var birthdate = new Date(parser * 1000);
 
             that.setState({
                 vehicleId: y.vehicle._id,
+                // driverBirthday: birthdate,
+                // Year: birthdate.getFullYear(),
+                // Month: birthdate.getMonth() + 1,
+                // Day: birthdate.getDate(),
+
+
             })
 
             axios.get('/api/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
@@ -86,6 +104,10 @@ class UpdateVehicle extends Component {
 
                     })
                 }
+
+                var parser = parseInt(x.model)
+                var birthdate = new Date(parser * 1000);
+
                 that.setState({
                     vehicleType: x.vehicletype,
                     vehicleDateofMake: x.model,
@@ -93,6 +115,12 @@ class UpdateVehicle extends Component {
                     vehicleLabel: x.label,
                     vehicleShaseeh: x.shaseehNo,
                     vehicleMotor: x.motorNo,
+
+                    Year: birthdate.getFullYear(),
+                    Month: birthdate.getMonth() + 1,
+                    Day: birthdate.getDate(),
+
+
 
                 })
 
@@ -273,33 +301,42 @@ class UpdateVehicle extends Component {
     }
 
     handleDayoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({
+            [type]: value,
+            Day: value
+        });
         //  artistID = value.value;
         if (value) {
             dayID = value.value;
         } else {
             dayID = "";
         }
-
+        this.handleBirthday()
         console.log(value);
         console.log(dayID);
     }
 
     handleMonthoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({
+            [type]: value,
+            Month: value
+        });
         //  artistID = value.value;
         if (value) {
             monthID = value.value;
         } else {
             monthID = "";
         }
-
+        this.handleBirthday()
         console.log(value);
         console.log(monthID);
     }
 
     handleYearoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({
+            [type]: value,
+            Year: value
+        });
         //  artistID = value.value;
         if (value) {
             yearID = value.value;
@@ -311,50 +348,12 @@ class UpdateVehicle extends Component {
         console.log(yearID);
     }
 
-    handleDayoptionsE(type, value) {
-        this.setState({ [type]: value });
-        //  artistID = value.value;
-        if (value) {
-            dayIDE = value.value;
-        } else {
-            dayIDE = "";
-        }
 
-        console.log(value);
-        console.log(dayIDE);
-    }
-
-    handleMonthoptionsE(type, value) {
-        this.setState({ [type]: value });
-        //  artistID = value.value;
-        if (value) {
-            monthIDE = value.value;
-        } else {
-            monthIDE = "";
-        }
-
-        console.log(value);
-        console.log(monthIDE);
-    }
-
-    handleYearoptionsE(type, value) {
-        this.setState({ [type]: value });
-        //  artistID = value.value;
-        if (value) {
-            yearIDE = value.value;
-        } else {
-            yearIDE = "";
-        }
-        this.handleBirthday()
-        console.log(value);
-        console.log(yearIDE);
-    }
 
     handleBirthday() {
         console.log(yearID, monthID + 1, dayID)
         this.setState({
             birthdaydate: new Date(yearID, monthID + 1, dayID).getTime(),
-            birthdaydateE: new Date(yearIDE, monthIDE + 1, dayIDE).getTime(),
             endday: "sadjkhasdk"
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
@@ -515,63 +514,63 @@ class UpdateVehicle extends Component {
             tempVehicleType = this.state.vehicleTypee;
         }
         else {
-            tempVehicleType = that.state.vehicleType;  //
+            tempVehicleType = this.state.vehicleType;  //
         }
 
         if (this.refs.make.value) {
             tempVehicleMake = this.refs.make.value;
         }
         else {
-            tempVehicleMake = that.state.vehicleMake.name;  //
+            tempVehicleMake = this.state.vehicleMake.name;  //
         }
 
         if (timestamp) {
             tempvehicleDateofMake = timestamp;
         }
         else {
-            tempvehicleDateofMake = that.state.vehicleDateofMake;  //
+            tempvehicleDateofMake = this.state.vehicleDateofMake;  //
         }
 
         if (this.refs.label.value) {
             tempvehicleLabel = this.refs.label.value;
         }
         else {
-            tempvehicleLabel = that.state.vehicleLabel;
+            tempvehicleLabel = this.state.vehicleLabel;
         }
 
         if (this.refs.shaseehNo.value) {
             tempvehicleShaseeh = this.refs.shaseehNo.value;
         }
         else {
-            tempvehicleShaseeh = that.state.vehicleShaseeh;
+            tempvehicleShaseeh = this.state.vehicleShaseeh;
         }
 
         if (this.refs.motorNo.value) {
             tempvehicleMotor = this.refs.motorNo.value;
         }
         else {
-            tempvehicleMotor = that.state.vehicleMotor;
+            tempvehicleMotor = this.state.vehicleMotor;
         }
 
         if (this.refs.oName.value) {
             tempVehicleOwnerName = this.refs.oName.value;
         }
         else {
-            tempVehicleOwnerName = that.state.vehicleOwnerName;
+            tempVehicleOwnerName = this.state.vehicleOwnerName;
         }
 
         if (this.refs.nID.value) {
             tempVehicleOwnerId = this.refs.nID.value;
         }
         else {
-            tempVehicleOwnerId = that.state.vehicleOwnerId;
+            tempVehicleOwnerId = this.state.vehicleOwnerId;
         }
 
         if (this.refs.OPNumber.value) {
             tempVehicleOwnerPNumber = this.refs.OPNumber.value;
         }
         else {
-            tempVehicleOwnerPNumber = that.state.vehicleOwnerPNumber;
+            tempVehicleOwnerPNumber = this.state.vehicleOwnerPNumber;
         }
 
 
@@ -606,6 +605,13 @@ class UpdateVehicle extends Component {
 
             console.log(error)
         })
+    }
+
+
+    handleChangeDisable(){
+        console("fk meeeeeeeeee")
+        // this.setState({disabledd: e.target.value})
+        console.log("helloooooooooooooooooooooooooooooooo")
     }
 
     render() {
@@ -645,8 +651,10 @@ class UpdateVehicle extends Component {
 
                         <div className="CreateBigDiv-right-right">
 
-                            <input type="checkbox" className="checkmate" />
-                            <p className="CreateBigDivNewLol">أسم مالك المركبة</p>
+                            {/*<input type="checkbox" className="checkmate" onChange={this.handleChangeDisable()}/>*/}
+                            {/*onChange={this.handleCheckboxChange.bind(this)}*/}
+                             <input type="checkbox" className="checkmate"  onChange={this.handleCheckboxChange.bind(this)} checked={this.state.isChecked} />
+                            <p className="CreateBigDivNewLol" >أسم مالك المركبة</p>
                             <p className="CreateBigDivNewLol">رقم المالك</p>
                             <p className="CreateBigDivNewLol">رقم بطاقة المالك</p>
                         </div>
@@ -656,9 +664,9 @@ class UpdateVehicle extends Component {
                                 <div className="BOOMMM">
                                     <p className="CreateBigDivPIdk">هل السائق هو نفس مالك المركبة</p>
                                 </div>
-                                <input type="text" className="CreateBigDivP" ref="oName" value={this.state.vehicleOwnerName} onChange={this.handleOnchangeTextvehicleOwnerName.bind(this)} />
-                                <input type="text" className="CreateBigDivP" ref="OPNumber" value={this.state.vehicleOwnerPNumber} onChange={this.handleOnchangeTextvehicleOwnerPNumber.bind(this)} />
-                                <input type="text" className="CreateBigDivP" ref="nID" value={this.state.vehicleOwnerId} onChange={this.handleOnchangeTextvehicleOwnerId.bind(this)} />
+                                <input type="text" className="CreateBigDivP" ref="oName" value={this.state.vehicleOwnerName} onChange={this.handleOnchangeTextvehicleOwnerName.bind(this)}     disabled={this.state.isChecked}    />
+                                <input type="text" className="CreateBigDivP" ref="OPNumber" value={this.state.vehicleOwnerPNumber} onChange={this.handleOnchangeTextvehicleOwnerPNumber.bind(this)} disabled={this.state.isChecked} />
+                                <input type="text" className="CreateBigDivP" ref="nID" value={this.state.vehicleOwnerId} onChange={this.handleOnchangeTextvehicleOwnerId.bind(this)} disabled={this.state.isChecked} />
                             </div>
 
                         </div>
@@ -706,7 +714,7 @@ class UpdateVehicle extends Component {
                                     <Select
                                         ref="startyear"
                                         placeholder="سنة"
-                                        value={this.state.startyear}
+                                        value={this.state.Year}
                                         options={this.state.startyearoptions}
                                         onChange={this.handleYearoptions.bind(this, "startyear")}
                                     />
@@ -716,7 +724,7 @@ class UpdateVehicle extends Component {
                                     <Select
                                         ref="startmonth"
                                         placeholder="شهر"
-                                        value={this.state.startmonth}
+                                        value={this.state.Month}
                                         options={this.state.startmonthoptions}
                                         onChange={this.handleMonthoptions.bind(this, "startmonth")}
                                     />
@@ -726,7 +734,7 @@ class UpdateVehicle extends Component {
                                     <Select
                                         ref="startday"
                                         placeholder="يوم"
-                                        value={this.state.startday}
+                                        value={this.state.Day}
                                         options={this.state.startdayoptions}
                                         onChange={this.handleDayoptions.bind(this, "startday")}
                                     />

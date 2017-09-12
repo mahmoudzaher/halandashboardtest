@@ -16,6 +16,9 @@ let searchArray = [];
 let dayID = "";
 let monthID = "";
 let yearID = "";
+let dayIDE = "";
+let monthIDE = "";
+let yearIDE = "";
 class DriverTrips extends Component {
 
     constructor(props) {
@@ -57,8 +60,11 @@ class DriverTrips extends Component {
             x.forEach(function (item) {
                 // console.log(item)
                 objects.push(item);
-                money = money + item.tripCost;
-                tripscounter  = tripscounter+1;
+                if (item.tripCost) {
+                    money = money + item.tripCost;
+                }
+
+                tripscounter = tripscounter + 1;
 
             })
             that.setState({
@@ -95,44 +101,71 @@ class DriverTrips extends Component {
 
     componentDidMount() {
         var that = this;
-        // axios.post('/api/operator/getPreviousTripsOfDriver', { "id": this.state.id }).then(function (response) {
-        //     console.log(response.data.data, "getPreviousTripsOfDriver Response")
-        //     var x = response.data.data;
-        //     var objects = [];
+        var itemIds = [];
+        var itemIds2 = [];
+        var itemIds3 = [];
+        var itemIds4 = [];
+        var itemIds5 = [];
+        var itemIds6 = [];
+        for (var i = 0; i < 32; i++) {
+            itemIds.push(
+                {
+                    value: i,
+                    label: i
+                }
+            );
+        }
+        for (var i = 0; i < 13; i++) {
+            itemIds2.push(
+                {
+                    value: i,
+                    label: i
+                }
+            );
+        }
+        for (var i = 1920; i < 2018; i++) {
+            itemIds3.push(
+                {
+                    value: i,
+                    label: i
+                }
+            );
+        }
 
-        //     x.forEach(function (item) {
-        //         // console.log(item)
-        //         objects.push(item);
+        for (var i = 0; i < 32; i++) {
+            itemIds4.push(
+                {
+                    value: i,
+                    label: i
+                }
+            );
+        }
+        for (var i = 0; i < 13; i++) {
+            itemIds5.push(
+                {
+                    value: i,
+                    label: i
+                }
+            );
+        }
+        for (var i = 1920; i < 2028; i++) {
+            itemIds6.push(
+                {
+                    value: i,
+                    label: i
+                }
+            );
+        }
 
-        //     })
-        //     that.setState({
-
-        //         objects: objects,
-
-        //     })
-
-        // }).catch(function (error) {
-        //     alert(error.message);
-        //     console.log(error)
-        // })
-
-        // console.log(this.state.driverId, "driverID")
-
-        // axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
-        //     console.log(response, "getDriverById Response")
-        //     var x = response.data.data;
-
-        //     that.setState({
-
-        //         driverRating: x.rating,
-        //         driverName: x.firstName,
-
-        //     })
-
-        // }).catch(function (error) {
-        //     alert(error.message);
-        //     console.log(error)
-        // })
+        console.log(itemIds)
+        this.setState({
+            startdayoptions: itemIds,
+            startmonthoptions: itemIds2,
+            startyearoptions: itemIds3,
+            enddayoptions: itemIds4,
+            endmonthoptions: itemIds5,
+            endyearoptions: itemIds6,
+        })
 
     }
 
@@ -169,21 +202,23 @@ class DriverTrips extends Component {
                 React.DOM.tbody(null,
                     that.state.objects.map(function (row, index) {
                         let re = [];
-                        console.log(row)
+                        // console.log(row)
 
 
                         var datee = new Date(row.date);
                         var Year = datee.getFullYear();
-                        var Month = datee.getMonth();
-                        var Day = datee.getDay();
+                        var Month = datee.getMonth() + 1;
+                        var Day = datee.getDate();
                         var hours = datee.getHours();
-                        var minutes = "0" + datee.getMinutes();
-                        var seconds = "0" + datee.getSeconds();
+                        var minutes = datee.getMinutes();
+                        var seconds = datee.getSeconds();
                         var formattedTime = Year + '/' + Month + '/' + Day;
+                        // console.log(formattedTime,"formattedTime  ",index)
+                        // console.log(datee,"row.date",index)
                         // console.log(Year, "Year")
                         // console.log(Month, "Month")
                         // console.log(Day, "Day")
-                        // console.log(formattedTime, "date")
+                        // console.log(formattedTime, "formattedTime")
                         // console.log(datee, "datee")
 
 
@@ -208,23 +243,41 @@ class DriverTrips extends Component {
                         var endFormattedTime = endDay + '/' + endMonth + '/' + endYear + endhours + ':' + endminutes.substr(-2) + ':' + endseconds.substr(-2);
 
 
-                        var now = "04/09/2013 15:00:00";
-                        var then = "04/09/2013 14:20:30";
+                        // var now = "04/09/2013 15:00:00";
+                        // var then = "04/09/2013 14:20:30";
                         moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
                         var durationtrip = moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
-                        console.log(moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss"), "duration")
-                        console.log(durationtrip, "duration trip")
+                        // console.log(moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss"), "duration")
+                        // console.log(durationtrip, "duration trip")
 
 
                         if (row.user.phoneNumber.includes(that.state.searchfilter)) {
-                            re.push(row.tripCost)
-                            re.push(row.userRatingByDriver)
-                            re.push(durationtrip)
-                            re.push(row._toString)
-                            re.push(row._fromString)
-                            re.push(row.user.phoneNumber)
-                            re.push(row.user.firstName)
-                            re.push(formattedTime)
+                            // console.log(that.state.birthdaydate,"that.state.birthdaydate")
+                            // console.log(that.state.birthdaydateE,"that.state.birthdaydateE")
+                            // console.log(row.date,"row.date")
+                            if (that.state.birthdaydate && that.state.birthdaydateE) {
+                                if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+                                    re.push(row.tripCost)
+                                    re.push(row.userRatingByDriver)
+                                    re.push(durationtrip)
+                                    re.push(row._toString)
+                                    re.push(row._fromString)
+                                    re.push(row.user.phoneNumber)
+                                    re.push(row.user.firstName)
+                                    re.push(formattedTime)
+                                }
+                            }
+                            else {
+                                re.push(row.tripCost)
+                                re.push(row.userRatingByDriver)
+                                re.push(durationtrip)
+                                re.push(row._toString)
+                                re.push(row._fromString)
+                                re.push(row.user.phoneNumber)
+                                re.push(row.user.firstName)
+                                re.push(formattedTime)
+                            }
+
                         }
                         var ColImg = "/Path 1236.png";
 
@@ -296,11 +349,11 @@ class DriverTrips extends Component {
     handleDayoptions(type, value) {
         this.setState({ [type]: value });
         if (value) {
-            dayID = value.value;
+            dayID = value.value + 1;
         } else {
             dayID = "";
         }
-
+        this.handleBirthday()
         console.log(value);
         console.log(dayID);
     }
@@ -308,11 +361,11 @@ class DriverTrips extends Component {
     handleMonthoptions(type, value) {
         this.setState({ [type]: value });
         if (value) {
-            monthID = value.value;
+            monthID = value.value - 1;
         } else {
             monthID = "";
         }
-
+        this.handleBirthday()
         console.log(value);
         console.log(monthID);
     }
@@ -329,6 +382,84 @@ class DriverTrips extends Component {
         console.log(yearID);
     }
 
+
+    handleDayoptionsE(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            dayIDE = value.value + 1;
+        } else {
+            dayIDE = "";
+        }
+        this.handleBirthday()
+        console.log(value);
+        console.log(dayIDE);
+    }
+
+    handleMonthoptionsE(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            monthIDE = value.value - 1;
+        } else {
+            monthIDE = "";
+        }
+        this.handleBirthday()
+        console.log(value);
+        console.log(monthIDE);
+    }
+
+    handleYearoptionsE(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            yearIDE = value.value;
+        } else {
+            yearIDE = "";
+        }
+        this.handleBirthday()
+        console.log(value);
+        console.log(yearIDE);
+    }
+
+
+    handleBirthday() {
+       console.log(yearID, monthID, dayID, "yearID, monthID + 1, dayID")
+        console.log(yearIDE, monthIDE, dayIDE, "yearIDE, monthIDE, dayIDE")
+        var that = this;
+        let money = 0;
+        let tripscounter = 0;
+        let newday = dayIDE + 1;
+        this.setState({
+            birthdaydate: new Date(yearID, monthID, dayID).getTime(),
+            birthdaydateE: new Date(yearIDE, monthIDE, dayIDE).getTime(),
+        });
+        this.state.birthdaydateE =  new Date(yearIDE, monthIDE, newday).getTime()
+
+        console.log(new Date(yearID, monthID, dayID).getTime(), "new Date(yearID, monthID , dayID).getTime()")
+        console.log(new Date(yearIDE, monthIDE, dayIDE).getTime(), "new Date(yearIDE, monthIDE , dayIDE).getTime()")
+        that.state.objects.forEach(function (item) {
+            // console.log(item)
+                 if (that.state.birthdaydate <= item.date && that.state.birthdaydateE >= item.date) {
+                if (item.tripCost) {
+                    money = money + item.tripCost;
+
+                }
+
+                tripscounter = tripscounter + 1;
+            }
+
+
+
+        })
+
+        this.setState({
+            cash: money,
+            tripsCount: tripscounter
+        })
+
+
+
+        console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
+    }
+
     searchtable(event) {
         var that = this;
         var searchText = event.target.value;
@@ -341,17 +472,17 @@ class DriverTrips extends Component {
         console.log(searchText, "searchtext now")
         console.log(searchText, "searchtext now in forEach")
         searchArray = [];
-        this.state.objects.forEach(function (item) {
+        // this.state.objects.forEach(function (item) {
 
-            if (item.phoneNumber.slice(0, searchTextLength) === searchText) {
-                if (searchArray.indexOf(searchText) === -1) {
-                    searchArray.push(item)
-                }
-            }
-            else {
+        //     if (item.phoneNumber.slice(0, searchTextLength) === searchText) {
+        //         if (searchArray.indexOf(searchText) === -1) {
+        //             searchArray.push(item)
+        //         }
+        //     }
+        //     else {
 
-            }
-        })
+        //     }
+        // })
         console.log(searchArray, "search array")
     }
 
@@ -398,7 +529,7 @@ class DriverTrips extends Component {
                                 <img src="/Group 1548.png" id="Driver-Img" />
                             </div>
                             <div className="DriverPDiv">
-                                <div className="DriverPTTT">
+                                <div className="DriverPTTTNew">
                                     <p className="DriverPParag">{this.state.driverName} </p>
                                 </div>
                                 <div className="DriverPT">
@@ -436,6 +567,12 @@ class DriverTrips extends Component {
                                 <p className="statisticsP" >إحصائيات</p>
                                 <img src="/Group 1793.png" id="statisticsImg" onClick={() => this.refs.PromoDialog.show()} />
                             </div>
+                            
+                             <div className="statistics" >
+                                <p className="statisticsPNew" >تصفية حسب التاريخ</p>
+                                <img src="/Group 1803.png" id="statisticsImgnew"  onClick={() => this.refs.FilterDialog.show()}/>
+                            </div>
+
                             {/*<form className="hahahaxD">
                                 <fieldset className="yowazap">
                                     <legend className="heyheyhey" >تاريخ الرحلات</legend>
@@ -457,6 +594,7 @@ class DriverTrips extends Component {
                                                 <Select
                                                     ref="startyear"
                                                     placeholder="سنة"
+                                                    className="menu-outer-top"
                                                     value={this.state.startyear}
                                                     options={this.state.startyearoptions}
                                                     onChange={this.handleYearoptions.bind(this, "startyear")}
@@ -467,6 +605,7 @@ class DriverTrips extends Component {
                                                 <Select
                                                     ref="startmonth"
                                                     placeholder="شهر"
+                                                    className="menu-outer-top"
                                                     value={this.state.startmonth}
                                                     options={this.state.startmonthoptions}
                                                     onChange={this.handleMonthoptions.bind(this, "startmonth")}
@@ -477,6 +616,7 @@ class DriverTrips extends Component {
                                                 <Select
                                                     ref="startday"
                                                     placeholder="يوم"
+                                                    className="menu-outer-top"
                                                     value={this.state.startday}
                                                     options={this.state.startdayoptions}
                                                     onChange={this.handleDayoptions.bind(this, "startday")}
@@ -488,31 +628,34 @@ class DriverTrips extends Component {
                                         <div className="Options-GroupsTheyyoyo">
                                             <div className="OptionsOT">
                                                 <Select
-                                                    ref="startyear"
+                                                    ref="endyear"
                                                     placeholder="سنة"
-                                                    value={this.state.startyear}
-                                                    options={this.state.startyearoptions}
-                                                    onChange={this.handleYearoptions.bind(this, "startyear")}
+                                                    className="menu-outer-top"
+                                                    value={this.state.endyear}
+                                                    options={this.state.endyearoptions}
+                                                    onChange={this.handleYearoptionsE.bind(this, "endyear")}
                                                 />
                                             </div>
 
                                             <div className="OptionsTT">
                                                 <Select
-                                                    ref="startmonth"
+                                                    ref="endmonth"
                                                     placeholder="شهر"
-                                                    value={this.state.startmonth}
-                                                    options={this.state.startmonthoptions}
-                                                    onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                                    className="menu-outer-top"
+                                                    value={this.state.endmonth}
+                                                    options={this.state.endmonthoptions}
+                                                    onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
                                                 />
                                             </div>
 
                                             <div className="OptionsThT">
                                                 <Select
-                                                    ref="startday"
+                                                    ref="endday"
                                                     placeholder="يوم"
-                                                    value={this.state.startday}
-                                                    options={this.state.startdayoptions}
-                                                    onChange={this.handleDayoptions.bind(this, "startday")}
+                                                    className="menu-outer-top"
+                                                    value={this.state.endday}
+                                                    options={this.state.enddayoptions}
+                                                    onChange={this.handleDayoptionsE.bind(this, "endday")}
                                                 />
                                             </div>
                                         </div>
@@ -539,8 +682,8 @@ class DriverTrips extends Component {
                     <img src="/Group 1793.png" id="statisticsImgPop" />
                     <div className="statsPopInnerDiv" >
                         <div className="statsPopInnerDiv-right">
-                        <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
-                        <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
+                            <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
+                            <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
                         </div>
                         <div className="statsPopInnerDiv-left">
                             <p className="statsPopInnerDiv-left-p">{this.state.tripsCount}</p>
@@ -548,6 +691,109 @@ class DriverTrips extends Component {
                         </div>
                     </div>
                 </SkyLight>
+
+
+                <SkyLight hideOnOverlayClicked ref="FilterDialog" dialogStyles={sky}>
+                     <div className="comeonnnn" >
+                          <div className="comeonnnnUnder" >
+                     <form className="hahahaxD">
+                        
+
+                       
+                                <fieldset className="yowazap">
+                                    <legend className="heyheyhey" >تاريخ الرحلات</legend>
+
+                                    <div className="rightidkm8">
+                                        <div className="idkm8Div">
+                                            <p className="idkm8" >من</p>
+                                        </div>
+
+                                        <div className="idkm8Div">
+                                            <p className="idkm8" >إلى</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="leftidkm8" >
+                                        <div className="Options-GroupsTheyyonew">
+                                            <div className="OptionsOT">
+                                                <Select
+                                                    ref="startyear"
+                                                    placeholder="سنة"
+                                                    className="menu-outer-top"
+                                                    value={this.state.startyear}
+                                                    options={this.state.startyearoptions}
+                                                    onChange={this.handleYearoptions.bind(this, "startyear")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsTT">
+                                                <Select
+                                                    ref="startmonth"
+                                                    placeholder="شهر"
+                                                    className="menu-outer-top"
+                                                    value={this.state.startmonth}
+                                                    options={this.state.startmonthoptions}
+                                                    onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsThT">
+                                                <Select
+                                                    ref="startday"
+                                                    placeholder="يوم"
+                                                    className="menu-outer-top"
+                                                    value={this.state.startday}
+                                                    options={this.state.startdayoptions}
+                                                    onChange={this.handleDayoptions.bind(this, "startday")}
+                                                />
+                                            </div>
+                                        </div>
+
+
+                                        <div className="Options-GroupsTheyyoyonew">
+                                            <div className="OptionsOT">
+                                                <Select
+                                                    ref="endyear"
+                                                    placeholder="سنة"
+                                                    className="menu-outer-top"
+                                                    value={this.state.endyear}
+                                                    options={this.state.endyearoptions}
+                                                    onChange={this.handleYearoptionsE.bind(this, "endyear")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsTT">
+                                                <Select
+                                                    ref="endmonth"
+                                                    placeholder="شهر"
+                                                    className="menu-outer-top"
+                                                    value={this.state.endmonth}
+                                                    options={this.state.endmonthoptions}
+                                                    onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
+                                                />
+                                            </div>
+
+                                            <div className="OptionsThT">
+                                                <Select
+                                                    ref="endday"
+                                                    placeholder="يوم"
+                                                    className="menu-outer-top"
+                                                    value={this.state.endday}
+                                                    options={this.state.enddayoptions}
+                                                    onChange={this.handleDayoptionsE.bind(this, "endday")}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                  
+                            </form>
+                            </div></div>
+                </SkyLight>
+
+
             </div>
         );
     }
