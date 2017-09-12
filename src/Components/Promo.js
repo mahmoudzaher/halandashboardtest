@@ -483,7 +483,7 @@ class Promo extends Component {
                     editpromoCodeType: objType,
                     editpromoCodeValue: objValue,
                     editpromoDescription: obj.description,
-                    
+
                     editpromoStartDate: obj.startDate,
                     StartYear: birthdate.getFullYear(),
                     StartMonth: birthdate.getMonth() + 1,
@@ -556,7 +556,7 @@ class Promo extends Component {
                 React.DOM.tbody(null,
                     that.state.objects.map(function (row, index) {
                         let re = [];
-                        // console.log(row)
+                        console.log(row)
                         if (that.state.lessThanAll < index && index < that.state.greaterThanAll) {
                             if (row.status === true) {
                                 re.push("enabled")
@@ -564,9 +564,28 @@ class Promo extends Component {
                             else {
                                 re.push("disabled")
                             }
+                            var parser = row.startDate
+                            console.log(row)
+                            var birthdate = new Date(parser * 1000);
+                            var day = birthdate.getFullYear()
+                            var month = birthdate.getMonth() + 1
+                            var year = birthdate.getDate()
+                            var startFormattedTime = day + '/' + month + '/' + year;
+                            console.log(startFormattedTime,"startFormattedTime")
+
+                            var parser2 = row.expiryDate
+                            var birthdate2 = new Date(parser2 * 1000);
+                            var day2 = birthdate2.getFullYear()
+                            var month2 = birthdate2.getMonth() + 1
+                            var year2 = birthdate2.getDate()
+                            var startFormattedTime2 = day2 + '/' + month2 + '/' + year2;
+                            console.log(row.startDate,"row.startDate    ",row.startDate,"row.startDate" )
+                            console.log(birthdate,"birthdate    ",birthdate2,"birthdate" )
+                             console.log(startFormattedTime2,"startFormattedTime2")
+
                             re.push("./Path 1161.png")
-                            re.push(row.expiryDate)
-                            re.push(row.startDate)
+                            re.push(startFormattedTime)
+                            re.push(startFormattedTime2)
                             re.push(row.codeType)
                             re.push(row.codeValue)
                         }
@@ -575,10 +594,17 @@ class Promo extends Component {
                                 {
                                     re.map(function (col, index) {
                                         {/*console.log(col)*/ }
+                                        console.log(col)
                                         if (typeof col === "string" && col.slice(0, 2) === "./") {
                                             return <td className="PTD"><img className="tdImg" src={col} onClick={() => that.qq.apply(that, [this, row])} /></td>
                                             {/*return <td className="PTD"><img className="tdImg" src={col} src={col} onClick={that.setPromoData.bind(this, row._id)} /></td>*/ }
                                             {/*return <td className="PTD"><img className="tdImg" src={col} onClick={that.doit.bind(this, row._id)} /></td>*/ }
+                                        }
+                                        else if (index === 2) {
+                                            return <td className="PTD"><div >{col}</div></td>
+                                        }
+                                        else if (index === 3) {
+                                            return <td className="PTD"><div >{col}</div></td>
                                         }
                                         else {
                                             return <td className="PTD"><div >{col}</div></td>
@@ -745,10 +771,10 @@ class Promo extends Component {
         var sky = {
             width: '50%',
             height: '65%',
-            top: '40%', 
+            top: '40%',
             overflow: 'scroll',
         };
-        console.log(this.state.StartDay,"StartDay  ", this.state.StartMonth,"StartMonth   ",this.state.StartYear,"StartYear")
+        console.log(this.state.StartDay, "StartDay  ", this.state.StartMonth, "StartMonth   ", this.state.StartYear, "StartYear")
         return (
             <div>
 
