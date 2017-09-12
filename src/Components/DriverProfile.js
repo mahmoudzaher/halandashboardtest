@@ -87,7 +87,27 @@ class DriverProfile extends Component {
             var y = response.data.data;
             var parser = parseInt(y.birthday)
             var birthdate = new Date(parser * 1000);
+            var parser3;
+            var birthdate3;
+            // var parser3 = parseInt(y.driverLicense.expirationDate)
+            // var birthdate3 = new Date(parser3 * 1000);
+            var licenserakam;
+            var licenseDate;
+            if (y.driverLicense) {
+                licenserakam = y.driverLicense.number;
+                licenseDate = y.driverLicense.expirationDate
+                parser3 = parseInt(y.driverLicense.expirationDate)
+                birthdate3 = new Date(parser3 * 1000);
 
+                that.setState({
+                    driverLicenseExpDate: licenseDate,
+                    driverLicenseNumber: licenserakam,
+                    Year3: birthdate3.getFullYear(),
+                    Month3: birthdate3.getMonth() + 1,
+                    Day3: birthdate3.getDate(),
+                })
+
+            }
             that.setState({
                 vehicleId: y.vehicle._id,
                 driverName: y.firstName,
@@ -97,6 +117,13 @@ class DriverProfile extends Component {
                 driverBirthday: y.birthday,
                 driverAddress: y.address,
                 driverImg: y.picture,
+                // driverLicenseExpDate: y.driverLicense.expirationDate,
+                // driverLicenseNumber: y.driverLicense.number,
+                driverLicenseExpDate: licenseDate,
+                driverLicenseNumber: licenserakam,
+                // Year3: birthdate3.getFullYear(),
+                // Month3: birthdate3.getMonth() + 1,
+                // Day3: birthdate3.getDate(),
                 // driverEmail: x.email,
                 datee: birthdate,
                 Year: birthdate.getFullYear(),
@@ -119,7 +146,7 @@ class DriverProfile extends Component {
 
                     })
                 }
-
+                console.log(x.model, "x.model")
                 var parser2 = parseInt(x.model)
                 var birthdate2 = new Date(parser2 * 1000);
 
@@ -556,18 +583,18 @@ class DriverProfile extends Component {
                             </div>
                             <input type="text" ref="address" className="DriverProfileTextT" value={this.state.driverAddress} />
 
-                            <input type="text" className="DriverProfileTextF" ref="driverLicenseNumber" required />
+                            <input type="text" className="DriverProfileTextF" ref="driverLicenseNumber" value={this.state.driverLicenseNumber} required />
                             <div className="Options-GroupsF">
                                 <div className="OptionsOT">
-                                    <input type="text" value=" hello" className="x" />
+                                    <input type="text" value=" hello" value={this.state.Year3} className="x" />
                                 </div>
 
                                 <div className="OptionsTT">
-                                    <input type="text" value=" hello" className="x" />
+                                    <input type="text" value=" hello" value={this.state.Month3} className="x" />
                                 </div>
 
                                 <div className="OptionsThT">
-                                    <input type="text" value=" hello" className="x" />
+                                    <input type="text" value=" hello" value={this.state.Day3} className="x" />
                                 </div>
                             </div>
                         </div>
