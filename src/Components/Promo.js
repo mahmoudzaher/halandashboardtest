@@ -11,6 +11,14 @@ let dayIDE = "";
 let monthIDE = "";
 let yearIDE = "";
 
+
+let dayIDEdit = "";
+let monthIDEdit = "";
+let yearIDEdit = "";
+let dayIDEEdit = "";
+let monthIDEEdit = "";
+let yearIDEEdit = "";
+
 class Promo extends Component {
 
     constructor() {
@@ -28,6 +36,12 @@ class Promo extends Component {
             enddayoptions: [],
             endmonthoptions: [],
             endyearoptions: [],
+            startdayoptionsEdit: [],
+            startmonthoptionsEdit: [],
+            startyearoptionsEdit: [],
+            enddayoptionsEdit: [],
+            endmonthoptionsEdit: [],
+            endyearoptionsEdit: [],
 
         };
 
@@ -92,7 +106,6 @@ class Promo extends Component {
         }
 
         // console.log(itemIds)
-        var x = itemIds3 + 10
         this.setState({
             startdayoptions: itemIds,
             startmonthoptions: itemIds2,
@@ -100,6 +113,12 @@ class Promo extends Component {
             enddayoptions: itemIds4,
             endmonthoptions: itemIds5,
             endyearoptions: itemIds6,
+            startdayoptionsEdit: itemIds,
+            startmonthoptionsEdit: itemIds2,
+            startyearoptionsEdit: itemIds3,
+            enddayoptionsEdit: itemIds4,
+            endmonthoptionsEdit: itemIds5,
+            endyearoptionsEdit: itemIds6,
         })
 
     }
@@ -113,6 +132,12 @@ class Promo extends Component {
             endday: "",
             endmonth: "",
             endyear: "",
+            startdayEdit: "",
+            startmonthEdit: "",
+            startyearEdit: "",
+            enddayEdit: "",
+            endmonthEdit: "",
+            endyearEdit: "",
             lessThanAll: -1,
             greaterThanAll: 15,
             editpromoAllowedRedemptionTimes: "",
@@ -298,11 +323,101 @@ class Promo extends Component {
     handleBirthday() {
         console.log(yearID, monthID + 1, dayID)
         this.setState({
-            birthdaydate: new Date(yearID, monthID + 1, dayID).getTime(),
-            birthdaydateE: new Date(yearIDE, monthIDE + 1, dayIDE).getTime(),
+            birthdaydate: new Date(yearID, monthID - 1, dayID).getTime(),
+            birthdaydateE: new Date(yearIDE, monthIDE - 1, dayIDE).getTime(),
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
+
+
+
+
+
+
+
+
+    handleDayoptionsEdit(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            dayIDEdit = value.value;
+        } else {
+            dayIDEdit = "";
+        }
+        this.handleBirthdayEdit()
+        console.log(value);
+        console.log(dayIDEdit);
+    }
+
+    handleMonthoptionsEdit(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            monthIDEdit = value.value;
+        } else {
+            monthIDEdit = "";
+        }
+        this.handleBirthdayEdit()
+        console.log(value);
+        console.log(monthIDEdit);
+    }
+
+    handleYearoptionsEdit(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            yearIDEdit = value.value;
+        } else {
+            yearIDEdit = "";
+        }
+        this.handleBirthdayEdit()
+        console.log(value);
+        console.log(yearIDEdit);
+    }
+    handleDayoptionsEEdit(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            dayIDEEdit = value.value;
+        } else {
+            dayIDEEdit = "";
+        }
+        this.handleBirthdayEdit()
+        console.log(value);
+        console.log(dayIDEEdit);
+    }
+
+    handleMonthoptionsEEdit(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            monthIDEEdit = value.value;
+        } else {
+            monthIDEEdit = "";
+        }
+        this.handleBirthdayEdit()
+        console.log(value);
+        console.log(monthIDEEdit);
+    }
+
+    handleYearoptionsEEdit(type, value) {
+        this.setState({ [type]: value });
+        if (value) {
+            yearIDEEdit = value.value;
+        } else {
+            yearIDEEdit = "";
+        }
+        this.handleBirthdayEdit()
+        console.log(value);
+        console.log(yearIDEEdit);
+    }
+
+
+
+    handleBirthdayEdit() {
+        console.log(yearID, monthID + 1, dayID)
+        this.setState({
+            birthdaydateEdit: new Date(yearIDEdit, monthIDEdit - 1, dayIDEdit).getTime(),
+            birthdaydateEEdit: new Date(yearIDEEdit, monthIDE - 1, dayIDEEdit).getTime(),
+        });
+        console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
+    }
+
 
     nextAll(event) {
         var that = this;
@@ -357,17 +472,37 @@ class Promo extends Component {
                 obj = item
                 objType = item.codeType
                 objValue = item.codeValue
+                var parser = parseInt(item.startDate)
+                var birthdate = new Date(parser * 1000);
+
+                var parser2 = parseInt(item.expiryDate)
+                var birthdate2 = new Date(parser2 * 1000);
                 console.log(obj, "obj")
                 that.setState({
                     editpromoAllowedRedemptionTimes: obj.allowedRedemptionTimes,
                     editpromoCodeType: objType,
                     editpromoCodeValue: objValue,
                     editpromoDescription: obj.description,
+                    
                     editpromoStartDate: obj.startDate,
+                    StartYear: birthdate.getFullYear(),
+                    StartMonth: birthdate.getMonth() + 1,
+                    StartDay: birthdate.getDate(),
+
                     editpromoExpiryDate: obj.expiryDate,
+                    EndYear: birthdate2.getFullYear(),
+                    EndMonth: birthdate2.getMonth() + 1,
+                    EndDay: birthdate2.getDate(),
+
                     editpromoDiscountPercent: obj.discountPercent,
                     editpromoDiscountAmount: obj.discountAmount,
                     editpromoMaximumAmount: obj.maximumAmount,
+                    startdayEdit: "",
+                    startmonthEdit: "",
+                    startyearEdit: "",
+                    enddayEdit: "",
+                    endmonthEdit: "",
+                    endyearEdit: "",
                     // editpromoStatus: obj.status
                 })
 
@@ -477,7 +612,7 @@ class Promo extends Component {
 
         var obj = {};
         obj['codeValue'] = this.refs.value.value;
-        obj['codeType'] = this.refs.value.value;
+        obj['codeType'] = this.refs.type.value;
         obj['startDate'] = timestampp;
         obj['expiryDate'] = timestamppE;
         if (this.refs.description.value) {
@@ -505,7 +640,7 @@ class Promo extends Component {
 
         }
         if (this.refs.redemptinTimes.value) {
-            obj['allowedRedepmtionTimes'] = this.refs.redemptinTimes.value;
+            obj['allowedRedemptionTimes'] = this.refs.redemptinTimes.value;
         }
         else {
 
@@ -535,15 +670,85 @@ class Promo extends Component {
 
 
 
+    handleEdit(e) {
+        var that = this;
+
+
+
+
+        let timestampp = Math.floor(this.state.birthdaydateEdit / 1000);
+        let timestamppE = Math.floor(this.state.birthdaydateEEdit / 1000);
+
+
+        var obj = {};
+        obj['codeValue'] = this.refs.valueEdit.value;
+        obj['codeType'] = this.refs.typeEdit.value;
+        obj['startDate'] = timestampp;
+        obj['expiryDate'] = timestamppE;
+        if (this.refs.description.value) {
+            obj['description'] = this.refs.descriptionEdit.value;
+        }
+        else {
+
+        }
+        if (this.refs.percentage.value) {
+            obj['discountPercent'] = this.refs.percentageEdit.value;
+        }
+        else {
+
+        }
+        if (this.refs.amount.value) {
+            obj['discountAmount'] = this.refs.amountEdit.value;
+        }
+        else {
+
+        }
+        if (this.refs.maxAmount.value) {
+            obj['maximumAmount'] = this.refs.maxAmountEdit.value;
+        }
+        else {
+
+        }
+        if (this.refs.redemptinTimes.value) {
+            obj['allowedRedemptionTimes'] = this.refs.redemptinTimesEdit.value;
+        }
+        else {
+
+        }
+
+        //  var object = {
+        //     driver: this.state.userID,
+        //     vehicletype: tempVehicleType,
+        //     model: tempvehicleDateofMake,
+        //     make: tempVehicleMake,
+        //     label: tempvehicleLabel,
+        //     vehicleOwner: vehicleOwner,
+        //     shaseehNo: tempvehicleShaseeh,
+        //     motorNo: tempvehicleMotor
+        // }
+
+        console.log()
+
+        axios.post('/api/operator/createPromoCode', obj).then(function (response) {
+            console.log(response)
+
+        }).catch(function (error) {
+
+            console.log(error)
+        })
+    }
+
+
 
     render() {
         // console.log(this.state.startdayoptions)
         var sky = {
             width: '50%',
             height: '65%',
-            top: '40%',
+            top: '40%', 
             overflow: 'scroll',
         };
+        console.log(this.state.StartDay,"StartDay  ", this.state.StartMonth,"StartMonth   ",this.state.StartYear,"StartYear")
         return (
             <div>
 
@@ -732,7 +937,7 @@ class Promo extends Component {
 
 
 
-{/*
+                {/*
      //     editpromoAllowedRedemptionTimes: obj.allowedRedemptionTimes,
         //     editpromoCodeType: objType,
         //     editpromoCodeValue: objValue,
@@ -785,45 +990,45 @@ class Promo extends Component {
                         <div className="PopClass-Left">
                             <div className="PopClass-Left-Div">
                                 <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="value" value={this.state.editpromoCodeValue} />
+                                    <input type="text" className=" TextFieldPopCode" ref="valueEdit" value={this.state.editpromoCodeValue} />
                                 </div>
                                 <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="type" value={this.state.editpromoCodeType}/>
+                                    <input type="text" className=" TextFieldPopCode" ref="typeEdit" value={this.state.editpromoCodeType} />
                                 </div>
                                 <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="description" value={this.state.editpromoDescription}/>
+                                    <input type="text" className=" TextFieldPopCode" ref="descriptionEdit" value={this.state.editpromoDescription} />
                                 </div>
                                 <div className="Options-Groups">
                                     <div className="OptionsO">
                                         <Select
-                                            ref="startyear"
+                                            ref="startyearEdit"
                                             placeholder="سنة"
                                             className="menu-outer-top"
-                                            value={this.state.startyear}
-                                            options={this.state.startyearoptions}
-                                            onChange={this.handleYearoptions.bind(this, "startyear")}
+                                            value={this.state.StartYear}
+                                            options={this.state.startyearoptionsEdit}
+                                            onChange={this.handleYearoptionsEdit.bind(this, "startyearEdit")}
                                         />
                                     </div>
 
                                     <div className="OptionsT">
                                         <Select
-                                            ref="startmonth"
+                                            ref="startmonthEdit"
                                             placeholder="شهر"
                                             className="menu-outer-top"
-                                            value={this.state.startmonth}
-                                            options={this.state.startmonthoptions}
-                                            onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                            value={this.state.StartMonth}
+                                            options={this.state.startmonthoptionsEdit}
+                                            onChange={this.handleMonthoptionsEdit.bind(this, "startmonthEdit")}
                                         />
                                     </div>
 
                                     <div className="OptionsTh">
                                         <Select
-                                            ref="startday"
+                                            ref="startdayEdit"
                                             placeholder="يوم"
                                             className="menu-outer-top"
-                                            value={this.state.startday}
-                                            options={this.state.startdayoptions}
-                                            onChange={this.handleDayoptions.bind(this, "startday")}
+                                            value={this.state.StartDay}
+                                            options={this.state.startdayoptionsEdit}
+                                            onChange={this.handleDayoptionsEdit.bind(this, "startdayEdit")}
                                         />
                                     </div>
                                 </div>
@@ -831,53 +1036,53 @@ class Promo extends Component {
                                 <div className="Options-Groups">
                                     <div className="OptionsO">
                                         <Select
-                                            ref="endyear"
+                                            ref="endyearEdit"
                                             placeholder="سنة"
                                             className="menu-outer-top"
-                                            value={this.state.endyear}
-                                            options={this.state.endyearoptions}
-                                            onChange={this.handleYearoptionsE.bind(this, "endyear")}
+                                            value={this.state.EndYear}
+                                            options={this.state.endyearoptionsEdit}
+                                            onChange={this.handleYearoptionsEEdit.bind(this, "endyearEdit")}
                                         />
                                     </div>
 
                                     <div className="OptionsT">
                                         <Select
-                                            ref="endmonth"
+                                            ref="endmonthEdit"
                                             placeholder="شهر"
                                             className="menu-outer-top"
-                                            value={this.state.endmonth}
-                                            options={this.state.endmonthoptions}
-                                            onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
+                                            value={this.state.EndMonth}
+                                            options={this.state.endmonthoptionsEdit}
+                                            onChange={this.handleMonthoptionsEEdit.bind(this, "endmonthEdit")}
                                         />
                                     </div>
 
                                     <div className="OptionsTh">
                                         <Select
-                                            ref="endday"
+                                            ref="enddayEdit"
                                             placeholder="يوم"
                                             className="menu-outer-top"
-                                            value={this.state.endday}
-                                            options={this.state.enddayoptions}
-                                            onChange={this.handleDayoptionsE.bind(this, "endday")}
+                                            value={this.state.EndDay}
+                                            options={this.state.enddayoptionsEdit}
+                                            onChange={this.handleDayoptionsEEdit.bind(this, "enddayEdit")}
                                         />
                                     </div>
                                 </div>
                                 <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="percentage" value={this.state.editpromoDiscountPercent}/>
+                                    <input type="text" className="TextFieldPopPer" ref="percentageEdit" value={this.state.editpromoDiscountPercent} />
                                 </div>
                                 <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="amount" value={this.state.editpromoDiscountAmount}/>
+                                    <input type="text" className="TextFieldPopPer" ref="amountEdit" value={this.state.editpromoDiscountAmount} />
                                 </div>
                                 <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="maxAmount" value={this.state.editpromoMaximumAmount}/>
+                                    <input type="text" className="TextFieldPopPer" ref="maxAmounEditt" value={this.state.editpromoMaximumAmount} />
                                 </div>
                                 <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="redemptinTimes" value={this.state.editpromoAllowedRedemptionTimes}/>
+                                    <input type="text" className="TextFieldPopPer" ref="redemptinTimesEdit" value={this.state.editpromoAllowedRedemptionTimes} />
                                 </div>
                             </div>
 
                             <div className="buttonPop">
-                                <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
+                                <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleEdit.bind(this)} />
                                 {/*onClick={this.handleSubmit.bind(this)}*/}
                             </div>
                         </div>
