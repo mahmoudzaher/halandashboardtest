@@ -2023,3 +2023,30 @@ img#statisticsImgPop{
 .tdDiv {
     height: 20px;
 }
+
+.blur {
+    filter:blur(5px)
+}
+
+.modalXButton {
+    color: #999;
+    font-size: 45px;
+    cursor: pointer;
+    margin-left:20px
+}
+
+.modalButton {
+    background: #2C2D72; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #2C2D72 , #28B8A8); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #2C2D72, #28B8A8); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #2C2D72, #28B8A8); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #2C2D72 , #28B8A8); /* Standard syntax */
+      padding: 5px 30px;
+    border: none;
+    border-radius: 72px;
+    color: #fff;
+    font-family: Cairo;
+    font-size: 18px;
+    margin-top: 10%;
+    margin-bottom:5%;
+}
