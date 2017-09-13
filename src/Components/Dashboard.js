@@ -783,6 +783,7 @@ class Dashboard extends Component {
 
               <div className="nextprevious" >
                 <button className="nextpreviousButtons" onClick={this.nextActive.bind(this)}>&lt;</button>
+                 <p className="nextpreviousP">{this.state.lessThanActive + 2} to {this.state.greaterThanActive}</p>
                 <button className="nextpreviousButtons" onClick={this.previousActive.bind(this)}>&gt;</button>
               </div>
             </TabPanel>
@@ -793,6 +794,7 @@ class Dashboard extends Component {
 
               <div className="nextprevious" >
                 <button className="nextpreviousButtons" onClick={this.nextSuspended.bind(this)}>&lt;</button>
+                 <p className="nextpreviousP">{this.state.lessThanSuspended + 2} to {this.state.greaterThanSuspended}</p>
                 <button className="nextpreviousButtons" onClick={this.previousSuspended.bind(this)}>&gt;</button>
               </div>
             </TabPanel>
@@ -803,6 +805,7 @@ class Dashboard extends Component {
 
               <div className="nextprevious" >
                 <button className="nextpreviousButtons" onClick={this.nextPending.bind(this)}>&lt;</button>
+                 <p className="nextpreviousP">{this.state.lessThanPending + 2} to {this.state.greaterThanPending}</p>
                 <button className="nextpreviousButtons" onClick={this.previousPending.bind(this)}>&gt;</button>
               </div>
             </TabPanel>

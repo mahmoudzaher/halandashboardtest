@@ -2029,3 +2029,31 @@ img#statisticsImgPop{
 .tdDiv {
     height: 20px;
 }
+
+
+
+p.statsPopInnerDiv-right-p {
+    margin-right: 25%;
+    max-height: 23px;
+    /* width: 100%; */
+    margin-top: 0%;
+}
+
+.statsPopInnerDiv-right {
+    float: right;
+    /* max-height: 56px; */
+    width: 50%;
+}
+
+.statsPopInnerDiv-left {
+    /* float: left; */
+    /* max-height: 56px; */
+    /* width: 50%; */
+    width: 50%;
+}
+
+p.statsPopInnerDiv-left-p {
+    margin-left: 50%;
+    max-height: 23px;
+    margin-top: 0%;
+}

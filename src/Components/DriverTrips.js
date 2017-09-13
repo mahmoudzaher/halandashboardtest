@@ -679,7 +679,7 @@ class DriverTrips extends Component {
                 {/*<br /> <br /> <br />*/}
 
                 <SkyLight hideOnOverlayClicked ref="PromoDialog" dialogStyles={sky}>
-                    <img src="/Group 1793.png" id="statisticsImgPop" />
+                    {/*<img src="/Group 1793.png" id="statisticsImgPop" />*/}
                     <div className="statsPopInnerDiv" >
                         <div className="statsPopInnerDiv-right">
                             <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
