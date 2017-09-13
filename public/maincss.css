@@ -242,8 +242,8 @@ li {
        float: right;
     font-family: Cairo;
     /* font-size: 38px; */
-    padding-top: 27px;
-    padding-right: 2%;
+    margin-top: 27px;
+    margin-right: 2%;
 }
 
 li a {
