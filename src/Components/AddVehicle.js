@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import Modal from 'react-modal';
 import 'react-select/dist/react-select.css';
 var ReactRouter = require('flux-react-router');
 
@@ -74,13 +75,17 @@ class AddVehicle extends Component {
             imgdata: new FormData(),
         }
         this.setState({
+            vehicleTypee: "",
             startday: "",
             startmonth: "",
             startyear: "",
             endday: "",
             endmonth: "",
             endyear: "",
-            userID: this.props.pID
+            userID: this.props.pID,
+            blur: "",
+            loginErrorModal: false,
+            missingRequiredFields: "",
         })
 
 
@@ -105,6 +110,39 @@ class AddVehicle extends Component {
 
 
 
+    }
+
+
+
+    openModal(type) {
+        console.log(type);
+        var missingfields = "";
+
+        if (this.state.vehicleTypee === "") {
+            missingfields = "VehicleType is missing"
+            console.log("VehicleType is missing")
+        }
+
+
+        if (missingfields !== "") {
+            this.setState({
+                [type]: true,
+                blur: "blur",
+                missingRequiredFields: missingfields,
+            });
+        }
+        else {
+            console.log("handleSubmit")
+            this.handleSubmit(this)
+        }
+    }
+
+    closeModal(type) {
+        console.log(type);
+        this.setState({
+            [type]: false,
+            blur: ""
+        });
     }
 
 
@@ -253,27 +291,6 @@ class AddVehicle extends Component {
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
-    // handleVehicleType1(value) {
-    //     this.setState({
-    //         vehicleTypee: "tricycle"
-    //     })
-    //     console.log("tricycle")
-    // }
-
-    // handleVehicleType2(value) {
-    //     this.setState({
-    //         vehicleTypee: "motorcycle"
-    //     })
-    //     console.log("motorcycle")
-    // }
-
-    // handleVehicleType3(value) {
-    //     this.setState({
-    //         vehicleTypee: "toktok"
-    //     })
-    //     console.log("toktok")
-    // }
-
 
     handleVehicleType1(value) {
         this.setState({
@@ -342,7 +359,7 @@ class AddVehicle extends Component {
             let timestamp = Math.floor(this.state.birthdaydate / 1000);
             let timestampp = Math.floor(this.state.birthdaydateE / 1000);
 
-            if (this.state.isChecked === false || this.state.isChecked === undefined ) {
+            if (this.state.isChecked === false || this.state.isChecked === undefined) {
                 console.log("isChecked is false")
                 var vehicleOwner = {
                     name: this.state.vehicleOwnerName,
@@ -391,7 +408,7 @@ class AddVehicle extends Component {
 
 
 
-        e.preventDefault();
+        // e.preventDefault();
     }
 
     handleDate(e) {
@@ -407,8 +424,63 @@ class AddVehicle extends Component {
 
     render() {
         // console.log(this.state.userID, "user ID prop in render")
+        const customStyles = {
+            overlay: {
+                background: "transparent"
+            },
+            content: {
+                top: '30%',
+                marginLeft: '35%',
+                marginRight: '35%',
+                left: "0px",
+                right: "0px",
+                bottom: 'auto',
+                width: '30%',
+                borderRadius: '10px',
+                border: "2px solid #cbcbcb",
+                padding: "0px"
+            },
+        };
         return (
             <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <Modal
+                    isOpen={this.state.loginErrorModal}
+                    onRequestClose={this.closeModal.bind(this, "loginErrorModal")}
+                    style={customStyles}
+                >
+                    <div>
+                        <span className="modalXButton" onClick={this.closeModal.bind(this, "loginErrorModal")}>&times;</span>
+                        <br />
+                        <div style={{ width: "100%", textAlign: "-webkit-center" }}>
+                            <img style={{ width: "20%" }} src="./redX.png" />
+                            {/*<div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width:"80%" }}>رقم التلفون أو كلمة المرور خاطئة</div>*/}
+                            <div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width: "80%" }}>{this.state.missingRequiredFields}</div>
+                            <input type="button" value="حاول مرة أخرى" className="modalButton" onClick={this.closeModal.bind(this, "loginErrorModal")} />
+                        </div>
+                    </div>
+                </Modal>
+
+
+
+
+
+
+
 
                 <div className="Navdiv">
                     <ul className="NavdivUl">
@@ -451,7 +523,7 @@ class AddVehicle extends Component {
                                 </div>
                                 <input type="text" className="CreateBigDivP" ref="oName" required disabled={this.state.isChecked} />
                                 {/*value={this.state.vehicleOwnerName} value={this.state.vehicleOwnerPNumber}  value={this.state.vehicleOwnerId}*/}
-                                <input type="text" className="CreateBigDivP" ref="OPNumber" required disabled={this.state.isChecked}  />
+                                <input type="text" className="CreateBigDivP" ref="OPNumber" required disabled={this.state.isChecked} />
                                 <input type="text" className="CreateBigDivP" ref="nID" required disabled={this.state.isChecked} />
                             </div>
 
@@ -538,7 +610,8 @@ class AddVehicle extends Component {
                 <br /><br />
 
                 <div className="buttonTT">
-                    <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
+                    {/*<input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />*/}
+                    <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.openModal.bind(this, "loginErrorModal")} />
                     {/*onClick={this.handleSubmit.bind(this)}*/}
                 </div>
             </div>
