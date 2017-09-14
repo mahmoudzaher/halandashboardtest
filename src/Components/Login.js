@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Modal from 'react-modal'
+import Modal from 'react-modal';
 var ReactRouter = require('flux-react-router');
 
 let imgStyle;
@@ -20,7 +20,7 @@ class Login extends Component {
 
     this.setState({
       blur: "",
-      loginErrorModal: false
+      loginErrorModal: false,
     })
 
     imgStyle = {

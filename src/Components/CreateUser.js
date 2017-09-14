@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import Modal from 'react-modal';
 import 'react-select/dist/react-select.css';
 var ReactRouter = require('flux-react-router');
 
@@ -113,7 +114,12 @@ class CreateUser extends Component {
       endday: "",
       endmonth: "",
       endyear: "",
-
+      blur: "",
+      loginErrorModal: false,
+      missingRequiredFields: "",
+      missingName: "",
+      missingPhone: "",
+      missingPass: "",
     })
     imgStyle = {
       width: "100%"
@@ -131,10 +137,79 @@ class CreateUser extends Component {
 
 
 
-  static defaultProps = {
+  openModal(type) {
+    console.log(type);
+    !isNaN(this.refs.pNumber.value)
+    var missingfields = "";
+    console.log(this.refs.Fname.value, "this.refs.Fname.value  ", this.refs.pNumber.value, "this.refs.pNumber.value  ", this.refs.password.value, "this.refs.password.value")
+
+    if (!this.refs.Fname.value && !this.refs.pNumber.value && !this.refs.password.value) {
+      missingfields = "Name, Phonenumber and Passowrd are missing"
+      console.log("Name, Phonenumber and Passowrd are missing")
+    }
+    else if (!this.refs.Fname.value && !this.refs.pNumber.value) {
+      missingfields = "Name and Phonenumber are missing"
+      console.log("Name and Phonenumber are missing")
+    }
+
+    else if (!this.refs.Fname.value && !this.refs.password.value) {
+      missingfields = "Name and Passowrd are missing"
+      console.log("Name and Passowrd are missing")
+    }
+    else if (!this.refs.pNumber.value && !this.refs.password.value) {
+      missingfields = "Phonenumber and Passowrd are missing"
+      console.log("Phonenumber and Passowrd are missing")
+    }
+    else if (!this.refs.Fname.value) {
+      missingfields = "Name is missing"
+      console.log("Name is missing")
+    }
+    else if (!this.refs.pNumber.value) {
+      missingfields = "Phonenumber is missing"
+      console.log("Phonenumber is missing")
+    }
+    else if (!this.refs.password.value) {
+      missingfields = "Password is missing"
+      console.log("Password is missing")
+    }
 
 
+
+    if (this.refs.pNumber.value) {
+      console.log(" this.refs.pNumber.value exist")
+      if (isNaN(this.refs.pNumber.value) || this.refs.pNumber.value.length !== 11) {
+        console.log(isNaN(this.refs.pNumber.value))
+        missingfields = missingfields + " Phonenumber is wrong"
+        console.log(" Phonenumber is wrong 2")
+        console.log(!isNaN(this.refs.pNumber.value), "!isNaN(this.refs.pNumber.value)")
+        console.log(this.refs.pNumber.value.length, "this.refs.pNumber.value.length)")
+        console.log(Number(this.refs.pNumber.value.length) !== 11, "this.refs.pNumber.value.length !== 11")
+      }
+    }
+
+    if (missingfields !== "") {
+      this.setState({
+        [type]: true,
+        blur: "blur",
+        missingRequiredFields: missingfields,
+      });
+    }
+    else {
+      console.log("handleSubmit")
+      this.handleSubmit(this)
+    }
   }
+
+  closeModal(type) {
+    console.log(type);
+    this.setState({
+      [type]: false,
+      blur: ""
+    });
+  }
+
+
+
 
   handleDayoptions(type, value) {
     this.setState({ [type]: value });
@@ -303,7 +378,8 @@ class CreateUser extends Component {
         }
         ReactRouter.goTo(`/AddVehicle/${ID}`);
       }).catch(function (error) {
-        alert(error.message);
+        // that.openModal("loginErrorModal")
+        // alert(error.message);
         console.log(error)
       })
     }
@@ -315,7 +391,7 @@ class CreateUser extends Component {
 
 
 
-    e.preventDefault();
+    // e.preventDefault();
   }
 
 
@@ -389,9 +465,57 @@ class CreateUser extends Component {
     e.preventDefault();
   }
   render() {
+
+
+    const customStyles = {
+      overlay: {
+        background: "transparent"
+      },
+      content: {
+        top: '30%',
+        marginLeft: '35%',
+        marginRight: '35%',
+        left: "0px",
+        right: "0px",
+        bottom: 'auto',
+        width: '30%',
+        borderRadius: '10px',
+        border: "2px solid #cbcbcb",
+        padding: "0px"
+      },
+    };
     console.log(this.state.birthdaydate, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     return (
       <div>
+
+
+
+        <Modal
+          isOpen={this.state.loginErrorModal}
+          onRequestClose={this.closeModal.bind(this, "loginErrorModal")}
+          style={customStyles}
+        >
+          <div>
+            <span className="modalXButton" onClick={this.closeModal.bind(this, "loginErrorModal")}>&times;</span>
+            <br />
+            <div style={{ width: "100%", textAlign: "-webkit-center" }}>
+              <img style={{ width: "20%" }} src="./redX.png" />
+              {/*<div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width:"80%" }}>رقم التلفون أو كلمة المرور خاطئة</div>*/}
+              <div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width: "80%" }}>{this.state.missingRequiredFields}</div>
+              <input type="button" value="حاول مرة أخرى" className="modalButton" onClick={this.closeModal.bind(this, "loginErrorModal")} />
+            </div>
+          </div>
+        </Modal>
+
+
+
+
+
+
+
+
+
+
 
         <div className="Navdiv">
           <ul className="NavdivUl">
@@ -421,16 +545,17 @@ class CreateUser extends Component {
           <div className="CreateBigDiv-right">
 
             <div className="CreateBigDiv-right-right7aram">
-              <p className="CreateBigDiv7aram">الإسم</p>
-              <p className="CreateBigDiv7aram">رقم الهاتف</p>
+              <div className="newdivclass"><p className="CreateBigDiv7aram">الإسم</p> <p className="PAstrix">*</p></div>
+              <div className="newdivclass2"><p className="CreateBigDiv7aram">رقم الهاتف</p> <p className="PAstrix">*</p></div>
               <p className="CreateBigDiv7aram">البريد الإلكتروني</p>
-              <p className="CreateBigDiv7aram">كلمة المرور</p>
+              <div className="newdivclass3"><p className="CreateBigDiv7aram">كلمة المرور</p> <p className="PAstrix">*</p></div>
             </div>
 
             <div className="CreateBigDiv-right-left">
               <div className="CreateBigDivPDiv">
                 <input type="text" className="DriverProfileText" ref="Fname" required />
-                <input type="text" className="DriverProfileText" ref="pNumber" required />
+                {/*<input type="text" className="DriverProfileText" ref="pNumber" required />*/}
+                <input id="phonenum" type="tel" pattern="^\d{11}$" className="DriverProfileText" ref="pNumber" required />
                 <input type="email" className="DriverProfileText" ref="email" />
                 <input type="password" className="DriverProfileText" ref="password" required />
               </div>
@@ -542,7 +667,12 @@ class CreateUser extends Component {
         <br /><br />
 
         <div className="buttonTT">
-          <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
+          {/*<input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />*/}
+          {/*
+          that.openModal("loginErrorModal")
+          */}
+
+          <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.openModal.bind(this, "loginErrorModal")} />
         </div>
       </div>
     );

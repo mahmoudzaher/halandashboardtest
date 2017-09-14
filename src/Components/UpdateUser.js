@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 var ReactRouter = require('flux-react-router');
@@ -55,7 +56,10 @@ class UpdateUser extends Component {
             endyear: "",
             birthdaydate: "",
             img: "",
-            imgdata: new FormData()
+            imgdata: new FormData(),
+            blur: "",
+            loginErrorModal: false,
+            missingRequiredFields: "",
 
         })
 
@@ -69,7 +73,7 @@ class UpdateUser extends Component {
             //     Month : driverBirthday.getMonth() + 1,
             //     Day : driverBirthday.getDate()
             var parser = parseInt(x.birthday)
-            
+
             var birthdate = new Date(parser * 1000);
             var licenseNumber;
             var LicenseExpDate;
@@ -197,45 +201,86 @@ class UpdateUser extends Component {
             endyearoptions: itemIds6,
         })
 
-        // axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
-        //     console.log(response, "getDriverById Response")
-        //     var x = response.data.data;
-
-        //     that.setState({
-        //         // driverName: x.firstName,
-        //         // driverPNumber: x.phoneNumber,
-        //         // driverEmail: x.email,
-        //         // driverPassword: x.password,
-        //         driverBirthday: x.birthday,
-        //         // driverAddress: x.address,
-        //         driverPicture: x.picture,
-
-
-        //         Name: x.firstName,
-        //         PNumber: x.phoneNumber,
-        //         Email: x.email,
-        //         Password: x.birthday,
-        //         Address: x.address,
-        //     })
-        //     if (x.driverLicense) {
-        //         that.setState({
-        //             DriverLicense: x.driverLicense,
-        //             // driverLicenseNo: x.driverLicense.number,
-        //             LNumber: x.driverLicense.number,
-        //             driverLicenseExpDate: x.driverLicense.expirationDate,
-        //         })
-
-        //     }
-        // }).catch(function (error) {
-        //     alert(error.message);
-        //     console.log(error)
-        // })
     }
 
     static defaultProps = {
 
 
     }
+
+
+    openModal(type) {
+        console.log(type);
+        !isNaN(this.refs.pNumber.value)
+        var missingfields = "";
+        console.log(this.refs.Fname.value, "this.refs.Fname.value  ", this.refs.pNumber.value, "this.refs.pNumber.value  ", this.refs.password.value, "this.refs.password.value")
+
+        if (!this.refs.Fname.value && !this.refs.pNumber.value && !this.refs.password.value) {
+            missingfields = "Name, Phonenumber and Passowrd are missing"
+            console.log("Name, Phonenumber and Passowrd are missing")
+        }
+        else if (!this.refs.Fname.value && !this.refs.pNumber.value) {
+            missingfields = "Name and Phonenumber are missing"
+            console.log("Name and Phonenumber are missing")
+        }
+
+        else if (!this.refs.Fname.value && !this.refs.password.value) {
+            missingfields = "Name and Passowrd are missing"
+            console.log("Name and Passowrd are missing")
+        }
+        else if (!this.refs.pNumber.value && !this.refs.password.value) {
+            missingfields = "Phonenumber and Passowrd are missing"
+            console.log("Phonenumber and Passowrd are missing")
+        }
+        else if (!this.refs.Fname.value) {
+            missingfields = "Name is missing"
+            console.log("Name is missing")
+        }
+        else if (!this.refs.pNumber.value) {
+            missingfields = "Phonenumber is missing"
+            console.log("Phonenumber is missing")
+        }
+        else if (!this.refs.password.value) {
+            missingfields = "Password is missing"
+            console.log("Password is missing")
+        }
+
+
+
+        if (this.refs.pNumber.value) {
+            console.log(" this.refs.pNumber.value exist")
+            if (isNaN(this.refs.pNumber.value) || this.refs.pNumber.value.length !== 11) {
+                console.log(isNaN(this.refs.pNumber.value))
+                missingfields = missingfields + " Phonenumber is wrong"
+                console.log(" Phonenumber is wrong 2")
+                console.log(!isNaN(this.refs.pNumber.value), "!isNaN(this.refs.pNumber.value)")
+                console.log(this.refs.pNumber.value.length, "this.refs.pNumber.value.length)")
+                console.log(Number(this.refs.pNumber.value.length) !== 11, "this.refs.pNumber.value.length !== 11")
+            }
+        }
+
+        if (missingfields !== "") {
+            this.setState({
+                [type]: true,
+                blur: "blur",
+                missingRequiredFields: missingfields,
+            });
+        }
+        else {
+            console.log("handleSubmit")
+            this.handleSubmit(this)
+        }
+    }
+
+    closeModal(type) {
+        console.log(type);
+        this.setState({
+            [type]: false,
+            blur: ""
+        });
+    }
+
+
 
     handleDayoptions(type, value) {
         this.setState({
@@ -286,7 +331,7 @@ class UpdateUser extends Component {
         console.log(yearID, monthID, dayID)
         this.setState({
             birthdaydate: new Date(yearID + 1, monthID - 1, dayID).getTime(),
-            birthdaydateE: new Date(yearIDE +  1, monthIDE - 1, dayIDE).getTime(),
+            birthdaydateE: new Date(yearIDE + 1, monthIDE - 1, dayIDE).getTime(),
         });
         console.log(new Date(yearID, monthID + 1, dayID).getTime(), "new Date(yearID, monthID + 1, dayID).getTime()")
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
@@ -319,10 +364,10 @@ class UpdateUser extends Component {
 
 
     handleDayoptionsE(type, value) {
-        this.setState({ 
+        this.setState({
             [type]: value,
             Day2: value
-         });
+        });
         if (value) {
             dayIDE = value.value;
         } else {
@@ -334,10 +379,10 @@ class UpdateUser extends Component {
     }
 
     handleMonthoptionsE(type, value) {
-        this.setState({ 
+        this.setState({
             [type]: value,
             Month2: value
-         });
+        });
         if (value) {
             monthIDE = value.value;
         } else {
@@ -349,10 +394,10 @@ class UpdateUser extends Component {
     }
 
     handleYearoptionsE(type, value) {
-         this.setState({ 
+        this.setState({
             [type]: value,
             Year2: value
-         });
+        });
         if (value) {
             yearIDE = value.value;
         } else {
@@ -594,7 +639,7 @@ class UpdateUser extends Component {
             console.log(driverLicense, "driverLicense")
             if (driverLicense) {
                 // data.append('driverLicense', JSON.stringify(driverLicense))
-                 data.append('driverLicense', JSON.stringify(driverLicense))
+                data.append('driverLicense', JSON.stringify(driverLicense))
             }
             else {
 
@@ -625,9 +670,54 @@ class UpdateUser extends Component {
     render() {
         // console.log(this.state.birthdaydate, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
         console.log(this.state.Day, "this.state.Day  ", this.state.Month, "this.state.Month    ", this.state.Year, "this.state.Year  ")
-         console.log(this.state.Day2, "this.state.Day2  ", this.state.Month2, "this.state.Month2    ", this.state.Year2, "this.state.Year2  ")
+        console.log(this.state.Day2, "this.state.Day2  ", this.state.Month2, "this.state.Month2    ", this.state.Year2, "this.state.Year2  ")
+
+
+        const customStyles = {
+            overlay: {
+                background: "transparent"
+            },
+            content: {
+                top: '30%',
+                marginLeft: '35%',
+                marginRight: '35%',
+                left: "0px",
+                right: "0px",
+                bottom: 'auto',
+                width: '30%',
+                borderRadius: '10px',
+                border: "2px solid #cbcbcb",
+                padding: "0px"
+            },
+        };
+
+
         return (
             <div>
+
+
+
+
+
+
+                <Modal
+                    isOpen={this.state.loginErrorModal}
+                    onRequestClose={this.closeModal.bind(this, "loginErrorModal")}
+                    style={customStyles}
+                >
+                    <div>
+                        <span className="modalXButton" onClick={this.closeModal.bind(this, "loginErrorModal")}>&times;</span>
+                        <br />
+                        <div style={{ width: "100%", textAlign: "-webkit-center" }}>
+                            <img style={{ width: "20%" }} src="./redX.png" />
+                            {/*<div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width:"80%" }}>رقم التلفون أو كلمة المرور خاطئة</div>*/}
+                            <div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width: "80%" }}>{this.state.missingRequiredFields}</div>
+                            <input type="button" value="حاول مرة أخرى" className="modalButton" onClick={this.closeModal.bind(this, "loginErrorModal")} />
+                        </div>
+                    </div>
+                </Modal>
+
+
 
                 <div className="Navdiv">
                     <ul className="NavdivUl">
@@ -794,7 +884,8 @@ class UpdateUser extends Component {
                 <br /><br />
 
                 <div className="buttonTT">
-                    <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
+                    {/*<input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />*/}
+                    <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.openModal.bind(this, "loginErrorModal")} />
                 </div>
             </div>
         );
