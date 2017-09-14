@@ -116,10 +116,12 @@ class CreateUser extends Component {
       endyear: "",
       blur: "",
       loginErrorModal: false,
+      CreateErrorModal: false,
       missingRequiredFields: "",
       missingName: "",
       missingPhone: "",
       missingPass: "",
+      errorMessage: "",
     })
     imgStyle = {
       width: "100%"
@@ -138,6 +140,7 @@ class CreateUser extends Component {
 
 
   openModal(type) {
+    console.log("welcome")
     console.log(type);
     !isNaN(this.refs.pNumber.value)
     var missingfields = "";
@@ -198,6 +201,15 @@ class CreateUser extends Component {
       console.log("handleSubmit")
       this.handleSubmit(this)
     }
+  }
+
+
+   openModal2(type) {
+    console.log(type);
+    this.setState({
+      [type]: true,
+      blur: "blur"
+    });
   }
 
   closeModal(type) {
@@ -380,7 +392,12 @@ class CreateUser extends Component {
       }).catch(function (error) {
         // that.openModal("loginErrorModal")
         // alert(error.message);
-        console.log(error)
+        console.log(error.response.data.message)
+        that.setState({
+          errorMessage: error.response.data.message,
+        })
+        that.openModal2( "CreateErrorModal")
+        console.log("wazap")
       })
     }
 
@@ -507,6 +524,24 @@ class CreateUser extends Component {
           </div>
         </Modal>
 
+
+
+        <Modal
+          isOpen={this.state.CreateErrorModal}
+          onRequestClose={this.closeModal.bind(this, "CreateErrorModal")}
+          style={customStyles}
+        >
+          <div>
+            <span className="modalXButton" onClick={this.closeModal.bind(this, "CreateErrorModal")}>&times;</span>
+            <br />
+            <div style={{ width: "100%", textAlign: "-webkit-center" }}>
+              <img style={{ width: "20%" }} src="./redX.png" />
+              {/*<div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width:"80%" }}>رقم التلفون أو كلمة المرور خاطئة</div>*/}
+              <div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width: "80%" }}>{this.state.errorMessage}</div>
+              <input type="button" value="حاول مرة أخرى" className="modalButton" onClick={this.closeModal.bind(this, "CreateErrorModal")} />
+            </div>
+          </div>
+        </Modal>
 
 
 

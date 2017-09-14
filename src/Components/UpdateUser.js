@@ -662,7 +662,7 @@ class UpdateUser extends Component {
                 console.log(error)
             })
         }
-        e.preventDefault();
+        // e.preventDefault();
     }
 
 

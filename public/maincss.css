@@ -44,16 +44,17 @@ td:nth-child(5) {
 }
 
 .Tablediv {
-    margin-left: -40%;
-    width: 175%;
-        min-height: 567px;
+    /* margin-left: -40%; */
+    width: 100%;
+    min-height: 567px;
     margin-top: -2%;
 }
 table.tableclass {
-           width: 40%;
-    margin-left: 30%;
-        /*min-height: 653px;*/
-    margin-right: 30%;
+           width: 70%;
+    margin-left: 15%;
+    /* padding-left: 15%; */
+    /* min-height: 653px; */
+    /* margin-right: 30%; */
     border: transparent;
 }
 
@@ -209,7 +210,8 @@ color: white;
 
 
 body {margin:0;
-overflow-x: hidden;
+/*overflow-x: hidden;*/
+    min-width: 1392px;
 font-family: Cairo !important;
 }
 
@@ -1889,10 +1891,12 @@ border-bottom-right-radius: 25px !important;
 }
 
 table.tableclasstwo {
-          width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
+           width: 80%;
+    margin-left: 10%;
+    /* min-height: 653px; */
+    /* margin-right: 30%; */
     border: transparent;
+    /* padding-left: 40%; */
 }
 img.dude{
         width: 115%;
