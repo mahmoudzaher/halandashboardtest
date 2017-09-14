@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Modal from 'react-modal'
 var ReactRouter = require('flux-react-router');
 
 
@@ -42,11 +43,18 @@ class Dashboard extends Component {
       greaterThanSuspended: 15,
       lessThanPending: -1,
       greaterThanPending: 15,
-      objectsArray: []
+      objectsArray: [],
+      blur: "",
+      successSuspendAllModal: false,
+      confirmSuspendAllModal: false,
+      suspendedDriverName: ""
     })
+    this.getDriversAPI();
 
+  }
+
+  getDriversAPI() {
     var that = this;
-
     axios.get('/api/operator/getalldrivers').then(function (response) {
       console.log(response, "helloooooooasdgkjuhasghdkjhasghdkjasgdkasgdakljshgdl")
       var x = response.data.data;
@@ -94,26 +102,54 @@ class Dashboard extends Component {
       alert(error.message);
       console.log(error)
     })
-
   }
   static defaultProps = {
 
   }
 
+  openModal(type) {
+    console.log(type);
+    this.setState({
+      [type]: true,
+      blur: "blur"
+    });
+  }
 
-  SuspendDriver(event, id) {
-    console.log(event, id)
+  closeModal(type) {
+    console.log(type);
+    this.setState({
+      [type]: false,
+      blur: ""
+    });
+  }
+
+  confirmSuspend() {
+    var that = this;
     var object = {
-      driverId: event,
+      driverId: that.state.suspendedDriverId,
       newStatus: "suspended"
     }
     axios.post('api/operator/changedriverstatus', object).then(function (response) {
       console.log(response)
+      that.getDriversAPI()
+      that.setState({
+        confirmSuspendAllModal:false,
+        successSuspendAllModal:true
+      })
       // window.localStorage.setItem('sessionToken', response.data);
-      alert("dirver suspended")
     }).catch(function (error) {
       alert(error.message);
       console.log(error)
+    })
+  }
+
+  SuspendDriver(event, name, id) {
+    console.log(event, id)
+    this.setState({
+      blur: "blur",
+      confirmSuspendAllModal: true,
+      suspendedDriverName: name,
+      suspendedDriverId: event
     })
   }
 
@@ -392,22 +428,22 @@ class Dashboard extends Component {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(that, row._id, row.firstName)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(that, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(that, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
                     }
                     // else if (index === 1) {
-                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
+                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(that, row._id)}>{col}</div></td>
                     //  }
                     else if (index === 5) {
-                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
+                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(that, row._id)}>{col}</div></td>
                     }
                     else {
                       return <td className="PTD" key={index}><div className="tdDiv"> {col}</div></td>
@@ -497,22 +533,22 @@ class Dashboard extends Component {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(that, row._id, row.firstName)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(that, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(that, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
                     }
                     // else if (index === 1) {
-                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
+                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(that, row._id)}>{col}</div></td>
                     //  }
                     else if (index === 5) {
-                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
+                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(that, row._id)}>{col}</div></td>
                     }
                     else {
                       return <td className="PTD" key={index}><div className="tdDiv"> {col}</div></td>
@@ -602,24 +638,24 @@ class Dashboard extends Component {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1792") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.ReactivateDriver.bind(this, row._id)} /> </div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.ReactivateDriver.bind(that, row._id)} /> </div> </td>
                     }
 
-                    
+
                     else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(that, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
-                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(this, row._id)} /></div> </td>
+                      return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(that, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 2) === "./") {
                       return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
                     }
                     // else if (index === 1) {
-                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(this, row._id)}>{col}</div></td>
+                    //  return <td className="PTD" key={index}> <div onClick={that.gotoUpdateDriver.bind(that, row._id)}>{col}</div></td>
                     //  }
                     else if (index === 5) {
-                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(this, row._id)}>{col}</div></td>
+                      return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(that, row._id)}>{col}</div></td>
                     }
                     else {
                       return <td className="PTD" key={index}><div className="tdDiv"> {col}</div></td>
@@ -711,8 +747,8 @@ class Dashboard extends Component {
                   re.map(function (col, index) {
                     {/*console.log(col)*/ }
 
-                     
-                     if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
+
+                    if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
                       return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(this, row._id)} /></div> </td>
                     }
                     else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
@@ -1003,43 +1039,92 @@ class Dashboard extends Component {
 
   render() {
     // console.log(this.state.objectsSuspended, "objectsSuspended: [],")
+    const customStyles = {
+      overlay: {
+        background: "transparent"
+      },
+      content: {
+        top: '30%',
+        marginLeft: '35%',
+        marginRight: '35%',
+        left: "0px",
+        right: "0px",
+        bottom: 'auto',
+        width: '30%',
+        borderRadius: '10px',
+        border: "2px solid #cbcbcb",
+        padding: "0px"
+      },
+    };
     return (
       <div>
 
-        <div className="Navdiv">
-          <ul className="NavdivUl">
-            <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-            <li className="active li"><a className="active" >السائقين</a></li>
-            <li><a >رحلات</a></li>
-            <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-            <li><a >دعم</a></li>
-            <li><a >تقارير</a></li>
-            <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
-          </ul>
-        </div>
-        <br />
-        <div className="fake-input-right-add" onClick={this.handleCreate.bind(this)}>
-          <div className="profileI">
-            <img src="./Group 1429.png" id="profile-Img" />
+        <Modal
+          isOpen={this.state.confirmSuspendAllModal}
+          onRequestClose={this.closeModal.bind(this, "confirmSuspendAllModal")}
+          style={customStyles}
+        >
+          <div>
+            <span className="modalXButton" onClick={this.closeModal.bind(this, "confirmSuspendAllModal")}>&times;</span>
+            <br />
+            <div style={{ width: "100%", textAlign: "-webkit-center" }}>
+              <img style={{ width: "20%" }} src="./redX.png" />
+              <div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width: "80%" }}>هل أنت متأكد من وقف {this.state.suspendedDriverName}</div>
+              <input type="button" value="لا" className="modalButton" onClick={this.closeModal.bind(this, "confirmSuspendAllModal")} style={{ width: "30%" }} />
+              <input type="button" value="نعم" className="modalButton" onClick={this.confirmSuspend.bind(this)} style={{ marginLeft: "20px", width: "30%" }} />
+            </div>
           </div>
-
-          <div className="profileP">
-            <p>إنشاء ملف شخصي </p>
+        </Modal>
+        <Modal
+          isOpen={this.state.successSuspendAllModal}
+          onRequestClose={this.closeModal.bind(this, "successSuspendAllModal")}
+          style={customStyles}
+        >
+          <div>
+            <span className="modalXButton" onClick={this.closeModal.bind(this, "successSuspendAllModal")}>&times;</span>
+            <br />
+            <div style={{ width: "100%", textAlign: "-webkit-center" }}>
+              <img style={{ width: "20%" }} src="./greenTick.png" />
+              <div style={{ marginTop: "5%", color: "#2C2D72", fontSize: "25px", width: "80%" }}>تم وقف السائق بنجاح</div>
+              <input type="button" value="تمام" className="modalButton" onClick={this.closeModal.bind(this, "successSuspendAllModal")} style={{ width: "30%" }} />
+            </div>
           </div>
-        </div>
-
-        <br /><br /><br />
-        <div className="fake-input">
-          <div className="fake-input-left">
-            <div className="fake-input-left-search">
-              <input type="text" placeholder="بحث" className="fake-input-left-text" onChange={this.searchtable.bind(this)} />
-              <img src="./Group 1392.png" />
+        </Modal>
+        <div className={this.state.blur}>
+          <div className="Navdiv">
+            <ul className="NavdivUl">
+              <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
+              <li className="active li"><a className="active" >السائقين</a></li>
+              <li><a >رحلات</a></li>
+              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+              <li><a >دعم</a></li>
+              <li><a >تقارير</a></li>
+              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+            </ul>
+          </div>
+          <br />
+          <div className="fake-input-right-add" onClick={this.handleCreate.bind(this)}>
+            <div className="profileI">
+              <img src="./Group 1429.png" id="profile-Img" />
             </div>
 
+            <div className="profileP">
+              <p>إنشاء ملف شخصي </p>
+            </div>
           </div>
-          <div className="fake-input-right" >
-            <div className="Driversdiv">
-              {/*<ul className="DriversdivUl">
+
+          <br /><br /><br />
+          <div className="fake-input">
+            <div className="fake-input-left">
+              <div className="fake-input-left-search">
+                <input type="text" placeholder="بحث" className="fake-input-left-text" onChange={this.searchtable.bind(this)} />
+                <img src="./Group 1392.png" />
+              </div>
+
+            </div>
+            <div className="fake-input-right" >
+              <div className="Driversdiv">
+                {/*<ul className="DriversdivUl">
                 <li className="DriversdivLiActive"><p className="DriversdivPActive" >كل السائقين</p></li>
                 <li className="DriversdivLi"><p className="DriversdivP"  >السائقين الناشطين</p></li>
                 <li className="DriversdivLi"><p className="DriversdivP">موقوف</p></li>
@@ -1047,17 +1132,17 @@ class Dashboard extends Component {
                
               </ul>*/}
 
-              {this.tabs()}
+                {this.tabs()}
+              </div>
             </div>
           </div>
+
+
+          <br /> <br /> <br />
+
+
+
         </div>
-
-
-        <br /> <br /> <br />
-
-
-
-
       </div>
     );
   }
