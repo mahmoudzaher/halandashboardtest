@@ -690,7 +690,8 @@ class DriverTrips extends Component {
                             <p className="statisticsP222" >إحصائيات</p>
                             <img src="/Group 1793.png" id="statisticsImg2" />
                         </div>
-                        <div className="statsPopInnerDiv-right">
+                        <div className="msam">
+                           <div className="statsPopInnerDiv-right">
                             <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
                             <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
                         </div>
@@ -698,6 +699,8 @@ class DriverTrips extends Component {
                             <p className="statsPopInnerDiv-left-p">{this.state.tripsCount}</p>
                             <p className="statsPopInnerDiv-left-p">{this.state.cash}</p>
                         </div>
+                        </div>
+                     
                     </div>
                 </SkyLight>
 
