@@ -245,7 +245,7 @@ class DriverTrips extends Component {
                         var endseconds = "0" + end.getSeconds();
                         var endFormattedTime = endDay + '/' + endMonth + '/' + endYear + endhours + ':' + endminutes.substr(-2) + ':' + endseconds.substr(-2);
 
-                        console.log(newStart,"new Start")
+                        console.log(newStart, "new Start")
                         // var now = "04/09/2013 15:00:00";
                         // var then = "04/09/2013 14:20:30";
                         moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
@@ -275,7 +275,7 @@ class DriverTrips extends Component {
                                 re.push(row.tripCost)
                                 re.push(row.userRatingByDriver)
                                 re.push(durationtrip)
-                                    re.push(newStart)
+                                re.push(newStart)
                                 re.push(row._toString)
                                 re.push(row._fromString)
                                 re.push(row.user.phoneNumber)
@@ -426,7 +426,7 @@ class DriverTrips extends Component {
 
 
     handleBirthday() {
-       console.log(yearID, monthID, dayID, "yearID, monthID + 1, dayID")
+        console.log(yearID, monthID, dayID, "yearID, monthID + 1, dayID")
         console.log(yearIDE, monthIDE, dayIDE, "yearIDE, monthIDE, dayIDE")
         var that = this;
         let money = 0;
@@ -436,13 +436,13 @@ class DriverTrips extends Component {
             birthdaydate: new Date(yearID, monthID, dayID).getTime(),
             birthdaydateE: new Date(yearIDE, monthIDE, dayIDE).getTime(),
         });
-        this.state.birthdaydateE =  new Date(yearIDE, monthIDE, newday).getTime()
+        this.state.birthdaydateE = new Date(yearIDE, monthIDE, newday).getTime()
 
         console.log(new Date(yearID, monthID, dayID).getTime(), "new Date(yearID, monthID , dayID).getTime()")
         console.log(new Date(yearIDE, monthIDE, dayIDE).getTime(), "new Date(yearIDE, monthIDE , dayIDE).getTime()")
         that.state.objects.forEach(function (item) {
             // console.log(item)
-                 if (that.state.birthdaydate <= item.date && that.state.birthdaydateE >= item.date) {
+            if (that.state.birthdaydate <= item.date && that.state.birthdaydateE >= item.date) {
                 if (item.tripCost) {
                     money = money + item.tripCost;
 
@@ -572,10 +572,10 @@ class DriverTrips extends Component {
                                 <p className="statisticsP" >إحصائيات</p>
                                 <img src="/Group 1793.png" id="statisticsImg" onClick={() => this.refs.PromoDialog.show()} />
                             </div>
-                            
-                             <div className="statistics" >
+
+                            <div className="statistics" >
                                 <p className="statisticsPNew" >تصفية حسب التاريخ</p>
-                                <img src="/Group 1803.png" id="statisticsImgnew"  onClick={() => this.refs.FilterDialog.show()}/>
+                                <img src="/Group 1803.png" id="statisticsImgnew" onClick={() => this.refs.FilterDialog.show()} />
                             </div>
 
                             {/*<form className="hahahaxD">
@@ -686,6 +686,10 @@ class DriverTrips extends Component {
                 <SkyLight hideOnOverlayClicked ref="PromoDialog" dialogStyles={sky}>
                     {/*<img src="/Group 1793.png" id="statisticsImgPop" />*/}
                     <div className="statsPopInnerDiv" >
+                        <div className="nnnnnnn">
+                            <p className="statisticsP222" >إحصائيات</p>
+                            <img src="/Group 1793.png" id="statisticsImg2" />
+                        </div>
                         <div className="statsPopInnerDiv-right">
                             <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
                             <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
@@ -699,12 +703,12 @@ class DriverTrips extends Component {
 
 
                 <SkyLight hideOnOverlayClicked ref="FilterDialog" dialogStyles={sky}>
-                     <div className="comeonnnn" >
-                          <div className="comeonnnnUnder" >
-                     <form className="hahahaxD">
-                        
+                    <div className="comeonnnn" >
+                        <div className="comeonnnnUnder" >
+                            <form className="hahahaxD">
 
-                       
+
+
                                 <fieldset className="yowazap">
                                     <legend className="heyheyhey" >تاريخ الرحلات</legend>
 
@@ -793,9 +797,9 @@ class DriverTrips extends Component {
                                     </div>
 
                                 </fieldset>
-                                  
+
                             </form>
-                            </div></div>
+                        </div></div>
                 </SkyLight>
 
 

@@ -2089,6 +2089,12 @@ img#statisticsImg{
     margin-top: -2%;
 }  
 
+img#statisticsImg2{
+              /* float: left; */
+    margin-left: 75%;
+    /* margin-bottom: -12%; */
+    margin-top: 4%;
+} 
 img#statisticsImgnew{
       float: left;
     margin-left: 39%;
@@ -2119,10 +2125,15 @@ img#statisticsImgPop{
 }
 
 p.statsPopInnerDiv-right-p {
-    margin-right: 25%;
+    margin-right: 35%;
     max-height: 23px;
     /* width: 100%; */
+    font-weight: bold;
     margin-top: 0%;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #2C2D72;
+    text-align: right
 }
 
 .statsPopInnerDiv-right {
@@ -2139,8 +2150,11 @@ p.statsPopInnerDiv-right-p {
 }
 
 p.statsPopInnerDiv-left-p {
-    margin-left: 50%;
+       margin-left: 50%;
     max-height: 23px;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #2C2D72;
     margin-top: 0%;
 }
 .blur {
@@ -2644,4 +2658,20 @@ p.CreateBigDivPapersLolBoom{
     /* margin-right: -200%; */
     font-family: Cairo;
     height: 30px;
+}
+
+p.statisticsP222{
+        font-size: 18px;
+    float: right;
+    margin-bottom: 5px;
+    color: #2C2D72;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #2C2D72;
+    text-align: right;
+}
+
+.nnnnnnn {
+    /* padding-bottom: 4%; */
+    width: 100%;
 }
