@@ -52,7 +52,7 @@ class DriverTrips extends Component {
         })
         var money = 0;
         var tripscounter = 0;
-        axios.post('/api/operator/getPreviousTripsOfDriver', { "id": this.state.id }).then(function (response) {
+        axios.post('/operator/getPreviousTripsOfDriver', { "id": this.state.id }).then(function (response) {
             console.log(response.data.data, "getPreviousTripsOfDriver Response")
             var x = response.data.data;
             var objects = [];
@@ -81,7 +81,7 @@ class DriverTrips extends Component {
 
         console.log(this.state.driverId, "driverID")
 
-        axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
+        axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getDriverById Response")
             var x = response.data.data;
 

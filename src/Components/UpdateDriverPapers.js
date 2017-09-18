@@ -70,7 +70,7 @@ class UpdateDriverPapers extends Component {
         var contractArray = []
         var paper = ""
 
-        axios.get('/api/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
+        axios.get('/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getdriverpapers Response")
             var x = response.data.data;
 
@@ -158,7 +158,7 @@ class UpdateDriverPapers extends Component {
     componentDidMount() {
         var that = this;
 
-        // axios.get('/api/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
+        // axios.get('/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
         //     console.log(response, "getdriverpapers Response")
         //     var x = response.data.data;
 
@@ -325,7 +325,7 @@ class UpdateDriverPapers extends Component {
             data.append('contract', this.state.contractimg)
 
 
-            axios.post('/api/operator/adddriverpapers', data).then(function (response) {
+            axios.post('/operator/adddriverpapers', data).then(function (response) {
                 console.log(response)
                 window.localStorage.setItem('sessionToken', response.data);
                 that.refs.PromoDialog.show()
@@ -726,7 +726,7 @@ class UpdateDriverPapers extends Component {
                 // </button>
 
                 <img className="deletebutton" src="/Path 1292.png" onClick={() =>
-                    axios.post('/api/operator/deletedriverpapers', object).then(function (response) {
+                    axios.post('/operator/deletedriverpapers', object).then(function (response) {
                         console.log(response)
                     }).catch(function (error) {
                         alert(error.message);

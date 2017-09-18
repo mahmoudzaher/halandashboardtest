@@ -63,7 +63,7 @@ class UpdateUser extends Component {
 
         })
 
-        axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
+        axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getDriverById Response")
             var x = response.data.data;
 
@@ -649,7 +649,7 @@ class UpdateUser extends Component {
             for (var pair of data.entries()) {
                 // console.log(pair)
             }
-            axios.post('/api/operator/updatedriver', data).then(function (response) {
+            axios.post('/operator/updatedriver', data).then(function (response) {
                 console.log(response)
                 var ID = response.data.data._id;
                 console.log(ID, "Id in post method")

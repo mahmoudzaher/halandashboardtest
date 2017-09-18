@@ -82,7 +82,7 @@ class DriverProfile extends Component {
         var drugTestArray = []
         var contractArray = []
 
-        axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
+        axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getDriverById Response")
             var y = response.data.data;
             var parser = parseInt(y.birthday)
@@ -134,7 +134,7 @@ class DriverProfile extends Component {
 
 
 
-            axios.get('/api/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
+            axios.get('/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
                 console.log(response.data, "getdrivervehicle Response")
                 var x = response.data;
                 // console.log(x, "x Response")
@@ -194,7 +194,7 @@ class DriverProfile extends Component {
 
 
 
-        axios.get('/api/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
+        axios.get('/operator/getdriverpapers?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getdriverpapers Response")
             var x = response.data.data;
 
@@ -326,7 +326,7 @@ class DriverProfile extends Component {
             );
         }
 
-        // axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
+        // axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
         //     console.log(response, "getDriverById Response")
         //     var x = response.data.data;
 
@@ -430,7 +430,7 @@ class DriverProfile extends Component {
     //         for (var pair of data.entries()) {
     //             console.log(pair)
     //         }
-    //         axios.post('/api/operator/adddriver', data).then(function (response) {
+    //         axios.post('/operator/adddriver', data).then(function (response) {
     //             console.log(response)
     //             var ID = response.data.data._id;
     //             console.log(ID)

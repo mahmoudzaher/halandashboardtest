@@ -169,7 +169,7 @@ class AddDriverPapers extends Component {
             data.append('contract', this.state.contractimg)
 
 
-            axios.post('/api/operator/adddriverpapers', data).then(function (response) {
+            axios.post('/operator/adddriverpapers', data).then(function (response) {
                 console.log(response)
                 window.localStorage.setItem('sessionToken', response.data);
                 that.refs.PromoDialog.show()

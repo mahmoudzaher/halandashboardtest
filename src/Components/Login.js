@@ -68,7 +68,7 @@ class Login extends Component {
     }
 
 
-    axios.post('/api/operator/login', object).then(function (response) {
+    axios.post('/operator/login', object).then(function (response) {
       console.log(response)
       window.localStorage.setItem('sessionToken', response.data.data.access_token);
       ReactRouter.goTo("/DashBoard")

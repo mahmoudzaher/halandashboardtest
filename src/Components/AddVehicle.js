@@ -89,7 +89,7 @@ class AddVehicle extends Component {
         })
 
 
-        axios.get('/api/operator/getDriverById?' + "driverId=" + this.props.pID).then(function (response) {
+        axios.get('/operator/getDriverById?' + "driverId=" + this.props.pID).then(function (response) {
             console.log(response.data.data, "getdriver Response")
             var x = response.data.data;
             // console.log(x, "x Response")
@@ -390,7 +390,7 @@ class AddVehicle extends Component {
             }
             var UId = this.state.userID;
             console.log(object)
-            axios.post('/api/operator/adddrivervehicle', object).then(function (response) {
+            axios.post('/operator/adddrivervehicle', object).then(function (response) {
                 console.log(response)
                 ReactRouter.goTo(`/AddDriverPapers/${UId}`);
                 // window.localStorage.setItem('sessionToken', response.data);
