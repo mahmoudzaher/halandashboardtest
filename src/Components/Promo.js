@@ -473,10 +473,10 @@ class Promo extends Component {
                 objType = item.codeType
                 objValue = item.codeValue
                 var parser = parseInt(item.startDate)
-                var birthdate = new Date(parser * 1000);
+                var birthdate = new Date(parser);
 
                 var parser2 = parseInt(item.expiryDate)
-                var birthdate2 = new Date(parser2 * 1000);
+                var birthdate2 = new Date(parser2);
                 console.log(obj, "obj")
                 that.setState({
                     editpromoAllowedRedemptionTimes: obj.allowedRedemptionTimes,
@@ -566,7 +566,7 @@ class Promo extends Component {
                             }
                             var parser = row.startDate
                             console.log(row)
-                            var birthdate = new Date(parser * 1000);
+                            var birthdate = new Date(parser);
                             var day = birthdate.getFullYear()
                             var month = birthdate.getMonth() + 1
                             var year = birthdate.getDate()
@@ -574,7 +574,7 @@ class Promo extends Component {
                             console.log(startFormattedTime,"startFormattedTime")
 
                             var parser2 = row.expiryDate
-                            var birthdate2 = new Date(parser2 * 1000);
+                            var birthdate2 = new Date(parser2);
                             var day2 = birthdate2.getFullYear()
                             var month2 = birthdate2.getMonth() + 1
                             var year2 = birthdate2.getDate()
@@ -632,8 +632,8 @@ class Promo extends Component {
 
 
 
-        let timestampp = Math.floor(this.state.birthdaydate / 1000);
-        let timestamppE = Math.floor(this.state.birthdaydateE / 1000);
+        let timestampp = Math.floor(this.state.birthdaydate);
+        let timestamppE = Math.floor(this.state.birthdaydateE);
 
 
         var obj = {};
@@ -702,8 +702,8 @@ class Promo extends Component {
 
 
 
-        let timestampp = Math.floor(this.state.birthdaydateEdit / 1000);
-        let timestamppE = Math.floor(this.state.birthdaydateEEdit / 1000);
+        let timestampp = Math.floor(this.state.birthdaydateEdit);
+        let timestamppE = Math.floor(this.state.birthdaydateEEdit);
 
 
         var obj = {};
@@ -782,9 +782,9 @@ class Promo extends Component {
                     <ul className="NavdivUl">
                         <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
                         <li className="active li" ><a onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
-                        <li><a href="#news">رحلات</a></li>
-                        <li ><a href="#contact" className="active">برومو كود</a></li>
-                        <li><a href="#about">دعم</a></li>
+                        <li><a >رحلات</a></li>
+                        <li ><a  className="active">برومو كود</a></li>
+                        <li><a >دعم</a></li>
                         <li><a >تقارير</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>

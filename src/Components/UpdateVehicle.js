@@ -106,7 +106,7 @@ class UpdateVehicle extends Component {
                 }
 
                 var parser = parseInt(x.model)
-                var birthdate = new Date(parser * 1000);
+                var birthdate = new Date(parser);
 
                 that.setState({
                     vehicleType: x.vehicletype,
@@ -507,7 +507,7 @@ class UpdateVehicle extends Component {
         var tempvehicleMotor;
 
 
-        let timestamp = Math.floor(this.state.birthdaydate / 1000);
+        let timestamp = Math.floor(this.state.birthdaydate);
 
 
         if (this.state.vehicleTypee !== null && this.state.vehicleTypee !== "") {

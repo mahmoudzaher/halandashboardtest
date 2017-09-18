@@ -188,6 +188,8 @@ class DriverTrips extends Component {
 
                         <td className="tableheadF" >المدة</td>
 
+                        <td className="tableheadF" >بداية الرحلة</td>
+
                         <td className="tableheadD" >إلى</td>
 
                         <td className="tableheadD" >من</td>
@@ -230,6 +232,7 @@ class DriverTrips extends Component {
                         var starthours = start.getHours();
                         var startminutes = "0" + start.getMinutes();
                         var startseconds = "0" + start.getSeconds();
+                        var newStart = starthours + ':' + startminutes.substr(-2) + ':' + startseconds.substr(-2);
                         var startFormattedTime = startDay + '/' + startMonth + '/' + startYear + starthours + ':' + startminutes.substr(-2) + ':' + startseconds.substr(-2);
 
 
@@ -242,7 +245,7 @@ class DriverTrips extends Component {
                         var endseconds = "0" + end.getSeconds();
                         var endFormattedTime = endDay + '/' + endMonth + '/' + endYear + endhours + ':' + endminutes.substr(-2) + ':' + endseconds.substr(-2);
 
-
+                        console.log(newStart,"new Start")
                         // var now = "04/09/2013 15:00:00";
                         // var then = "04/09/2013 14:20:30";
                         moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
@@ -260,6 +263,7 @@ class DriverTrips extends Component {
                                     re.push(row.tripCost)
                                     re.push(row.userRatingByDriver)
                                     re.push(durationtrip)
+                                    re.push(newStart)
                                     re.push(row._toString)
                                     re.push(row._fromString)
                                     re.push(row.user.phoneNumber)
@@ -271,6 +275,7 @@ class DriverTrips extends Component {
                                 re.push(row.tripCost)
                                 re.push(row.userRatingByDriver)
                                 re.push(durationtrip)
+                                    re.push(newStart)
                                 re.push(row._toString)
                                 re.push(row._fromString)
                                 re.push(row.user.phoneNumber)

@@ -76,7 +76,8 @@ table, tablehead,tr, th {
 td.PTD{
 
 font-size: 14px;
-    padding: 7px 0;
+    /*padding: 7px 0;*/
+        padding: 7px 5px;
     text-align: center;
         padding-left: 1%;
     padding-right: 1%;
@@ -133,6 +134,7 @@ table {
 img.tdImg {
     /*margin-top: 10%;*/
         vertical-align: middle;
+    cursor: pointer;
 }
 
 input.login{
@@ -256,6 +258,7 @@ li a {
     /* padding: 14px 16px; */
     text-decoration: none;
     color: #BEC0C2;
+        cursor: pointer;
     /* padding-bottom: 50%; */
     margin: 10px;
     font-family: Cairo;
@@ -268,6 +271,7 @@ li p {
     text-decoration: none;
     color: white;
     margin: 10px;
+    cursor: pointer;
     float: left;
     font-family: Cairo;
     font-size: 16px;
@@ -281,6 +285,7 @@ li p {
 
 .active {
     color: #28B8A8;
+    cursor: pointer;
     
 }
 
@@ -419,6 +424,7 @@ background-position: left;
     text-align: center;
     padding-left: 8%;
     /* position: absolute; */
+    cursor: pointer;
     padding-bottom: 6%;
 }
 .fake-input-right-addNew {
@@ -1511,6 +1517,7 @@ img.two {
     font-size: 16px;
     font-family: Cairo;
     margin-left: 3%;
+        cursor: pointer;
     margin-right: 3%;
 }
 
@@ -1520,6 +1527,7 @@ img.two {
         font-size: 16px;
         font-family: Cairo;
             padding-left: 0%;
+                cursor: pointer;
     padding-right: 0%;
 }
 
@@ -1615,7 +1623,7 @@ DriverRight-Left{
 .DriverPDiv {
     width: 50%;
     float: right;
-    margin-right: -35%;
+    margin-right: -30%;
         margin-top: 5%;
 }
 
@@ -2083,7 +2091,7 @@ img#statisticsImg{
 
 img#statisticsImgnew{
       float: left;
-    margin-left: 41%;
+    margin-left: 39%;
     /* margin-bottom: -12%; */
     margin-top: -2%;
 }  

@@ -74,7 +74,7 @@ class UpdateUser extends Component {
             //     Day : driverBirthday.getDate()
             var parser = parseInt(x.birthday)
 
-            var birthdate = new Date(parser * 1000);
+            var birthdate = new Date(parser);
             var licenseNumber;
             var LicenseExpDate;
             var parserExp;
@@ -83,7 +83,7 @@ class UpdateUser extends Component {
                 // LicenseExpDate = x.driverLicense.expirationDate;
                 console.log(x.driverLicense.expirationDate)
                 parserExp = parseInt(JSON.parse(x.driverLicense).expirationDate)
-                LicenseExpDate = new Date(parserExp * 1000);
+                LicenseExpDate = new Date(parserExp);
                 console.log("hello world")
                 console.log(LicenseExpDate)
                 console.log(x.driverLicense.expirationDate)
@@ -543,10 +543,10 @@ class UpdateUser extends Component {
             var templicensenumber;
             var templicenseexpdate;
             if (this.state.birthdaydate) {
-                var timestampp = Math.floor(this.state.birthdaydate / 1000);
+                var timestampp = Math.floor(this.state.birthdaydate);
             }
             if (this.state.birthdaydateE) {
-                var timestamppE = Math.floor(this.state.birthdaydateE / 1000);
+                var timestamppE = Math.floor(this.state.birthdaydateE);
             }
 
 
