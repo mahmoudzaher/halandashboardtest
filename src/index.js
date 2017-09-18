@@ -18,9 +18,10 @@ import AddDriverPapers from './Components/AddDriverPapers';
 import DriverTrips from './Components/DriverTrips';
 import Promo from './Components/Promo';
 import DriverProfile from './Components/DriverProfile';
+import Reports from './Components/Reports';
 
-// localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
-localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
+localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
+// localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
 
 
 
@@ -160,6 +161,17 @@ Flux.createRoute('/Promo', function () {
     /*  unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
         render(<Promo />, document.getElementById('root'));
+        /*render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/Reports', function () {
+    unmountComponentAtNode(document.getElementById('root'));
+    /*  unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<Reports />, document.getElementById('root'));
         /*render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));
