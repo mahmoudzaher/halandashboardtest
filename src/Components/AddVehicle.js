@@ -357,8 +357,8 @@ class AddVehicle extends Component {
 
         }
         else {
-            let timestamp = Math.floor(this.state.birthdaydate / 1000);
-            let timestampp = Math.floor(this.state.birthdaydateE / 1000);
+            let timestamp = Math.floor(this.state.birthdaydate);
+            let timestampp = Math.floor(this.state.birthdaydateE);
 
             if (this.state.isChecked === false || this.state.isChecked === undefined) {
                 console.log("isChecked is false")

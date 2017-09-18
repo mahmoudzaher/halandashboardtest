@@ -86,7 +86,7 @@ class DriverProfile extends Component {
             console.log(response, "getDriverById Response")
             var y = response.data.data;
             var parser = parseInt(y.birthday)
-            var birthdate = new Date(parser * 1000);
+            var birthdate = new Date(parser);
             var parser3;
             var birthdate3;
             // var parser3 = parseInt(y.driverLicense.expirationDate)
@@ -97,7 +97,7 @@ class DriverProfile extends Component {
                 licenserakam = y.driverLicense.number;
                 licenseDate = y.driverLicense.expirationDate
                 parser3 = parseInt(y.driverLicense.expirationDate)
-                birthdate3 = new Date(parser3 * 1000);
+                birthdate3 = new Date(parser3);
 
                 that.setState({
                     driverLicenseExpDate: licenseDate,
@@ -148,7 +148,7 @@ class DriverProfile extends Component {
                 }
                 console.log(x.model, "x.model")
                 var parser2 = parseInt(x.model)
-                var birthdate2 = new Date(parser2 * 1000);
+                var birthdate2 = new Date(parser2);
 
                 that.setState({
                     vehicleType: x.vehicletype,

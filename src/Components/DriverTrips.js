@@ -49,6 +49,8 @@ class DriverTrips extends Component {
             startyear: "",
             cash: 0,
             tripsCount: 0,
+            greaterThanAll: 15,
+            lessThanAll: -1,
         })
         var money = 0;
         var tripscounter = 0;
@@ -98,7 +100,41 @@ class DriverTrips extends Component {
         })
 
     }
+    nextAll(event) {
+        var that = this;
+        var length = this.state.objects.length;
 
+        if (this.state.lessThanAll + 15 < length) {
+            this.setState({
+                lessThanAll: this.state.lessThanAll + 15,
+                greaterThanAll: this.state.greaterThanAll + 15,
+            })
+        }
+        else {
+            this.setState({
+                lessThanAll: this.state.lessThanAll,
+                greaterThanAll: this.state.greaterThanAll,
+            })
+        }
+    }
+
+    previousAll(event) {
+        var that = this;
+        var length = this.state.objects.length;
+
+        if (this.state.lessThanAll > 0) {
+            this.setState({
+                lessThanAll: this.state.lessThanAll - 15,
+                greaterThanAll: this.state.greaterThanAll - 15,
+            })
+        }
+        else {
+            this.setState({
+                lessThanAll: this.state.lessThanAll,
+                greaterThanAll: this.state.greaterThanAll,
+            })
+        }
+    }
     componentDidMount() {
         var that = this;
         var itemIds = [];
@@ -176,6 +212,8 @@ class DriverTrips extends Component {
     tableActive() {
 
         var that = this;
+        let counter = 0;
+        let usedCounter = 0;
         // console.log(this.state.objects);
 
         return (
@@ -187,6 +225,8 @@ class DriverTrips extends Component {
                         <td className="tableheadDT" >تقيم</td>
 
                         <td className="tableheadF" >المدة</td>
+
+                        <td className="tableheadF" >بداية الرحلة</td>
 
                         <td className="tableheadD" >إلى</td>
 
@@ -230,6 +270,7 @@ class DriverTrips extends Component {
                         var starthours = start.getHours();
                         var startminutes = "0" + start.getMinutes();
                         var startseconds = "0" + start.getSeconds();
+                        var newStart = starthours + ':' + startminutes.substr(-2) + ':' + startseconds.substr(-2);
                         var startFormattedTime = startDay + '/' + startMonth + '/' + startYear + starthours + ':' + startminutes.substr(-2) + ':' + startseconds.substr(-2);
 
 
@@ -242,7 +283,7 @@ class DriverTrips extends Component {
                         var endseconds = "0" + end.getSeconds();
                         var endFormattedTime = endDay + '/' + endMonth + '/' + endYear + endhours + ':' + endminutes.substr(-2) + ':' + endseconds.substr(-2);
 
-
+                        console.log(newStart, "new Start")
                         // var now = "04/09/2013 15:00:00";
                         // var then = "04/09/2013 14:20:30";
                         moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
@@ -251,33 +292,86 @@ class DriverTrips extends Component {
                         // console.log(durationtrip, "duration trip")
 
 
-                        if (row.user.phoneNumber.includes(that.state.searchfilter)) {
-                            // console.log(that.state.birthdaydate,"that.state.birthdaydate")
-                            // console.log(that.state.birthdaydateE,"that.state.birthdaydateE")
-                            // console.log(row.date,"row.date")
-                            if (that.state.birthdaydate && that.state.birthdaydateE) {
-                                if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+
+
+
+
+
+                        // if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
+                        //     if ((row.user.phoneNumber.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
+                        //         if (that.state.birthdaydate && that.state.birthdaydateE) {
+                        //             if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+
+                        //                 counter++;
+                        //                 usedCounter++;
+                        //                 re.push(row.tripCost)
+                        //                 re.push(row.userRatingByDriver)
+                        //                 re.push(durationtrip)
+                        //                 re.push(newStart)
+                        //                 re.push(row._toString)
+                        //                 re.push(row._fromString)
+                        //                 re.push(row.user.phoneNumber)
+                        //                 re.push(row.user.firstName)
+                        //                 re.push(formattedTime)
+                        //             }
+                        //         }
+
+                        //         else {
+                        //             counter++;
+                        //             usedCounter++;
+                        //             re.push(row.tripCost)
+                        //             re.push(row.userRatingByDriver)
+                        //             re.push(durationtrip)
+                        //             re.push(newStart)
+                        //             re.push(row._toString)
+                        //             re.push(row._fromString)
+                        //             re.push(row.user.phoneNumber)
+                        //             re.push(row.user.firstName)
+                        //             re.push(formattedTime)
+                        //         }
+                        //     }
+                        // }
+                        // var ColImg = "/Path 1236.png";
+
+
+
+
+
+                        if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
+                            if (row.user.phoneNumber.includes(that.state.searchfilter)) {
+                                if (that.state.birthdaydate && that.state.birthdaydateE) {
+                                    if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+
+                                        counter++;
+                                        usedCounter++;
+                                        re.push(row.tripCost)
+                                        re.push(row.userRatingByDriver)
+                                        re.push(durationtrip)
+                                        re.push(newStart)
+                                        re.push(row._toString)
+                                        re.push(row._fromString)
+                                        re.push(row.user.phoneNumber)
+                                        re.push(row.user.firstName)
+                                        re.push(formattedTime)
+                                    }
+                                }
+                                else {
+                                    counter++;
+                                    usedCounter++;
                                     re.push(row.tripCost)
                                     re.push(row.userRatingByDriver)
                                     re.push(durationtrip)
+                                    re.push(newStart)
                                     re.push(row._toString)
                                     re.push(row._fromString)
                                     re.push(row.user.phoneNumber)
                                     re.push(row.user.firstName)
                                     re.push(formattedTime)
                                 }
-                            }
-                            else {
-                                re.push(row.tripCost)
-                                re.push(row.userRatingByDriver)
-                                re.push(durationtrip)
-                                re.push(row._toString)
-                                re.push(row._fromString)
-                                re.push(row.user.phoneNumber)
-                                re.push(row.user.firstName)
-                                re.push(formattedTime)
-                            }
 
+                            }
+                        } else {
+                            counter++;
                         }
                         var ColImg = "/Path 1236.png";
 
@@ -421,23 +515,23 @@ class DriverTrips extends Component {
 
 
     handleBirthday() {
-       console.log(yearID, monthID, dayID, "yearID, monthID + 1, dayID")
+        console.log(yearID, monthID, dayID, "yearID, monthID + 1, dayID")
         console.log(yearIDE, monthIDE, dayIDE, "yearIDE, monthIDE, dayIDE")
         var that = this;
         let money = 0;
         let tripscounter = 0;
         let newday = dayIDE + 1;
         this.setState({
-            birthdaydate: new Date(yearID, monthID, dayID).getTime(),
+            birthdaydate: new Date(yearID, monthID, dayID - 1).getTime(),
             birthdaydateE: new Date(yearIDE, monthIDE, dayIDE).getTime(),
         });
-        this.state.birthdaydateE =  new Date(yearIDE, monthIDE, newday).getTime()
+        this.state.birthdaydateE = new Date(yearIDE, monthIDE, newday).getTime()
 
         console.log(new Date(yearID, monthID, dayID).getTime(), "new Date(yearID, monthID , dayID).getTime()")
         console.log(new Date(yearIDE, monthIDE, dayIDE).getTime(), "new Date(yearIDE, monthIDE , dayIDE).getTime()")
         that.state.objects.forEach(function (item) {
             // console.log(item)
-                 if (that.state.birthdaydate <= item.date && that.state.birthdaydateE >= item.date) {
+            if (that.state.birthdaydate <= item.date && that.state.birthdaydateE >= item.date) {
                 if (item.tripCost) {
                     money = money + item.tripCost;
 
@@ -465,7 +559,9 @@ class DriverTrips extends Component {
         var searchText = event.target.value;
         var searchTextLength = searchText.length;
         this.setState({
-            searchfilter: searchText
+            searchfilter: searchText,
+            greaterThanAll: 15,
+            lessThanAll: -1,
         })
         console.log(searchTextLength)
         console.log(this.state.objects, "all drivers log")
@@ -567,10 +663,10 @@ class DriverTrips extends Component {
                                 <p className="statisticsP" >إحصائيات</p>
                                 <img src="/Group 1793.png" id="statisticsImg" onClick={() => this.refs.PromoDialog.show()} />
                             </div>
-                            
-                             <div className="statistics" >
+
+                            <div className="statistics" >
                                 <p className="statisticsPNew" >تصفية حسب التاريخ</p>
-                                <img src="/Group 1803.png" id="statisticsImgnew"  onClick={() => this.refs.FilterDialog.show()}/>
+                                <img src="/Group 1803.png" id="statisticsImgnew" onClick={() => this.refs.FilterDialog.show()} />
                             </div>
 
                             {/*<form className="hahahaxD">
@@ -674,6 +770,12 @@ class DriverTrips extends Component {
                     <div className="Driversdiv">
                         {this.tableActive()}
                     </div>
+
+                    <div className="nextprevious" >
+                        <button className="nextpreviousButtons" onClick={this.nextAll.bind(this)}>&lt;</button>
+                        <p className="nextpreviousP">{this.state.lessThanAll + 2} to {this.state.greaterThanAll}</p>
+                        <button className="nextpreviousButtons" onClick={this.previousAll.bind(this)}>&gt;</button>
+                    </div>
                 </div>
 
                 {/*<br /> <br /> <br />*/}
@@ -681,25 +783,32 @@ class DriverTrips extends Component {
                 <SkyLight hideOnOverlayClicked ref="PromoDialog" dialogStyles={sky}>
                     {/*<img src="/Group 1793.png" id="statisticsImgPop" />*/}
                     <div className="statsPopInnerDiv" >
-                        <div className="statsPopInnerDiv-right">
-                            <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
-                            <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
+                        <div className="nnnnnnn">
+                            <p className="statisticsP222" >إحصائيات</p>
+                            <img src="/Group 1793.png" id="statisticsImg2" />
                         </div>
-                        <div className="statsPopInnerDiv-left">
-                            <p className="statsPopInnerDiv-left-p">{this.state.tripsCount}</p>
-                            <p className="statsPopInnerDiv-left-p">{this.state.cash}</p>
+                        <div className="msam">
+                            <div className="statsPopInnerDiv-right">
+                                <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
+                                <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
+                            </div>
+                            <div className="statsPopInnerDiv-left">
+                                <p className="statsPopInnerDiv-left-p">{this.state.tripsCount}</p>
+                                <p className="statsPopInnerDiv-left-p">{this.state.cash}</p>
+                            </div>
                         </div>
+
                     </div>
                 </SkyLight>
 
 
                 <SkyLight hideOnOverlayClicked ref="FilterDialog" dialogStyles={sky}>
-                     <div className="comeonnnn" >
-                          <div className="comeonnnnUnder" >
-                     <form className="hahahaxD">
-                        
+                    <div className="comeonnnn" >
+                        <div className="comeonnnnUnder" >
+                            <form className="hahahaxD">
 
-                       
+
+
                                 <fieldset className="yowazap">
                                     <legend className="heyheyhey" >تاريخ الرحلات</legend>
 
@@ -788,9 +897,9 @@ class DriverTrips extends Component {
                                     </div>
 
                                 </fieldset>
-                                  
+
                             </form>
-                            </div></div>
+                        </div></div>
                 </SkyLight>
 
 

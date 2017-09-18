@@ -305,8 +305,8 @@ class CreateUser extends Component {
     else {
       this.state.unixTimestamp = new Date().getTime();
       console.log(this.state.birthdaydate, "asdafasdfasdgfasdfjkahsdflkasjnfkl")
-      let timestampp = Math.floor(this.state.birthdaydate / 1000);
-      let timestamppE = Math.floor(this.state.birthdaydateE / 1000);
+      let timestampp = Math.floor(this.state.birthdaydate);
+      let timestamppE = Math.floor(this.state.birthdaydateE);
       var Form = this.state.imgdata;
       const data = new FormData();
       var vehicleLicence = {
