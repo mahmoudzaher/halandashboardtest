@@ -76,7 +76,7 @@ class UpdateVehicle extends Component {
         })
 
 
-        axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
+        axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
             console.log(response, "getDriverById Response")
             var y = response.data.data;
             // var parser = parseInt(y.birthday)
@@ -92,7 +92,7 @@ class UpdateVehicle extends Component {
 
             })
 
-            axios.get('/api/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
+            axios.get('/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
                 console.log(response.data, "getdrivervehicle Response")
                 var x = response.data;
                 // console.log(x, "x Response")
@@ -188,7 +188,7 @@ class UpdateVehicle extends Component {
             startyearoptions: itemIds3,
         })
 
-        // axios.get('/api/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
+        // axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
         //     console.log(response, "getDriverById Response")
         //     var y = response.data.data;
 
@@ -196,7 +196,7 @@ class UpdateVehicle extends Component {
         //         vehicleId: y.vehicle._id,
         //     })
 
-        //     axios.get('/api/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
+        //     axios.get('/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
         //         console.log(response.data, "getdrivervehicle Response")
         //         var x = response.data;
         //         // console.log(x, "x Response")
@@ -247,7 +247,7 @@ class UpdateVehicle extends Component {
 
 
         // console.log(this.state.vehicleId, "this.state.vehicleId")
-        // axios.get('/api/operator/getdrivervehicle?' + "vehicleId=" + this.state.vehicleId).then(function (response) {
+        // axios.get('/operator/getdrivervehicle?' + "vehicleId=" + this.state.vehicleId).then(function (response) {
         //     console.log(response, "getdrivervehicle Response")
         //     var x = response.data.data;
 
@@ -597,7 +597,7 @@ class UpdateVehicle extends Component {
 
         console.log()
 
-        axios.post('/api/operator/adddrivervehicle', object).then(function (response) {
+        axios.post('/operator/adddrivervehicle', object).then(function (response) {
             console.log(response)
             ReactRouter.goTo(`/UpdateDriverPapers/${UId}`);
 

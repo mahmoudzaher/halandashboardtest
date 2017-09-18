@@ -369,7 +369,7 @@ class CreateUser extends Component {
       for (var pair of data.entries()) {
         console.log(pair)
       }
-      axios.post('/api/operator/adddriver', data).then(function (response) {
+      axios.post('/operator/adddriver', data).then(function (response) {
         console.log(response)
         var ID = response.data.data._id;
         console.log(ID)

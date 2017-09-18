@@ -19,8 +19,8 @@ import DriverTrips from './Components/DriverTrips';
 import Promo from './Components/Promo';
 import DriverProfile from './Components/DriverProfile';
 
-// localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/');
-localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com');
+localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
+// localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
 
 
 

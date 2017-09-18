@@ -55,7 +55,7 @@ class Dashboard extends Component {
 
   getDriversAPI() {
     var that = this;
-    axios.get('/api/operator/getalldrivers').then(function (response) {
+    axios.get('/operator/getalldrivers').then(function (response) {
       console.log(response, "helloooooooasdgkjuhasghdkjhasghdkjasgdkasgdakljshgdl")
       var x = response.data.data;
       var objects = [];
@@ -129,7 +129,7 @@ class Dashboard extends Component {
       driverId: that.state.suspendedDriverId,
       newStatus: "suspended"
     }
-    axios.post('api/operator/changedriverstatus', object).then(function (response) {
+    axios.post('operator/changedriverstatus', object).then(function (response) {
       console.log(response)
       that.getDriversAPI()
       that.setState({
@@ -159,7 +159,7 @@ class Dashboard extends Component {
       driverId: event,
       newStatus: "active"
     }
-    axios.post('api/operator/changedriverstatus', object).then(function (response) {
+    axios.post('operator/changedriverstatus', object).then(function (response) {
       console.log(response)
       // window.localStorage.setItem('sessionToken', response.data);
       alert("dirver suspended")
@@ -176,7 +176,7 @@ class Dashboard extends Component {
   //     driverId: event,
   //     newStatus: "active"
   //   }
-  //   axios.post('api/operator/changedriverstatus', object).then(function (response) {
+  //   axios.post('operator/changedriverstatus', object).then(function (response) {
   //     console.log(response)
   //     // window.localStorage.setItem('sessionToken', response.data);
   //     alert("dirver reactivated")

@@ -152,8 +152,8 @@ class Promo extends Component {
             editpromoStatus: "",
 
         })
-        axios.get('/api/operator/getallpromocodes').then(function (response) {
-            console.log(response, "/api/operator/getallpromocodes Response")
+        axios.get('/operator/getallpromocodes').then(function (response) {
+            console.log(response, "/operator/getallpromocodes Response")
             var x = response.data;
             var objects = [];
 
@@ -685,7 +685,7 @@ class Promo extends Component {
 
         console.log()
 
-        axios.post('/api/operator/createPromoCode', obj).then(function (response) {
+        axios.post('/operator/createPromoCode', obj).then(function (response) {
             console.log(response)
 
         }).catch(function (error) {
@@ -755,7 +755,7 @@ class Promo extends Component {
 
         console.log()
 
-        axios.post('/api/operator/createPromoCode', obj).then(function (response) {
+        axios.post('/operator/createPromoCode', obj).then(function (response) {
             console.log(response)
 
         }).catch(function (error) {
