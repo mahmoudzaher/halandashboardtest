@@ -2346,6 +2346,14 @@ div#maincontainerLolNewNew {
            padding-right: 2%;
 }
 
+.OptionsOTNewYolo {
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+           padding-right: 15%;
+}
+
 .OptionsTTNew {
     float: right;
     /* margin-left: 15%; */

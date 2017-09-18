@@ -49,6 +49,8 @@ class DriverTrips extends Component {
             startyear: "",
             cash: 0,
             tripsCount: 0,
+            greaterThanAll: 15,
+            lessThanAll: -1,
         })
         var money = 0;
         var tripscounter = 0;
@@ -98,7 +100,41 @@ class DriverTrips extends Component {
         })
 
     }
+    nextAll(event) {
+        var that = this;
+        var length = this.state.objects.length;
 
+        if (this.state.lessThanAll + 15 < length) {
+            this.setState({
+                lessThanAll: this.state.lessThanAll + 15,
+                greaterThanAll: this.state.greaterThanAll + 15,
+            })
+        }
+        else {
+            this.setState({
+                lessThanAll: this.state.lessThanAll,
+                greaterThanAll: this.state.greaterThanAll,
+            })
+        }
+    }
+
+    previousAll(event) {
+        var that = this;
+        var length = this.state.objects.length;
+
+        if (this.state.lessThanAll > 0) {
+            this.setState({
+                lessThanAll: this.state.lessThanAll - 15,
+                greaterThanAll: this.state.greaterThanAll - 15,
+            })
+        }
+        else {
+            this.setState({
+                lessThanAll: this.state.lessThanAll,
+                greaterThanAll: this.state.greaterThanAll,
+            })
+        }
+    }
     componentDidMount() {
         var that = this;
         var itemIds = [];
@@ -176,6 +212,8 @@ class DriverTrips extends Component {
     tableActive() {
 
         var that = this;
+        let counter = 0;
+        let usedCounter = 0;
         // console.log(this.state.objects);
 
         return (
@@ -254,12 +292,72 @@ class DriverTrips extends Component {
                         // console.log(durationtrip, "duration trip")
 
 
-                        if (row.user.phoneNumber.includes(that.state.searchfilter)) {
-                            // console.log(that.state.birthdaydate,"that.state.birthdaydate")
-                            // console.log(that.state.birthdaydateE,"that.state.birthdaydateE")
-                            // console.log(row.date,"row.date")
-                            if (that.state.birthdaydate && that.state.birthdaydateE) {
-                                if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+
+
+
+
+
+                        // if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
+                        //     if ((row.user.phoneNumber.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
+                        //         if (that.state.birthdaydate && that.state.birthdaydateE) {
+                        //             if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+
+                        //                 counter++;
+                        //                 usedCounter++;
+                        //                 re.push(row.tripCost)
+                        //                 re.push(row.userRatingByDriver)
+                        //                 re.push(durationtrip)
+                        //                 re.push(newStart)
+                        //                 re.push(row._toString)
+                        //                 re.push(row._fromString)
+                        //                 re.push(row.user.phoneNumber)
+                        //                 re.push(row.user.firstName)
+                        //                 re.push(formattedTime)
+                        //             }
+                        //         }
+
+                        //         else {
+                        //             counter++;
+                        //             usedCounter++;
+                        //             re.push(row.tripCost)
+                        //             re.push(row.userRatingByDriver)
+                        //             re.push(durationtrip)
+                        //             re.push(newStart)
+                        //             re.push(row._toString)
+                        //             re.push(row._fromString)
+                        //             re.push(row.user.phoneNumber)
+                        //             re.push(row.user.firstName)
+                        //             re.push(formattedTime)
+                        //         }
+                        //     }
+                        // }
+                        // var ColImg = "/Path 1236.png";
+
+
+
+
+
+                        if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
+                            if (row.user.phoneNumber.includes(that.state.searchfilter)) {
+                                if (that.state.birthdaydate && that.state.birthdaydateE) {
+                                    if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+
+                                        counter++;
+                                        usedCounter++;
+                                        re.push(row.tripCost)
+                                        re.push(row.userRatingByDriver)
+                                        re.push(durationtrip)
+                                        re.push(newStart)
+                                        re.push(row._toString)
+                                        re.push(row._fromString)
+                                        re.push(row.user.phoneNumber)
+                                        re.push(row.user.firstName)
+                                        re.push(formattedTime)
+                                    }
+                                }
+                                else {
+                                    counter++;
+                                    usedCounter++;
                                     re.push(row.tripCost)
                                     re.push(row.userRatingByDriver)
                                     re.push(durationtrip)
@@ -270,19 +368,10 @@ class DriverTrips extends Component {
                                     re.push(row.user.firstName)
                                     re.push(formattedTime)
                                 }
-                            }
-                            else {
-                                re.push(row.tripCost)
-                                re.push(row.userRatingByDriver)
-                                re.push(durationtrip)
-                                re.push(newStart)
-                                re.push(row._toString)
-                                re.push(row._fromString)
-                                re.push(row.user.phoneNumber)
-                                re.push(row.user.firstName)
-                                re.push(formattedTime)
-                            }
 
+                            }
+                        } else {
+                            counter++;
                         }
                         var ColImg = "/Path 1236.png";
 
@@ -433,7 +522,7 @@ class DriverTrips extends Component {
         let tripscounter = 0;
         let newday = dayIDE + 1;
         this.setState({
-            birthdaydate: new Date(yearID, monthID, dayID).getTime(),
+            birthdaydate: new Date(yearID, monthID, dayID - 1).getTime(),
             birthdaydateE: new Date(yearIDE, monthIDE, dayIDE).getTime(),
         });
         this.state.birthdaydateE = new Date(yearIDE, monthIDE, newday).getTime()
@@ -470,7 +559,9 @@ class DriverTrips extends Component {
         var searchText = event.target.value;
         var searchTextLength = searchText.length;
         this.setState({
-            searchfilter: searchText
+            searchfilter: searchText,
+            greaterThanAll: 15,
+            lessThanAll: -1,
         })
         console.log(searchTextLength)
         console.log(this.state.objects, "all drivers log")
@@ -679,6 +770,12 @@ class DriverTrips extends Component {
                     <div className="Driversdiv">
                         {this.tableActive()}
                     </div>
+
+                    <div className="nextprevious" >
+                        <button className="nextpreviousButtons" onClick={this.nextAll.bind(this)}>&lt;</button>
+                        <p className="nextpreviousP">{this.state.lessThanAll + 2} to {this.state.greaterThanAll}</p>
+                        <button className="nextpreviousButtons" onClick={this.previousAll.bind(this)}>&gt;</button>
+                    </div>
                 </div>
 
                 {/*<br /> <br /> <br />*/}
@@ -691,16 +788,16 @@ class DriverTrips extends Component {
                             <img src="/Group 1793.png" id="statisticsImg2" />
                         </div>
                         <div className="msam">
-                           <div className="statsPopInnerDiv-right">
-                            <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
-                            <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
+                            <div className="statsPopInnerDiv-right">
+                                <p className="statsPopInnerDiv-right-p">إجمالي عدد الرحلات</p>
+                                <p className="statsPopInnerDiv-right-p">إجمالي تكلفة الرحلات</p>
+                            </div>
+                            <div className="statsPopInnerDiv-left">
+                                <p className="statsPopInnerDiv-left-p">{this.state.tripsCount}</p>
+                                <p className="statsPopInnerDiv-left-p">{this.state.cash}</p>
+                            </div>
                         </div>
-                        <div className="statsPopInnerDiv-left">
-                            <p className="statsPopInnerDiv-left-p">{this.state.tripsCount}</p>
-                            <p className="statsPopInnerDiv-left-p">{this.state.cash}</p>
-                        </div>
-                        </div>
-                     
+
                     </div>
                 </SkyLight>
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Modal from 'react-modal'
+import Select from 'react-select';
+let yearID = "";
 var ReactRouter = require('flux-react-router');
 
 
@@ -18,6 +20,24 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
+
+    var itemIds3 = [];
+
+
+
+    itemIds3.push(
+      {
+        value: "firstName",
+        label: "الإسم"
+      }
+    );
+    itemIds3.push(
+      {
+        value: "phoneNumber",
+        label: "رقم الهاتف"
+      }
+    );
+
 
     this.setState({
       objects: [],
@@ -47,12 +67,27 @@ class Dashboard extends Component {
       blur: "",
       successSuspendAllModal: false,
       confirmSuspendAllModal: false,
-      suspendedDriverName: ""
+      suspendedDriverName: "",
+      startyearoptions: itemIds3,
     })
     this.getDriversAPI();
 
   }
-
+  handleYearoptions(type, value) {
+    this.setState({
+      [type]: value,
+      Year: value
+    });
+    //  artistID = value.value;
+    console.log(value.value, "option")
+    if (value) {
+      yearID = value.value;
+    } else {
+      yearID = "";
+    }
+    console.log(value);
+    console.log(yearID);
+  }
   getDriversAPI() {
     var that = this;
     axios.get('/operator/getalldrivers').then(function (response) {
@@ -133,8 +168,8 @@ class Dashboard extends Component {
       console.log(response)
       that.getDriversAPI()
       that.setState({
-        confirmSuspendAllModal:false,
-        successSuspendAllModal:true
+        confirmSuspendAllModal: false,
+        successSuspendAllModal: true
       })
       // window.localStorage.setItem('sessionToken', response.data);
     }).catch(function (error) {
@@ -381,8 +416,9 @@ class Dashboard extends Component {
 
 
 
+
             if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
-              if (row.phoneNumber.includes(that.state.searchfilter)) {
+              if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 usedCounter++;
                 // console.log(counter)
@@ -491,7 +527,7 @@ class Dashboard extends Component {
             // console.log(row)
 
             if (that.state.lessThanActive < counter && counter < that.state.greaterThanActive) {
-              if (row.phoneNumber.includes(that.state.searchfilter)) {
+               if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 re.push("./Group 1433.png")
                 re.push("./Path 1161.png")
@@ -596,7 +632,7 @@ class Dashboard extends Component {
 
             // console.log(that.state.suspendedN, "suspendedN")
             if (that.state.lessThanSuspended < counter && counter < that.state.greaterThanSuspended) {
-              if (row.phoneNumber.includes(that.state.searchfilter)) {
+               if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 re.push("./Group 1792.png")
                 re.push("./Path 1161.png")
@@ -706,7 +742,7 @@ class Dashboard extends Component {
             // console.log(row)
             // console.log(that.state.pendingN, "pendingN")
             if (that.state.lessThanPending < counter && counter < that.state.greaterThanPending) {
-              if (row.phoneNumber.includes(that.state.searchfilter)) {
+               if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
@@ -819,7 +855,7 @@ class Dashboard extends Component {
 
               <div className="nextprevious" >
                 <button className="nextpreviousButtons" onClick={this.nextActive.bind(this)}>&lt;</button>
-                 <p className="nextpreviousP">{this.state.lessThanActive + 2} to {this.state.greaterThanActive}</p>
+                <p className="nextpreviousP">{this.state.lessThanActive + 2} to {this.state.greaterThanActive}</p>
                 <button className="nextpreviousButtons" onClick={this.previousActive.bind(this)}>&gt;</button>
               </div>
             </TabPanel>
@@ -830,7 +866,7 @@ class Dashboard extends Component {
 
               <div className="nextprevious" >
                 <button className="nextpreviousButtons" onClick={this.nextSuspended.bind(this)}>&lt;</button>
-                 <p className="nextpreviousP">{this.state.lessThanSuspended + 2} to {this.state.greaterThanSuspended}</p>
+                <p className="nextpreviousP">{this.state.lessThanSuspended + 2} to {this.state.greaterThanSuspended}</p>
                 <button className="nextpreviousButtons" onClick={this.previousSuspended.bind(this)}>&gt;</button>
               </div>
             </TabPanel>
@@ -841,7 +877,7 @@ class Dashboard extends Component {
 
               <div className="nextprevious" >
                 <button className="nextpreviousButtons" onClick={this.nextPending.bind(this)}>&lt;</button>
-                 <p className="nextpreviousP">{this.state.lessThanPending + 2} to {this.state.greaterThanPending}</p>
+                <p className="nextpreviousP">{this.state.lessThanPending + 2} to {this.state.greaterThanPending}</p>
                 <button className="nextpreviousButtons" onClick={this.previousPending.bind(this)}>&gt;</button>
               </div>
             </TabPanel>
@@ -946,8 +982,8 @@ class Dashboard extends Component {
     // })
 
     that.state.objects.forEach(function (item) {
-      console.log(item, "item")
-      if (item.phoneNumber.includes(that.state.searchfilter)) {
+      // console.log(item, "item")
+      if ((item.firstName.includes(that.state.searchfilter)) || (item.phoneNumber.includes(that.state.searchfilter))) {
         if (searchArray.indexOf(searchText) === -1) {
           joined.push(item)
           // that.state.objectsArray.push(item)
@@ -1123,6 +1159,18 @@ class Dashboard extends Component {
                 <input type="text" placeholder="بحث" className="fake-input-left-text" onChange={this.searchtable.bind(this)} />
                 <img src="./Group 1392.png" />
               </div>
+              {/*<div>
+                <div className="OptionsOTNewYolo">
+                  <Select
+                    ref="startyear"
+                    placeholder="إختار"
+                    className="menu-outer-top3"
+                    value={this.state.Year}
+                    options={this.state.startyearoptions}
+                    onChange={this.handleYearoptions.bind(this, "startyear")}
+                  />
+                </div>
+              </div>*/}
 
             </div>
             <div className="fake-input-right" >
