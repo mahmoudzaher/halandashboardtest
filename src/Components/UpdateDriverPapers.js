@@ -488,47 +488,118 @@ class UpdateDriverPapers extends Component {
                 <div className="CreateBigDiv">
 
                     <div className="CreateBigDiv-right">
+
+
+
+                        {/*<div className="goodMor">
+                            <p className="CreateBigDivDisNewNew">بطاقة السائق</p>
+                            <div className="upload-button-divDisHelloGood">
+                                <div className="uploadWhatGood" >
+                                    <label className="upload-buttonGood">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
+                                        <img src="/redashboard/Group 1538.png" className="helloGood" />
+                                    </label>
+                                </div>
+                                <img src="/Group 1569.png" className="helloimageGood" onClick={() => this.setState({ isOpen: true, images: this.state.nationalIdPhotosArray, paperType: "nationalId" })} />
+                            </div>
+                        </div>
+
+                        <div className="goodMor">
+                            <p className="CreateBigDivDisNewNew">رخصة السائق</p>
+                            <div className="upload-button-divDisHelloGood">
+                                <div className="uploadWhatGood" >
+                                    <label className="upload-buttonGood">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
+                                        <img src="/redashboard/Group 1538.png" className="helloGood" />
+                                    </label>
+                                </div>
+                                <img src="/Group 1569.png" className="helloimageGood" onClick={() => this.setState({ isOpen: true, images: this.state.driverLicensePhotosArray, paperType: "licenseArray" })} />
+                            </div>
+                        </div>
+
+                        <div className="goodMor">
+                            <p className="CreateBigDivDisNewNew">رخصة المركبة</p>
+                            <div className="upload-button-divDisHelloGood">
+                                <div className="uploadWhatGood" >
+                                    <label className="upload-buttonGood">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
+                                        <img src="/redashboard/Group 1538.png" className="helloGood" />
+                                    </label>
+                                </div>
+                                <img src="/Group 1569.png" className="helloimageGood" onClick={() => this.setState({ isOpen: true, images: this.state.vehicleLicensePhotosArray, paperType: "vehicleLicence" })} />
+                            </div>
+                        </div>
+
+                        <div className="goodMor">
+                            <p className="CreateBigDivDisNewNew">مستندات التمليك</p>
+                            <div className="upload-button-divDisHelloGood">
+                                <div className="uploadWhatGood" >
+                                    <label className="upload-buttonGood">حمل المستندات< input type="file" ref="artwork" onChange={this.eoo.bind(this)} multiple="multiple" />
+                                        <img src="/redashboard/Group 1538.png" className="helloGood" />
+                                    </label>
+                                </div>
+                                <img src="/Group 1569.png" className="helloimageGood" onClick={() => this.setState({ isOpen: true, images: this.state.ownershipDocumentsPhotosArray, paperType: "ownershipDocuments" })} />
+                            </div>
+                        </div>*/}
+
+
+
                         <div className="CreateBigDiv-right-rightDis">
-                            <p className="CreateBigDivDis">بطاقة السائق</p>
-                            <p className="CreateBigDivDis">رخصة السائق</p>
-                            <p className="CreateBigDivDis">رخصة المركبة</p>
-                            <p className="CreateBigDivDis">مستندات التمليك</p>
+                            <p className="CreateBigDivDisNewNew">بطاقة السائق</p>
+                            <p className="CreateBigDivDisNewNew">رخصة السائق</p>
+                            <p className="CreateBigDivDisNewNew">رخصة المركبة</p>
+                            <p className="CreateBigDivDisNewNew">مستندات التمليك</p>
                         </div>
                         <div className="CreateBigDiv-right-lefthmm">
 
                             <div className="upload-button-divDisHello">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
+                                    </div>
+                                    {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
+                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                                    </label>*/}
                                 </div>
                                 <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.nationalIdPhotosArray, paperType: "nationalId" })} />
                             </div>
 
                             <div className="upload-button-divDisHello">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
+                                    </div>
+                                    {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
+                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                                    </label>*/}
                                 </div>
                                 <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.driverLicensePhotosArray, paperType: "licenseArray" })} />
                             </div>
 
                             <div className="upload-button-divDisHello">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
+                                    </div>
+                                    {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
+                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                                    </label>*/}
                                 </div>
                                 <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.vehicleLicensePhotosArray, paperType: "vehicleLicence" })} />
                             </div>
 
                             <div className="upload-button-divDisHello">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+
+                                    </div>
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.eoo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
@@ -546,36 +617,36 @@ class UpdateDriverPapers extends Component {
                             <p className="CreateBigDiv">عقد شراكة</p>
                         </div>
                         <div className="CreateBigDiv-left-leftDis2">
-                            <div className="upload-button-divDisHello">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.boo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
                                 <img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray, paperType: "address" })} />
                             </div>
-                            <div className="upload-button-divDisHello">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.foo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
                                 <img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray, paperType: "criminalRecord" })} />
                             </div>
-                            <div className="upload-button-divDisHello">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.goo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
                                 <img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray, paperType: "drugTest" })} />
                             </div>
-                            <div className="upload-button-divDisHello">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.hoo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
@@ -662,11 +733,11 @@ class UpdateDriverPapers extends Component {
                         console.log(error)
                     })
                 }>
-                   
-                 </img>
+
+                </img>
             )
         }, this)
-        
+
     }
 }
 

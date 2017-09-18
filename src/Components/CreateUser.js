@@ -204,7 +204,7 @@ class CreateUser extends Component {
   }
 
 
-   openModal2(type) {
+  openModal2(type) {
     console.log(type);
     this.setState({
       [type]: true,
@@ -396,7 +396,7 @@ class CreateUser extends Component {
         that.setState({
           errorMessage: error.response.data.message,
         })
-        that.openModal2( "CreateErrorModal")
+        that.openModal2("CreateErrorModal")
         console.log("wazap")
       })
     }
@@ -577,9 +577,46 @@ class CreateUser extends Component {
 
         <div className="CreateBigDiv">
 
-          <div className="CreateBigDiv-right">
+          <div className="CreateBigDiv-right2">
 
-            <div className="CreateBigDiv-right-right7aram">
+
+
+
+
+
+
+
+
+            <div className="NewCreateBigDiv7aram">
+              <p className="NewNewNewCreateBigDiv7aram">الإسم</p>
+              <input type="text" className="NewDriverProfileText" ref="Fname" required />
+            </div>
+
+            <div className="NewCreateBigDiv7aram">
+              <p className="NewNewNewCreateBigDiv7aram">رقم الهاتف</p>
+              <input type="text" className="NewDriverProfileText" ref="pNumber" required />
+            </div>
+
+            <div className="NewCreateBigDiv7aram">
+              <p className="NewNewNewCreateBigDiv7aram">البريد الإلكتروني</p>
+              <input type="email" className="NewDriverProfileText" ref="email" />
+            </div>
+
+            <div className="NewCreateBigDiv7aram">
+              <p className="NewNewNewCreateBigDiv7aram">كلمة المرور</p>
+              <input type="password" className="NewDriverProfileText" ref="password" required />
+            </div>
+
+
+
+
+
+
+
+
+
+
+            {/*<div className="CreateBigDiv-right-right7aram">
               <div className="newdivclass"><p className="CreateBigDiv7aram">الإسم</p> <p className="PAstrix">*</p></div>
               <div className="newdivclass2"><p className="CreateBigDiv7aram">رقم الهاتف</p> <p className="PAstrix">*</p></div>
               <p className="CreateBigDiv7aram">البريد الإلكتروني</p>
@@ -589,19 +626,140 @@ class CreateUser extends Component {
             <div className="CreateBigDiv-right-left">
               <div className="CreateBigDivPDiv">
                 <input type="text" className="DriverProfileText" ref="Fname" required />
-                {/*<input type="text" className="DriverProfileText" ref="pNumber" required />*/}
                 <input id="phonenum" type="tel" pattern="^\d{11}$" className="DriverProfileText" ref="pNumber" required />
                 <input type="email" className="DriverProfileText" ref="email" />
                 <input type="password" className="DriverProfileText" ref="password" required />
               </div>
 
-            </div>
+            </div>*/}
 
           </div>
 
-          <div className="CreateBigDiv-left-what">
+          <div className="CreateBigDiv-left-what2">
 
-            <div className="CreateBigDiv-left-right">
+
+
+
+
+
+
+
+           <div className="NewClassUser" >
+
+                            <p className="NewNewNewCreateBigDivLeft">صورة شخصية</p>
+                            <div className="NewNewNewcustom-file-upload-inner-divLol">
+                                <div className="NewNewNewcustom-file-upload-inner-div-right">
+                                    <label className="NewNewNewcustom-file-upload">
+                                        <input type="file" onChange={this.voo.bind(this)} />
+                                        <img src="./redashboard/Group 1548.png" className="NewNewNewcustom-file-upload-img" />
+                                    </label>
+                                </div >
+                                <div className="NewNewNewcustom-file-upload-inner-div-left">
+                                    <p className="ANewClass">اضغط لتغير الصورة الشخصية</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="NewClassUserNewNewNew" >
+                            <p className="NewNewNewCreateBigDivLeft">تاريخ الميلاد</p>
+                            <div className="Options-GroupsTNewNew">
+
+                                <div className="OptionsThTNewNew ">
+                                    <Select
+                                        ref="startday"
+                                        placeholder="يوم"
+                                        className="menu-outer-top2"
+                                        value={this.state.startday}
+                                        options={this.state.startdayoptions}
+                                        onChange={this.handleDayoptions.bind(this, "startday")}
+                                    />
+                                </div>
+
+                                <div className="OptionsTTNewNew ">
+                                    <Select
+                                        ref="startmonth"
+                                        placeholder="شهر"
+                                        className="menu-outer-top"
+                                        value={this.state.startmonth}
+                                        options={this.state.startmonthoptions}
+                                        onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                    />
+                                </div>
+
+                                <div className="OptionsOTNewNew ">
+                                    <Select
+                                        ref="startyear"
+                                        placeholder="سنة"
+                                        className="menu-outer-top"
+                                        value={this.state.startyear}
+                                        options={this.state.startyearoptions}
+                                        onChange={this.handleYearoptions.bind(this, "startyear")}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="NewClassUserNew" >
+                            <p className="NewNewNewCreateBigDivLeft">العنوان</p>
+                            <input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT2"  />
+                        </div>
+
+                        <div className="NewClassUseryay" >
+                            <p className="NewNewNewCreateBigDivLeft">رقم رخصة السائق</p>
+                            <input type="text" className="NewNewNewNewCreateBigDivPTTT2" ref="driverLicenseNumber"  />
+                        </div>
+
+                        <div className="NewClassUser" >
+                            <p className="NewNewNewCreateBigDivLeft">تاريخ إنتهاء الرخصة</p>
+                            <div className="Options-GroupsTNewNew">
+                                <div className="OptionsThTNewNew">
+                                    <Select
+                                        ref="endday"
+                                        placeholder="يوم"
+                                        className="menu-outer-top"
+                                        value={this.state.endday}
+                                        options={this.state.enddayoptions}
+                                        onChange={this.handleDayoptionsE.bind(this, "endday")}
+                                    />
+                                </div>
+
+
+                                <div className="OptionsTTNewNew">
+                                    <Select
+                                        ref="endmonth"
+                                        placeholder="شهر"
+                                        className="menu-outer-top"
+                                        value={this.state.endmonth}
+                                        options={this.state.endmonthoptions}
+                                        onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
+                                    />
+                                </div>
+
+                                <div className="OptionsOTNewNew">
+                                    <Select
+                                        ref="endyear"
+                                        placeholder="سنة"
+                                        className="menu-outer-top"
+                                        value={this.state.endyear}
+                                        options={this.state.endyearoptions}
+                                        onChange={this.handleYearoptionsE.bind(this, "endyear")}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            {/*<div className="CreateBigDiv-left-right">
               <p className="CreateBigDivLeft">صورة شخصية</p>
               <p className="CreateBigDivLeft">تاريخ الميلاد</p>
               <p className="CreateBigDivLeft">العنوان</p>
@@ -693,7 +851,8 @@ class CreateUser extends Component {
                   />
                 </div>
               </div>
-            </div>
+            </div>*/}
+
           </div>
 
         </div>

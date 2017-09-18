@@ -352,7 +352,8 @@ class AddVehicle extends Component {
         console.log("asdasd");
         // if (this.refs.email.value === '' || this.refs.password.value === '' || this.refs.Fname.value === '' || this.refs.Lname.value === '') {
         if (false) {
-            alert('Something is missing');
+            // console.alert('Something is missing');
+            // console.log()
 
         }
         else {
@@ -446,18 +447,6 @@ class AddVehicle extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 <Modal
                     isOpen={this.state.loginErrorModal}
                     onRequestClose={this.closeModal.bind(this, "loginErrorModal")}
@@ -508,8 +497,39 @@ class AddVehicle extends Component {
 
                     <div className="CreateBigDiv-right">
 
-                        <div className="CreateBigDiv-right-right">
-                            {/*<input type="checkbox" className="checkmate" />*/}
+
+
+
+
+
+
+
+                        <div className="Test">
+                            <input type="checkbox" className="Newcheckmate" onChange={this.handleCheckboxChange.bind(this)} checked={this.state.isChecked} />
+                            <div className="NewBOOMMM"><p className="NewCreateBigDivPIdk">هل السائق هو نفس مالك المركبة</p></div>
+                        </div>
+
+                        <div className="Test">
+                            <p className="NewCreateBigDivNewLol" >أسم مالك المركبة</p>
+                            <input type="text" className="NewCreateBigDivP" ref="oName" disabled={this.state.isChecked} />
+                        </div>
+
+                        <div className="Test">
+                            <p className="NewCreateBigDivNewLol">رقم المالك</p>
+                            <input type="text" className="NewCreateBigDivP" ref="OPNumber" disabled={this.state.isChecked} />
+                        </div>
+
+                        <div className="Test">
+                            <p className="NewCreateBigDivNewLol">رقم بطاقة المالك</p>
+                            <input type="text" className="NewCreateBigDivP" ref="nID" disabled={this.state.isChecked} />
+                        </div>
+
+
+
+
+
+
+                        {/*<div className="CreateBigDiv-right-right">
                             <input type="checkbox" className="checkmate" onChange={this.handleCheckboxChange.bind(this)} checked={this.state.isChecked} />
                             <p className="CreateBigDivNewLol">أسم مالك المركبة</p>
                             <p className="CreateBigDivNewLol">رقم المالك</p>
@@ -522,18 +542,122 @@ class AddVehicle extends Component {
                                     <p className="CreateBigDivPIdk">هل السائق هو نفس مالك المركبة</p>
                                 </div>
                                 <input type="text" className="CreateBigDivP" ref="oName" required disabled={this.state.isChecked} />
-                                {/*value={this.state.vehicleOwnerName} value={this.state.vehicleOwnerPNumber}  value={this.state.vehicleOwnerId}*/}
                                 <input type="text" className="CreateBigDivP" ref="OPNumber" required disabled={this.state.isChecked} />
                                 <input type="text" className="CreateBigDivP" ref="nID" required disabled={this.state.isChecked} />
                             </div>
 
-                        </div>
+                        </div>*/}
 
                     </div>
 
                     <div className="CreateBigDiv-left">
 
-                        <div className="CreateBigDiv-left-rightLol">
+
+                    <div className="Newnewplan">
+                            <p className="NewNewCreateBigDivLol">نوع المركبة</p>
+                            <div id="maincontainerLolNewNew">
+                                <div className="threeNewNew" >
+                                    <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
+                                </div>
+                                <div className="fourNew">
+                                    <img src="\Line 515.png" className="twoNew" />
+                                </div>
+
+                                <div className="threeNew" >
+                                    <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
+                                </div>
+                                <div className="fourNew">
+                                    <img src="\Line 515.png" className="twoNew" />
+                                </div>
+                                <div className="threeNew" >
+                                    <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="newplan">
+                            <p className="NewNewCreateBigDivLol">الموديل</p>
+                            <input type="text" ref="make" className="NewNewCreateBigDivPTLol"  />
+
+                        </div>
+
+                        <div className="newplan">
+                            <p className="NewNewCreateBigDivLol">رقم اللوحة</p>
+                            <input type="text" ref="label" className="NewNewCreateBigDivPTLol"  />
+
+                        </div>
+
+
+                        <div className="newplan">
+                            <p className="NewNewCreateBigDivLol">رقم الشاسيه</p>
+                            <input type="text" ref="shaseehNo" className="NewNewCreateBigDivPTLol" />
+
+                        </div>
+
+                        <div className="newplan">
+                            <p className="NewNewCreateBigDivLol">رقم الموتور</p>
+                            <input type="text" ref="motorNo" className="NewNewCreateBigDivPTLol" />
+                        </div>
+
+
+                        <div className="newplan">
+                            <p className="NewNewCreateBigDivLol">تاريخ الإنتاج</p>
+                            <div className="Options-GroupsFiNewNew">
+                                <div className="Inner-options-Div">
+
+                                    {/*<div className="OptionsThTNew">
+                                        <Select
+                                            ref="startday"
+                                            placeholder="يوم"
+                                            className="menu-outer-top"
+                                            value={this.state.Day}
+                                            options={this.state.startdayoptions}
+                                            onChange={this.handleDayoptions.bind(this, "startday")}
+                                        />
+                                    </div>
+
+                                    <div className="OptionsTTNew">
+                                        <Select
+                                            ref="startmonth"
+                                            placeholder="شهر"
+                                            className="menu-outer-top"
+                                            value={this.state.Month}
+                                            options={this.state.startmonthoptions}
+                                            onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                        />
+                                    </div>*/}
+
+                                    <div className="OptionsOTNew">
+                                        <Select
+                                            ref="startyear"
+                                            placeholder="سنة"
+                                            className="menu-outer-top3"
+                                            value={this.state.startyear}
+                                            options={this.state.startyearoptions}
+                                            onChange={this.handleYearoptions.bind(this, "startyear")}
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {/*<div className="CreateBigDiv-left-rightLol">
                             <p className="CreateBigDivLol">نوع المركبة</p>
                             <p className="CreateBigDivLol">الموديل</p>
                             <p className="CreateBigDivLol">رقم اللوحة</p>
@@ -601,7 +725,8 @@ class AddVehicle extends Component {
                             </div>
                             <input type="text" ref="shaseehNo" className="CreateBigDivPTLol" />
                             <input type="text" ref="motorNo" className="CreateBigDivPTLol" />
-                        </div>
+                        </div>*/}
+
                     </div>
 
                 </div>

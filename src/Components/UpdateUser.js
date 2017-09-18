@@ -741,9 +741,33 @@ class UpdateUser extends Component {
 
                 <div className="CreateBigDiv">
 
-                    <div className="CreateBigDiv-right">
+                    <div className="CreateBigDiv-right2">
 
-                        <div className="CreateBigDiv-right-right7aram">
+
+
+
+                        <div className="NewCreateBigDiv7aram">
+                            <p className="NewNewNewCreateBigDiv7aram">الإسم</p>
+                            <input type="text" className="NewDriverProfileText" ref="Fname" required value={this.state.Name} onChange={this.handleOnchangeTextName.bind(this)} />
+                        </div>
+
+                        <div className="NewCreateBigDiv7aram">
+                            <p className="NewNewNewCreateBigDiv7aram">رقم الهاتف</p>
+                            <input type="text" className="NewDriverProfileText" ref="pNumber" required value={this.state.PNumber} onChange={this.handleOnchangeTextPNumber.bind(this)} />
+                        </div>
+
+                        <div className="NewCreateBigDiv7aram">
+                            <p className="NewNewNewCreateBigDiv7aram">البريد الإلكتروني</p>
+                            <input type="email" className="NewDriverProfileText" ref="email" value={this.state.Email} onChange={this.handleOnchangeTextEmail.bind(this)} />
+                        </div>
+
+                        <div className="NewCreateBigDiv7aram">
+                            <p className="NewNewNewCreateBigDiv7aram">كلمة المرور</p>
+                            <input type="password" className="NewDriverProfileText" ref="password" required value={this.state.Password} onChange={this.handleOnchangeTextPword.bind(this)} />
+                        </div>
+
+
+                        {/*<div className="CreateBigDiv-right-right7aram">
                             <p className="CreateBigDiv7aram">الإسم</p>
                             <p className="CreateBigDiv7aram">رقم الهاتف</p>
                             <p className="CreateBigDiv7aram">البريد الإلكتروني</p>
@@ -758,13 +782,120 @@ class UpdateUser extends Component {
                                 <input type="password" className="DriverProfileText" ref="password" required value={this.state.Password} onChange={this.handleOnchangeTextPword.bind(this)} />
                             </div>
 
-                        </div>
+                        </div>*/}
 
                     </div>
 
-                    <div className="CreateBigDiv-left-what">
+                    <div className="CreateBigDiv-left-what2">
 
-                        <div className="CreateBigDiv-left-right">
+
+
+                        <div className="NewClassUser" >
+
+                            <p className="NewNewNewCreateBigDivLeft">صورة شخصية</p>
+                            {/*<input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT" value={this.state.Address} onChange={this.handleOnchangeTextAddress.bind(this)} />*/}
+                            <div className="NewNewNewcustom-file-upload-inner-divLol">
+                                <div className="NewNewNewcustom-file-upload-inner-div-right">
+                                    <label className="NewNewNewcustom-file-upload">
+                                        <input type="file" onChange={this.voo.bind(this)} />
+                                        <img src={this.state.driverPicture} className="NewNewNewcustom-file-upload-img" />
+                                    </label>
+                                </div >
+                                <div className="NewNewNewcustom-file-upload-inner-div-left">
+                                    <p className="ANewClass">اضغط لتغير الصورة الشخصية</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="NewClassUserNewNewNew" >
+                            <p className="NewNewNewCreateBigDivLeft">تاريخ الميلاد</p>
+                            <div className="Options-GroupsTNewNew">
+
+                                <div className="OptionsThTNewNew ">
+                                    <Select
+                                        ref="startday"
+                                        placeholder="يوم"
+                                        className="menu-outer-top2"
+                                        value={this.state.Day}
+                                        options={this.state.startdayoptions}
+                                        onChange={this.handleDayoptions.bind(this, "startday")}
+                                    />
+                                </div>
+
+                                <div className="OptionsTTNewNew ">
+                                    <Select
+                                        ref="startmonth"
+                                        placeholder="شهر"
+                                        className="menu-outer-top"
+                                        value={this.state.Month}
+                                        options={this.state.startmonthoptions}
+                                        onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                    />
+                                </div>
+
+                                <div className="OptionsOTNewNew ">
+                                    <Select
+                                        ref="startyear"
+                                        placeholder="سنة"
+                                        className="menu-outer-top"
+                                        value={this.state.Year}
+                                        options={this.state.startyearoptions}
+                                        onChange={this.handleYearoptions.bind(this, "startyear")}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="NewClassUserNew" >
+                            <p className="NewNewNewCreateBigDivLeft">العنوان</p>
+                            <input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT" value={this.state.Address} onChange={this.handleOnchangeTextAddress.bind(this)} />
+                        </div>
+
+                        <div className="NewClassUseryay" >
+                            <p className="NewNewNewCreateBigDivLeft">رقم رخصة السائق</p>
+                            <input type="text" className="NewNewNewNewCreateBigDivPTTT" ref="driverLicenseNumber" required value={this.state.LNumber} onChange={this.handleOnchangeTextLNumber.bind(this)} />
+                        </div>
+
+                        <div className="NewClassUser" >
+                            <p className="NewNewNewCreateBigDivLeft">تاريخ إنتهاء الرخصة</p>
+                            <div className="Options-GroupsTNewNew">
+                                <div className="OptionsThTNewNew">
+                                    <Select
+                                        ref="endday"
+                                        placeholder="يوم"
+                                        className="menu-outer-top"
+                                        value={this.state.Day2}
+                                        options={this.state.enddayoptions}
+                                        onChange={this.handleDayoptionsE.bind(this, "endday")}
+                                    />
+                                </div>
+
+
+                                <div className="OptionsTTNewNew">
+                                    <Select
+                                        ref="endmonth"
+                                        placeholder="شهر"
+                                        className="menu-outer-top"
+                                        value={this.state.Month2}
+                                        options={this.state.endmonthoptions}
+                                        onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
+                                    />
+                                </div>
+
+                                <div className="OptionsOTNewNew">
+                                    <Select
+                                        ref="endyear"
+                                        placeholder="سنة"
+                                        className="menu-outer-top"
+                                        value={this.state.Year2}
+                                        options={this.state.endyearoptions}
+                                        onChange={this.handleYearoptionsE.bind(this, "endyear")}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/*<div className="CreateBigDiv-left-right">
                             <p className="CreateBigDivLeft">صورة شخصية</p>
                             <p className="CreateBigDivLeft">تاريخ الميلاد</p>
                             <p className="CreateBigDivLeft">العنوان</p>
@@ -822,21 +953,6 @@ class UpdateUser extends Component {
                             <input type="text" ref="address" className="CreateBigDivPTTT" value={this.state.Address} onChange={this.handleOnchangeTextAddress.bind(this)} />
 
 
-                            {/*that.setState({
-                driverName: x.firstName,
-                driverPNumber: x.phoneNumber,
-                driverEmail: x.email,
-                driverPassword: x.password,
-                driverBirthday: x.birthday,
-                driverAddress: x.address,
-                driverPicture: x.picture,
-            })
-            if (x.driverLicense) {
-                that.setState({
-                    DriverLicense: x.driverLicense,
-                    driverLicenseNo: x.driverLicense.number,
-                    driverLicenseExpDate: x.driverLicense.expirationDate,
-                })*/}
 
 
 
@@ -875,7 +991,7 @@ class UpdateUser extends Component {
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div>*/}
                     </div>
 
                 </div>

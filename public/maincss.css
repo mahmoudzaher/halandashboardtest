@@ -3,7 +3,8 @@
     padding-bottom: 1%;
 }
 li.NavP{
-    padding-right: 29%;
+      float: left;
+    padding-left: 3%;
 }
 
 /*td {
@@ -409,16 +410,18 @@ background-position: left;
 }
 
 .fake-input-right-add {
-        float: left;
+       float: left;
     text-align: center;
     padding-left: 8%;
-    position: absolute;
+    /* position: absolute; */
+    padding-bottom: 6%;
 }
 img#profile-Img {
     padding-left: 50%;
 }
 .profileP {
-    margin-top: -12px;
+       /* margin-top: -12px; */
+    /*padding-bottom: 100%;*/
 }
 
 .fake-input-left-search {
@@ -755,8 +758,34 @@ span.Select-clear{
 }
 
 .Select-arrow-zone{
-padding-right: 40px !important;
+/*padding-right: 40px !important;*/
+padding-left: 25% !important;
 }
+
+
+
+
+
+
+.menu-outer-top2 .Select-arrow-zone {
+   padding-left: 0px !important;
+}
+
+.menu-outer-top2 .Select-menu-outer {
+    /*width: 121%;*/
+     width: 120%;
+}
+
+.menu-outer-top3 .Select-arrow-zone {
+   padding-left: 0% !important;
+}
+
+.menu-outer-top3 .Select-menu-outer {
+    /*width: 121%;*/
+     width: 120%;
+}
+
+
 
 .Select-arrow{
         margin-left: -10px;
@@ -794,6 +823,11 @@ input[type="file"] {
 
 .CreateBigDiv-right{
         width: 50%;
+    float: right;
+        /*padding-top: 5%;*/
+}
+.CreateBigDiv-right2{
+        width: 45%;
     float: right;
         /*padding-top: 5%;*/
 }
@@ -845,9 +879,10 @@ input[type="file"] {
 }
 
 .CreateBigDiv-left{
-            width: 41%;
+          width: 50%;
     float: left;
-    /*margin-top: -14%;*/
+    /* margin-top: -14%; */
+    margin-top: -1%;
 }
 .CreateBigDiv-leftLol{
             width: 41%;
@@ -856,19 +891,25 @@ input[type="file"] {
 }
 
 .CreateBigDiv-left-what{
-               width: 41%;
+               width: 50%;
     float: right;
     /* margin-top: -14%; */
     /* text-align: right; */
 }
-
-.CreateBigDiv-left-right{
-           /*width: 50%; */
+.CreateBigDiv-left-what2{
+               width: 55%;
     float: right;
-    text-align: -webkit-right;
-    display: inline-grid;
-    margin-right: 10%;
-    /*margin-top: 2%;*/
+    /* margin-top: -14%; */
+    /* text-align: right; */
+}
+.CreateBigDiv-left-right{
+         /* width: 50%; */
+    float: right;
+    /* text-align: -webkit-right; */
+    /* display: inline-grid; */
+    /* margin-right: 10%; */
+    /* margin-top: 2%; */
+    padding-right: 5%;
 }
 
 .CreateBigDiv-left-rightLol{
@@ -890,11 +931,13 @@ input[type="file"] {
     margin-left: 28%;
 }
 .CreateBigDiv-left-leftDis2{
-    width: 50%;
+      width: 50%;
     float: left;
     text-align: center;
-    margin-top: -32%;
-    margin-left: 35%;
+    /* margin-top: -32%; */
+    margin-top: 4%;
+    /* margin-left: 35%; */
+    padding-left: 25%;
 }
 
 .CreateBigDiv-left-leftLol{
@@ -955,17 +998,13 @@ input.CreateBigDivPTTTT {
 }
 
 p.CreateBigDiv {
-        /*margin-bottom: 7%;
+          margin-bottom: 0%;
     margin-top: 35%;
     font-size: 16px;
-    font-family: Cairo;*/
-
-    margin-bottom: 7%;
-    margin-top: 35%;
-    font-size: 16px;
-    /* text-align: right; */
+     text-align: right; 
     margin-right: -200%;
     font-family: Cairo;
+        padding-bottom: 10%;
 }
 
 p.CreateBigDivDis {
@@ -1225,11 +1264,20 @@ input.CreateBigDivPTLol {
 }
 
 .upload-button-divDisHello {
-          /* padding-top: 6%; */
+        /* padding-top: 6%; */
     display: flow-root;
     padding-right: 10%;
     padding-bottom: 3%;
     width: 100%;
+}
+
+.upload-button-divDisHello2 {
+        /* padding-top: 6%; */
+    display: flow-root;
+    padding-right: 10%;
+    padding-bottom: 3%;
+    width: 100%;
+        margin-left: 5%;
 }
 
 .upload-button-divDisHelloNew {
@@ -1240,18 +1288,29 @@ input.CreateBigDivPTLol {
 }
 
 img.helloimage {
-    margin-top: -10%;
+         margin-top: -10%;
+    margin-left: 20%;
+    height: 42px;
+    margin-bottom: 3%;
 }
 
 img.helloimage2{
-        margin-top: -10%;
-    margin-right: 50%;
+          /* margin-top: -10%; */
+    margin-top: -10%;
+    /* margin-left: 10%; */
+    height: 42px;
+    margin-bottom: 3%;
+    margin-right: 10%;
 }
 
 .uploadWhat {
     /* margin-left: -198%; */
     width: 100%;
     margin-left: 30%;
+}
+.uploadWhat2 {
+        width: 100%;
+    margin-left: 40%;
 }
 
 .upload-button-divLolll {
@@ -1276,7 +1335,7 @@ img.helloimage2{
 
 
 label.upload-button {
-        padding: 8px;
+        padding: 2%;
     padding-left: 17%;
     border: 1px solid #BEC0C2;
     background-color: #BEC0C2;
@@ -1380,6 +1439,7 @@ div#maincontainer{
 div#maincontainerLol{
         margin-left: 25%;
     padding-top: 2%;
+        min-width: 300px;
 }
     /*padding-right: 2%;*/
 
@@ -1454,7 +1514,8 @@ img.two {
 ul.react-tabs__tab-list {
     background-color: white;
   margin-left: -30%;
-  margin-top: -4%;
+  /*margin-top: -4%;*/
+    /*padding-bottom: -10%;*/
   list-style-type: none;
     /*margin: 0;*/
     padding: 0;
@@ -1469,7 +1530,9 @@ ul.react-tabs__tab-list {
 }
 
 
-
+.fake-input-right {
+    margin-top: -7%;
+}
 .Driver {
             float: right;
     text-align: center;
@@ -1760,7 +1823,7 @@ div.Select.Select--single.is-clearable.is-focused.is-open.is-searchable .Select-
 
 .menu-outer-top .Select-menu-outer {
     /*width: 121%;*/
-     width: 123%;
+     width: 120%;
 }
 .menu-outer-top .Select-control {
 /*background: red;*/
@@ -1786,6 +1849,7 @@ display: none;
 	display: block;*/
     /*color: red !important;*/
     /*background: white !important;*/
+    /*height: 10%*/
 
 }
 span.Select-arrow
@@ -2104,4 +2168,404 @@ p.statsPopInnerDiv-left-p {
 .newdivclass {
   padding-top: 3%;
     padding-bottom: 6%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Test {
+    text-align: left;
+    padding-bottom: 6%;
+}
+/*.NewBOOMMM {
+    float: left;
+}*/
+.NewBOOMMM {
+    float: right;
+    padding-right: 1%;
+}
+/*input.Newcheckmate {
+    float: left;
+}*/
+input.Newcheckmate {
+      float: right;
+    margin-right: 40%;
+    margin-top: 0.75%;
+}
+/*p.NewCreateBigDivNewLol {
+    margin: 0%;
+    font-family: Cairo !important;
+    font-size: 16px;
+}*/
+
+p.NewCreateBigDivNewLol {
+      float: right;
+    margin: 0%;
+    font-family: Cairo !important;
+    text-align: right;
+    font-size: 16px;
+    min-width: 110px;
+    padding-right: 40%;
+    /* padding-right: 46%; */
+    padding-left: 5%;
+}
+input.NewCreateBigDivP {
+                float: right;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    font-family: Cairo !important;
+    font-size: 16px;
+    margin-right: 5%;
+    width: 30%;
+    height: 35px;
+}
+p.NewCreateBigDivPIdk {
+    margin: 0%;
+    font-family: Cairo !important;
+    font-size: 15px;
+}
+.NewTestP {
+    float: left;
+}
+
+
+
+
+input.NewNewCreateBigDivPTLol {
+    float: right;
+    /* padding: 0%; */
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+    font-family: Cairo !important;
+    font-size: 16px;
+    width: 30%;
+}
+
+p.NewNewCreateBigDivLol {
+         float: right;
+    margin: 0%;
+    /* min-width: 100px; */
+    font-size: 16px;
+    min-width: 85px;
+    padding-right: 5%;
+    text-align: right;
+    padding-left: 5%;
+}
+
+.newplan {
+    width: 100%;
+    /*padding-bottom: 5%;*/
+        min-height: 50px;
+}
+
+.CreateBigDiv-leftNewNew {
+    width: 50%;
+    float: right;
+    /* margin-top: -14%; */
+}
+
+.Newnewplan {
+     width: 100%;
+    /* float: right; */
+    padding-bottom: 0%;
+    min-height: 50px;
+}
+
+div#maincontainerLolNewNew {
+       /* margin-left: 25%; */
+    float: right;
+    /* padding-top: 2%; */
+    min-width: 300px;
+    padding-right: 1%;
+}
+
+
+.Options-GroupsFiNewNew {
+    width: 100%;
+}
+
+.OptionsOTNew {
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+           padding-right: 2%;
+}
+
+.OptionsTTNew {
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+        padding-right: 5%;
+}
+
+.OptionsThTNew {
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+}
+
+.Inner-options-Div {
+    padding-right: 10%;
+}
+
+img.twoNew {
+    padding-right: 1%;
+}
+.threeNew {
+         float: right;
+    border: 1px;
+    /* padding-top: 0%; */
+    padding: 5%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0.5%;
+}
+.threeNewNew {
+      float: right;
+    border: 1px;
+    /* padding-top: 0%; */
+    padding: 5%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+}
+.fourNew {
+       float: right;
+    border: 1px;
+    padding: 5%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10%;
+}
+.Select-control {
+    min-width: 85px;
+}
+
+span.Select-arrow-zone {
+    float: left;
+}
+.Select-arrow-zone {
+    margin-top: 5%
+}
+span.Select-clear-zone {
+    float: left;
+}
+
+span#react-select-2--value {
+    float: left;
+}
+
+
+p.NewNewNewCreateBigDiv7aram {
+       float: right;
+    font-size: 16px;
+    min-width: 100px;
+    text-align: right;
+    padding-right: 40%;
+    margin: 0%;
+    /* padding-left: 5%; */
+}
+
+
+input.NewDriverProfileText {
+   float: right; 
+    /* width: 70%; */
+    border-radius: 5px;
+    /* font-size: 16px; */
+    margin-right: 5%;
+    width: 36.9%;
+    height: 35px;
+    font-size: 16px;
+    padding-right: 1%;
+    text-align: right;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+}
+
+.NewCreateBigDiv7aram {
+    padding-bottom: 7%;
+    width: 100%;
+}
+
+input.NewNewNewNewCreateBigDivPTTT {
+    float: right;
+    /* width: 70%; */
+    border-radius: 5px;
+    font-size: 16px;
+    /*margin-right: 5%;*/
+    width: 32%;
+    height: 35px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+}
+
+input.NewNewNewNewCreateBigDivPTTT2 {
+    float: right;
+    /* width: 70%; */
+    border-radius: 5px;
+    font-size: 16px;
+    /*margin-right: 5%;*/
+    width: 31%;
+    height: 35px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+}
+
+p.NewNewNewCreateBigDivLeft {
+      float: right;
+    font-size: 16px;
+    min-width: 160px;
+    margin: 0%;
+    text-align: right;
+    /* padding-left: 5%; */
+        /*padding-right: 10%;*/
+        padding-right: 20%;
+}
+
+
+.NewClassUser {
+       padding-bottom: 6%;
+    /*padding-bottom: 10%;*/
+    min-width: 840px;
+    min-height: 30px;
+}
+.NewClassUseryay {
+     padding-bottom: 4%;
+    /* padding-bottom: 10%; */
+    min-width: 840px;
+    min-height: 30px
+}
+.NewClassUserNew {
+       padding-bottom: 6%;
+    min-width: 840px;
+}
+
+.NewClassUserNewNewNew {
+       padding-bottom: 6%;
+    min-width: 840px;
+}
+
+.NewNewNewcustom-file-upload-inner-div-right {
+       /* padding-left: 10%; */
+    float: right;
+    /* padding-left: 31%; */
+}
+.NewNewNewcustom-file-upload-inner-divLol {
+    float: right;
+    margin-top: -5%;
+    /* padding-bottom: 2%; */
+}
+p.ANewClass {
+    margin: 0%;
+    /* padding-right: 10%; */
+    /* margin-right: 5%; */
+    /* min-width: 145px; */
+}
+
+.NewNewNewcustom-file-upload-inner-div-left {
+    float: right;
+    min-width: 145px;
+    min-height: 25px;
+    padding-top: 18%;
+    /* margin-right: 124%; */
+}
+
+p.ANewClass {
+    margin: 0%;
+    padding-right: 30%;
+    /* margin-right: 5%; */
+    min-width: 145px;
+    min-height: 25px;
+}
+
+.Options-GroupsTNewNew {
+    /* width: 100%; */
+    /* margin-left: 50%; */
+    /* padding-bottom: 10%; */
+    /* margin-top: -4%; */
+    float: right;
+    padding-right: 2%;
+}
+
+.OptionsThTNewNew {
+    /* float: left; */
+    float: right;
+    /* padding-right: 10%; */
+    /* width: 10%; */
+    /* padding-left: 10%; */
+}
+
+.OptionsTTNewNew {
+    float: right;
+    /* width: 10%; */
+    /* padding-left: 4%; */
+    /* margin-right: 8%; */
+    padding-right: 10%;
+}   
+
+.OptionsOTNewNew {
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+    padding-right: 10%;
+}
+
+
+p.CreateBigDivDisNewNew {
+          margin-bottom: 10%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    text-align: right;
+    min-width: 120px;
+    margin-right: 75%;
+    /* float: right; */
+    font-family: Cairo;
+}
+.goodMor {
+    padding-bottom: 10%;
+}
+.upload-button-divDisHelloGood {
+    float: right;
+}
+
+label.upload-buttonGood {
+    padding: 8px;
+    padding-left: 17%;
+    border: 1px solid #BEC0C2;
+    background-color: #BEC0C2;
+    color: white;
+    text-align: center;
+    padding-right: 13%;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 10px;
+    font-family: Cairo;
+    font-size: 14px;
 }
