@@ -558,12 +558,12 @@ class DriverProfile extends Component {
 
                     <div className="CreateBigDiv-left-what">
 
-                        <div className="CreateBigDiv-left-right">
+                        <div className="CreateBigDiv-left-rightNewwwww">
                             {/*<p className="CreateBigDiv">صورة شخصية</p>*/}
-                            <p className="CreateBigDivLeft">تاريخ الميلاد</p>
-                            <p className="CreateBigDivLeft">العنوان</p>
-                            <p className="CreateBigDivLeft">رقم رخصة السائق</p>
-                            <p className="CreateBigDivLeft">تاريخ إنتهاء الرخصة</p>
+                            <p className="CreateBigDivLeftNewNewNewNewNew">تاريخ الميلاد</p>
+                            <p className="CreateBigDivLeftNewNewNewNewNew">العنوان</p>
+                            <p className="CreateBigDivLeftNewNewNewNewNew">رقم رخصة السائق</p>
+                            <p className="CreateBigDivLeftNewNewNewNewNew">تاريخ إنتهاء الرخصة</p>
                         </div>
 
                         <div className="CreateBigDiv-left-leftLolLol">
@@ -794,10 +794,10 @@ class DriverProfile extends Component {
 
                     <div className="CreateBigDiv-right">
                         <div className="CreateBigDiv-right-right">
-                            <p className="CreateBigDivPapers">بطاقة السائق</p>
-                            <p className="CreateBigDivPapers">رخصة السائق</p>
-                            <p className="CreateBigDivPapers">رخصة المركبة</p>
-                            <p className="CreateBigDivPapers">مستندات التمليك</p>
+                            <p className="CreateBigDivPapersTotallyNew">بطاقة السائق</p>
+                            <p className="CreateBigDivPapersTotallyNew">رخصة السائق</p>
+                            <p className="CreateBigDivPapersTotallyNew">رخصة المركبة</p>
+                            <p className="CreateBigDivPapersTotallyNew">مستندات التمليك</p>
                         </div>
                         <div className="CreateBigDiv-right-left">
                             <div className="upload-button-div">
@@ -833,36 +833,36 @@ class DriverProfile extends Component {
                     </div>
 
                     <div className="CreateBigDiv-left">
-                        <div className="CreateBigDiv-left-right">
-                            <p className="CreateBigDivPapersLol">صورة العنوان</p>
-                            <p className="CreateBigDivPapersLol">فيش و تشبيه</p>
-                            <p className="CreateBigDivPapersLol">تحليل مخدرات</p>
-                            <p className="CreateBigDivPapersLol">عقد شراكة</p>
+                        <div className="CreateBigDiv-left-rightNewwwww2">
+                            <p className="CreateBigDivPapersLolBoom">صورة العنوان</p>
+                            <p className="CreateBigDivPapersLolBoom">فيش و تشبيه</p>
+                            <p className="CreateBigDivPapersLolBoom">تحليل مخدرات</p>
+                            <p className="CreateBigDivPapersLolBoom">عقد شراكة</p>
                         </div>
-                        <div className="CreateBigDiv-left-leftLolLol">
+                        <div className="CreateBigDiv-left-leftLolLolNew">
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray })} />
+                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray })} />
+                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork"/>
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray })} />
+                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLol" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray })} />
+                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}

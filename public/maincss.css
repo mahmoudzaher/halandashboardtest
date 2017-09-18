@@ -408,6 +408,11 @@ background-position: left;
          width: 100%;
     float: left;
 }
+.fake-input-right22 {
+
+         width: 100%;
+    float: left;
+}
 
 .fake-input-right-add {
        float: left;
@@ -415,6 +420,13 @@ background-position: left;
     padding-left: 8%;
     /* position: absolute; */
     padding-bottom: 6%;
+}
+.fake-input-right-addNew {
+          float: left;
+    /* text-align: center; */
+    padding-left: 8%;
+    position: relative;
+    padding-bottom: 9%;
 }
 img#profile-Img {
     padding-left: 50%;
@@ -2568,4 +2580,60 @@ label.upload-buttonGood {
     -webkit-border-radius: 10px;
     font-family: Cairo;
     font-size: 14px;
+}
+
+p.CreateBigDivLeftNewNewNewNewNew{
+    font-size: 16px;
+    width: 125px;
+    font-family: Cairo;
+    height: 30px;
+    margin: 0;
+    padding-bottom: 30%;
+}
+
+.CreateBigDiv-left-rightNewwwww{
+        width: 20%;
+    float: right;
+    text-align: right;
+    /* text-align: -webkit-right; */
+    display: inline-grid
+}
+.CreateBigDiv-left-rightNewwwww2{
+        width: 20%;
+    float: right;
+    text-align: right;
+        padding-right: 8%;
+    /* text-align: -webkit-right; */
+    display: inline-grid
+}
+
+p.CreateBigDivPapersTotallyNew{
+        margin-bottom: 10%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    text-align: right;
+    /* margin-right: -200%; */
+    padding-right: 60%;
+    font-family: Cairo;
+}
+
+img.browserLolTotallyNew{
+    width: 10%;
+    padding-bottom: 4%;
+    float: right;
+}
+
+.CreateBigDiv-left-leftLolLolNew{
+    width: 50%;
+    float: right;
+    text-align: center;
+}
+p.CreateBigDivPapersLolBoom{
+      margin-bottom: 30%;
+    /* margin-top: 35%; */
+    font-size: 16px;
+    /* text-align: right; */
+    /* margin-right: -200%; */
+    font-family: Cairo;
+    height: 30px;
 }

@@ -790,7 +790,7 @@ class Promo extends Component {
                     </ul>
                 </div>
                 <br />
-                <div className="fake-input-right-add" onClick={() => this.refs.PromoDialog.show()}>
+                <div className="fake-input-right-addNew" onClick={() => this.refs.PromoDialog.show()}>
                     <div className="profileI">
                         <img src="./promo.png" id="profile-Img" />
                     </div>

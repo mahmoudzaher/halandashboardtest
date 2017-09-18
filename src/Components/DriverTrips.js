@@ -670,7 +670,7 @@ class DriverTrips extends Component {
 
 
 
-                <div className="fake-input-right" >
+                <div className="fake-input-right22" >
                     <div className="Driversdiv">
                         {this.tableActive()}
                     </div>
