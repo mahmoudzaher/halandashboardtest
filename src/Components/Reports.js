@@ -294,11 +294,11 @@ class Reports extends Component {
     }
 
     handlePromo() {
-
+        ReactRouter.goTo('/Promo')
     }
 
     handleDrivers() {
-
+        ReactRouter.goTo('/DashBoard')
     }
 
     logOut() {

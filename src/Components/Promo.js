@@ -785,7 +785,7 @@ class Promo extends Component {
                         <li><a >رحلات</a></li>
                         <li ><a  className="active">برومو كود</a></li>
                         <li><a >دعم</a></li>
-                        <li><a >تقارير</a></li>
+                        <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
