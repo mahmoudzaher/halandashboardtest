@@ -280,7 +280,7 @@ class Reports extends Component {
                     }
                     return (
                         <tr>
-                            <td>{row.total}</td>
+                            <td>{row.total/5}</td>
                             <td>{row.count}</td>
                             <td><img src={imageURL} style={{ paddingTop: "6px" }} /></td>
                             <td>{rating}<img src="Path 1236.png" style={{ paddingLeft: "0px" }} /></td>
