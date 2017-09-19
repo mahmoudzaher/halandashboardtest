@@ -1988,6 +1988,7 @@ img.dude{
 img.dudeHello{
            width: 40%;
     border-radius: 30%;
+    max-width: 250px;
 }
 
 fieldset.yowazap{
@@ -2692,4 +2693,69 @@ p.statisticsP222{
 .nnnnnnn {
       padding-bottom: 5%;
     width: 100%;
+}
+
+
+
+.Options-GroupsTNewNewcomecome{
+    display: -webkit-box;
+    float: right;
+    padding-right: 6%;
+}
+
+.OptionsThTNewNewcomecome {
+    /* float: left; */
+    /* float: right; */
+    margin-right: 10%;
+    /* width: 10%; */
+    /* padding-left: 10%; */
+}
+
+.OptionsTTNewNewtruecomecome {
+    /* float: right; */
+    /* width: 10%; */
+    /* padding-left: 4%; */
+    /* margin-right: 8%; */
+    /* padding-right: 40%; */
+    margin-right: 10%;
+}
+
+.OptionsOTNewNewcomecome {
+    /* float: right; */
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+    /* padding-right: 8%; */
+}
+
+input.NewNewNewNewCreateBigDivPTTT2comecome {
+      float: right;
+    /* width: 70%; */
+    border-radius: 5px;
+    font-size: 16px;
+    /* margin-right: 5%; */
+    width: 30%;
+    height: 35px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
+}
+img.NewNewNewcustom-file-upload-img {
+    max-width: 80px;
+    border-radius: 50%;
+    border-radius: 0.5;
+}
+
+
+input.NewNewNewNewCreateBigDivPTTTcomebaby {
+    float: right;
+    /* width: 70%; */
+    border-radius: 5px;
+    font-size: 16px;
+    /* margin-right: 5%; */
+    width: 30%;
+    height: 35px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #2C2D72;
 }

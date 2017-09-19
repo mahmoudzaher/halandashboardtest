@@ -662,9 +662,9 @@ class CreateUser extends Component {
 
             <div className="NewClassUserNewNewNew" >
               <p className="NewNewNewCreateBigDivLeft">تاريخ الميلاد</p>
-              <div className="Options-GroupsTNewNew">
+              <div className="Options-GroupsTNewNewcomecome">
 
-                <div className="OptionsThTNewNew ">
+                <div className="OptionsThTNewNewcomecome ">
                   <Select
                     ref="startday"
                     placeholder="يوم"
@@ -675,7 +675,7 @@ class CreateUser extends Component {
                   />
                 </div>
 
-                <div className="OptionsTTNewNewtrue ">
+                <div className="OptionsTTNewNewtruecomecome ">
                   <Select
                     ref="startmonth"
                     placeholder="شهر"
@@ -686,7 +686,7 @@ class CreateUser extends Component {
                   />
                 </div>
 
-                <div className="OptionsOTNewNew ">
+                <div className="OptionsOTNewNewcomecome ">
                   <Select
                     ref="startyear"
                     placeholder="سنة"
@@ -701,18 +701,18 @@ class CreateUser extends Component {
 
             <div className="NewClassUserNew" >
               <p className="NewNewNewCreateBigDivLeft">العنوان</p>
-              <input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT2" />
+              <input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT2comecome" />
             </div>
 
             <div className="NewClassUseryay" >
               <p className="NewNewNewCreateBigDivLeft">رقم رخصة السائق</p>
-              <input type="text" className="NewNewNewNewCreateBigDivPTTT2" ref="driverLicenseNumber" />
+              <input type="text" className="NewNewNewNewCreateBigDivPTTT2comecome" ref="driverLicenseNumber" />
             </div>
 
             <div className="NewClassUser" >
               <p className="NewNewNewCreateBigDivLeft">تاريخ إنتهاء الرخصة</p>
-              <div className="Options-GroupsTNewNew">
-                <div className="OptionsThTNewNew">
+              <div className="Options-GroupsTNewNewcomecome">
+                <div className="OptionsThTNewNewcomecome">
                   <Select
                     ref="endday"
                     placeholder="يوم"
@@ -724,7 +724,7 @@ class CreateUser extends Component {
                 </div>
 
 
-                <div className="OptionsTTNewNew">
+                <div className="OptionsTTNewNewtruecomecome">
                   <Select
                     ref="endmonth"
                     placeholder="شهر"
@@ -735,7 +735,7 @@ class CreateUser extends Component {
                   />
                 </div>
 
-                <div className="OptionsOTNewNew">
+                <div className="OptionsOTNewNewcomecome">
                   <Select
                     ref="endyear"
                     placeholder="سنة"
