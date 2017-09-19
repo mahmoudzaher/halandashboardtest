@@ -554,7 +554,7 @@ class AddVehicle extends Component {
 
 
                     <div className="Newnewplan">
-                            <p className="NewNewCreateBigDivLol">نوع المركبة</p>
+                            <p className="NewNewCreateBigDivLol">نوع المركبة *</p>
                             <div id="maincontainerLolNewNew">
                                 <div className="threeNewNew" >
                                     <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />

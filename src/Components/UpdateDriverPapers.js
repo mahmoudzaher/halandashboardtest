@@ -295,45 +295,59 @@ class UpdateDriverPapers extends Component {
             for (var i = 0; i < this.state.nationalIdimg.length; i++) {
                 data.append('nationalId', this.state.nationalIdimg[i])
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            for (var i = 0; i < this.state.addressimg.length; i++) {
                 data.append('address', this.state.addressimg[i])
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            for (var i = 0; i < this.state.drivingLicenseimg.length; i++) {
                 data.append('drivingLicense', this.state.drivingLicenseimg[i])
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            for (var i = 0; i < this.state.vehicleLicenseimg.length; i++) {
                 data.append('vehicleLicense', this.state.vehicleLicenseimg[i])
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            for (var i = 0; i < this.state.vehicleOwnerShipimg.length; i++) {
                 data.append('ownershipDocuments', this.state.vehicleOwnerShipimg[i])
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            for (var i = 0; i < this.state.criminalRecordimg.length; i++) {
                 data.append('criminalRecord', this.state.criminalRecordimg[i])
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            for (var i = 0; i < this.state.drugTestimg.length; i++) {
                 data.append('drugTest', this.state.drugTestimg[i])
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            for (var i = 0; i < this.state.contractimg.length; i++) {
                 data.append('contract', this.state.contractimg[i])
             }
-            data.append('address', this.state.addressimg)
-            data.append('drivingLicense', this.state.drivingLicenseimg)
-            data.append('vehicleLicense', this.state.vehicleLicenseimg)
-            data.append('ownershipDocuments', this.state.vehicleOwnerShipimg)
-            data.append('criminalRecord', this.state.criminalRecordimg)
-            data.append('drugTest', this.state.drugTestimg)
-            data.append('contract', this.state.contractimg)
+            // data.append('address', this.state.addressimg)
+            // data.append('drivingLicense', this.state.drivingLicenseimg)
+            // data.append('vehicleLicense', this.state.vehicleLicenseimg)
+            // data.append('ownershipDocuments', this.state.vehicleOwnerShipimg)
+            // data.append('criminalRecord', this.state.criminalRecordimg)
+            // data.append('drugTest', this.state.drugTestimg)
+            // data.append('contract', this.state.contractimg)
 
+              if (this.state.nationalIdimg.length > 0 || this.state.addressimg.length > 0 || this.state.drivingLicenseimg.length > 0 || this.state.vehicleLicenseimg.length > 0 ||
+                this.state.vehicleOwnerShipimg.length > 0 || this.state.criminalRecordimg.length > 0 || this.state.drugTestimg.length > 0 || this.state.contractimg.length > 0) {
+                axios.post('/operator/adddriverpapers', data).then(function (response) {
+                    console.log(response)
+                    window.localStorage.setItem('sessionToken', response.data);
+                    that.refs.PromoDialog.show()
 
-            axios.post('/operator/adddriverpapers', data).then(function (response) {
-                console.log(response)
-                window.localStorage.setItem('sessionToken', response.data);
+                }).catch(function (error) {
+                    alert(error.message);
+                    console.log(error)
+                })
+            }
+            else {
                 that.refs.PromoDialog.show()
+            }
+            // axios.post('/operator/adddriverpapers', data).then(function (response) {
+            //     console.log(response)
+            //     window.localStorage.setItem('sessionToken', response.data);
+            //     that.refs.PromoDialog.show()
 
-            }).catch(function (error) {
-                alert(error.message);
-                console.log(error)
-            })
+            // }).catch(function (error) {
+            //     alert(error.message);
+            //     console.log(error)
+            // })
         }
         e.preventDefault();
     }

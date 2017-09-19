@@ -2179,6 +2179,7 @@ p.statsPopInnerDiv-left-p {
     border-radius: 72px;
     color: #fff;
     font-family: Cairo;
+        font-size: 18px;
     font-size: 18px;
     margin-top: 10%;
     margin-bottom:5%;
@@ -2467,12 +2468,12 @@ input.NewNewNewNewCreateBigDivPTTT {
 }
 
 input.NewNewNewNewCreateBigDivPTTT2 {
-    float: right;
+      float: right;
     /* width: 70%; */
     border-radius: 5px;
     font-size: 16px;
-    /*margin-right: 5%;*/
-    width: 31%;
+    /* margin-right: 5%; */
+    width: 32%;
     height: 35px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -2570,6 +2571,14 @@ p.ANewClass {
     /* margin-right: 8%; */
     padding-right: 10%;
 }   
+
+.OptionsTTNewNewtrue {
+    float: right;
+    /* width: 10%; */
+    /* padding-left: 4%; */
+    /* margin-right: 8%; */
+    padding-right: 15%;
+}
 
 .OptionsOTNewNew {
     float: right;

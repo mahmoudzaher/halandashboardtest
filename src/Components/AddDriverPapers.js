@@ -136,48 +136,108 @@ class AddDriverPapers extends Component {
             data.append('action', 'ADD');
             data.append('param', 0);
             data.append('driver', this.state.userID)
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('nationalId', this.state.nationalIdimg[i])
+            if (this.state.nationalIdimg.length > 0) {
+                for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+                    data.append('nationalId', this.state.nationalIdimg[i])
+                }
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('address', this.state.addressimg[i])
+            if (this.state.addressimg.length > 0) {
+                for (var i = 0; i < this.state.addressimg.length; i++) {
+                    data.append('address', this.state.addressimg[i])
+                }
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('drivingLicense', this.state.drivingLicenseimg[i])
+            if (this.state.drivingLicenseimg.length > 0) {
+                for (var i = 0; i < this.state.drivingLicenseimg.length; i++) {
+                    data.append('drivingLicense', this.state.drivingLicenseimg[i])
+                }
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('vehicleLicense', this.state.vehicleLicenseimg[i])
+            if (this.state.vehicleLicenseimg.length > 0) {
+                for (var i = 0; i < this.state.vehicleLicenseimg.length; i++) {
+                    data.append('vehicleLicense', this.state.vehicleLicenseimg[i])
+                }
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('ownershipDocuments', this.state.vehicleOwnerShipimg[i])
+            if (this.state.vehicleOwnerShipimg.length > 0) {
+                for (var i = 0; i < this.state.vehicleOwnerShipimg.length; i++) {
+                    data.append('ownershipDocuments', this.state.vehicleOwnerShipimg[i])
+                }
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('criminalRecord', this.state.criminalRecordimg[i])
+            if (this.state.criminalRecordimg.length > 0) {
+                for (var i = 0; i < this.state.criminalRecordimg.length; i++) {
+                    data.append('criminalRecord', this.state.criminalRecordimg[i])
+                }
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('drugTest', this.state.drugTestimg[i])
+            if (this.state.drugTestimg.length > 0) {
+                for (var i = 0; i < this.state.drugTestimg.length; i++) {
+                    data.append('drugTest', this.state.drugTestimg[i])
+                }
             }
-            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                data.append('contract', this.state.contractimg[i])
+            if (this.state.contractimg.length > 0) {
+                for (var i = 0; i < this.state.contractimg.length; i++) {
+                    data.append('contract', this.state.contractimg[i])
+                }
             }
-            data.append('address', this.state.addressimg)
-            data.append('drivingLicense', this.state.drivingLicenseimg)
-            data.append('vehicleLicense', this.state.vehicleLicenseimg)
-            data.append('ownershipDocuments', this.state.vehicleOwnerShipimg)
-            data.append('criminalRecord', this.state.criminalRecordimg)
-            data.append('drugTest', this.state.drugTestimg)
-            data.append('contract', this.state.contractimg)
+            // for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+            //     data.append('nationalId', this.state.nationalIdimg[i])
+            // }
+            // for (var i = 0; i < this.state.addressimg.length; i++) {
+            //     data.append('address', this.state.addressimg[i])
+            // }
+            // for (var i = 0; i < this.state.drivingLicenseimg.length; i++) {
+            //     data.append('drivingLicense', this.state.drivingLicenseimg[i])
+            // }
+            // for (var i = 0; i < this.state.vehicleLicenseimg.length; i++) {
+            //     data.append('vehicleLicense', this.state.vehicleLicenseimg[i])
+            // }
+            // for (var i = 0; i < this.state.vehicleOwnerShipimg.length; i++) {
+            //     data.append('ownershipDocuments', this.state.vehicleOwnerShipimg[i])
+            // }
+            // for (var i = 0; i < this.state.criminalRecordimg.length; i++) {
+            //     data.append('criminalRecord', this.state.criminalRecordimg[i])
+            // }
+            // for (var i = 0; i < this.state.drugTestimg.length; i++) {
+            //     data.append('drugTest', this.state.drugTestimg[i])
+            // }
+            // for (var i = 0; i < this.state.contractimg.length; i++) {
+            //     data.append('contract', this.state.contractimg[i])
+            // }
+            // data.append('nationalId', this.state.addressimg)
+            // data.append('address', this.state.addressimg)
+            // data.append('drivingLicense', this.state.drivingLicenseimg)
+            // data.append('vehicleLicense', this.state.vehicleLicenseimg)
+            // data.append('ownershipDocuments', this.state.vehicleOwnerShipimg)
+            // data.append('criminalRecord', this.state.criminalRecordimg)
+            // data.append('drugTest', this.state.drugTestimg)
+            // data.append('contract', this.state.contractimg)
+
+            console.log(data, "data")
+
+            console.log(this.state.drugTestimg.length, "this.state.drugTestimg.length")
 
 
-            axios.post('/operator/adddriverpapers', data).then(function (response) {
-                console.log(response)
-                window.localStorage.setItem('sessionToken', response.data);
+            if (this.state.nationalIdimg.length > 0 || this.state.addressimg.length > 0 || this.state.drivingLicenseimg.length > 0 || this.state.vehicleLicenseimg.length > 0 ||
+                this.state.vehicleOwnerShipimg.length > 0 || this.state.criminalRecordimg.length > 0 || this.state.drugTestimg.length > 0 || this.state.contractimg.length > 0) {
+                axios.post('/operator/adddriverpapers', data).then(function (response) {
+                    console.log(response)
+                    window.localStorage.setItem('sessionToken', response.data);
+                    that.refs.PromoDialog.show()
+
+                }).catch(function (error) {
+                    alert(error.message);
+                    console.log(error)
+                })
+            }
+            else {
                 that.refs.PromoDialog.show()
+            }
+            // axios.post('/operator/adddriverpapers', data).then(function (response) {
+            //     console.log(response)
+            //     window.localStorage.setItem('sessionToken', response.data);
+            //     that.refs.PromoDialog.show()
 
-            }).catch(function (error) {
-                alert(error.message);
-                console.log(error)
-            })
+            // }).catch(function (error) {
+            //     alert(error.message);
+            //     console.log(error)
+            // })
         }
         e.preventDefault();
     }
@@ -192,55 +252,55 @@ class AddDriverPapers extends Component {
         e.preventDefault();
     }
 
-    hoo() {
-        var temp = this.state.newEntries
-        temp.push("")
-        this.setState({
-            newEntries: temp
-        })
-        this.setState({ displayobj: this.ioo() })
-    }
-    ioo() {
-        console.log("asdasdsad")
-        var that = this;
-        console.log("WoHOOOOOOOOOOOOOOOO")
-        console.log(this.state.newEntries)
-        if (this.state.newEntries.length > 0) {
-            return (
-                React.DOM.table(null,
-                    React.DOM.thead(null,
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    ),
-                    React.DOM.tbody(null,
-                        that.state.newEntries.map(function (i, index) {
-                            let re = [];
-                            that.state["TextKEY" + index + 1] = ""
-                            that.state["file" + index + 1] = ""
-                            re.push(<input type="text" key={index} value={that.state["TextKEY" + index]} onChange={that.handleChangetext.bind(that, "TextKEY" + index)} />)
-                            re.push(<input type="file" key={index} value={that.state["file" + index]} onChange={that.handleChange.bind(that, "file" + index)} />)
+    // hoo() {
+    //     var temp = this.state.newEntries
+    //     temp.push("")
+    //     this.setState({
+    //         newEntries: temp
+    //     })
+    //     this.setState({ displayobj: this.ioo() })
+    // }
+    // ioo() {
+    //     console.log("asdasdsad")
+    //     var that = this;
+    //     console.log("WoHOOOOOOOOOOOOOOOO")
+    //     console.log(this.state.newEntries)
+    //     if (this.state.newEntries.length > 0) {
+    //         return (
+    //             React.DOM.table(null,
+    //                 React.DOM.thead(null,
+    //                     <tr>
+    //                         <td></td>
+    //                         <td></td>
+    //                         <td></td>
+    //                     </tr>
+    //                 ),
+    //                 React.DOM.tbody(null,
+    //                     that.state.newEntries.map(function (i, index) {
+    //                         let re = [];
+    //                         that.state["TextKEY" + index + 1] = ""
+    //                         that.state["file" + index + 1] = ""
+    //                         re.push(<input type="text" key={index} value={that.state["TextKEY" + index]} onChange={that.handleChangetext.bind(that, "TextKEY" + index)} />)
+    //                         re.push(<input type="file" key={index} value={that.state["file" + index]} onChange={that.handleChange.bind(that, "file" + index)} />)
 
-                            return (
-                                React.DOM.tr(null,
-                                    re.map(function (col, index) {
-                                        console.log(col)
-                                        return (
-                                            <td >{col}</td>
-                                        )
-                                    }
-                                    )
-                                )
+    //                         return (
+    //                             React.DOM.tr(null,
+    //                                 re.map(function (col, index) {
+    //                                     console.log(col)
+    //                                     return (
+    //                                         <td >{col}</td>
+    //                                     )
+    //                                 }
+    //                                 )
+    //                             )
 
-                            )
-                        })
-                    )
-                )
-            )
-        }
-    }
+    //                         )
+    //                     })
+    //                 )
+    //             )
+    //         )
+    //     }
+    // }
     joo(event) {
         var file = event.target.files[0];
         this.setState({
@@ -504,7 +564,7 @@ class AddDriverPapers extends Component {
 
                 <br /><br />
 
-                <div className="buttonTT">
+                <div className="buttonTT">         
                     <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
                     {/*onClick={() => this.refs.PromoDialog.show()} */}
                     {/*onClick={this.handleSubmit.bind(this)}*/}
@@ -514,7 +574,8 @@ class AddDriverPapers extends Component {
 
                 <SkyLight hideOnOverlayClicked ref="PromoDialog" dialogStyles={sky}>
                     <img src="./redashboard/Group 1549.png" alt="Header Logo" />
-                    <p className="Sky-P">تم إنشاء ملف السائق بنجاح</p>
+                    <p className="Sky-P">تم إنشاء ملف السائق بنجاح</p>        
+                    <input type="button" value="تمام" className="modalButton" onClick={this.handleBack.bind(this)} style={{ width: "30%" }} />
                 </SkyLight>
 
 
