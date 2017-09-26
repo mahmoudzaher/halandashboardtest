@@ -24,8 +24,8 @@ import CreateBranch from './Components/CreateBranch';
 import UpdateBranch from './Components/UpdateBranch';
 
 // localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
-// localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
-    localStorage.setItem('baseURL', 'http://192.168.1.3:4000/api/v1');
+localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
+    // localStorage.setItem('baseURL', 'http://192.168.1.3:4000/api/v1');
 
 
 
