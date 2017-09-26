@@ -19,10 +19,13 @@ import DriverTrips from './Components/DriverTrips';
 import Promo from './Components/Promo';
 import DriverProfile from './Components/DriverProfile';
 import Reports from './Components/Reports';
+import Branches from './Components/Branches';
+import CreateBranch from './Components/CreateBranch';
+import UpdateBranch from './Components/UpdateBranch';
 
 // localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
-localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
-    // localStorage.setItem('baseURL', 'https://192.168.1.74:4000/api/v1');
+// localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
+    localStorage.setItem('baseURL', 'http://192.168.1.3:4000/api/v1');
 
 
 
@@ -40,7 +43,7 @@ Flux.createRoute('/', function () {
 });
 
 
-Flux.createRoute('/Login', function () {0
+Flux.createRoute('/Login', function () {
     unmountComponentAtNode(document.getElementById('root'));
     /*  unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
@@ -67,6 +70,39 @@ Flux.createRoute('/CreateUser', function () {
     /* unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
         render(<CreateUser />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/Branches', function () {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<Branches />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/CreateBranch', function () {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<CreateBranch />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/UpdateBranch/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<UpdateBranch pID={p.id}/>, document.getElementById('root'));
         /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));

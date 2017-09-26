@@ -45,6 +45,14 @@ class AddDriverPapers extends Component {
             isOpen: false,
             images: [],
             nationalIdPhotosArray: [],
+            picArray: [],
+            picArray2: [],
+            picArray3: [],
+            picArray4: [],
+            picArray5: [],
+            picArray6: [],
+            picArray7: [],
+            picArray8: [],
         }
         this.setState({
             userID: this.props.pID
@@ -53,6 +61,24 @@ class AddDriverPapers extends Component {
     static defaultProps = {
 
     }
+    // aoo(event) {
+    //     var that = this
+    //     var Arrayy = Array.from(event.target.files)
+    //     console.log(event.target.value)
+    //     var newarray = [];
+
+    //     Arrayy.forEach(function (item) {
+    //         console.log(item)
+    //         // that.state.nationalIdPhotosArray.push(item.name)
+    //         newarray.push(item.name)
+    //     })
+    //     console.log(newarray)
+    //     this.setState({
+    //         nationalIdimg: Arrayy,
+    //         nationalIdPhotosArray: newarray
+    //     })
+    // }
+
     aoo(event) {
         var that = this
         var Arrayy = Array.from(event.target.files)
@@ -69,73 +95,290 @@ class AddDriverPapers extends Component {
             nationalIdimg: Arrayy,
             nationalIdPhotosArray: newarray
         })
+
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
 
     boo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             addressimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray5: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     coo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             drivingLicenseimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray2: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     doo(event) {
 
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             vehicleLicenseimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray3: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     eoo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             vehicleOwnerShipimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray4: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     foo(event) {
 
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             criminalRecordimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray6: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     goo(event) {
 
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             drugTestimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray7: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     hoo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             contractimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray8: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
 
@@ -454,7 +697,7 @@ class AddDriverPapers extends Component {
                                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                                     </label>*/}
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.nationalIdPhotosArray, paperType: "nationalId" })} />
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray, paperType: "nationalIdimg" })} />
                             </div>
 
                             <div className="upload-button-divDisHello">
@@ -469,7 +712,7 @@ class AddDriverPapers extends Component {
                                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                                     </label>*/}
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.driverLicensePhotosArray, paperType: "licenseArray" })} />
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray2, paperType: "drivingLicenseimg" })} />
                             </div>
 
                             <div className="upload-button-divDisHello">
@@ -484,7 +727,7 @@ class AddDriverPapers extends Component {
                                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                                     </label>*/}
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.vehicleLicensePhotosArray, paperType: "vehicleLicence" })} />
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray3, paperType: "vehicleLicenseimg" })} />
                             </div>
 
                             <div className="upload-button-divDisHello">
@@ -497,7 +740,7 @@ class AddDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.ownershipDocumentsPhotosArray, paperType: "ownershipDocuments" })} />
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray4, paperType: "vehicleOwnerShipimg" })} />
                             </div>
                         </div>
                     </div>
@@ -517,7 +760,7 @@ class AddDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray, paperType: "address" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray5, paperType: "addressimg" })} />
                             </div>
                             <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
@@ -526,7 +769,7 @@ class AddDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray, paperType: "criminalRecord" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray6, paperType: "criminalRecordimg" })} />
                             </div>
                             <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
@@ -535,7 +778,7 @@ class AddDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray, paperType: "drugTest" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray7, paperType: "drugTestimg" })} />
                             </div>
                             <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
@@ -544,7 +787,7 @@ class AddDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray, paperType: "contract" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray8, paperType: "contractimg" })} />
                             </div>
                         </div>
                     </div>
@@ -601,32 +844,29 @@ class AddDriverPapers extends Component {
 
     loadButtonsArr() {
         let arr = [2];
-        // console.log(this.state.paperDirId, "his.state.paperDirId"),
+        console.log(this.state.paperType, "his.state.paperDirId")
+        var name = [this.state.paperType]
         //     console.log(this.state.driverId, "this.state.driverId,")
-        var object = {
-            driver: this.state.driverId,
-            paperDirId: this.state.paperDirId,
-            urlsAndTypes: {
-                url: this.state.images[this.state.photoIndex],
-                paperType: this.state.paperType
-            }
-        }
+        var array = this.state.images;
+        var array2 = this.state[name];
+        console.log(this.state[name], "this.state[name]")
+        // this.state.[name]
         // this.setState({
         //     sadasfsad: "asdasdasd"
         // })
         return arr.map(function (item) {
             return (
-                // <button onClick={() => console.log(this.state.photoIndex, this.state.images[this.state.photoIndex])}>
-                //     <p>clickme</p>
-                // </button>
+                <button onClick={() => console.log(this.state.photoIndex, array[this.state.photoIndex])}>
+                    <p>clickme</p>
+                </button> ,
 
-                <img className="deletebutton" src="/Path 1292.png" onClick={() =>
-                    axios.post('/operator/deletedriverpapers', object).then(function (response) {
-                        console.log(response)
-                    }).catch(function (error) {
-                        alert(error.message);
-                        console.log(error)
+                <img className="deletebutton" src="/Path 1292.png" onClick={() => {
+                    array.splice(this.state.photoIndex, 1)
+                    array2.splice(this.state.photoIndex, 1)
+                    this.setState({
+                        [name]: array2
                     })
+                }
                 }>
 
                 </img>

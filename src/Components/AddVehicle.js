@@ -589,10 +589,10 @@ class AddVehicle extends Component {
                         <div className="newplan">
                             <p className="NewNewCreateBigDivLol">رقم اللوحة</p>
                             <div className="DivNewNewCreateBigDivPTLol123and4">
-                                <div className="DivNewNewCreateBigDivPTLol121">  <input type="text" ref="labelnum1" className="NewNewCreateBigDivPTLol123" maxlength="1" onChange={this.lableChange.bind(this)}/> </div>
-                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" className="NewNewCreateBigDivPTLol1236" maxlength="1" onChange={this.lableChange.bind(this)}/> </div>
-                                <div className="DivNewNewCreateBigDivPTLol123">  <input type="text" ref="labelnum3" className="NewNewCreateBigDivPTLol1235" maxlength="1" onChange={this.lableChange.bind(this)}/> </div>
-                                <div className="DivNewNewCreateBigDivPTLol124">  <input type="text" ref="labeltext" className="NewNewCreateBigDivPTLol1234" maxlength="4" onChange={this.lableChange.bind(this)}/> </div>
+                                <div className="DivNewNewCreateBigDivPTLol121">  <input type="text" ref="labelnum1" className="NewNewCreateBigDivPTLol123" maxLength="1" onChange={this.lableChange.bind(this)}/> </div>
+                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" className="NewNewCreateBigDivPTLol1236" maxLength="1" onChange={this.lableChange.bind(this)}/> </div>
+                                <div className="DivNewNewCreateBigDivPTLol123">  <input type="text" ref="labelnum3" className="NewNewCreateBigDivPTLol1235" maxLength="1" onChange={this.lableChange.bind(this)}/> </div>
+                                <div className="DivNewNewCreateBigDivPTLol124">  <input type="text" ref="labeltext" className="NewNewCreateBigDivPTLol1234" maxLength="4" onChange={this.lableChange.bind(this)}/> </div>
                             </div>
                             {/* <input type="text" ref="label" className="NewNewCreateBigDivPTLol"  /> */}
 

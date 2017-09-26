@@ -1138,6 +1138,7 @@ class Dashboard extends Component {
               <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
               <li><a >دعم</a></li>
               <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
+              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
               <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
             </ul>
           </div>
