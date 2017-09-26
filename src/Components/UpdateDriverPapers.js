@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { render, unmountComponentAtNode } from 'react-dom';
 import SkyLight from 'react-skylight';
+import ReactLoading from 'react-loading';
 import Lightbox from 'react-image-lightbox';
 var ReactRouter = require('flux-react-router');
 
@@ -56,6 +57,7 @@ class UpdateDriverPapers extends Component {
             contractPhotosArray: [],
             paperType: "",
             paperDirId: "",
+            loadinghiden: true,
         }
         // this.setState({
         //     userID: this.props.pID
@@ -134,7 +136,7 @@ class UpdateDriverPapers extends Component {
 
 
         }).catch(function (error) {
-            alert(error.message);
+            // alert(error.message);
             console.log(error)
         })
 
@@ -316,22 +318,25 @@ class UpdateDriverPapers extends Component {
             for (var i = 0; i < this.state.contractimg.length; i++) {
                 data.append('contract', this.state.contractimg[i])
             }
-            // data.append('address', this.state.addressimg)
-            // data.append('drivingLicense', this.state.drivingLicenseimg)
-            // data.append('vehicleLicense', this.state.vehicleLicenseimg)
-            // data.append('ownershipDocuments', this.state.vehicleOwnerShipimg)
-            // data.append('criminalRecord', this.state.criminalRecordimg)
-            // data.append('drugTest', this.state.drugTestimg)
-            // data.append('contract', this.state.contractimg)
 
-              if (this.state.nationalIdimg.length > 0 || this.state.addressimg.length > 0 || this.state.drivingLicenseimg.length > 0 || this.state.vehicleLicenseimg.length > 0 ||
+
+            if (this.state.nationalIdimg.length > 0 || this.state.addressimg.length > 0 || this.state.drivingLicenseimg.length > 0 || this.state.vehicleLicenseimg.length > 0 ||
                 this.state.vehicleOwnerShipimg.length > 0 || this.state.criminalRecordimg.length > 0 || this.state.drugTestimg.length > 0 || this.state.contractimg.length > 0) {
+                that.setState({
+                    loadinghiden: false,
+                })
                 axios.post('/operator/adddriverpapers', data).then(function (response) {
                     console.log(response)
                     window.localStorage.setItem('sessionToken', response.data);
-                    that.refs.PromoDialog.show()
+                    that.setState({
+                        loadinghiden: true,
+                    })
+
 
                 }).catch(function (error) {
+                    that.setState({
+                        loadinghiden: true,
+                    })
                     alert(error.message);
                     console.log(error)
                 })
@@ -339,15 +344,6 @@ class UpdateDriverPapers extends Component {
             else {
                 that.refs.PromoDialog.show()
             }
-            // axios.post('/operator/adddriverpapers', data).then(function (response) {
-            //     console.log(response)
-            //     window.localStorage.setItem('sessionToken', response.data);
-            //     that.refs.PromoDialog.show()
-
-            // }).catch(function (error) {
-            //     alert(error.message);
-            //     console.log(error)
-            // })
         }
         e.preventDefault();
     }
@@ -362,55 +358,55 @@ class UpdateDriverPapers extends Component {
         e.preventDefault();
     }
 
-    hoo() {
-        var temp = this.state.newEntries
-        temp.push("")
-        this.setState({
-            newEntries: temp
-        })
-        this.setState({ displayobj: this.ioo() })
-    }
-    ioo() {
-        console.log("asdasdsad")
-        var that = this;
-        console.log("WoHOOOOOOOOOOOOOOOO")
-        console.log(this.state.newEntries)
-        if (this.state.newEntries.length > 0) {
-            return (
-                React.DOM.table(null,
-                    React.DOM.thead(null,
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    ),
-                    React.DOM.tbody(null,
-                        that.state.newEntries.map(function (i, index) {
-                            let re = [];
-                            that.state["TextKEY" + index + 1] = ""
-                            that.state["file" + index + 1] = ""
-                            re.push(<input type="text" key={index} value={that.state["TextKEY" + index]} onChange={that.handleChangetext.bind(that, "TextKEY" + index)} />)
-                            re.push(<input type="file" key={index} value={that.state["file" + index]} onChange={that.handleChange.bind(that, "file" + index)} />)
+    // hoo() {
+    //     var temp = this.state.newEntries
+    //     temp.push("")
+    //     this.setState({
+    //         newEntries: temp
+    //     })
+    //     this.setState({ displayobj: this.ioo() })
+    // }
+    // ioo() {
+    //     console.log("asdasdsad")
+    //     var that = this;
+    //     console.log("WoHOOOOOOOOOOOOOOOO")
+    //     console.log(this.state.newEntries)
+    //     if (this.state.newEntries.length > 0) {
+    //         return (
+    //             React.DOM.table(null,
+    //                 React.DOM.thead(null,
+    //                     <tr>
+    //                         <td></td>
+    //                         <td></td>
+    //                         <td></td>
+    //                     </tr>
+    //                 ),
+    //                 React.DOM.tbody(null,
+    //                     that.state.newEntries.map(function (i, index) {
+    //                         let re = [];
+    //                         that.state["TextKEY" + index + 1] = ""
+    //                         that.state["file" + index + 1] = ""
+    //                         re.push(<input type="text" key={index} value={that.state["TextKEY" + index]} onChange={that.handleChangetext.bind(that, "TextKEY" + index)} />)
+    //                         re.push(<input type="file" key={index} value={that.state["file" + index]} onChange={that.handleChange.bind(that, "file" + index)} />)
 
-                            return (
-                                React.DOM.tr(null,
-                                    re.map(function (col, index) {
-                                        console.log(col)
-                                        return (
-                                            <td >{col}</td>
-                                        )
-                                    }
-                                    )
-                                )
+    //                         return (
+    //                             React.DOM.tr(null,
+    //                                 re.map(function (col, index) {
+    //                                     console.log(col)
+    //                                     return (
+    //                                         <td >{col}</td>
+    //                                     )
+    //                                 }
+    //                                 )
+    //                             )
 
-                            )
-                        })
-                    )
-                )
-            )
-        }
-    }
+    //                         )
+    //                     })
+    //                 )
+    //             )
+    //         )
+    //     }
+    // }
     joo(event) {
         var file = event.target.files[0];
         this.setState({
@@ -471,6 +467,19 @@ class UpdateDriverPapers extends Component {
             fontFamily: 'Cairo',
             fontSize: 'large'
         };
+        var loading = {
+            width: '25%',
+            height: '25%',
+            align: 'center',
+            textAlign: 'center',
+            fontFamily: 'Cairo',
+            fontSize: 'large',
+            background: 'transparent',
+            margin: '0',
+            left: '35%',
+            boxShadow: 'none',
+            border: 'none',
+        };
         // const {
         //     photoIndex,
         //     isOpen,
@@ -478,6 +487,10 @@ class UpdateDriverPapers extends Component {
         console.log(this.state.paperDirId, "paperDirId")
         return (
             <div>
+                <div className="loadingclass" hidden={this.state.loadinghiden}  >
+                    <ReactLoading type={"bubbles"} color={"#444"} height='667' width='375' className="loadingelement" />
+                </div>
+
                 <div className="Navdiv">
                     <ul className="NavdivUl">
                         <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
@@ -499,13 +512,11 @@ class UpdateDriverPapers extends Component {
                     </ul>
                 </div>
 
-                <div className="CreateBigDiv">
-
-                    <div className="CreateBigDiv-right">
 
 
 
-                        {/*<div className="goodMor">
+
+                {/*<div className="goodMor">
                             <p className="CreateBigDivDisNewNew">بطاقة السائق</p>
                             <div className="upload-button-divDisHelloGood">
                                 <div className="uploadWhatGood" >
@@ -553,13 +564,15 @@ class UpdateDriverPapers extends Component {
                             </div>
                         </div>*/}
 
+                <div className="CreateBigDiv">
 
+                    <div className="CreateBigDiv-right">
 
                         <div className="CreateBigDiv-right-rightDis">
-                            <p className="CreateBigDivDisNewNew">بطاقة السائق</p>
-                            <p className="CreateBigDivDisNewNew">رخصة السائق</p>
-                            <p className="CreateBigDivDisNewNew">رخصة المركبة</p>
-                            <p className="CreateBigDivDisNewNew">مستندات التمليك</p>
+                            <p className="CreateBigDivDisNewNew22">بطاقة السائق</p>
+                            <p className="CreateBigDivDisNewNew22">رخصة السائق</p>
+                            <p className="CreateBigDivDisNewNew22">رخصة المركبة</p>
+                            <p className="CreateBigDivDisNewNew22">مستندات التمليك</p>
                         </div>
                         <div className="CreateBigDiv-right-lefthmm">
 
@@ -567,9 +580,9 @@ class UpdateDriverPapers extends Component {
                                 <div className="uploadWhat2" >
                                     {/*<img src="/browser.png" className="browserDis" />*/}
                                     <div className="newpaperclass">
-                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
+                                        <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
+                                            <img src="/redashboard/Group 1538.png" className="hello" />
+                                        </label>
                                     </div>
                                     {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
@@ -582,9 +595,9 @@ class UpdateDriverPapers extends Component {
                                 <div className="uploadWhat2" >
                                     {/*<img src="/browser.png" className="browserDis" />*/}
                                     <div className="newpaperclass">
-                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
+                                        <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
+                                            <img src="/redashboard/Group 1538.png" className="hello" />
+                                        </label>
                                     </div>
                                     {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
@@ -597,9 +610,9 @@ class UpdateDriverPapers extends Component {
                                 <div className="uploadWhat2" >
                                     {/*<img src="/browser.png" className="browserDis" />*/}
                                     <div className="newpaperclass">
-                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
+                                        <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
+                                            <img src="/redashboard/Group 1538.png" className="hello" />
+                                        </label>
                                     </div>
                                     {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
@@ -624,13 +637,13 @@ class UpdateDriverPapers extends Component {
                     </div>
 
                     <div className="CreateBigDiv-left">
-                        <div className="CreateBigDiv-left-right">
-                            <p className="CreateBigDiv">صورة العنوان</p>
-                            <p className="CreateBigDiv">فيش و تشبيه</p>
-                            <p className="CreateBigDiv">تحليل مخدرات</p>
-                            <p className="CreateBigDiv">عقد شراكة</p>
+                        <div className="CreateBigDiv-left-rightcool">
+                            <p className="CreateBigDiv223">صورة العنوان</p>
+                            <p className="CreateBigDiv223">فيش و تشبيه</p>
+                            <p className="CreateBigDiv223">تحليل مخدرات</p>
+                            <p className="CreateBigDiv223">عقد شراكة</p>
                         </div>
-                        <div className="CreateBigDiv-left-leftDis2">
+                        <div className="CreateBigDiv-left-leftDis2Cool">
                             <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
                                     {/*<img src="/browser.png" className="browserDis" />*/}
@@ -638,7 +651,7 @@ class UpdateDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray, paperType: "address" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray, paperType: "address" })} />
                             </div>
                             <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
@@ -647,7 +660,7 @@ class UpdateDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray, paperType: "criminalRecord" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray, paperType: "criminalRecord" })} />
                             </div>
                             <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
@@ -656,7 +669,7 @@ class UpdateDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray, paperType: "drugTest" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray, paperType: "drugTest" })} />
                             </div>
                             <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
@@ -665,7 +678,7 @@ class UpdateDriverPapers extends Component {
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                <img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray, paperType: "contract" })} />
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray, paperType: "contract" })} />
                             </div>
                         </div>
                     </div>
@@ -674,12 +687,14 @@ class UpdateDriverPapers extends Component {
 
                 <br /><br />
 
+
+
+                {/*<ReactLoading type={"bubbles"} color={"#444"} height='667' width='375' hidden={this.state.loadinghiden} />*/}
                 <div className="buttonTT">
                     <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
                     {/*onClick={() => this.refs.PromoDialog.show()} */}
                     {/*onClick={this.handleSubmit.bind(this)}*/}
                 </div>
-
 
 
 
@@ -713,6 +728,12 @@ class UpdateDriverPapers extends Component {
                     <p className="Sky-P">تم إنشاء ملف السائق بنجاح</p>
                 </SkyLight>
 
+                {/*<SkyLight hideOnOverlayClicked ref="loadingDialog" dialogStyles={loading}>
+                    <div className="loadingdiv" >
+                        
+                        <ReactLoading type={"bubbles"} color={"#444"} height='667' width='375' />
+                    </div>
+                </SkyLight>*/}
 
 
             </div>

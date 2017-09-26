@@ -526,29 +526,29 @@ class DriverProfile extends Component {
                 </div>
                 {/*</div>*/}
                 <br />
-                <div className="CreateBigDiv">
+                <div className="CreateBigDivyoman">
 
                     <div className="CreateBigDiv-right">
 
-                        <div className="CreateBigDiv-right-right">
-                            <div className="custom-file-upload-inner-div-right-Driver">
-                                <div className="custom-file-upload-inner-div">
+                        <div className="CreateBigDiv-right-rightprof">
+                            {/*<div className="custom-file-upload-inner-div-right-Driver">*/}
+                                {/*<div className="custom-file-upload-inner-div">
 
-                                </div>
-                                <div className="Driver-Right-Right-P">
-                                    <p className="CreateBigDiv">الإسم</p>
-                                    <p className="CreateBigDiv">رقم الهاتف</p>
-                                    <p className="CreateBigDiv">البريد الإلكتروني</p>
-                                </div>
+                                </div>*/}
+                                {/*<div className="Driver-Right-Right-P">*/}
+                                    <p className="CreateBigDivNew">الإسم</p>
+                                    <p className="CreateBigDivNew">رقم الهاتف</p>
+                                    <p className="CreateBigDivNew">البريد الإلكتروني</p>
+                                {/*</div>*/}
 
                                 {/*<p className="CreateBigDiv">كلمة المرور</p>*/}
                             </div>
-                        </div>
+                        {/*</div>*/}
                         <div className="CreateBigDiv-right-left">
                             <div className="CreateBigDivPDiv">
-                                <input type="text" className="DriverProfileText" ref="Fname" value={this.state.driverName} />
-                                <input type="text" className="DriverProfileText" ref="pNumber" value={this.state.driverPNumber} />
-                                <input type="email" className="DriverProfileText" ref="email" value={this.state.driverEmail} />
+                                <input type="text" className="CreateBigDivP" ref="Fname" value={this.state.driverName} />
+                                <input type="text" className="CreateBigDivP" ref="pNumber" value={this.state.driverPNumber} />
+                                <input type="email" className="CreateBigDivP" ref="email" value={this.state.driverEmail} />
                                 {/*<input type="password" className="CreateBigDivP" ref="password" />*/}
                             </div>
 
@@ -615,7 +615,7 @@ class DriverProfile extends Component {
 
 
 
-                <div className="dunno">
+                <div className="dunnonew">
                     {/*<img src="\Line 515.png" className="lol" />*/}
                 </div>
                 {/*<br /><br />*/}
@@ -644,11 +644,11 @@ class DriverProfile extends Component {
                 </div>
 
 
-                <div className="CreateBigDiv">
+                <div className="CreateBigDivyoman">
 
                     <div className="CreateBigDiv-right">
 
-                        <div className="CreateBigDiv-right-right">
+                        <div className="CreateBigDiv-right-rightprof">
 
                             {/*<input type="checkbox" />*/}
                             <p className="CreateBigDivNew">أسم مالك المركبة</p>
@@ -768,11 +768,11 @@ class DriverProfile extends Component {
 
 
 
-                <div className="dunno">
+                <div className="dunno2sd">
                     {/*<img src="\Line 515.png" className="lol" />*/}
                 </div>
 
-                <div className="supman">
+                <div className="supmanasdsa">
                     <p className="supP" >صور مستندات و أوراق</p>
                 </div>
 
@@ -790,7 +790,7 @@ class DriverProfile extends Component {
 
 
 
-                <div className="CreateBigDiv">
+                <div className="CreateBigDivqwe">
 
                     <div className="CreateBigDiv-right">
                         <div className="CreateBigDiv-right-right">
@@ -841,28 +841,28 @@ class DriverProfile extends Component {
                         </div>
                         <div className="CreateBigDiv-left-leftLolLolNew">
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray })} />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray })} />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork"/>
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray })} />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}
                             </div>
 
                             <div className="upload-button-divLol">
-                                <img src="/Group 1569.png" className="browserLolTotallyNew" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray })} />
+                                <img src="/Group 1569.png" className="browser" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray })} />
                                 {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" />
                                     <img src="./redashboard/Group 1538.png" className="hello" />
                                 </label>*/}

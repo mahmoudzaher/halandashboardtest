@@ -283,7 +283,7 @@ class AddVehicle extends Component {
     }
 
     handleBirthday() {
-        console.log(yearID, monthID + 1, dayID)
+        console.log(yearID, monthID - 1, dayID)
         this.setState({
             birthdaydate: new Date(yearID).getTime(),
             birthdaydateE: new Date(yearIDE).getTime(),
@@ -377,13 +377,14 @@ class AddVehicle extends Component {
                 }
             }
 
+            var labelvalue = this.refs.labelnum1.value + this.refs.labelnum2.value + this.refs.labelnum3.value + this.refs.labeltext.value;
 
             var object = {
                 driver: this.state.userID,
                 vehicletype: this.state.vehicleTypee,
                 model: timestamp,
                 make: this.refs.make.value,
-                label: this.refs.label.value,
+                label: labelvalue,
                 vehicleOwner: vehicleOwner,
                 shaseehNo: this.refs.shaseehNo.value,
                 motorNo: this.refs.motorNo.value
@@ -422,7 +423,9 @@ class AddVehicle extends Component {
         e.preventDefault();
     }
 
-
+    lableChange(event){
+        console.log(this.refs.labelnum1.value + this.refs.labelnum2.value + this.refs.labelnum3.value + this.refs.labeltext.value, "label")
+    }
     render() {
         // console.log(this.state.userID, "user ID prop in render")
         const customStyles = {
@@ -553,7 +556,7 @@ class AddVehicle extends Component {
                     <div className="CreateBigDiv-left">
 
 
-                    <div className="Newnewplan">
+                        <div className="Newnewplan">
                             <p className="NewNewCreateBigDivLol">نوع المركبة *</p>
                             <div id="maincontainerLolNewNew">
                                 <div className="threeNewNew" >
@@ -578,14 +581,20 @@ class AddVehicle extends Component {
                         </div>
 
                         <div className="newplan">
-                            <p className="NewNewCreateBigDivLol">الموديل</p>
-                            <input type="text" ref="make" className="NewNewCreateBigDivPTLol"  />
+                            <p className="NewNewCreateBigDivLol">ماركة المركبة</p>
+                            <input type="text" ref="make" className="NewNewCreateBigDivPTLol" />
 
                         </div>
 
                         <div className="newplan">
                             <p className="NewNewCreateBigDivLol">رقم اللوحة</p>
-                            <input type="text" ref="label" className="NewNewCreateBigDivPTLol"  />
+                            <div className="DivNewNewCreateBigDivPTLol123and4">
+                                <div className="DivNewNewCreateBigDivPTLol121">  <input type="text" ref="labelnum1" className="NewNewCreateBigDivPTLol123" maxlength="1" onChange={this.lableChange.bind(this)}/> </div>
+                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" className="NewNewCreateBigDivPTLol1236" maxlength="1" onChange={this.lableChange.bind(this)}/> </div>
+                                <div className="DivNewNewCreateBigDivPTLol123">  <input type="text" ref="labelnum3" className="NewNewCreateBigDivPTLol1235" maxlength="1" onChange={this.lableChange.bind(this)}/> </div>
+                                <div className="DivNewNewCreateBigDivPTLol124">  <input type="text" ref="labeltext" className="NewNewCreateBigDivPTLol1234" maxlength="4" onChange={this.lableChange.bind(this)}/> </div>
+                            </div>
+                            {/* <input type="text" ref="label" className="NewNewCreateBigDivPTLol"  /> */}
 
                         </div>
 

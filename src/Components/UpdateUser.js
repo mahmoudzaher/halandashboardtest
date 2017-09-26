@@ -82,7 +82,8 @@ class UpdateUser extends Component {
                 licenseNumber = x.driverLicense.number;
                 // LicenseExpDate = x.driverLicense.expirationDate;
                 console.log(x.driverLicense.expirationDate)
-                parserExp = parseInt(JSON.parse(x.driverLicense).expirationDate)
+                // parserExp = parseInt(JSON.parse(x.driverLicense).expirationDate)
+                parserExp = parseInt(x.driverLicense.expirationDate)
                 LicenseExpDate = new Date(parserExp);
                 console.log("hello world")
                 console.log(LicenseExpDate)
@@ -140,7 +141,7 @@ class UpdateUser extends Component {
         var itemIds4 = [];
         var itemIds5 = [];
         var itemIds6 = [];
-        for (var i = 0; i < 32; i++) {
+        for (var i = 1; i < 32; i++) {
             itemIds.push(
                 {
                     value: i,
@@ -148,7 +149,7 @@ class UpdateUser extends Component {
                 }
             );
         }
-        for (var i = 0; i < 13; i++) {
+        for (var i = 1; i < 13; i++) {
             itemIds2.push(
                 {
                     value: i,
@@ -165,7 +166,7 @@ class UpdateUser extends Component {
             );
         }
 
-        for (var i = 0; i < 32; i++) {
+        for (var i = 1; i < 32; i++) {
             itemIds4.push(
                 {
                     value: i,
@@ -173,7 +174,7 @@ class UpdateUser extends Component {
                 }
             );
         }
-        for (var i = 0; i < 13; i++) {
+        for (var i = 1; i < 13; i++) {
             itemIds5.push(
                 {
                     value: i,
@@ -245,8 +246,6 @@ class UpdateUser extends Component {
             console.log("Password is missing")
         }
 
-
-
         if (this.refs.pNumber.value) {
             console.log(" this.refs.pNumber.value exist")
             if (isNaN(this.refs.pNumber.value) || this.refs.pNumber.value.length !== 11) {
@@ -288,7 +287,12 @@ class UpdateUser extends Component {
             Day: value
         });
         if (value) {
-            dayID = value.value;
+            if (value.value < 10) {
+                dayID = '0' + value.value;
+              }
+              else {
+                dayID = value.value;
+              }
         } else {
             dayID = "";
         }
@@ -303,7 +307,12 @@ class UpdateUser extends Component {
             Month: value
         });
         if (value) {
-            monthID = value.value;
+            if (value.value < 10) {
+                monthID = '0' + value.value;
+              }
+              else {
+                monthID = value.value;
+              }
         } else {
             monthID = "";
         }
@@ -330,10 +339,10 @@ class UpdateUser extends Component {
     handleBirthday() {
         console.log(yearID, monthID, dayID)
         this.setState({
-            birthdaydate: new Date(yearID + 1, monthID - 1, dayID).getTime(),
-            birthdaydateE: new Date(yearIDE + 1, monthIDE - 1, dayIDE).getTime(),
+            birthdaydate: new Date(yearID, monthID - 1, dayID).getTime(),
+            birthdaydateE: new Date(yearIDE, monthIDE - 1, dayIDE).getTime(),
         });
-        console.log(new Date(yearID, monthID + 1, dayID).getTime(), "new Date(yearID, monthID + 1, dayID).getTime()")
+        console.log(new Date(yearID, monthID - 1, dayID).getTime(), "new Date(yearID, monthID + 1, dayID).getTime()")
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
 
@@ -369,7 +378,12 @@ class UpdateUser extends Component {
             Day2: value
         });
         if (value) {
-            dayIDE = value.value;
+            if (value.value < 10) {
+                dayIDE = '0' + value.value;
+              }
+              else {
+                dayIDE = value.value;
+              }
         } else {
             dayIDE = "";
         }
@@ -384,7 +398,12 @@ class UpdateUser extends Component {
             Month2: value
         });
         if (value) {
-            monthIDE = value.value;
+            if (value.value < 10) {
+                monthIDE = '0' + value.value;
+              }
+              else {
+                monthIDE = value.value;
+              }
         } else {
             monthIDE = "";
         }

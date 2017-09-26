@@ -42,7 +42,7 @@ class CreateUser extends Component {
     var itemIds4 = [];
     var itemIds5 = [];
     var itemIds6 = [];
-    for (var i = 0; i < 32; i++) {
+    for (var i = 1; i < 32; i++) {
       itemIds.push(
         {
           value: i,
@@ -50,7 +50,7 @@ class CreateUser extends Component {
         }
       );
     }
-    for (var i = 0; i < 13; i++) {
+    for (var i = 1; i < 13; i++) {
       itemIds2.push(
         {
           value: i,
@@ -67,7 +67,7 @@ class CreateUser extends Component {
       );
     }
 
-    for (var i = 0; i < 32; i++) {
+    for (var i = 1; i < 32; i++) {
       itemIds4.push(
         {
           value: i,
@@ -75,7 +75,7 @@ class CreateUser extends Component {
         }
       );
     }
-    for (var i = 0; i < 13; i++) {
+    for (var i = 1; i < 13; i++) {
       itemIds5.push(
         {
           value: i,
@@ -132,6 +132,7 @@ class CreateUser extends Component {
     this.state = {
       unixTimestamp: "",
       birthdaydate: "",
+      birthdaydateE: "",
       img: "",
       imgdata: new FormData()
     }
@@ -144,57 +145,181 @@ class CreateUser extends Component {
     console.log(type);
     !isNaN(this.refs.pNumber.value)
     var missingfields = "";
+    var counter = 0;
+    var missingName = "";
+    var missingPN = "";
+    var missingPass = "";
+    var missingNID = "";
+    var missingArray = [];
+    var check = 0;
+    var checkyear = false, checkmonth = false, checkday = false;
     console.log(this.refs.Fname.value, "this.refs.Fname.value  ", this.refs.pNumber.value, "this.refs.pNumber.value  ", this.refs.password.value, "this.refs.password.value")
 
-    if (!this.refs.Fname.value && !this.refs.pNumber.value && !this.refs.password.value) {
-      missingfields = "Name, Phonenumber and Passowrd are missing"
-      console.log("Name, Phonenumber and Passowrd are missing")
-    }
-    else if (!this.refs.Fname.value && !this.refs.pNumber.value) {
-      missingfields = "Name and Phonenumber are missing"
-      console.log("Name and Phonenumber are missing")
-    }
-
-    else if (!this.refs.Fname.value && !this.refs.password.value) {
-      missingfields = "Name and Passowrd are missing"
-      console.log("Name and Passowrd are missing")
-    }
-    else if (!this.refs.pNumber.value && !this.refs.password.value) {
-      missingfields = "Phonenumber and Passowrd are missing"
-      console.log("Phonenumber and Passowrd are missing")
-    }
-    else if (!this.refs.Fname.value) {
-      missingfields = "Name is missing"
-      console.log("Name is missing")
-    }
-    else if (!this.refs.pNumber.value) {
-      missingfields = "Phonenumber is missing"
-      console.log("Phonenumber is missing")
-    }
-    else if (!this.refs.password.value) {
-      missingfields = "Password is missing"
-      console.log("Password is missing")
-    }
 
 
+    var yearNID = parseInt(this.refs.nationalIdNo.value.substring(1, 3));
+    var MonthNID = parseInt(this.refs.nationalIdNo.value.substring(3, 5));
+    var DayNID = parseInt(this.refs.nationalIdNo.value.substring(5, 7));
+    console.log(yearNID, "yearNID")
+    console.log(MonthNID, "MonthNID")
+    console.log(DayNID, "DayNID")
+    console.log(yearID, "yearID")
+    var year2n = yearID.toString();
+    year2n = year2n.substring(2, 4);
+     year2n = parseInt(year2n);
+    console.log(year2n, "year2n")
+    if (yearNID === year2n) {
+      console.log("years are equal")
+      checkyear = true;
+    }
+    else {
+      console.log("years arent equal")
+    }
 
+    if (MonthNID === parseInt(monthID)) {
+      console.log("months are equal")
+      checkmonth = true;
+    }
+    else {
+      console.log("months arent equal")
+    }
+    console.log(DayNID, "DayNID")
+    console.log(dayID, "dayID")
+    if (DayNID === parseInt(dayID)) {
+      console.log("days are equal")
+      checkday = true;
+    }
+    else {
+      console.log("days arent equal")
+    }
+
+    if (checkday === true && checkmonth === true && checkyear === true) {
+      console.log("all are equal")
+    }
+    else {
+      console.log("not all are equal")
+      missingArray.push("NID and birthdate aren't matching")
+    }
+    // if (!this.refs.Fname.value && !this.refs.pNumber.value && !this.refs.password.value) {
+    //   missingfields = "Name, Phonenumber and Passowrd are missing"
+    //   console.log("Name, Phonenumber and Passowrd are missing")
+    // }
+    // else if (!this.refs.Fname.value && !this.refs.pNumber.value) {
+    //   missingfields = "Name and Phonenumber are missing"
+    //   console.log("Name and Phonenumber are missing")
+    // }
+
+    // else if (!this.refs.Fname.value && !this.refs.password.value) {
+    //   missingfields = "Name and Passowrd are missing"
+    //   console.log("Name and Passowrd are missing")
+    // }
+    // else if (!this.refs.pNumber.value && !this.refs.password.value) {
+    //   missingfields = "Phonenumber and Passowrd are missing"
+    //   console.log("Phonenumber and Passowrd are missing")
+    // }
+    // else if (!this.refs.Fname.value) {
+    //   missingfields = "Name is missing"
+    //   console.log("Name is missing")
+    // }
+    // else if (!this.refs.pNumber.value) {
+    //   missingfields = "Phonenumber is missing"
+    //   console.log("Phonenumber is missing")
+    // }
+    // else if (!this.refs.password.value) {
+    //   missingfields = "Password is missing"
+    //   console.log("Password is missing")
+    // }
+    // else if (!this.refs.nationalIdNo.value) {
+    //   missingfields = "National ID is missing"
+    //   console.log("Password is missing")
+    // }
     if (this.refs.pNumber.value) {
       console.log(" this.refs.pNumber.value exist")
       if (isNaN(this.refs.pNumber.value) || this.refs.pNumber.value.length !== 11) {
-        console.log(isNaN(this.refs.pNumber.value))
-        missingfields = missingfields + " Phonenumber is wrong"
-        console.log(" Phonenumber is wrong 2")
-        console.log(!isNaN(this.refs.pNumber.value), "!isNaN(this.refs.pNumber.value)")
-        console.log(this.refs.pNumber.value.length, "this.refs.pNumber.value.length)")
-        console.log(Number(this.refs.pNumber.value.length) !== 11, "this.refs.pNumber.value.length !== 11")
+        // missingfields = missingfields + " Phonenumber is wrong"
+        missingArray.push("Phonenumber is wrong")
+        // console.log(isNaN(this.refs.pNumber.value))
+        // console.log(" Phonenumber is wrong 2")
+        // console.log(!isNaN(this.refs.pNumber.value), "!isNaN(this.refs.pNumber.value)")
+        // console.log(this.refs.pNumber.value.length, "this.refs.pNumber.value.length)")
+        // console.log(Number(this.refs.pNumber.value.length) !== 11, "this.refs.pNumber.value.length !== 11")
       }
     }
 
-    if (missingfields !== "") {
+    if (!this.refs.Fname.value) {
+      missingfields = "Name is missing"
+      console.log("Name is missing")
+      missingArray.push("Name")
+      check = 1;
+      console.log(missingArray, "missingArray")
+
+    }
+    if (!this.refs.pNumber.value) {
+      missingfields = "Phonenumber is missing"
+      console.log("Phonenumber is missing")
+      missingArray.push("Phonenumber")
+      check = 1;
+      console.log(missingArray, "missingArray")
+    }
+    if (!this.refs.password.value) {
+      missingfields = "Password is missing"
+      console.log("Password is missing")
+      missingArray.push("Password")
+      check = 1;
+      console.log(missingArray, "missingArray")
+    }
+    if (!this.refs.nationalIdNo.value) {
+      missingfields = "National ID is missing"
+      console.log("National ID is missing")
+      missingArray.push("National Id")
+      check = 1;
+      console.log(missingArray, "missingArray")
+    }
+
+
+    // var arrayz = missingArray.toString();
+    // console.log(arrayz,"arrayz")
+    console.log(missingArray.length, "missingArray.length")
+
+    // missingArray.join();
+
+    var multi = 1;
+    if (multi < missingArray.length) {
+      while (multi < missingArray.length) {
+
+        missingArray.splice(multi, 0, " and ");
+        multi = multi + 2;
+        // missingArray.length++;
+        console.log(missingArray, "missingArray of", multi)
+      }
+    }
+    if (check === 1) {
+      missingArray.push(" missing")
+    }
+    else {
+
+    }
+
+    console.log(missingArray, "missingArray")
+
+
+
+
+
+
+    // if (missingfields !== "") {
+    //   this.setState({
+    //     [type]: true,
+    //     blur: "blur",
+    //     missingRequiredFields: missingfields,
+    //   });
+    // }
+
+    if (missingArray[0] != null) {
       this.setState({
         [type]: true,
         blur: "blur",
-        missingRequiredFields: missingfields,
+        missingRequiredFields: missingArray,
       });
     }
     else {
@@ -226,11 +351,16 @@ class CreateUser extends Component {
   handleDayoptions(type, value) {
     this.setState({ [type]: value });
     if (value) {
-      dayID = value.value;
+      if (value.value < 10) {
+        dayID = '0' + value.value;
+      }
+      else {
+        dayID = value.value;
+      }
     } else {
       dayID = "";
     }
-
+    this.handleBirthday()
     console.log(value);
     console.log(dayID);
   }
@@ -238,11 +368,16 @@ class CreateUser extends Component {
   handleMonthoptions(type, value) {
     this.setState({ [type]: value });
     if (value) {
-      monthID = value.value;
+      if (value.value < 10) {
+        monthID = '0' + value.value;
+      }
+      else {
+        monthID = value.value;
+      }
     } else {
       monthID = "";
     }
-
+    this.handleBirthday()
     console.log(value);
     console.log(monthID);
   }
@@ -260,10 +395,10 @@ class CreateUser extends Component {
   }
 
   handleBirthday() {
-    console.log(yearID, monthID + 1, dayID)
+    console.log(yearID, monthID - 1, dayID)
     this.setState({
-      birthdaydate: new Date(yearID, monthID + 1, dayID).getTime(),
-      birthdaydateE: new Date(yearIDE, monthIDE + 1, dayIDE).getTime(),
+      birthdaydate: new Date(yearID, monthID - 1, dayID).getTime(),
+      birthdaydateE: new Date(yearIDE, monthIDE - 1, dayIDE).getTime(),
     });
     console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
   }
@@ -365,6 +500,7 @@ class CreateUser extends Component {
       data.append('firstName', this.refs.Fname.value)
       data.append('password', this.refs.password.value)
       data.append('phoneNumber', this.refs.pNumber.value)
+      data.append('nationalIdNo', this.refs.nationalIdNo.value)
 
       // data.append('birthday', timestampp)
       // data.append('address', this.refs.address.value)
@@ -412,14 +548,23 @@ class CreateUser extends Component {
   }
 
 
+  NIDOC(event) {
+    console.log(event.target.value, "NIDOC")
+  }
+
   handleDayoptionsE(type, value) {
     this.setState({ [type]: value });
     if (value) {
-      dayIDE = value.value;
+      if (value.value < 10) {
+        dayIDE = '0' + value.value;
+      }
+      else {
+        dayIDE = value.value;
+      }
     } else {
       dayIDE = "";
     }
-
+    this.handleBirthday()
     console.log(value);
     console.log(dayIDE);
   }
@@ -427,11 +572,16 @@ class CreateUser extends Component {
   handleMonthoptionsE(type, value) {
     this.setState({ [type]: value });
     if (value) {
-      monthIDE = value.value;
+      if (value.value < 10) {
+        monthIDE = '0' + value.value;
+      }
+      else {
+        monthIDE = value.value;
+      }
     } else {
       monthIDE = "";
     }
-
+    this.handleBirthday()
     console.log(value);
     console.log(monthIDE);
   }
@@ -566,11 +716,11 @@ class CreateUser extends Component {
 
         <br />
 
-        <div className="Subdiv">
+        <div className="SubdivNew">
           <ul className="SubdivUl">
             <li className="active li Sub" ><a className="active selected" >&lt; بيانات شخصية</a> </li>
-            <li className="active li Sub" ><a>&lt; بيانات المركبة</a></li>
-            <li><a href="#news">صور مستندات و أوراق</a></li>
+            <li className="li Sub" ><a>&lt; بيانات المركبة</a></li>
+            <li className="li Sub" ><a href="#news">صور مستندات و أوراق</a></li>
           </ul>
         </div>
 
@@ -595,6 +745,11 @@ class CreateUser extends Component {
             <div className="NewCreateBigDiv7aram">
               <p className="NewNewNewCreateBigDiv7aram">رقم الهاتف *</p>
               <input type="text" className="NewDriverProfileText" ref="pNumber" required />
+            </div>
+
+            <div className="NewCreateBigDiv7aram">
+              <p className="NewNewNewCreateBigDiv7aram">الرقم القومي *</p>
+              <input type="text" className="NewDriverProfileText" ref="nationalIdNo" onChange={this.NIDOC.bind(this)} required />
             </div>
 
             <div className="NewCreateBigDiv7aram">
@@ -661,7 +816,7 @@ class CreateUser extends Component {
             </div>
 
             <div className="NewClassUserNewNewNew" >
-              <p className="NewNewNewCreateBigDivLeft">تاريخ الميلاد</p>
+              <p className="NewNewNewCreateBigDivLeft">تاريخ الميلاد *</p>
               <div className="Options-GroupsTNewNewcomecome">
 
                 <div className="OptionsThTNewNewcomecome ">
@@ -699,9 +854,9 @@ class CreateUser extends Component {
               </div>
             </div>
 
-            <div className="NewClassUserNew" >
-              <p className="NewNewNewCreateBigDivLeft">العنوان</p>
-              <input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT2comecome" />
+            <div className="NewClassUserNew22" >
+              <p className="NewNewNewCreateBigDivLeft22">العنوان</p>
+              <input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT2comecome22" />
             </div>
 
             <div className="NewClassUseryay" >

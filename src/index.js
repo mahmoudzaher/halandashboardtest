@@ -20,8 +20,9 @@ import Promo from './Components/Promo';
 import DriverProfile from './Components/DriverProfile';
 import Reports from './Components/Reports';
 
-localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
-// localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
+// localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
+localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
+    // localStorage.setItem('baseURL', 'https://192.168.1.74:4000/api/v1');
 
 
 
@@ -39,7 +40,7 @@ Flux.createRoute('/', function () {
 });
 
 
-Flux.createRoute('/Login', function () {
+Flux.createRoute('/Login', function () {0
     unmountComponentAtNode(document.getElementById('root'));
     /*  unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
