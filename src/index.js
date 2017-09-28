@@ -22,10 +22,13 @@ import Reports from './Components/Reports';
 import Branches from './Components/Branches';
 import CreateBranch from './Components/CreateBranch';
 import UpdateBranch from './Components/UpdateBranch';
+import Specialists from './Components/Specialists';
+import CreateSpecialist from './Components/CreateSpecialist';
+import UpdateSpecialists from './Components/UpdateSpecialists';
 
 // localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
 localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
-    // localStorage.setItem('baseURL', 'http://192.168.1.3:4000/api/v1');
+    // localStorage.setItem('baseURL', 'http://192.168.1.6:4000/api/v1');
 
 
 
@@ -103,6 +106,38 @@ Flux.createRoute('/UpdateBranch/{id}', function (p) {
     /* unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
         render(<UpdateBranch pID={p.id}/>, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/Specialists', function () {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<Specialists />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+Flux.createRoute('/CreateSpecialist', function () {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<CreateSpecialist />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/UpdateSpecialists/{id}', function (p) {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<UpdateSpecialists pID={p.id}/>, document.getElementById('root'));
         /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));

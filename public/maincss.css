@@ -804,6 +804,20 @@ padding-left: 25% !important;
      width: 120%;
 }
 
+.menu-outer-top4 .Select-arrow-zone {
+    padding-left: 0% !important;
+    margin-left: -5%;
+    margin-top: 0%;
+ } 
+ .menu-outer-top4 .Select-control {
+    /*width: 121%;*/
+     width: 349% !important;
+     height: 39px;
+}
+ .menu-outer-top4 .Select-menu-outer {
+     /*width: 121%;*/
+      width: 349%;
+ }
 
 .menu-outer-top .Select-multi-value-wrapper {
     float:none!important
@@ -2283,8 +2297,10 @@ input.NewCreateBigDivP {
     font-family: Cairo !important;
     font-size: 16px;
     margin-right: 5%;
-    width: 30%;
+    width: 29%;
     height: 35px;
+    padding-right: 1%;
+    text-align: right;
 }
 p.NewCreateBigDivPIdk {
     margin: 0%;
@@ -2325,7 +2341,7 @@ p.NewNewCreateBigDivLol {
 
 .newplan {
     width: 100%;
-    /*padding-bottom: 5%;*/
+    padding-bottom: 0.5%;
         min-height: 50px;
 }
 
@@ -3159,4 +3175,56 @@ input.NewDriverProfileTexthellofriend2 {
 }
 img#profile-Img2 {
     padding-left: 25%;
+}
+.TotalDiv {
+    /* position: static; */
+    text-align: center;
+    padding-bottom: 2%;
+}
+.CreateBigDiv-leftReally {
+    width: 50%;
+    float: left;
+    /* margin-top: -14%; */
+    /* margin-top: -1%; */
+}
+
+.CreateBigDiv-leftReally {
+    width: 50%;
+    float: left;
+    /* margin-top: -14%; */
+    /* margin-top: -1%; */
+}
+
+.OptionsRight {
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+           padding-right: 24%;
+}
+.CreateBigDivReally{
+    width: 100%;
+    padding-top: 10%;
+}
+
+.buttonReally {
+    margin-top: 10%;
+    margin-left: 45%;
+}
+.OptionsRightagain{
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+    padding-right: 29%;
+}
+.Inner-options-DivReally {
+    padding-right: 1%;
+}
+.OptionsRightboom{
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+    padding-right: 29%;
 }

@@ -122,6 +122,13 @@ class CreateUser extends Component {
       missingPhone: "",
       missingPass: "",
       errorMessage: "",
+      SpecialistsOptions: [],
+      Specialists: [],
+      Specialist: "",
+      AllSpecialists: [],
+      branchesOptions: [],
+      Branch: "",
+      AllBranches: [],
     })
     imgStyle = {
       width: "100%"
@@ -136,8 +143,66 @@ class CreateUser extends Component {
       img: "",
       imgdata: new FormData()
     }
+    this.getSpecialistsAPI();
+    this.getBranchesAPI();
   }
+  getSpecialistsAPI() {
+    var that = this;
+    var allSpecialistsOptions = [];
+    axios.get('/operator/getAllSpecialists').then(function (response) {
+      console.log(response.data, "getAllSpecialists Response")
+      var x = response.data.data;
+      console.log(x, "x")
+      var objects = [];
+      x.forEach(function (item, index) {
+        console.log(item)
+        objects.push(item)
+        allSpecialistsOptions.push(
+          {
+            value: item._id,
+            label: item.firstName
+          })
+        console.log(item)
+      })
 
+      that.setState({
+        Specialists: allSpecialistsOptions,
+        AllSpecialists: objects
+      })
+
+    }).catch(function (error) {
+      alert(error.message);
+      console.log(error)
+    })
+  }
+  getBranchesAPI() {
+    var that = this;
+    var allbranchesOptions = [];
+    axios.get('/operator/getAllBranches').then(function (response) {
+      console.log(response, "helloooooooasdgkjuhasghdkjhasghdkjasgdkasgdakljshgdl")
+      var x = response.data.data;
+      var objects = [];
+      x.forEach(function (item, index) {
+        // console.log(item)
+        objects.push(item)
+        allbranchesOptions.push(
+          {
+            value: item._id,
+            label: item.name
+          })
+        console.log(item)
+      })
+
+      that.setState({
+        branchesOptions: allbranchesOptions,
+        AllBranches: objects
+      })
+
+    }).catch(function (error) {
+      alert(error.message);
+      console.log(error)
+    })
+  }
 
 
   openModal(type) {
@@ -166,7 +231,7 @@ class CreateUser extends Component {
     console.log(yearID, "yearID")
     var year2n = yearID.toString();
     year2n = year2n.substring(2, 4);
-     year2n = parseInt(year2n);
+    year2n = parseInt(year2n);
     console.log(year2n, "year2n")
     if (yearNID === year2n) {
       console.log("years are equal")
@@ -327,8 +392,39 @@ class CreateUser extends Component {
       this.handleSubmit(this)
     }
   }
+  handleSpecialitsoptions(type, value) {
+    console.log(value.value)
+    this.setState({ [type]: value.value });
+
+  }
+
+  handleBranchoptions(type, value) {
+    console.log(value.value)
+    var BranchId = value.value;
+    this.setState({ [type]: value.value });
+    var Specialistss = [];
 
 
+    this.state.AllSpecialists.forEach(function (item) {
+      if (item.branch) {
+        if (BranchId === item.branch._id) {
+          console.log(item.branch)
+          Specialistss.push(
+            {
+              value: item._id,
+              label: item.firstName
+            })
+          console.log(item)
+        }
+      }
+    })
+
+    this.setState({
+      SpecialistsOptions: Specialistss,
+      Specialists: Specialistss
+
+    })
+  }
   openModal2(type) {
     console.log(type);
     this.setState({
@@ -498,6 +594,7 @@ class CreateUser extends Component {
       data.append('action', 'ADD');
       data.append('param', 0);
       data.append('firstName', this.refs.Fname.value)
+      data.append('operator', this.state.Specialist)
       data.append('password', this.refs.password.value)
       data.append('phoneNumber', this.refs.pNumber.value)
       data.append('nationalIdNo', this.refs.nationalIdNo.value)
@@ -762,7 +859,41 @@ class CreateUser extends Component {
               <input type="password" className="NewDriverProfileText" ref="password" required />
             </div>
 
+            <div className="NewCreateBigDiv7aram">
+              <p className="NewNewNewCreateBigDiv7aram">إختر الفرع</p>
+              <div className="Options-GroupsFiNewNew">
+                <div className="Inner-options-DivReally">
+                  <div className="OptionsRightboom">
+                    <Select
+                      ref="Branch"
+                      placeholder="فرع"
+                      className="menu-outer-top4"
+                      value={this.state.Branch}
+                      options={this.state.branchesOptions}
+                      onChange={this.handleBranchoptions.bind(this, "Branch")}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <div className="NewCreateBigDiv7aram">
+              <p className="NewNewNewCreateBigDiv7aram">إختر أخصائي</p>
+              <div className="Options-GroupsFiNewNew">
+                <div className="Inner-options-DivReally">
+                  <div className="OptionsRightagain">
+                    <Select
+                      ref="branch"
+                      placeholder="الأخصائي"
+                      className="menu-outer-top4"
+                      value={this.state.Specialist}
+                      options={this.state.SpecialistsOptions}
+                      onChange={this.handleSpecialitsoptions.bind(this, "Specialist")}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 

@@ -747,20 +747,20 @@ class UpdateVehicle extends Component {
                             <p className="NewNewCreateBigDivLol">نوع المركبة</p>
                             <div id="maincontainerLolNewNew">
                                 <div className="threeNewNew" >
-                                    <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
+                                    <img src="\Group 1522.png" className={this.state.TokTokActive === "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
                                 </div>
                                 <div className="fourNew">
                                     <img src="\Line 515.png" className="twoNew" />
                                 </div>
 
                                 <div className="threeNew" >
-                                    <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
+                                    <img src="\Group 1523.png" className={this.state.MotocycleActive === "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
                                 </div>
                                 <div className="fourNew">
                                     <img src="\Line 515.png" className="twoNew" />
                                 </div>
                                 <div className="threeNew" >
-                                    <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
+                                    <img src="\Group 1524.png" className={this.state.TricycleActive === "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
                                 </div>
 
                             </div>

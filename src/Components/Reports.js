@@ -33,7 +33,9 @@ class Reports extends Component {
             ready: true,
             startDate: "",
             endDate: "",
-            data: []
+            data: [],
+            totalMoney: 0,
+            totalTrips: 0,
         })
 
 
@@ -70,8 +72,8 @@ class Reports extends Component {
                     </div>
 
                     <div style={{}}>
-                        <div style={{ width: "100%", textAlign: "center", color:"#2C2D72" }}>
-                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign:"middle", width:"40px" }} onClick={() => { this.setState({ openStart: true }) }} />&nbsp;&nbsp;<span style={{marginLeft:"20px", fontSize:"18px"}}>من</span>
+                        <div style={{ width: "100%", textAlign: "center", color: "#2C2D72" }}>
+                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openStart: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>من</span>
 
                             {this.state.openStart &&
                                 <DatePicker
@@ -88,9 +90,9 @@ class Reports extends Component {
 
                             {this.showStartDate()}
                         </div>
-                        <div style={{ width: "100%", textAlign: "center", color:"#2C2D72" }}>
+                        <div style={{ width: "100%", textAlign: "center", color: "#2C2D72" }}>
 
-                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign:"middle", width:"40px" }} onClick={() => { this.setState({ openEnd: true }) }} />&nbsp;&nbsp;<span style={{marginLeft:"20px", fontSize:"18px"}}>إلى</span>
+                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openEnd: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>إلى</span>
 
                             {this.state.openEnd &&
                                 <DatePicker
@@ -180,22 +182,28 @@ class Reports extends Component {
                             </div>
                         </div>*/}
                     <div style={{ width: "100%", textAlign: "center" }}>
-                        <input type="button" value="حفظ بيانات" onClick={this.submit.bind(this)} className="gradientButton" style={{cursor:"pointer", border: "none", padding: "0px 20px", borderRadius: "25px", marginTop: "50px", fontSize: "18px", color: "white", fontFamily: "Cairo" }} />
+                        <input type="button" value="حفظ بيانات" onClick={this.submit.bind(this)} className="gradientButton" style={{ cursor: "pointer", border: "none", padding: "0px 20px", borderRadius: "25px", marginTop: "50px", fontSize: "18px", color: "white", fontFamily: "Cairo" }} />
                     </div>
 
-                    <table style={{ width: "50%", marginLeft: "25%", border: "0px", marginTop: "100px" }}>
+                    <table style={{ width: "50%", paddingLeft: "25%", paddingRight:"25%,", border: "0px", paddingTop: "5%", paddingBottom: "5%",  height: "567px", display: "table-cell", }}>
                         <thead>
                             <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>إجمالي السداد</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>عدد الرحلات</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>نوع المركبة</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>تقييم</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>رقم الهاتف</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>السائق</td>
+                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px"  }}>عدد الرحلات</td>
+                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px"  }}>نوع المركبة</td>
+                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px"  }}>تقييم</td>
+                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px"  }}>رقم الهاتف</td>
+                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>السائق</td>
                         </thead>
                         <tbody>
                             {this.createTable()}
                         </tbody>
                     </table>
+
+                    <div className="TotalDiv">
+                        <p className="TotalP" >Total Trips:   {this.state.totalTrips}</p>
+                        <p className="TotalP">Total Money:   {this.state.totalMoney}</p>
+
+                    </div>
                 </div>
             )
         }
@@ -208,10 +216,10 @@ class Reports extends Component {
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
             return (
-                <div style={{ width: "100%", display: "-webkit-box", textAlign: "-webkit-center", marginTop:"10px", marginBottom:"10px" }}>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{day}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{month}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{year}</span>
+                <div style={{ width: "100%", display: "-webkit-box", textAlign: "-webkit-center", marginTop: "10px", marginBottom: "10px" }}>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{day}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{month}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{year}</span>
                 </div>
             )
         }
@@ -223,10 +231,10 @@ class Reports extends Component {
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
             return (
-                <div style={{ width: "100%", display: "-webkit-box", textAlign: "-webkit-center", marginTop:"10px", marginBottom:"10px" }}>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{day}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{month}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{year}</span>
+                <div style={{ width: "100%", display: "-webkit-box", textAlign: "-webkit-center", marginTop: "10px", marginBottom: "10px" }}>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{day}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{month}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{year}</span>
                 </div>
             )
         }
@@ -237,17 +245,43 @@ class Reports extends Component {
         var start = new Date(this.state.startDate._d).valueOf();
         var end = new Date(this.state.endDate._d).valueOf()
         var that = this;
+        var reponseData = [];
+        var total = 0;
+        var trips = 0;
         console.log(this.state.endDate)
         axios.get('/operator/gettrips?from=' + start + '&to=' + end).then(function (response) {
             console.log(response)
-            that.setState({
-                data: response.data.data
+            response.data.data.forEach(function (item, index) {
+                // console.log(item)
+                total = total + item.total
+                trips = trips + item.count
             })
+            that.setState({
+                data: response.data.data,
+                totalMoney: total,
+                totalTrips: trips
+
+            })
+
+            // reponseData = response.data.data
         }).catch(function (error) {
             // that.openModal("loginErrorModal")
             // alert(error.message);
             console.log(error)
         })
+
+
+
+        // reponseData.forEach(function (item, index) {
+        //     // console.log(item)
+        //     total = total + item.total
+        //     trips = trips + item.count
+        // })
+        // console.log("Total: ", total, " Trips: ", trips)
+        // this.setState({
+        //     totalMoney: total,
+        //     totalTrips: trips
+        // })
     }
 
     handleSelectChange(value) {

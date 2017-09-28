@@ -60,78 +60,362 @@ class UpdateUser extends Component {
             blur: "",
             loginErrorModal: false,
             missingRequiredFields: "",
-
+            SpecialistsOptions: [],
+            Specialists: [],
+            Specialist: "",
+            AllSpecialists: [],
+            branchesOptions: [],
+            Branch: "",
+            AllBranches: [],
+            currentBranch: "",
+            CurrentSpecialist: "",
         })
-
-        axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
-            console.log(response, "getDriverById Response")
+        // this.getSpecialistsAPI();
+        // this.getBranchesAPI();
+        var allbranchesOptions = [];
+        var branchesoptions2 = [];
+        axios.get('/operator/getAllBranches').then(function (response) {
+            console.log(response, "getAllBranches Response")
             var x = response.data.data;
-
-
-            //  driverBirthday : new Date(parseInt(x.birthday))
-            //     Year : driverBirthday.getFullYear(),
-            //     Month : driverBirthday.getMonth() + 1,
-            //     Day : driverBirthday.getDate()
-            var parser = parseInt(x.birthday)
-
-            var birthdate = new Date(parser);
-            var licenseNumber;
-            var LicenseExpDate;
-            var parserExp;
-            if (x.driverLicense) {
-                licenseNumber = x.driverLicense.number;
-                // LicenseExpDate = x.driverLicense.expirationDate;
-                console.log(x.driverLicense.expirationDate)
-                // parserExp = parseInt(JSON.parse(x.driverLicense).expirationDate)
-                parserExp = parseInt(x.driverLicense.expirationDate)
-                LicenseExpDate = new Date(parserExp);
-                console.log("hello world")
-                console.log(LicenseExpDate)
-                console.log(x.driverLicense.expirationDate)
-                that.setState({
-                    driverLicenseExpDate: x.driverLicense,
-                    Year2: LicenseExpDate.getFullYear(),
-                    Month2: LicenseExpDate.getMonth() + 1,
-                    Day2: LicenseExpDate.getDate(),
-                })
-            }
-            console.log(birthdate, "birthdate")
-            that.setState({
-                driverBirthday: x.birthday,
-                Year: birthdate.getFullYear(),
-                Month: birthdate.getMonth() + 1,
-                Day: birthdate.getDate(),
-                Name: x.firstName,
-                PNumber: x.phoneNumber,
-                Email: x.email,
-                Password: x.password,
-                Address: x.address,
+            var objects = [];
+            x.forEach(function (item, index) {
+                // console.log(item)
+                objects.push(item)
+                allbranchesOptions.push(
+                    {
+                        value: item._id,
+                        label: item.name
+                    })
+                // console.log(item)
             })
-            if (x.picture) {
-                that.setState({
-                    driverPicture: x.picture
+            branchesoptions2 = objects
+            that.setState({
+                branchesOptions: allbranchesOptions,
+                AllBranches: objects
+            })
+
+            var SpecialistsList = []
+            var allSpecialistsOptions = [];
+            axios.get('/operator/getAllSpecialists').then(function (response) {
+                console.log(response.data, "getAllSpecialists Response")
+                var z = response.data.data;
+                // console.log(x, "x")
+                var objects = [];
+                z.forEach(function (item, index) {
+                    // console.log(item)
+                    objects.push(item)
+                    allSpecialistsOptions.push(
+                        {
+                            value: item._id,
+                            label: item.firstName
+                        })
+                    // console.log(item)
                 })
-            }
-            else {
-                console.log("wtf man wtf")
+                SpecialistsList = objects
                 that.setState({
-                    driverPicture: "/Group 1548.png"
+                    Specialists: allSpecialistsOptions,
+                    AllSpecialists: objects
                 })
-            }
-            // if (x.driverLicense) {
-            //     that.setState({
-            //         DriverLicense: x.driverLicense,
-            //         // driverLicenseNo: x.driverLicense.number,
-            //         LNumber: x.driverLicense.number,
-            //         driverLicenseExpDate: x.driverLicense.expirationDate,
-            //     })
-            // }
+
+                axios.get('/operator/getDriverById?' + "driverId=" + that.state.driverId).then(function (response) {
+                    console.log(response, "getDriverById Response")
+                    var y = response.data.data;
+
+
+                    //  driverBirthday : new Date(parseInt(x.birthday))
+                    //     Year : driverBirthday.getFullYear(),
+                    //     Month : driverBirthday.getMonth() + 1,
+                    //     Day : driverBirthday.getDate()
+                    var parser = parseInt(y.birthday)
+
+                    var birthdate = new Date(parser);
+                    var licenseNumber;
+                    var LicenseExpDate;
+                    var parserExp;
+                    if (y.driverLicense) {
+                        licenseNumber = y.driverLicense.number;
+                        // LicenseExpDate = x.driverLicense.expirationDate;
+                        // console.log(x.driverLicense.expirationDate)
+                        // parserExp = parseInt(JSON.parse(x.driverLicense).expirationDate)
+                        parserExp = parseInt(y.driverLicense.expirationDate)
+                        LicenseExpDate = new Date(parserExp);
+                        // console.log("hello world")
+                        // console.log(LicenseExpDate)
+                        // console.log(x.driverLicense.expirationDate)
+                        that.setState({
+                            driverLicenseExpDate: y.driverLicense,
+                            Year2: LicenseExpDate.getFullYear(),
+                            Month2: LicenseExpDate.getMonth() + 1,
+                            Day2: LicenseExpDate.getDate(),
+                        })
+                        if (y.operator) { 
+                            var opID = y.operator;
+                          
+                            console.log(opID, "opID") 
+                            console.log("hello")
+                            console.log(SpecialistsList)
+                            SpecialistsList.forEach(function (item, index) {
+                                if (item.branch) {
+                                    var res = item._id.toString();
+                                    // console.log(res,"res")
+                                    // console.log(item._id,"branchId")
+                                    if (opID === res) {
+                                        console.log(item, "item")
+                                        console.log(item.branch._id,"branchId")
+                                        console.log(item.branch.name, "branchName")
+                                        // console.log(opID, "opID")
+                                        that.setState({
+                                            currentBranch: {
+                                                value: item.branch._id,
+                                                label: item.branch.name
+                                            },
+                                            CurrentSpecialist: {
+                                                value: item._id,
+                                                label: item.firstName 
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+
+
+                        }
+                        // if (y.branch) {
+                        //     console.log(y.branch, "x.branch")
+                        //     that.setState({
+                        //         Branch: y.branch
+                        //     })
+                        // }
+                    }
+                    // console.log(birthdate, "birthdate")
+                    that.setState({
+                        driverBirthday: y.birthday,
+                        Year: birthdate.getFullYear(),
+                        Month: birthdate.getMonth() + 1,
+                        Day: birthdate.getDate(),
+                        Name: y.firstName,
+                        PNumber: y.phoneNumber,
+                        Email: y.email,
+                        Password: y.password,
+                        Address: y.address,
+                    })
+                    if (y.picture) {
+                        that.setState({
+                            driverPicture: y.picture
+                        })
+                    }
+                    else {
+                        that.setState({
+                            driverPicture: "/Group 1548.png"
+                        })
+                    }
+                    // if (x.driverLicense) {
+                    //     that.setState({
+                    //         DriverLicense: x.driverLicense,
+                    //         // driverLicenseNo: x.driverLicense.number,
+                    //         LNumber: x.driverLicense.number,
+                    //         driverLicenseExpDate: x.driverLicense.expirationDate,
+                    //     })
+                    // }
+                }).catch(function (error) {
+                    alert(error.message);
+                    console.log(error)
+                })
+
+            }).catch(function (error) {
+                alert(error.message);
+                console.log(error)
+            })
+        }).catch(function (error) {
+            alert(error.message);
+            console.log(error)
+        })
+        // axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
+        //     console.log(response, "getDriverById Response")
+        //     var x = response.data.data;
+
+
+        //     //  driverBirthday : new Date(parseInt(x.birthday))
+        //     //     Year : driverBirthday.getFullYear(),
+        //     //     Month : driverBirthday.getMonth() + 1,
+        //     //     Day : driverBirthday.getDate()
+        //     var parser = parseInt(x.birthday)
+
+        //     var birthdate = new Date(parser);
+        //     var licenseNumber;
+        //     var LicenseExpDate;
+        //     var parserExp;
+        //     if (x.driverLicense) {
+        //         licenseNumber = x.driverLicense.number;
+        //         // LicenseExpDate = x.driverLicense.expirationDate;
+        //         // console.log(x.driverLicense.expirationDate)
+        //         // parserExp = parseInt(JSON.parse(x.driverLicense).expirationDate)
+        //         parserExp = parseInt(x.driverLicense.expirationDate)
+        //         LicenseExpDate = new Date(parserExp);
+        //         // console.log("hello world")
+        //         // console.log(LicenseExpDate)
+        //         // console.log(x.driverLicense.expirationDate)
+        //         that.setState({
+        //             driverLicenseExpDate: x.driverLicense,
+        //             Year2: LicenseExpDate.getFullYear(),
+        //             Month2: LicenseExpDate.getMonth() + 1,
+        //             Day2: LicenseExpDate.getDate(),
+        //         })
+        //         if (x.operator) {
+        //             console.log("hello")
+        //             console.log(branchesoptions2)
+        //             branchesoptions2.forEach(function (item, index) {
+        //                 console.log(item,"item")
+        //                if(x.operator === item._id){
+        //                    console.log(item,"branchName")
+        //                 that.setState({
+        //                     currentBranch: {
+        //                         value: item._id,
+        //                         label: item.firstName
+        //                     }
+
+        //                 })
+        //                }
+        //             })
+
+
+        //         }
+        //         if (x.branch) {
+        //             console.log(x.branch, "x.branch")
+        //             that.setState({
+        //                 Branch: x.branch
+        //             })
+        //         }
+        //     }
+        //     // console.log(birthdate, "birthdate")
+        //     that.setState({
+        //         driverBirthday: x.birthday,
+        //         Year: birthdate.getFullYear(),
+        //         Month: birthdate.getMonth() + 1,
+        //         Day: birthdate.getDate(),
+        //         Name: x.firstName,
+        //         PNumber: x.phoneNumber,
+        //         Email: x.email,
+        //         Password: x.password,
+        //         Address: x.address,
+        //     })
+        //     if (x.picture) {
+        //         that.setState({
+        //             driverPicture: x.picture
+        //         })
+        //     }
+        //     else {
+        //         that.setState({
+        //             driverPicture: "/Group 1548.png"
+        //         })
+        //     }
+        //     // if (x.driverLicense) {
+        //     //     that.setState({
+        //     //         DriverLicense: x.driverLicense,
+        //     //         // driverLicenseNo: x.driverLicense.number,
+        //     //         LNumber: x.driverLicense.number,
+        //     //         driverLicenseExpDate: x.driverLicense.expirationDate,
+        //     //     })
+        //     // }
+        // }).catch(function (error) {
+        //     alert(error.message);
+        //     console.log(error)
+        // })
+
+    }
+
+    getSpecialistsAPI() {
+        var that = this;
+        var allSpecialistsOptions = [];
+        axios.get('/operator/getAllSpecialists').then(function (response) {
+            console.log(response.data, "getAllSpecialists Response")
+            var x = response.data.data;
+            // console.log(x, "x")
+            var objects = [];
+            x.forEach(function (item, index) {
+                // console.log(item)
+                objects.push(item)
+                allSpecialistsOptions.push(
+                    {
+                        value: item._id,
+                        label: item.firstName
+                    })
+                // console.log(item)
+            })
+
+            that.setState({
+                Specialists: allSpecialistsOptions,
+                AllSpecialists: objects
+            })
+
+        }).catch(function (error) {
+            alert(error.message);
+            console.log(error)
+        })
+    }
+    getBranchesAPI() {
+        var that = this;
+        var allbranchesOptions = [];
+        axios.get('/operator/getAllBranches').then(function (response) {
+            console.log(response, "getAllBranches Response")
+            var x = response.data.data;
+            var objects = [];
+            x.forEach(function (item, index) {
+                // console.log(item)
+                objects.push(item)
+                allbranchesOptions.push(
+                    {
+                        value: item._id,
+                        label: item.name
+                    })
+                // console.log(item)
+            })
+
+            that.setState({
+                branchesOptions: allbranchesOptions,
+                AllBranches: objects
+            })
+
         }).catch(function (error) {
             alert(error.message);
             console.log(error)
         })
     }
 
+
+    handleSpecialitsoptions(type, value) {
+        console.log(value.value)
+        this.setState({ [type]: value.value });
+
+    }
+
+    handleBranchoptions(type, value) {
+        console.log(value.value)
+        var BranchId = value.value;
+        this.setState({ [type]: value.value });
+        var Specialistss = [];
+
+
+        this.state.AllSpecialists.forEach(function (item) {
+            if (item.branch) {
+                if (BranchId === item.branch._id) {
+                    console.log(item.branch)
+                    Specialistss.push(
+                        {
+                            value: item._id,
+                            label: item.firstName
+                        })
+                    console.log(item)
+                }
+            }
+        })
+
+        this.setState({
+            SpecialistsOptions: Specialistss,
+            Specialists: Specialistss
+
+        })
+    }
     componentDidMount() {
         var that = this;
 
@@ -191,7 +475,7 @@ class UpdateUser extends Component {
             );
         }
 
-        console.log(itemIds)
+        // console.log(itemIds)
         var x = itemIds3 + 10
         this.setState({
             startdayoptions: itemIds,
@@ -289,10 +573,10 @@ class UpdateUser extends Component {
         if (value) {
             if (value.value < 10) {
                 dayID = '0' + value.value;
-              }
-              else {
+            }
+            else {
                 dayID = value.value;
-              }
+            }
         } else {
             dayID = "";
         }
@@ -309,10 +593,10 @@ class UpdateUser extends Component {
         if (value) {
             if (value.value < 10) {
                 monthID = '0' + value.value;
-              }
-              else {
+            }
+            else {
                 monthID = value.value;
-              }
+            }
         } else {
             monthID = "";
         }
@@ -380,10 +664,10 @@ class UpdateUser extends Component {
         if (value) {
             if (value.value < 10) {
                 dayIDE = '0' + value.value;
-              }
-              else {
+            }
+            else {
                 dayIDE = value.value;
-              }
+            }
         } else {
             dayIDE = "";
         }
@@ -400,10 +684,10 @@ class UpdateUser extends Component {
         if (value) {
             if (value.value < 10) {
                 monthIDE = '0' + value.value;
-              }
-              else {
+            }
+            else {
                 monthIDE = value.value;
-              }
+            }
         } else {
             monthIDE = "";
         }
@@ -558,7 +842,7 @@ class UpdateUser extends Component {
 
 
 
-
+           
             var templicensenumber;
             var templicenseexpdate;
             if (this.state.birthdaydate) {
@@ -576,7 +860,8 @@ class UpdateUser extends Component {
             data.append('action', 'ADD');
             data.append('param', 0);
             data.append('driverId', this.state.driverId);
-
+            data.append('operator', this.state.CurrentSpecialist)
+            
             if (this.state.img) {
                 data.append('picture', this.state.img)
             }
@@ -688,8 +973,8 @@ class UpdateUser extends Component {
 
     render() {
         // console.log(this.state.birthdaydate, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
-        console.log(this.state.Day, "this.state.Day  ", this.state.Month, "this.state.Month    ", this.state.Year, "this.state.Year  ")
-        console.log(this.state.Day2, "this.state.Day2  ", this.state.Month2, "this.state.Month2    ", this.state.Year2, "this.state.Year2  ")
+        // console.log(this.state.Day, "this.state.Day  ", this.state.Month, "this.state.Month    ", this.state.Year, "this.state.Year  ")
+        // console.log(this.state.Day2, "this.state.Day2  ", this.state.Month2, "this.state.Month2    ", this.state.Year2, "this.state.Year2  ")
 
 
         const customStyles = {
@@ -783,6 +1068,42 @@ class UpdateUser extends Component {
                         <div className="NewCreateBigDiv7aram">
                             <p className="NewNewNewCreateBigDiv7aram">كلمة المرور</p>
                             <input type="password" className="NewDriverProfileText" ref="password" required value={this.state.Password} onChange={this.handleOnchangeTextPword.bind(this)} />
+                        </div>
+
+                        <div className="NewCreateBigDiv7aram">
+                            <p className="NewNewNewCreateBigDiv7aram">إختر الفرع</p>
+                            <div className="Options-GroupsFiNewNew">
+                                <div className="Inner-options-DivReally">
+                                    <div className="OptionsRightboom">
+                                        <Select
+                                            ref="Branch"
+                                            placeholder="فرع"
+                                            className="menu-outer-top4"
+                                            value={this.state.currentBranch}
+                                            options={this.state.branchesOptions}
+                                            onChange={this.handleBranchoptions.bind(this, "currentBranch")}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="NewCreateBigDiv7aram">
+                            <p className="NewNewNewCreateBigDiv7aram">إختر أخصائي</p>
+                            <div className="Options-GroupsFiNewNew">
+                                <div className="Inner-options-DivReally">
+                                    <div className="OptionsRightagain">
+                                        <Select
+                                            ref="Specialist"
+                                            placeholder="الأخصائي"
+                                            className="menu-outer-top4"
+                                            value={this.state.CurrentSpecialist}
+                                            options={this.state.SpecialistsOptions}
+                                            onChange={this.handleSpecialitsoptions.bind(this, "CurrentSpecialist")}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
