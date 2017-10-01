@@ -225,8 +225,10 @@ class DriverTrips extends Component {
                         <td className="tableheadDT" >تقيم</td>
 
                         <td className="tableheadF" >المدة</td>
-
+                        
                         <td className="tableheadF" >بداية الرحلة</td>
+
+                        <td className="tableheadF" >المسافة</td>
 
                         <td className="tableheadD" >إلى</td>
 
@@ -283,7 +285,7 @@ class DriverTrips extends Component {
                         var endseconds = "0" + end.getSeconds();
                         var endFormattedTime = endDay + '/' + endMonth + '/' + endYear + endhours + ':' + endminutes.substr(-2) + ':' + endseconds.substr(-2);
 
-                        console.log(newStart, "new Start")
+                        // console.log(newStart, "new Start")
                         // var now = "04/09/2013 15:00:00";
                         // var then = "04/09/2013 14:20:30";
                         moment.utc(moment(end, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
@@ -348,6 +350,13 @@ class DriverTrips extends Component {
                                         re.push(row.userRatingByDriver)
                                         re.push(durationtrip)
                                         re.push(newStart)
+                                        if (row.distanceTaken>-1) {
+                                            console.log(row.distanceTaken, "distance")
+                                            re.push(row.distanceTaken)
+                                        }
+                                        else {
+                                            re.push("-")
+                                        }
                                         re.push(row._toString)
                                         re.push(row._fromString)
                                         re.push(row.user.phoneNumber)
@@ -362,6 +371,13 @@ class DriverTrips extends Component {
                                     re.push(row.userRatingByDriver)
                                     re.push(durationtrip)
                                     re.push(newStart)
+                                    if (row.distanceTaken>=0) {
+                                        console.log(row.distanceTaken, "distance")
+                                        re.push(row.distanceTaken)
+                                    }
+                                    else {
+                                        re.push("-")
+                                    }
                                     re.push(row._toString)
                                     re.push(row._fromString)
                                     re.push(row.user.phoneNumber)

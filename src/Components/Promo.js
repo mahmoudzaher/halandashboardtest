@@ -321,7 +321,7 @@ class Promo extends Component {
         console.log(yearIDE);
     }
     handleBirthday() {
-        console.log(yearID, monthID + 1, dayID)
+        console.log(yearID, monthID - 1, dayID)
         this.setState({
             birthdaydate: new Date(yearID, monthID - 1, dayID).getTime(),
             birthdaydateE: new Date(yearIDE, monthIDE - 1, dayIDE).getTime(),
@@ -410,7 +410,7 @@ class Promo extends Component {
 
 
     handleBirthdayEdit() {
-        console.log(yearID, monthID + 1, dayID)
+        console.log(yearIDEdit, monthIDEdit - 1, dayIDEdit)
         this.setState({
             birthdaydateEdit: new Date(yearIDEdit, monthIDEdit - 1, dayIDEdit).getTime(),
             birthdaydateEEdit: new Date(yearIDEEdit, monthIDE - 1, dayIDEEdit).getTime(),

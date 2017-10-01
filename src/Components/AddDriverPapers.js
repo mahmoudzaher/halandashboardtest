@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { render, unmountComponentAtNode } from 'react-dom';
 import SkyLight from 'react-skylight';
+import ReactLoading from 'react-loading';
+import Lightbox from 'react-image-lightbox';
 var ReactRouter = require('flux-react-router');
 
 
@@ -37,7 +39,20 @@ class AddDriverPapers extends Component {
             newimg: "",
             img: "",
             newEntries: [],
-            displayobj: null
+            displayobj: null,
+            loadinghiden: true,
+            photoIndex: 0,
+            isOpen: false,
+            images: [],
+            nationalIdPhotosArray: [],
+            picArray: [],
+            picArray2: [],
+            picArray3: [],
+            picArray4: [],
+            picArray5: [],
+            picArray6: [],
+            picArray7: [],
+            picArray8: [],
         }
         this.setState({
             userID: this.props.pID
@@ -46,80 +61,324 @@ class AddDriverPapers extends Component {
     static defaultProps = {
 
     }
-    aoo(event) {
+    // aoo(event) {
+    //     var that = this
+    //     var Arrayy = Array.from(event.target.files)
+    //     console.log(event.target.value)
+    //     var newarray = [];
 
+    //     Arrayy.forEach(function (item) {
+    //         console.log(item)
+    //         // that.state.nationalIdPhotosArray.push(item.name)
+    //         newarray.push(item.name)
+    //     })
+    //     console.log(newarray)
+    //     this.setState({
+    //         nationalIdimg: Arrayy,
+    //         nationalIdPhotosArray: newarray
+    //     })
+    // }
+
+    aoo(event) {
+        var that = this
         var Arrayy = Array.from(event.target.files)
-        console.log(Arrayy)
+        console.log(event.target.value)
+        var newarray = [];
+
+        Arrayy.forEach(function (item) {
+            console.log(item)
+            // that.state.nationalIdPhotosArray.push(item.name)
+            newarray.push(item.name)
+        })
+        console.log(newarray)
         this.setState({
             nationalIdimg: Arrayy,
+            nationalIdPhotosArray: newarray
         })
+
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
 
     boo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             addressimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray5: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     coo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             drivingLicenseimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray2: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     doo(event) {
 
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             vehicleLicenseimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray3: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     eoo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             vehicleOwnerShipimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray4: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     foo(event) {
 
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             criminalRecordimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray6: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     goo(event) {
 
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             drugTestimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray7: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
     hoo(event) {
-
+        var that = this
         var Arrayy = Array.from(event.target.files)
         console.log(Arrayy)
         this.setState({
             contractimg: Arrayy,
         })
+
+        if (window.File && window.FileList && window.FileReader) {
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            var array = [];
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                //Only pics
+                if (!file.type.match('image')) continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load", function (event) {
+                    var picFile = event.target.result;
+                    // console.log(picFile)
+                    array.push(picFile)
+                    // console.log(array)
+                    that.setState({
+                        picArray8: array,
+                    })
+
+                });
+                //Read the image
+                picReader.readAsDataURL(file);
+            }
+        } else {
+            console.log("Your browser does not support File API");
+        }
     }
 
 
@@ -136,92 +395,49 @@ class AddDriverPapers extends Component {
             data.append('action', 'ADD');
             data.append('param', 0);
             data.append('driver', this.state.userID)
-            if (this.state.nationalIdimg.length > 0) {
-                for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-                    data.append('nationalId', this.state.nationalIdimg[i])
-                }
+            for (var i = 0; i < this.state.nationalIdimg.length; i++) {
+                data.append('nationalId', this.state.nationalIdimg[i])
             }
-            if (this.state.addressimg.length > 0) {
-                for (var i = 0; i < this.state.addressimg.length; i++) {
-                    data.append('address', this.state.addressimg[i])
-                }
+            for (var i = 0; i < this.state.addressimg.length; i++) {
+                data.append('address', this.state.addressimg[i])
             }
-            if (this.state.drivingLicenseimg.length > 0) {
-                for (var i = 0; i < this.state.drivingLicenseimg.length; i++) {
-                    data.append('drivingLicense', this.state.drivingLicenseimg[i])
-                }
+            for (var i = 0; i < this.state.drivingLicenseimg.length; i++) {
+                data.append('drivingLicense', this.state.drivingLicenseimg[i])
             }
-            if (this.state.vehicleLicenseimg.length > 0) {
-                for (var i = 0; i < this.state.vehicleLicenseimg.length; i++) {
-                    data.append('vehicleLicense', this.state.vehicleLicenseimg[i])
-                }
+            for (var i = 0; i < this.state.vehicleLicenseimg.length; i++) {
+                data.append('vehicleLicense', this.state.vehicleLicenseimg[i])
             }
-            if (this.state.vehicleOwnerShipimg.length > 0) {
-                for (var i = 0; i < this.state.vehicleOwnerShipimg.length; i++) {
-                    data.append('ownershipDocuments', this.state.vehicleOwnerShipimg[i])
-                }
+            for (var i = 0; i < this.state.vehicleOwnerShipimg.length; i++) {
+                data.append('ownershipDocuments', this.state.vehicleOwnerShipimg[i])
             }
-            if (this.state.criminalRecordimg.length > 0) {
-                for (var i = 0; i < this.state.criminalRecordimg.length; i++) {
-                    data.append('criminalRecord', this.state.criminalRecordimg[i])
-                }
+            for (var i = 0; i < this.state.criminalRecordimg.length; i++) {
+                data.append('criminalRecord', this.state.criminalRecordimg[i])
             }
-            if (this.state.drugTestimg.length > 0) {
-                for (var i = 0; i < this.state.drugTestimg.length; i++) {
-                    data.append('drugTest', this.state.drugTestimg[i])
-                }
+            for (var i = 0; i < this.state.drugTestimg.length; i++) {
+                data.append('drugTest', this.state.drugTestimg[i])
             }
-            if (this.state.contractimg.length > 0) {
-                for (var i = 0; i < this.state.contractimg.length; i++) {
-                    data.append('contract', this.state.contractimg[i])
-                }
+            for (var i = 0; i < this.state.contractimg.length; i++) {
+                data.append('contract', this.state.contractimg[i])
             }
-            // for (var i = 0; i < this.state.nationalIdimg.length; i++) {
-            //     data.append('nationalId', this.state.nationalIdimg[i])
-            // }
-            // for (var i = 0; i < this.state.addressimg.length; i++) {
-            //     data.append('address', this.state.addressimg[i])
-            // }
-            // for (var i = 0; i < this.state.drivingLicenseimg.length; i++) {
-            //     data.append('drivingLicense', this.state.drivingLicenseimg[i])
-            // }
-            // for (var i = 0; i < this.state.vehicleLicenseimg.length; i++) {
-            //     data.append('vehicleLicense', this.state.vehicleLicenseimg[i])
-            // }
-            // for (var i = 0; i < this.state.vehicleOwnerShipimg.length; i++) {
-            //     data.append('ownershipDocuments', this.state.vehicleOwnerShipimg[i])
-            // }
-            // for (var i = 0; i < this.state.criminalRecordimg.length; i++) {
-            //     data.append('criminalRecord', this.state.criminalRecordimg[i])
-            // }
-            // for (var i = 0; i < this.state.drugTestimg.length; i++) {
-            //     data.append('drugTest', this.state.drugTestimg[i])
-            // }
-            // for (var i = 0; i < this.state.contractimg.length; i++) {
-            //     data.append('contract', this.state.contractimg[i])
-            // }
-            // data.append('nationalId', this.state.addressimg)
-            // data.append('address', this.state.addressimg)
-            // data.append('drivingLicense', this.state.drivingLicenseimg)
-            // data.append('vehicleLicense', this.state.vehicleLicenseimg)
-            // data.append('ownershipDocuments', this.state.vehicleOwnerShipimg)
-            // data.append('criminalRecord', this.state.criminalRecordimg)
-            // data.append('drugTest', this.state.drugTestimg)
-            // data.append('contract', this.state.contractimg)
-
-            console.log(data, "data")
-
-            console.log(this.state.drugTestimg.length, "this.state.drugTestimg.length")
 
 
             if (this.state.nationalIdimg.length > 0 || this.state.addressimg.length > 0 || this.state.drivingLicenseimg.length > 0 || this.state.vehicleLicenseimg.length > 0 ||
                 this.state.vehicleOwnerShipimg.length > 0 || this.state.criminalRecordimg.length > 0 || this.state.drugTestimg.length > 0 || this.state.contractimg.length > 0) {
+                that.setState({
+                    loadinghiden: false,
+                })
                 axios.post('/operator/adddriverpapers', data).then(function (response) {
                     console.log(response)
                     window.localStorage.setItem('sessionToken', response.data);
-                    that.refs.PromoDialog.show()
+                    that.setState({
+                        loadinghiden: true,
+                    })
+
 
                 }).catch(function (error) {
+                    that.setState({
+                        loadinghiden: true,
+                    })
                     alert(error.message);
                     console.log(error)
                 })
@@ -229,15 +445,6 @@ class AddDriverPapers extends Component {
             else {
                 that.refs.PromoDialog.show()
             }
-            // axios.post('/operator/adddriverpapers', data).then(function (response) {
-            //     console.log(response)
-            //     window.localStorage.setItem('sessionToken', response.data);
-            //     that.refs.PromoDialog.show()
-
-            // }).catch(function (error) {
-            //     alert(error.message);
-            //     console.log(error)
-            // })
         }
         e.preventDefault();
     }
@@ -364,10 +571,15 @@ class AddDriverPapers extends Component {
 
         return (
             <div>
+                <div className="loadingclass" hidden={this.state.loadinghiden}  >
+                    <ReactLoading type={"bubbles"} color={"#444"} className="loadingelement" />
+                </div>
+
                 <div className="Navdiv">
                     <ul className="NavdivUl">
                         <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
                         <li className="active li" ><a className="active" onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
+                        {/*<li className="active li"><a className="active" href="#home">السائقين</a></li>*/}
                         <li><a  >رحلات</a></li>
                         <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
                         <li><a  >دعم</a></li>
@@ -383,6 +595,7 @@ class AddDriverPapers extends Component {
                         <li className="active li Sub"><a className="active selected" >صور مستندات و أوراق</a></li>
                     </ul>
                 </div>
+
                 {/*
                 <div className="CreateBigDiv">
 
@@ -463,99 +676,118 @@ class AddDriverPapers extends Component {
                 <div className="CreateBigDiv">
 
                     <div className="CreateBigDiv-right">
+
                         <div className="CreateBigDiv-right-rightDis">
-                            <p className="CreateBigDivDis">بطاقة السائق</p>
-                            <p className="CreateBigDivDis">رخصة السائق</p>
-                            <p className="CreateBigDivDis">رخصة المركبة</p>
-                            <p className="CreateBigDivDis">مستندات التمليك</p>
+                            <p className="CreateBigDivDisNewNew22">بطاقة السائق</p>
+                            <p className="CreateBigDivDisNewNew22">رخصة السائق</p>
+                            <p className="CreateBigDivDisNewNew22">رخصة المركبة</p>
+                            <p className="CreateBigDivDisNewNew22">مستندات التمليك</p>
                         </div>
                         <div className="CreateBigDiv-right-lefthmm">
 
-                            <div className="upload-button-divDisHelloNew">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
+                            <div className="upload-button-divDisHello">
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+                                        <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
+                                            <img src="/redashboard/Group 1538.png" className="hello" />
+                                        </label>
+                                    </div>
+                                    {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.aoo.bind(this)} multiple="multiple" />
+                                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                                                    </label>*/}
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.nationalIdPhotosArray, paperType: "nationalId" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray, paperType: "nationalIdimg" })} />
                             </div>
 
-                            <div className="upload-button-divDisHelloNew">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
+                            <div className="upload-button-divDisHello">
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+                                        <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
+                                            <img src="/redashboard/Group 1538.png" className="hello" />
+                                        </label>
+                                    </div>
+                                    {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.coo.bind(this)} multiple="multiple" />
+                                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                                                    </label>*/}
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.driverLicensePhotosArray, paperType: "licenseArray" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray2, paperType: "drivingLicenseimg" })} />
                             </div>
 
-                            <div className="upload-button-divDisHelloNew">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
-                                    <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
-                                        <img src="/redashboard/Group 1538.png" className="hello" />
-                                    </label>
+                            <div className="upload-button-divDisHello">
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+                                        <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
+                                            <img src="/redashboard/Group 1538.png" className="hello" />
+                                        </label>
+                                    </div>
+                                    {/*<label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.doo.bind(this)} multiple="multiple" />
+                                                        <img src="/redashboard/Group 1538.png" className="hello" />
+                                                    </label>*/}
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.vehicleLicensePhotosArray, paperType: "vehicleLicence" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray3, paperType: "vehicleLicenseimg" })} />
                             </div>
 
-                            <div className="upload-button-divDisHelloNew">
-                                <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                            <div className="upload-button-divDisHello">
+                                <div className="uploadWhat2" >
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
+                                    <div className="newpaperclass">
+
+                                    </div>
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.eoo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.ownershipDocumentsPhotosArray, paperType: "ownershipDocuments" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage" onClick={() => this.setState({ isOpen: true, images: this.state.picArray4, paperType: "vehicleOwnerShipimg" })} />
                             </div>
                         </div>
                     </div>
 
                     <div className="CreateBigDiv-left">
-                        <div className="CreateBigDiv-left-right">
-                            <p className="CreateBigDiv">صورة العنوان</p>
-                            <p className="CreateBigDiv">فيش و تشبيه</p>
-                            <p className="CreateBigDiv">تحليل مخدرات</p>
-                            <p className="CreateBigDiv">عقد شراكة</p>
+                        <div className="CreateBigDiv-left-rightcool">
+                            <p className="CreateBigDiv223">صورة العنوان</p>
+                            <p className="CreateBigDiv223">فيش و تشبيه</p>
+                            <p className="CreateBigDiv223">تحليل مخدرات</p>
+                            <p className="CreateBigDiv223">عقد شراكة</p>
                         </div>
-                        <div className="CreateBigDiv-left-leftDis2">
-                            <div className="upload-button-divDisHelloNew">
+                        <div className="CreateBigDiv-left-leftDis2Cool">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.boo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.addressPhotosArray, paperType: "address" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray5, paperType: "addressimg" })} />
                             </div>
-                            <div className="upload-button-divDisHelloNew">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.foo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.criminalRecordPhotosArray, paperType: "criminalRecord" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray6, paperType: "criminalRecordimg" })} />
                             </div>
-                            <div className="upload-button-divDisHelloNew">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.goo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.drugTestPhotosArray, paperType: "drugTest" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray7, paperType: "drugTestimg" })} />
                             </div>
-                            <div className="upload-button-divDisHelloNew">
+                            <div className="upload-button-divDisHello2">
                                 <div className="uploadWhat" >
-                                    <img src="/browser.png" className="browserDis" />
+                                    {/*<img src="/browser.png" className="browserDis" />*/}
                                     <label className="upload-button">حمل المستندات< input type="file" ref="artwork" onChange={this.hoo.bind(this)} multiple="multiple" />
                                         <img src="/redashboard/Group 1538.png" className="hello" />
                                     </label>
                                 </div>
-                                {/*<img src="/Group 1569.png" className="helloimage2" onClick={() => this.setState({ isOpen: true, images: this.state.contractPhotosArray, paperType: "contract" })} />*/}
+                                <img src="/Group 1569.png" className="helloimage23" onClick={() => this.setState({ isOpen: true, images: this.state.picArray8, paperType: "contractimg" })} />
                             </div>
                         </div>
                     </div>
@@ -564,7 +796,8 @@ class AddDriverPapers extends Component {
 
                 <br /><br />
 
-                <div className="buttonTT">         
+
+                <div className="buttonTT">
                     <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
                     {/*onClick={() => this.refs.PromoDialog.show()} */}
                     {/*onClick={this.handleSubmit.bind(this)}*/}
@@ -572,16 +805,74 @@ class AddDriverPapers extends Component {
 
 
 
+
+
+
+
+
+                <div>
+                    {this.state.isOpen &&
+                        <Lightbox
+                            toolbarButtons={this.loadButtonsArr.apply(this)}
+                            mainSrc={this.state.images[this.state.photoIndex]}
+                            nextSrc={this.state.images[(this.state.photoIndex + 1) % this.state.images.length]}
+                            prevSrc={this.state.images[(this.state.photoIndex + this.state.images.length - 1) % this.state.images.length]}
+
+                            onCloseRequest={() => this.setState({ isOpen: false })}
+                            onMovePrevRequest={() => this.setState({
+                                photoIndex: (this.state.photoIndex + this.state.images.length - 1) % this.state.images.length,
+                            })}
+                            onMoveNextRequest={() => this.setState({
+                                photoIndex: (this.state.photoIndex + 1) % this.state.images.length,
+                            })}
+                        />
+                    }
+                </div>
+
+
                 <SkyLight hideOnOverlayClicked ref="PromoDialog" dialogStyles={sky}>
                     <img src="./redashboard/Group 1549.png" alt="Header Logo" />
-                    <p className="Sky-P">تم إنشاء ملف السائق بنجاح</p>        
-                    <input type="button" value="تمام" className="modalButton" onClick={this.handleBack.bind(this)} style={{ width: "30%" }} />
+                    <p className="Sky-P">تم إنشاء ملف السائق بنجاح</p>
                 </SkyLight>
-
 
 
             </div>
         );
+    }
+
+
+
+    loadButtonsArr() {
+        let arr = [2];
+        console.log(this.state.paperType, "his.state.paperDirId")
+        var name = [this.state.paperType]
+        //     console.log(this.state.driverId, "this.state.driverId,")
+        var array = this.state.images;
+        var array2 = this.state[name];
+        console.log(this.state[name], "this.state[name]")
+        // this.state.[name]
+        // this.setState({
+        //     sadasfsad: "asdasdasd"
+        // })
+        return arr.map(function (item) {
+            return (
+                <button onClick={() => console.log(this.state.photoIndex, array[this.state.photoIndex])}>
+                    <p>clickme</p>
+                </button> ,
+
+                <img className="deletebutton" src="/Path 1292.png" onClick={() => {
+                    array.splice(this.state.photoIndex, 1)
+                    array2.splice(this.state.photoIndex, 1)
+                    this.setState({
+                        [name]: array2
+                    })
+                }
+                }>
+
+                </img>
+            )
+        }, this)
+
     }
 }
 

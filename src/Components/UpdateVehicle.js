@@ -35,6 +35,10 @@ class UpdateVehicle extends Component {
             vehicleDateofMake: "",
             vehicleMake: "",
             vehicleLabel: "",
+            vehicleLabelnum1: "",
+            vehicleLabelnum2: "",
+            vehicleLabelnum3: "",
+            vehicleLabeltext: "",
             vehicleShaseeh: "",
             vehicleMotor: "",
             TokTokActive: "not",
@@ -107,22 +111,34 @@ class UpdateVehicle extends Component {
 
                 var parser = parseInt(x.model)
                 var birthdate = new Date(parser);
-
+                var lebellength = x.label.length - 1;
+                var lebellengthlast = lebellength - 4;
                 that.setState({
                     vehicleType: x.vehicletype,
                     vehicleDateofMake: x.model,
                     vehicleMake: x.make,
                     vehicleLabel: x.label,
+                    vehicleLabelnum1: x.label.substr(0, 1),
+                    vehicleLabelnum2: x.label.substr(1, 1),
                     vehicleShaseeh: x.shaseehNo,
                     vehicleMotor: x.motorNo,
 
                     Year: birthdate.getFullYear(),
                     Month: birthdate.getMonth() + 1,
                     Day: birthdate.getDate(),
-
-
-
                 })
+                if (typeof x.label.substr(lebellength - 2, 1) === 'string') {
+                    that.setState({
+                        vehicleLabelnum3: x.label.substr(2, 1),
+                        vehicleLabeltext: x.label.substr(3, 4)
+                    })
+                }
+                else {
+                    that.setState({
+                        vehicleLabelnum3: '',
+                        vehicleLabeltext: x.label.substr(lebellength - lebellengthlast, 4, )
+                    })
+                }
 
                 if (that.state.vehicleType === "toktok") {
                     that.setState({
@@ -141,7 +157,7 @@ class UpdateVehicle extends Component {
                 }
 
             }).catch(function (error) {
-                alert(error.message, "what");
+                // alert(error.message, "what");
                 console.log(error.message)
             })
 
@@ -480,8 +496,12 @@ class UpdateVehicle extends Component {
         this.setState({ vehicleMake: event.target.value });
     }
 
-    handleOnchangeTextvehicleLabel(event) {
-        this.setState({ vehicleLabel: event.target.value });
+    handleOnchangeTextvehicleLabel(type, value) {
+        this.setState({ 
+            // vehicleLabel: event.target.value,
+            [type]: value,
+         });
+         console.log("type: ",type," value: ",value)
     }
 
     handleOnchangeTextvehicleShaseeh(event) {
@@ -508,7 +528,7 @@ class UpdateVehicle extends Component {
 
 
         let timestamp = Math.floor(this.state.birthdaydate);
-
+        var labelvalue = this.refs.labelnum1.value + this.refs.labelnum2.value + this.refs.labelnum3.value + this.refs.labeltext.value;
 
         if (this.state.vehicleTypee !== null && this.state.vehicleTypee !== "") {
             tempVehicleType = this.state.vehicleTypee;
@@ -531,8 +551,8 @@ class UpdateVehicle extends Component {
             tempvehicleDateofMake = this.state.vehicleDateofMake;  //
         }
 
-        if (this.refs.label.value) {
-            tempvehicleLabel = this.refs.label.value;
+        if (labelvalue !== "") {
+            tempvehicleLabel = labelvalue;
         }
         else {
             tempvehicleLabel = this.state.vehicleLabel;
@@ -727,20 +747,20 @@ class UpdateVehicle extends Component {
                             <p className="NewNewCreateBigDivLol">نوع المركبة</p>
                             <div id="maincontainerLolNewNew">
                                 <div className="threeNewNew" >
-                                    <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
+                                    <img src="\Group 1522.png" className={this.state.TokTokActive === "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
                                 </div>
                                 <div className="fourNew">
                                     <img src="\Line 515.png" className="twoNew" />
                                 </div>
 
                                 <div className="threeNew" >
-                                    <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
+                                    <img src="\Group 1523.png" className={this.state.MotocycleActive === "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
                                 </div>
                                 <div className="fourNew">
                                     <img src="\Line 515.png" className="twoNew" />
                                 </div>
                                 <div className="threeNew" >
-                                    <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
+                                    <img src="\Group 1524.png" className={this.state.TricycleActive === "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
                                 </div>
 
                             </div>
@@ -748,14 +768,20 @@ class UpdateVehicle extends Component {
                         </div>
 
                         <div className="newplan">
-                            <p className="NewNewCreateBigDivLol">الموديل</p>
+                            <p className="NewNewCreateBigDivLol">ماركة المركبة</p>
                             <input type="text" ref="make" className="NewNewCreateBigDivPTLol" value={this.state.vehicleMake} onChange={this.handleOnchangeTextvehicleMake.bind(this)} />
 
                         </div>
 
                         <div className="newplan">
-                            <p className="NewNewCreateBigDivLol">رقم اللوحة</p>
-                            <input type="text" ref="label" className="NewNewCreateBigDivPTLol" value={this.state.vehicleLabel} onChange={this.handleOnchangeTextvehicleLabel.bind(this)} />
+                            <p className="NewNewCreateBigDivLol">رقم اللوحة</p> 
+                            <div className="DivNewNewCreateBigDivPTLol123and4">
+                                <div className="DivNewNewCreateBigDivPTLol121">    <input type="text" ref="labelnum1" className="NewNewCreateBigDivPTLol123" value={this.state.vehicleLabelnum1} onChange={(e) => {this.setState({vehicleLabelnum1: e.target.value})}} />  </div>
+                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" className="NewNewCreateBigDivPTLol1236" value={this.state.vehicleLabelnum2} onChange={(e) => {this.setState({vehicleLabelnum2: e.target.value})}} />    </div>
+                                <div className="DivNewNewCreateBigDivPTLol123">   <input type="text" ref="labelnum3" className="NewNewCreateBigDivPTLol1235" value={this.state.vehicleLabelnum3} onChange={(e) => {this.setState({vehicleLabelnum3: e.target.value})}} />   </div>
+                                <div className="DivNewNewCreateBigDivPTLol124">   <input type="text" ref="labeltext" className="NewNewCreateBigDivPTLol1234"  value={this.state.vehicleLabeltext} onChange={(e) => {this.setState({vehicleLabeltext: e.target.value})}} />   </div>
+                            </div>
+                            {/* <input type="text" ref="label" className="NewNewCreateBigDivPTLol" value={this.state.vehicleLabel} onChange={this.handleOnchangeTextvehicleLabel.bind(this)} /> */}
 
                         </div>
 
