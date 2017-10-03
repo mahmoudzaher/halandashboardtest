@@ -417,7 +417,13 @@ class Promo extends Component {
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
+  handlePromo(e) {
 
+    console.log("WoHOOOOOOOOOOOOOOOO");
+    ReactRouter.goTo("/Promo")
+
+    e.preventDefault();
+  }
 
     nextAll(event) {
         var that = this;
@@ -776,17 +782,19 @@ class Promo extends Component {
         };
         console.log(this.state.StartDay, "StartDay  ", this.state.StartMonth, "StartMonth   ", this.state.StartYear, "StartYear")
         return (
-            <div>
+            <div >
 
-                <div className="Navdiv">
-                    <ul className="NavdivUl">
-                        <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-                        <li className="active li" ><a onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
-                        <li><a >رحلات</a></li>
-                        <li ><a  className="active">برومو كود</a></li>
-                        <li><a >دعم</a></li>
-                        <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-                        <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+            <div className="Navdiv">
+             <ul className="NavdivUl">
+              <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
+              <li className="active li"><a onClick={()=>{ReactRouter.goTo('/DashBoard')}}>السائقين</a></li>
+              {/*}<li><a >رحلات</a></li>{*/}
+              <li><a  className="active" onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+              <li><a >دعم</a></li>
+              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
+              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
+              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
+              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
                 <br />
