@@ -539,27 +539,32 @@ p.PopP{
 
 .Options-Groups{
   width: 100%;
-    margin-left: 55%;
+    /* margin-left: 55%; */
     padding-bottom: 10%;
 }
 .OptionsO{
-       float: left;
-    margin-left: -26%;
-    width: 10%;
-
-}
-.OptionsT{
-         float: left;
-    width: 10%;
-    padding-left: 4%;
-    margin-left: -5%;
+    float: right;
+    /* margin-left: -26%; */
+    width: 20%;
+    direction: rtl;
     padding-right: 5%;
 }
+.OptionsT{
+         float: right;
+    width: 15%;
+    /* padding-left: 4%;
+    margin-left: -5%;
+    padding-right: 5%; */
+    direction: rtl;
+    padding-right: 8%;
+}
 .OptionsTh{
-       float: left;
-    padding-right: 10%;
-    width: 10%;
-    padding-left: 10%;
+       float: right;
+    /* padding-right: 10%; */
+    width: 15%;
+    /* padding-left: 10%; */
+    direction: rtl;
+    padding-right: 8%;
 }
 
 select.SelectPopD{
@@ -599,13 +604,15 @@ PopClass-Left input{
 }
 
 input.TextFieldPopCode{
-        border-radius: 5px;
+    border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border: 1px solid #2C2D72;
     height: 25px;
-        width: 62%;
+    width: 61%;
+    text-align: right;
     margin-left: 29%;
+    padding-right: 1%;
 }
 
 input.TextFieldPopPer{
@@ -614,10 +621,12 @@ input.TextFieldPopPer{
     -webkit-border-radius: 5px;
     border: 1px solid #2C2D72;
     height: 25px;
-    width: 65px;
+    width: 10.597%;
     margin-left: 79%;
-        margin-bottom: 4%;
-            margin-top: 1%;
+    text-align: right;
+    margin-bottom: 4%;
+    padding-right: 1%;
+    margin-top: 1%;
 }
 
 .PopClass-Left-Div {
@@ -2996,4 +3005,10 @@ span.Select-clear-zone {
     width: 15%;
     padding-right: 0%;
     /* padding-right: 2%; */
+}
+
+.OptionsHello{
+    float: right;
+    width: 38%;
+    direction: rtl;
 }

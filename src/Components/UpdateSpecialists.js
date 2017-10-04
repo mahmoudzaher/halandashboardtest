@@ -419,13 +419,13 @@ class UpdateSpecialists extends Component {
                 <div className="Navdiv">
                     <ul className="NavdivUl">
                          <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-              <li className="active li"><a className="active" >السائقين</a></li>
+              <li className="active li"><a  >السائقين</a></li>
               {/*}<li><a >رحلات</a></li>{*/}
               <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
               <li><a >دعم</a></li>
               <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
               <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
+              <li><a className="active" onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
               <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
@@ -463,19 +463,19 @@ class UpdateSpecialists extends Component {
                         </div>
                         <div className="newplan">
                             <p className="NewNewCreateBigDivLol">إختر الفرع</p>
-                            <div className="Options-GroupsFiNewNew">
-                                <div className="Inner-options-Div">
-                                    <div className="OptionsRight">
+                            {/* <div className="Options-GroupsFiNewNew">
+                                <div className="Inner-options-Div"> */}
+                                    <div className="OptionsHello">
                                         <Select
                                             ref="branch"
                                             placeholder="فرع"
-                                            className="menu-outer-top4"
+                                            //className="menu-outer-top4"
                                             value={this.state.SpecialistBranch}
                                             options={this.state.branchesOptions}
                                             onChange={this.handleBranchoptions.bind(this, "SpecialistBranch")}
                                         />
-                                    </div>
-                                </div>
+                                    {/* </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

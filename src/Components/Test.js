@@ -16,7 +16,7 @@ let dayIDE = "";
 let monthIDE = "";
 let yearIDE = "";
 
-class CreateSpecialist extends Component {
+class Test extends Component {
 
     constructor(props) {
         super(props);
@@ -368,66 +368,25 @@ class CreateSpecialist extends Component {
 
                 <div className="Navdiv">
                     <ul className="NavdivUl">
-                        <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-              <li className="active li"><a className="active" onClick={()=>{ReactRouter.goTo('/DashBoard')}}>السائقين</a></li>
-             {/*} <li><a >رحلات</a></li>{*/}
-              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
-              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+                        <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
+                        <li className="active li"><a className="active" >السائقين</a></li>
+                        <li><a >رحلات</a></li>
+                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a >دعم</a></li>
+                        <li><a >تقارير</a></li>
+                        <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
 
                 <div className="CreateBigDiv">
-
-                    <div className="CreateBigDiv-right">
-
-                        <div className="Test">
-                            <p className="NewCreateBigDivNewLol" >الإسم</p>
-                            <input type="text" className="NewCreateBigDivP" ref="Name" />
-                        </div>
-
-                        <div className="Test">
-                            <p className="NewCreateBigDivNewLol">رقم الهاتف</p>
-                            <input type="text" className="NewCreateBigDivP" ref="Number" />
-                        </div>
-
-                        <div className="Test">
-                            <p className="NewCreateBigDivNewLol">الرقم السري</p>
-                            <input type="text" className="NewCreateBigDivP" ref="Password" />
-                        </div>
-                    </div>
-
-                    <div className="CreateBigDiv-leftReally">
-                        <div className="newplan">
-                            <p className="NewNewCreateBigDivLol">ايميل</p>
-                            <input type="text" ref="email" className="NewNewCreateBigDivPTLol" />
-
-                        </div>
-                        <div className="newplan">
-                            <p className="NewNewCreateBigDivLol">كود الأخصائي</p>
-                            <input type="text" ref="agentNumber" className="NewNewCreateBigDivPTLol" />
-
-                        </div>
-                        <div className="newplan">
-                            <p className="NewNewCreateBigDivLol">إختر الفرع</p>
-                            {/* <div className="Options-GroupsFiNewNew">
-                                <div className="Inner-options-Div"> */}
-                                    <div className="OptionsHello">
-                                        <Select
-                                            ref="branch"
-                                            placeholder="فرع"
-                                           // className="menu-outer-top3"
-                                            value={this.state.branch}
-                                            options={this.state.branchesOptions}
-                                            onChange={this.handleBranchoptions.bind(this, "branch")}
-                                        />
-                                    {/* </div>
-                                </div> */}
-                            </div>
-                        </div>
+                    <div className="Allnew">
+                        <Select
+                            ref="branch"
+                            placeholder="فرع"
+                            value={this.state.branch}
+                            options={this.state.branchesOptions}
+                            onChange={this.handleBranchoptions.bind(this, "branch")}
+                        />
                     </div>
                 </div>
                 <br /><br />
@@ -442,7 +401,7 @@ class CreateSpecialist extends Component {
     }
 }
 
-export default CreateSpecialist;
+export default Test;
 
 
 

@@ -417,13 +417,13 @@ class Promo extends Component {
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
-  handlePromo(e) {
+    handlePromo(e) {
 
-    console.log("WoHOOOOOOOOOOOOOOOO");
-    ReactRouter.goTo("/Promo")
+        console.log("WoHOOOOOOOOOOOOOOOO");
+        ReactRouter.goTo("/Promo")
 
-    e.preventDefault();
-  }
+        e.preventDefault();
+    }
 
     nextAll(event) {
         var that = this;
@@ -577,7 +577,7 @@ class Promo extends Component {
                             var month = birthdate.getMonth() + 1
                             var year = birthdate.getDate()
                             var startFormattedTime = day + '/' + month + '/' + year;
-                            console.log(startFormattedTime,"startFormattedTime")
+                            console.log(startFormattedTime, "startFormattedTime")
 
                             var parser2 = row.expiryDate
                             var birthdate2 = new Date(parser2);
@@ -585,9 +585,9 @@ class Promo extends Component {
                             var month2 = birthdate2.getMonth() + 1
                             var year2 = birthdate2.getDate()
                             var startFormattedTime2 = day2 + '/' + month2 + '/' + year2;
-                            console.log(row.startDate,"row.startDate    ",row.startDate,"row.startDate" )
-                            console.log(birthdate,"birthdate    ",birthdate2,"birthdate" )
-                             console.log(startFormattedTime2,"startFormattedTime2")
+                            console.log(row.startDate, "row.startDate    ", row.startDate, "row.startDate")
+                            console.log(birthdate, "birthdate    ", birthdate2, "birthdate")
+                            console.log(startFormattedTime2, "startFormattedTime2")
 
                             re.push("./Path 1161.png")
                             re.push(startFormattedTime)
@@ -784,17 +784,17 @@ class Promo extends Component {
         return (
             <div >
 
-            <div className="Navdiv">
-             <ul className="NavdivUl">
-              <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-              <li className="active li"><a onClick={()=>{ReactRouter.goTo('/DashBoard')}}>السائقين</a></li>
-              {/*}<li><a >رحلات</a></li>{*/}
-              <li><a  className="active" onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
-              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+                <div className="Navdiv">
+                    <ul className="NavdivUl">
+                        <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
+                        <li className="active li"><a onClick={() => { ReactRouter.goTo('/DashBoard') }}>السائقين</a></li>
+                        {/*}<li><a >رحلات</a></li>{*/}
+                        <li><a className="active" onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a >دعم</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
+                        <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
                 <br />
@@ -873,14 +873,15 @@ class Promo extends Component {
                                     <input type="text" className=" TextFieldPopCode" ref="description" />
                                 </div>
                                 <div className="Options-Groups">
-                                    <div className="OptionsO">
+
+                                    <div className="OptionsTh">
                                         <Select
-                                            ref="startyear"
-                                            placeholder="سنة"
-                                            className="menu-outer-top"
-                                            value={this.state.startyear}
-                                            options={this.state.startyearoptions}
-                                            onChange={this.handleYearoptions.bind(this, "startyear")}
+                                            ref="startday"
+                                            placeholder="يوم"
+                                            //className="menu-outer-top"
+                                            value={this.state.startday}
+                                            options={this.state.startdayoptions}
+                                            onChange={this.handleDayoptions.bind(this, "startday")}
                                         />
                                     </div>
 
@@ -888,34 +889,35 @@ class Promo extends Component {
                                         <Select
                                             ref="startmonth"
                                             placeholder="شهر"
-                                            className="menu-outer-top"
+                                            // className="menu-outer-top"
                                             value={this.state.startmonth}
                                             options={this.state.startmonthoptions}
                                             onChange={this.handleMonthoptions.bind(this, "startmonth")}
                                         />
                                     </div>
-
-                                    <div className="OptionsTh">
+                                    <div className="OptionsO">
                                         <Select
-                                            ref="startday"
-                                            placeholder="يوم"
-                                            className="menu-outer-top"
-                                            value={this.state.startday}
-                                            options={this.state.startdayoptions}
-                                            onChange={this.handleDayoptions.bind(this, "startday")}
+                                            ref="startyear"
+                                            placeholder="سنة"
+                                            //className="menu-outer-top"
+                                            value={this.state.startyear}
+                                            options={this.state.startyearoptions}
+                                            onChange={this.handleYearoptions.bind(this, "startyear")}
                                         />
                                     </div>
+
                                 </div>
 
                                 <div className="Options-Groups">
-                                    <div className="OptionsO">
+
+                                    <div className="OptionsTh">
                                         <Select
-                                            ref="endyear"
-                                            placeholder="سنة"
-                                            className="menu-outer-top"
-                                            value={this.state.endyear}
-                                            options={this.state.endyearoptions}
-                                            onChange={this.handleYearoptionsE.bind(this, "endyear")}
+                                            ref="endday"
+                                            placeholder="يوم"
+                                            //className="menu-outer-top"
+                                            value={this.state.endday}
+                                            options={this.state.enddayoptions}
+                                            onChange={this.handleDayoptionsE.bind(this, "endday")}
                                         />
                                     </div>
 
@@ -923,23 +925,24 @@ class Promo extends Component {
                                         <Select
                                             ref="endmonth"
                                             placeholder="شهر"
-                                            className="menu-outer-top"
+                                            //className="menu-outer-top"
                                             value={this.state.endmonth}
                                             options={this.state.endmonthoptions}
                                             onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
                                         />
                                     </div>
 
-                                    <div className="OptionsTh">
+                                    <div className="OptionsO">
                                         <Select
-                                            ref="endday"
-                                            placeholder="يوم"
-                                            className="menu-outer-top"
-                                            value={this.state.endday}
-                                            options={this.state.enddayoptions}
-                                            onChange={this.handleDayoptionsE.bind(this, "endday")}
+                                            ref="endyear"
+                                            placeholder="سنة"
+                                            //  className="menu-outer-top"
+                                            value={this.state.endyear}
+                                            options={this.state.endyearoptions}
+                                            onChange={this.handleYearoptionsE.bind(this, "endyear")}
                                         />
                                     </div>
+
                                 </div>
                                 <div className="TextFieldPopPerDiv">
                                     <input type="text" className="TextFieldPopPer" ref="percentage" />
@@ -1033,14 +1036,14 @@ class Promo extends Component {
                                     <input type="text" className=" TextFieldPopCode" ref="descriptionEdit" value={this.state.editpromoDescription} />
                                 </div>
                                 <div className="Options-Groups">
-                                    <div className="OptionsO">
+                                    <div className="OptionsTh">
                                         <Select
-                                            ref="startyearEdit"
-                                            placeholder="سنة"
+                                            ref="startdayEdit"
+                                            placeholder="يوم"
                                             className="menu-outer-top"
-                                            value={this.state.StartYear}
-                                            options={this.state.startyearoptionsEdit}
-                                            onChange={this.handleYearoptionsEdit.bind(this, "startyearEdit")}
+                                            value={this.state.StartDay}
+                                            options={this.state.startdayoptionsEdit}
+                                            onChange={this.handleDayoptionsEdit.bind(this, "startdayEdit")}
                                         />
                                     </div>
 
@@ -1054,20 +1057,40 @@ class Promo extends Component {
                                             onChange={this.handleMonthoptionsEdit.bind(this, "startmonthEdit")}
                                         />
                                     </div>
-
-                                    <div className="OptionsTh">
+                                    <div className="OptionsO">
                                         <Select
-                                            ref="startdayEdit"
-                                            placeholder="يوم"
+                                            ref="startyearEdit"
+                                            placeholder="سنة"
                                             className="menu-outer-top"
-                                            value={this.state.StartDay}
-                                            options={this.state.startdayoptionsEdit}
-                                            onChange={this.handleDayoptionsEdit.bind(this, "startdayEdit")}
+                                            value={this.state.StartYear}
+                                            options={this.state.startyearoptionsEdit}
+                                            onChange={this.handleYearoptionsEdit.bind(this, "startyearEdit")}
                                         />
                                     </div>
+
                                 </div>
 
                                 <div className="Options-Groups">
+                                    <div className="OptionsTh">
+                                        <Select
+                                            ref="enddayEdit"
+                                            placeholder="يوم"
+                                            className="menu-outer-top"
+                                            value={this.state.EndDay}
+                                            options={this.state.enddayoptionsEdit}
+                                            onChange={this.handleDayoptionsEEdit.bind(this, "enddayEdit")}
+                                        />
+                                    </div>
+                                    <div className="OptionsT">
+                                        <Select
+                                            ref="endmonthEdit"
+                                            placeholder="شهر"
+                                            className="menu-outer-top"
+                                            value={this.state.EndMonth}
+                                            options={this.state.endmonthoptionsEdit}
+                                            onChange={this.handleMonthoptionsEEdit.bind(this, "endmonthEdit")}
+                                        />
+                                    </div>
                                     <div className="OptionsO">
                                         <Select
                                             ref="endyearEdit"
@@ -1079,27 +1102,6 @@ class Promo extends Component {
                                         />
                                     </div>
 
-                                    <div className="OptionsT">
-                                        <Select
-                                            ref="endmonthEdit"
-                                            placeholder="شهر"
-                                            className="menu-outer-top"
-                                            value={this.state.EndMonth}
-                                            options={this.state.endmonthoptionsEdit}
-                                            onChange={this.handleMonthoptionsEEdit.bind(this, "endmonthEdit")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsTh">
-                                        <Select
-                                            ref="enddayEdit"
-                                            placeholder="يوم"
-                                            className="menu-outer-top"
-                                            value={this.state.EndDay}
-                                            options={this.state.enddayoptionsEdit}
-                                            onChange={this.handleDayoptionsEEdit.bind(this, "enddayEdit")}
-                                        />
-                                    </div>
                                 </div>
                                 <div className="TextFieldPopPerDiv">
                                     <input type="text" className="TextFieldPopPer" ref="percentageEdit" value={this.state.editpromoDiscountPercent} />
