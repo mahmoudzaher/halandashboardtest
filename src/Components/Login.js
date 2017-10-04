@@ -70,7 +70,7 @@ class Login extends Component {
 
     axios.post('/operator/login', object).then(function (response) {
       console.log(response)
-      window.localStorage.setItem('sessionToken', response.data.data.access_token);
+      window.localStorage.setItem('sessionToken', response.data.data);
       ReactRouter.goTo("/DashBoard")
 
     }).catch(function (error) {

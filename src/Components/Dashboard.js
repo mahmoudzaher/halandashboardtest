@@ -14,13 +14,16 @@ class Dashboard extends Component {
   constructor() {
     super();
     axios.defaults.baseURL = localStorage.getItem('baseURL');
+    this.state = {
+      token: localStorage.getItem('sessionToken'),
+    }
     /* axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
   }
 
   componentWillMount() {
-
+console.log(this.state.token,"token")
     var itemIds3 = [];
 
 
