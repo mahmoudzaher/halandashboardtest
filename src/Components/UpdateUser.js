@@ -1027,10 +1027,12 @@ class UpdateUser extends Component {
                     <ul className="NavdivUl">
                         <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
                         <li className="active li" ><a className="active" onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
-                        <li><a >رحلات</a></li>
-                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-                        <li><a >دعم</a></li>
-                        <li><a >تقارير</a></li>
+                        {/*}<li><a >رحلات</a></li>{*/}
+              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+              <li><a >دعم</a></li>
+              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
+              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
+              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
