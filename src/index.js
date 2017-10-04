@@ -25,6 +25,7 @@ import UpdateBranch from './Components/UpdateBranch';
 import Specialists from './Components/Specialists';
 import CreateSpecialist from './Components/CreateSpecialist';
 import UpdateSpecialists from './Components/UpdateSpecialists';
+import Test from './Components/Test';
 
 // localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
 localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
@@ -78,12 +79,23 @@ Flux.createRoute('/CreateUser', function () {
         render(<Application />, document.getElementById('root'));
     }
 });
-
+Test
 Flux.createRoute('/Branches', function () {
     unmountComponentAtNode(document.getElementById('root'));
     /* unmountComponentAtNode(document.getElementById('menu'));*/
     if (localStorage.getItem('sessionToken')) {
         render(<Branches />, document.getElementById('root'));
+        /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
+    } else {
+        render(<Application />, document.getElementById('root'));
+    }
+});
+
+Flux.createRoute('/Test', function () {
+    unmountComponentAtNode(document.getElementById('root'));
+    /* unmountComponentAtNode(document.getElementById('menu'));*/
+    if (localStorage.getItem('sessionToken')) {
+        render(<Test />, document.getElementById('root'));
         /*  render(<LoyaltyMenu />, document.getElementById('menu'))*/
     } else {
         render(<Application />, document.getElementById('root'));

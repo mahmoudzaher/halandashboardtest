@@ -861,37 +861,37 @@ class CreateUser extends Component {
 
             <div className="NewCreateBigDiv7aram">
               <p className="NewNewNewCreateBigDiv7aram">إختر الفرع</p>
-              <div className="Options-GroupsFiNewNew">
-                <div className="Inner-options-DivReally">
-                  <div className="OptionsRightboom">
-                    <Select
-                      ref="Branch"
-                      placeholder="فرع"
-                      className="menu-outer-top4"
-                      value={this.state.Branch}
-                      options={this.state.branchesOptions}
-                      onChange={this.handleBranchoptions.bind(this, "Branch")}
-                    />
-                  </div>
-                </div>
+              {/* <div className="Options-GroupsFiNewNew"> */}
+              {/* <div className="Inner-options-DivReally"> */}
+              <div className="OptionsRightboom">
+                <Select
+                  ref="Branch"
+                  placeholder="فرع"
+                  // className="menu-outer-top4"
+                  value={this.state.Branch}
+                  options={this.state.branchesOptions}
+                  onChange={this.handleBranchoptions.bind(this, "Branch")}
+                />
+                {/* </div> */}
+                {/* </div> */}
               </div>
             </div>
 
             <div className="NewCreateBigDiv7aram">
               <p className="NewNewNewCreateBigDiv7aram">إختر أخصائي</p>
-              <div className="Options-GroupsFiNewNew">
-                <div className="Inner-options-DivReally">
-                  <div className="OptionsRightagain">
-                    <Select
-                      ref="branch"
-                      placeholder="الأخصائي"
-                      className="menu-outer-top4"
-                      value={this.state.Specialist}
-                      options={this.state.SpecialistsOptions}
-                      onChange={this.handleSpecialitsoptions.bind(this, "Specialist")}
-                    />
-                  </div>
-                </div>
+              {/* <div className="Options-GroupsFiNewNew"> */}
+              {/* <div className="Inner-options-DivReally"> */}
+              <div className="OptionsRightboom">
+                <Select
+                  ref="branch"
+                  placeholder="الأخصائي"
+                  //className="menu-outer-top4"
+                  value={this.state.Specialist}
+                  options={this.state.SpecialistsOptions}
+                  onChange={this.handleSpecialitsoptions.bind(this, "Specialist")}
+                />
+                {/* </div> */}
+                {/* </div> */}
               </div>
             </div>
 
@@ -947,39 +947,36 @@ class CreateUser extends Component {
             </div>
 
             <div className="NewClassUserNewNewNew" >
-              <p className="NewNewNewCreateBigDivLeft">تاريخ الميلاد *</p>
+              <p className="NewNewNewCreateBigDivLeftNew">تاريخ الميلاد *</p>
               <div className="Options-GroupsTNewNewcomecome">
-
-                <div className="OptionsThTNewNewcomecome ">
+                <div className="OptionsOTNewNewcomecome ">
                   <Select
-                    ref="startday"
-                    placeholder="يوم"
-                    className="menu-outer-top2"
-                    value={this.state.startday}
-                    options={this.state.startdayoptions}
-                    onChange={this.handleDayoptions.bind(this, "startday")}
+                    ref="startyear"
+                    placeholder="سنة"
+                    // className="menu-outer-top"
+                    value={this.state.startyear}
+                    options={this.state.startyearoptions}
+                    onChange={this.handleYearoptions.bind(this, "startyear")}
                   />
                 </div>
-
                 <div className="OptionsTTNewNewtruecomecome ">
                   <Select
                     ref="startmonth"
                     placeholder="شهر"
-                    className="menu-outer-top"
+                    //className="menu-outer-top"
                     value={this.state.startmonth}
                     options={this.state.startmonthoptions}
                     onChange={this.handleMonthoptions.bind(this, "startmonth")}
                   />
                 </div>
-
-                <div className="OptionsOTNewNewcomecome ">
+                <div className="OptionsThTNewNewcomecome ">
                   <Select
-                    ref="startyear"
-                    placeholder="سنة"
-                    className="menu-outer-top"
-                    value={this.state.startyear}
-                    options={this.state.startyearoptions}
-                    onChange={this.handleYearoptions.bind(this, "startyear")}
+                    ref="startday"
+                    placeholder="يوم"
+                    // className="menu-outer-top2"
+                    value={this.state.startday}
+                    options={this.state.startdayoptions}
+                    onChange={this.handleDayoptions.bind(this, "startday")}
                   />
                 </div>
               </div>
@@ -995,40 +992,38 @@ class CreateUser extends Component {
               <input type="text" className="NewNewNewNewCreateBigDivPTTT2comecome" ref="driverLicenseNumber" />
             </div>
 
-            <div className="NewClassUser" >
-              <p className="NewNewNewCreateBigDivLeft">تاريخ إنتهاء الرخصة</p>
+            <div className="NewClassUserHelloz" >
+              <p className="NewNewNewCreateBigDivLeftNew">تاريخ إنتهاء الرخصة</p>
               <div className="Options-GroupsTNewNewcomecome">
-                <div className="OptionsThTNewNewcomecome">
-                  <Select
-                    ref="endday"
-                    placeholder="يوم"
-                    className="menu-outer-top"
-                    value={this.state.endday}
-                    options={this.state.enddayoptions}
-                    onChange={this.handleDayoptionsE.bind(this, "endday")}
-                  />
-                </div>
-
-
-                <div className="OptionsTTNewNewtruecomecome">
-                  <Select
-                    ref="endmonth"
-                    placeholder="شهر"
-                    className="menu-outer-top"
-                    value={this.state.endmonth}
-                    options={this.state.endmonthoptions}
-                    onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
-                  />
-                </div>
 
                 <div className="OptionsOTNewNewcomecome">
                   <Select
                     ref="endyear"
                     placeholder="سنة"
-                    className="menu-outer-top"
+                    // className="menu-outer-top"
                     value={this.state.endyear}
                     options={this.state.endyearoptions}
                     onChange={this.handleYearoptionsE.bind(this, "endyear")}
+                  />
+                </div>
+                <div className="OptionsTTNewNewtruecomecome">
+                  <Select
+                    ref="endmonth"
+                    placeholder="شهر"
+                    //className="menu-outer-top"
+                    value={this.state.endmonth}
+                    options={this.state.endmonthoptions}
+                    onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
+                  />
+                </div>
+                <div className="OptionsThTNewNewcomecome">
+                  <Select
+                    ref="endday"
+                    placeholder="يوم"
+                    //  className="menu-outer-top"
+                    value={this.state.endday}
+                    options={this.state.enddayoptions}
+                    onChange={this.handleDayoptionsE.bind(this, "endday")}
                   />
                 </div>
               </div>

@@ -192,26 +192,6 @@ color: white;
    text-align: center;
     padding-top: 5%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 body {margin:0;
 /*overflow-x: hidden;*/
     min-width: 1392px;
@@ -726,115 +706,6 @@ padding-left: 500px;
 color: white;
 }
 
-.Select-control {
-    background-color: #fff;
-    border-color: #d9d9d9 #ccc #b3b3b3;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    color: #333;
-    cursor: default;
-    display: table;
-    border-spacing: 0;
-    border-collapse: separate;
-    height: 36px;
-    outline: none;
-    overflow: hidden;
-    position: relative;
-     width: 121%  !important;
-    text-align: right;
-        width: 20px;
-        /*padding-left: 25px;*/
-}
-.Select-clear-zone {
-    display: none;
-}
-Select-arrow-zone {
-    cursor: pointer;
-    display: table-cell;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    width: 25px;
-    padding-right: 40px !important;
-    margin-left: 0%;
-}
-
-.Select-arrow {
-    border-color: #999 transparent transparent;
-    border-style: solid;
-    border-width: 5px 5px 2.5px;
-    display: inline-block;
-    height: 0;
-    width: 0;
-    position: relative;
-    /* margin-right: 41px; */
-}
-span.Select-clear{
-    display: none;
-}
-.Select-clear{
-        display: none;
-}
-
-.Select-arrow-zone{
-/*padding-right: 40px !important;*/
-padding-left: 25% !important;
-}
-
-
-
-
-
-
-.menu-outer-top2 .Select-arrow-zone {
-   padding-left: 0px !important;
-}
-
-.menu-outer-top2 .Select-menu-outer {
-    /*width: 121%;*/
-     width: 120%;
-}
-
-.menu-outer-top3 .Select-arrow-zone {
-   padding-left: 0% !important;
-}
-
-.menu-outer-top3 .Select-menu-outer {
-    /*width: 121%;*/
-     width: 120%;
-}
-
-.menu-outer-top4 .Select-arrow-zone {
-    padding-left: 0% !important;
-    margin-left: -5%;
-    margin-top: 0%;
- } 
- .menu-outer-top4 .Select-control {
-    /*width: 121%;*/
-     width: 349% !important;
-     height: 39px;
-}
- .menu-outer-top4 .Select-menu-outer {
-     /*width: 121%;*/
-      width: 349%;
- }
-
-.menu-outer-top .Select-multi-value-wrapper {
-    float:none!important
-}
-
-
-.Select-arrow{
-        margin-left: -10px;
-}
-
-.Select-placeholder, .Select--single > .Select-control .Select-value{
-         padding-left: 0px !important; 
-}
-    
-
-
-
 input[type="file"] {
     display: none;
 }
@@ -934,10 +805,12 @@ input[type="file"] {
     /* text-align: right; */
 }
 .CreateBigDiv-left-what2{
-               width: 55%;
+               /* width: 55%; */
+               width: 45%;
     float: right;
     /* margin-top: -14%; */
     /* text-align: right; */
+    padding-right: 6%;
 }
 .CreateBigDiv-left-right{
          /* width: 50%; */
@@ -1848,150 +1721,6 @@ p.dudeP{
             color: #2C2D72;
 }
 
-/*.Select-menu-outer{
-    width: 100% !important;
-}*/
-/*div.Select-menu-outer{
-    width: 117% !important;
-    background-color: red !important;
-    color: red !important;
-    overflow-y: hidden;
-}*/
-div.Select.Select--single.is-clearable.is-focused.is-open.is-searchable .Select-control{
-    overflow-y: scroll !important;
-    /*position: absolute;*/
-/*background: #00FECD;*/
-}
-.div.Select-menu-outer{
-
-    border-bottom-right-radius: 20px !important;
-    border-bottom-left-radius: 20px!important;
-}
-
-.menu-outer-top .Select-menu-outer {
-    /*width: 121%;*/
-     width: 120%;
-}
-.menu-outer-top .Select-control {
-/*background: red;*/
-
-}
-.Select-option:last-child  {
-/*border-color: red !important;*/
-}
-.menu-outer-top .Select-menu-outer:last-child  {
-/*border-color: red !important;*/
-    
-}
-.Select--single.is-clearable.is-focused.is-open.is-searchable .Select-arrow-zone{
-display: none;
-}
-/*Select menu-outer-top Select--single is-clearable is-focused is-open is-searchable*/
-
-
-.Select-option {
-	/*box-sizing: border-box;
-	background-color: red !important;
-	cursor: pointer;
-	display: block;*/
-    /*color: red !important;*/
-    /*background: white !important;*/
-    /*height: 10%*/
-
-}
-span.Select-arrow
-/*.Select-option.is-focused {
-
-    color: white !important;
-    background: red !important;
-border-bottom-right-radius: 20px !important;
-    border-bottom-left-radius: 20px!important;
-}*/
-/*.Select-option:nth-child(6n+0)  {
-border-bottom-right-radius: 25px !important;
-    border-bottom-left-radius: 25px!important;
-}*/
-.Select-option:nth-child(6n)  {
-    /*background: red !important;*/
-/*border-bottom-right-radius: 25px !important;
-    border-bottom-left-radius: 25px!important;*/
-}
-.Select-option:nth-child(n+6)  {
-    /*background: red !important;*/
-/*border-bottom-right-radius: 25px !important;
-    border-bottom-left-radius: 25px!important;*/
-}
-/*.Select-option:last-child {
-	 border-bottom-right-radius: 20px!important;
-    border-bottom-left-radius: 20px!important;
-	}*/
-.Select-menu {
-	/*max-height: ($select-menu-max-height - 2px);*/
-	/*border-bottom-right-radius: 20px !important;
-    5aly balaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaak
-    border-bottom-left-radius: 20px!important;*/
-    /*overflow-y:  hidden !important;*/
-    /*position: relative;*/
-}
-.div.Select-menu-outer{
-    /*border-bottom-right-radius: 10px !important;
-    border-bottom-left-radius: 10px!important;*/
-}
-.Select-option  {
-
-/*border-bottom-right-radius: 10px !important;
-    border-bottom-left-radius: 10px!important;*/
-
-    border-bottom-right-radius: 0px !important;
-    border-bottom-left-radius: 0px!important;
-    border-bottom: 0px!important;
-
- /*border-bottom-right-radius: 1px solid rgb(127, 0, 0);
-    border-bottom-left-radius: 1px solid rgba(255, 0, 0, .5);
-    -webkit-background-clip: padding-box; 
-    background-clip: padding-box;*/
-}
-.Select-option.is-focused {
-		background: #00FECD !important;
-        border-bottom-right-radius: 0px !important;
-    border-bottom-left-radius: 0px!important;
-    }
-   
-/*.Select-container.condensed .Select .Select-control {
-    width: auto;
-}
-.Select-container.condensed:not(.multi) .Select .Select-value,
-.Select-container.condensed .Select .Select-placeholder {
-    position: static;
-    display: table-cell;
-    padding-right: 0;
-}
-.Select-container.condensed .Select .Select-loading-zone {
-    padding-left: 5px;
-}
-.Select-container.condensed:not(.multi) .Select .Select-value ~ .Select-input,
-.Select-container.condensed .Select .Select-placeholder ~ .Select-input {
-    position: absolute;
-    left: 0;
-}
-.Select-container.condensed .Select .Select-menu-outer {
-    width: auto;
-    min-width: 100%;
-    background-color: red;
-}
-.Select-container.condensed .Select .Select-menu {
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.Select-container.condensed:not(.multi) .Select .Select-option {
-    white-space: nowrap;
-    padding-right: 25px; 
-}
-.Select-container.condensed.multi .Select .Select-multi-value-wrapper {
-    display: initial;
-    position: initial;
-}*/
-
 .lolz {
        text-align: center;
     /* font-size: 14px; */
@@ -2325,7 +2054,8 @@ input.NewNewCreateBigDivPTLol {
     padding-right: 1%;
     font-family: Cairo !important;
     font-size: 16px;
-    width: 29%;
+    width: 37%;
+    height: 35px;
 }
 
 p.NewNewCreateBigDivLol {
@@ -2362,8 +2092,9 @@ div#maincontainerLolNewNew {
        /* margin-left: 25%; */
     float: right;
     /* padding-top: 2%; */
-    min-width: 300px;
-    padding-right: 1%;
+    /* min-width: 300px; */
+    width: 41%;
+    /* padding-right: 1%; */
 }
 
 
@@ -2435,24 +2166,6 @@ img.twoNew {
     padding-bottom: 0;
     padding-left: 10%;
 }
-.Select-control {
-    min-width: 85px;
-}
-
-span.Select-arrow-zone {
-    float: left;
-}
-.Select-arrow-zone {
-    margin-top: 5%
-}
-span.Select-clear-zone {
-    float: left;
-}
-
-span#react-select-2--value {
-    float: left;
-}
-
 
 p.NewNewNewCreateBigDiv7aram {
        float: right;
@@ -2513,37 +2226,53 @@ input.NewNewNewNewCreateBigDivPTTT2 {
 }
 
 p.NewNewNewCreateBigDivLeft {
-      float: right;
+    float: right;
     font-size: 16px;
-    min-width: 160px;
+    /* min-width: 160px; */
+    width: 22.5%;
     margin: 0%;
     text-align: right;
     /* padding-left: 5%; */
-        /*padding-right: 10%;*/
-        padding-right: 20%;
+    /* padding-right: 10%; */
+    /* padding-right: 20%; */
+}
+p.NewNewNewCreateBigDivLeftNew {
+   
+    float: right;
+    font-size: 16px;
+    width: 25%;
+    margin: 0%;
+    text-align: right;
+    padding-left: 13%
+   
 }
 
-
 .NewClassUser {
-       padding-bottom: 6%;
-    /*padding-bottom: 10%;*/
-    min-width: 840px;
+    padding-bottom: 6%;
+    width: 100%;
     min-height: 30px;
+}
+.NewClassUserHelloz {
+    width: 100%;
+    height: 36px;
 }
 .NewClassUseryay {
      padding-bottom: 4%;
     /* padding-bottom: 10%; */
-    min-width: 840px;
+    /* min-width: 840px; */
+    width: 100%;
     min-height: 30px
 }
 .NewClassUserNew {
        padding-bottom: 6%;
     min-width: 840px;
+    /* width: 100%; */
 }
 
 .NewClassUserNewNewNew {
        padding-bottom: 6%;
-    min-width: 840px;
+    /* min-width: 840px; */
+    width: 100%;
 }
 
 .NewNewNewcustom-file-upload-inner-div-right {
@@ -2738,32 +2467,25 @@ p.statisticsP222{
 .Options-GroupsTNewNewcomecome{
     display: -webkit-box;
     float: right;
-    padding-right: 6%;
+    width: 25%;
 }
 
 .OptionsThTNewNewcomecome {
-    /* float: left; */
-    /* float: right; */
-    margin-right: 10%;
-    /* width: 10%; */
-    /* padding-left: 10%; */
+    direction: rtl;
+    width: 50%;
+  
 }
 
 .OptionsTTNewNewtruecomecome {
-    /* float: right; */
-    /* width: 10%; */
-    /* padding-left: 4%; */
-    /* margin-right: 8%; */
-    /* padding-right: 40%; */
-    margin-right: 10%;
+    direction: rtl;
+    width: 54%;
+    padding-right: 2%;
 }
 
 .OptionsOTNewNewcomecome {
-    /* float: right; */
-    /* margin-left: 15%; */
-    /* margin-right: 15%; */
-    /* width: 12%; */
-    /* padding-right: 8%; */
+    direction: rtl;
+    width: 54%;
+    padding-right: 3%;
 }
 
 input.NewNewNewNewCreateBigDivPTTT2comecome {
@@ -2772,7 +2494,8 @@ input.NewNewNewNewCreateBigDivPTTT2comecome {
     border-radius: 5px;
     font-size: 16px;
     /* margin-right: 5%; */
-    width: 29%;
+    /* width: 29%; */
+    width: 39%;
     height: 35px;
     text-align: right;
     padding-right: 1%;
@@ -2858,22 +2581,16 @@ input.NewNewNewNewCreateBigDivPTTTcomebaby {
 p.NewNewNewCreateBigDivLeft22 {
     float: right;
     font-size: 16px;
-    min-width: 160px;
+    width: 22.5%;
     margin: 0%;
     text-align: right;
-    /* padding-left: 5%; */
-    padding-top: 2%;
-    /* padding-right: 10%; */
-    padding-right: 20%;
 }
 
 input.NewNewNewNewCreateBigDivPTTT2comecome22 {
     float: right;
-    /* width: 70%; */
     border-radius: 5px;
     font-size: 16px;
-    /* margin-right: 5%; */
-    width: 29%;
+    width: 39%;
     text-align: right;
     height: 70px;
     padding-right: 1%;
@@ -2883,8 +2600,9 @@ input.NewNewNewNewCreateBigDivPTTT2comecome22 {
 }
 
 .NewClassUserNew22 {
-    padding-bottom: 10%;
-    min-width: 840px;
+    padding-bottom: 12%;
+    /* min-width: 840px; */
+    width: 100%
 }
 
 input.NewNewCreateBigDivPTLol1234 {
@@ -2901,6 +2619,7 @@ input.NewNewCreateBigDivPTLol1234 {
     font-size: 16px;
     /* width: 20%; */
     width: 90%;
+    height: 35px
 }
 
 input.NewNewCreateBigDivPTLol123 {
@@ -2917,11 +2636,12 @@ input.NewNewCreateBigDivPTLol123 {
     font-size: 16px;
     /* width: 3.549%; */
     width: 100%;
+    height: 35px;
 }
 .DivNewNewCreateBigDivPTLol124 {
     /* padding-right: 21%; */
     float: right;
-    width: 12%;
+    width: 15%;
 }
 
 input.NewNewCreateBigDivPTLol1235 {
@@ -2938,12 +2658,13 @@ input.NewNewCreateBigDivPTLol1235 {
     font-size: 16px;
     /* width: 4.352%; */
     width: 100%;
+    height: 35px;
 }
 
 .DivNewNewCreateBigDivPTLol123 {
     /* padding-right: 15%; */
     float: right;
-    width: 5%;
+    width: 7%;
     padding-left: 2%;
 }
 
@@ -2961,13 +2682,14 @@ input.NewNewCreateBigDivPTLol1236 {
     font-size: 16px;
     /* width: 3.945%; */
     width: 100%;
+    height: 35px;
 }
 
 .DivNewNewCreateBigDivPTLol122 {
     /* padding-right: 8%; */
     float: right;
     padding-left: 2%;
-    width: 5%;
+    width: 7%;
 }
 .DivNewNewCreateBigDivPTLol123and4 {
     /* padding-right: 18%; */
@@ -2979,7 +2701,7 @@ input.NewNewCreateBigDivPTLol1236 {
 .DivNewNewCreateBigDivPTLol121 {
     /* padding-left: 0; */
     float: right;
-    width: 5%;
+    width: 7%;
     /* width: 0%; */
     padding-left: 2%;
 }
@@ -3226,5 +2948,52 @@ img#profile-Img2 {
     /* margin-left: 15%; */
     /* margin-right: 15%; */
     /* width: 12%; */
-    padding-right: 29%;
+    direction: rtl;
+    width: 38%;
+    padding-right: 5%;
+}
+
+
+/* span.Select-arrow-zone {
+    float: left;
+}
+
+span.Select-clear-zone {
+    float: left;
+}
+.Select-input {
+    float: right;
+    left: initial !important;
+}
+.Select-value {
+    float: right;
+    left: initial !important;
+}
+.Select-placeholder{
+    float: right;
+    left: initial !important;
+}
+.Select-outer-menu{
+
+} */
+
+.Allnew {
+    direction: rtl;
+    width: 12%;
+    padding-left: 45%;
+}
+
+.OptionsOTNewBoomBoom {
+    /* float: right; */
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+    float: right;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+    /* width: 12%; */
+    direction: rtl;
+    width: 15%;
+    padding-right: 0%;
+    /* padding-right: 2%; */
 }
