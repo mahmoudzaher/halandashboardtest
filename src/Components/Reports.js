@@ -73,9 +73,13 @@ class Reports extends Component {
                         </ul>
                     </div>
 
+                    <div style={{color:"#2C2D72", textAlign:"center", fontSize:"25px", marginTop:"15px", marginBottom:"15px"}}>تاريخ الرحلات</div> 
+
                     <div style={{}}>
-                        <div style={{ width: "100%", textAlign: "center", color: "#2C2D72" }}>
-                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openStart: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>من</span>
+                        <div style={{ width: "100%", textAlign: "center", color:"#2C2D72", display:"-webkit-inline-box", textAlign:"-webkit-center" }}>
+                            {this.showStartDate()}
+                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign:"middle", width:"40px" }} onClick={() => { this.setState({ openStart: true }) }} />&nbsp;&nbsp;<span style={{marginLeft:"20px", fontSize:"18px"}}>من</span>
+
 
                             {this.state.openStart &&
                                 <DatePicker
@@ -90,9 +94,10 @@ class Reports extends Component {
                                 />
                             }
 
-                            {this.showStartDate()}
                         </div>
-                        <div style={{ width: "100%", textAlign: "center", color: "#2C2D72" }}>
+                        <div style={{ width: "100%", textAlign: "center", color:"#2C2D72", display:"-webkit-inline-box", textAlign:"-webkit-center"  }}>
+                            {this.showEndDate()}
+
 
                             <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openEnd: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>إلى</span>
 
@@ -108,83 +113,14 @@ class Reports extends Component {
                                     onClickOutside={() => { this.setState({ openEnd: false }) }}
                                 />
                             }
-                            {this.showEndDate()}
                         </div>
 
 
                     </div>
-                    {/*<div className="Options-GroupsTheyyonew" style={{ display: "-webkit-box", width:"40%", marginLeft:"30%"  }}>
-                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
-                                <Select
-                                    ref="startyear"
-                                    placeholder="سنة"
-                                    className="menu-outer-top"
-                                    value={this.state.startyear}
-                                    options={this.state.startyearoptions}
-                                    onChange={this.handleSelectChange.bind(this, "startyear")}
-                                />
-                            </div>
-
-                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
-                                <Select
-                                    ref="startmonth"
-                                    placeholder="شهر"
-                                    className="menu-outer-top"
-                                    value={this.state.startmonth}
-                                    options={this.state.startmonthoptions}
-                                    onChange={this.handleSelectChange.bind(this, "startmonth")}
-                                />
-                            </div>
-
-                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
-                                <Select
-                                    ref="startday"
-                                    placeholder="يوم"
-                                    className="menu-outer-top"
-                                    value={this.state.startday}
-                                    options={this.state.startdayoptions}
-                                    onChange={this.handleSelectChange.bind(this, "startday")}
-                                />
-                            </div>
-                        </div>
-
-
-                        <div className="Options-GroupsTheyyoyonew" style={{ display: "-webkit-box", width:"40%", marginLeft:"30%"  }}>
-                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
-                                <Select
-                                    ref="endyear"
-                                    placeholder="سنة"
-                                    className="menu-outer-top"
-                                    value={this.state.endyear}
-                                    options={this.state.endyearoptions}
-                                    onChange={this.handleSelectChange.bind(this, "endyear")}
-                                />
-                            </div>
-
-                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
-                                <Select
-                                    ref="endmonth"
-                                    placeholder="شهر"
-                                    className="menu-outer-top"
-                                    value={this.state.endmonth}
-                                    options={this.state.endmonthoptions}
-                                    onChange={this.handleSelectChange.bind(this, "endmonth")}
-                                />
-                            </div>
-
-                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
-                                <Select
-                                    ref="endday"
-                                    placeholder="يوم"
-                                    className="menu-outer-top"
-                                    value={this.state.endday}
-                                    options={this.state.enddayoptions}
-                                    onChange={this.handleSelectChange.bind(this, "endday")}
-                                />
-                            </div>
-                        </div>*/}
+                    
                     <div style={{ width: "100%", textAlign: "center" }}>
-                        <input type="button" value="حفظ بيانات" onClick={this.submit.bind(this)} className="gradientButton" style={{ cursor: "pointer", border: "none", padding: "0px 20px", borderRadius: "25px", marginTop: "50px", fontSize: "18px", color: "white", fontFamily: "Cairo" }} />
+                        <input type="button" value="عرض بيانات" onClick={this.submit.bind(this)} className="gradientButton" style={{cursor:"pointer", border: "none", padding: "0px 20px", borderRadius: "25px", marginTop: "50px", fontSize: "18px", color: "white", fontFamily: "Cairo" }} />
+
                     </div>
 
                     <table style={{ width: "50%", paddingLeft: "25%", paddingRight:"25%,", border: "0px", paddingTop: "5%", paddingBottom: "5%",  height: "567px", display: "table-cell", }}>
@@ -218,10 +154,11 @@ class Reports extends Component {
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
             return (
-                <div style={{ width: "100%", display: "-webkit-box", textAlign: "-webkit-center", marginTop: "10px", marginBottom: "10px" }}>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{day}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{month}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{year}</span>
+                <div style={{ marginTop:"10px", marginBottom:"10px", display:"-webkit-inline-box" }}>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{day}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{month}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{year}</span>
+
                 </div>
             )
         }
@@ -233,10 +170,11 @@ class Reports extends Component {
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
             return (
-                <div style={{ width: "100%", display: "-webkit-box", textAlign: "-webkit-center", marginTop: "10px", marginBottom: "10px" }}>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{day}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{month}</span>
-                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight: "5px", marginLeft: "5px", borderRadius: "10px", border: "2px solid #ccc" }}>{year}</span>
+                <div style={{ marginTop:"10px", marginBottom:"10px", display:"-webkit-inline-box" }}>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{day}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{month}</span>
+                    <span style={{ paddingLeft: "20px", paddingRight: "20px", marginRight:"5px", marginLeft:"5px", borderRadius:"10px", border:"2px solid #ccc" }}>{year}</span>
+
                 </div>
             )
         }
@@ -316,7 +254,7 @@ class Reports extends Component {
                     }
                     return (
                         <tr>
-                            <td>{row.total}</td>
+                            <td>{row.total/5}</td>
                             <td>{row.count}</td>
                             <td><img src={imageURL} style={{ paddingTop: "6px" }} /></td>
                             <td>{rating}<img src="Path 1236.png" style={{ paddingLeft: "0px" }} /></td>
@@ -350,3 +288,73 @@ export default Reports;
 
 
   /* ReactRouter.goTo('/createUser');*/
+{/*<div className="Options-GroupsTheyyonew" style={{ display: "-webkit-box", width:"40%", marginLeft:"30%"  }}>
+                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
+                                <Select
+                                    ref="startyear"
+                                    placeholder="سنة"
+                                    className="menu-outer-top"
+                                    value={this.state.startyear}
+                                    options={this.state.startyearoptions}
+                                    onChange={this.handleSelectChange.bind(this, "startyear")}
+                                />
+                            </div>
+
+                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
+                                <Select
+                                    ref="startmonth"
+                                    placeholder="شهر"
+                                    className="menu-outer-top"
+                                    value={this.state.startmonth}
+                                    options={this.state.startmonthoptions}
+                                    onChange={this.handleSelectChange.bind(this, "startmonth")}
+                                />
+                            </div>
+
+                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
+                                <Select
+                                    ref="startday"
+                                    placeholder="يوم"
+                                    className="menu-outer-top"
+                                    value={this.state.startday}
+                                    options={this.state.startdayoptions}
+                                    onChange={this.handleSelectChange.bind(this, "startday")}
+                                />
+                            </div>
+                        </div>
+
+
+                        <div className="Options-GroupsTheyyoyonew" style={{ display: "-webkit-box", width:"40%", marginLeft:"30%"  }}>
+                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
+                                <Select
+                                    ref="endyear"
+                                    placeholder="سنة"
+                                    className="menu-outer-top"
+                                    value={this.state.endyear}
+                                    options={this.state.endyearoptions}
+                                    onChange={this.handleSelectChange.bind(this, "endyear")}
+                                />
+                            </div>
+
+                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
+                                <Select
+                                    ref="endmonth"
+                                    placeholder="شهر"
+                                    className="menu-outer-top"
+                                    value={this.state.endmonth}
+                                    options={this.state.endmonthoptions}
+                                    onChange={this.handleSelectChange.bind(this, "endmonth")}
+                                />
+                            </div>
+
+                            <div className="" style={{ float: "none",marginLeft:"5%", marginRight:"5%" }}>
+                                <Select
+                                    ref="endday"
+                                    placeholder="يوم"
+                                    className="menu-outer-top"
+                                    value={this.state.endday}
+                                    options={this.state.enddayoptions}
+                                    onChange={this.handleSelectChange.bind(this, "endday")}
+                                />
+                            </div>
+                        </div>*/}
