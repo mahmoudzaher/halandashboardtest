@@ -487,7 +487,7 @@ p.DriversdivPActive {
 }
 
 a.skylight-close-button{
-        left: 15px !important;
+        left: 25px !important;
     top: 5px !important;
              right: 100% !important; 
 }
@@ -538,33 +538,25 @@ p.PopP{
 }
 
 .Options-Groups{
-  width: 100%;
-    /* margin-left: 55%; */
-    padding-bottom: 10%;
+    width: 50%;
 }
 .OptionsO{
     float: right;
-    /* margin-left: -26%; */
     width: 20%;
     direction: rtl;
-    padding-right: 5%;
+    padding-right: 2.5%;
 }
 .OptionsT{
-         float: right;
-    width: 15%;
-    /* padding-left: 4%;
-    margin-left: -5%;
-    padding-right: 5%; */
+    float: right;
+    width: 20%;
     direction: rtl;
-    padding-right: 8%;
+    padding-right: 2%;
 }
 .OptionsTh{
-       float: right;
-    /* padding-right: 10%; */
-    width: 15%;
-    /* padding-left: 10%; */
+    float: right;
+    width: 20%;
     direction: rtl;
-    padding-right: 8%;
+    /* padding-right: 2%; */
 }
 
 select.SelectPopD{
@@ -3032,5 +3024,43 @@ input.blockTextImput {
     -webkit-border-radius: 5px;
     border: 1px solid #2C2D72;
     font-size: 16px;
-    height: 25px;
+    height: 25px;   
 }
+    .buttonPopNew {
+        padding-top: 55%;
+        padding-left: 35%;
+    }
+
+    p.newPopP {
+        margin: 0;
+        /* padding-left: 5%; */
+        width: 15%;
+        font-size: 14px;
+        padding-right: 25%;
+        color: #2C2D72;
+    }
+    .PopUpRow {
+        width: 100%;
+        display: flex;
+        padding-bottom: 2%;
+    }
+
+    input.NewTextFieldPopCode {
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #2C2D72;
+        height: 30px;
+        width: 31.2%;
+        padding-right: 1%;
+    }
+
+    input.NewTextFieldPopPer {
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #2C2D72;
+        height: 30px;
+        width: 5%;
+        padding-right: 1%;
+    }

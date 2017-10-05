@@ -397,7 +397,7 @@ class CreateSpecialist extends Component {
 
                         <div className="Test">
                             <p className="NewCreateBigDivNewLol">الرقم السري</p>
-                            <input type="text" className="NewCreateBigDivP" ref="Password" />
+                            <input type="password" className="NewCreateBigDivP" ref="Password" />
                         </div>
                     </div>
 

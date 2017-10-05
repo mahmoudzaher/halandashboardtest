@@ -118,7 +118,7 @@ class Specialists extends Component {
             React.DOM.table({ className: "tableclass" },
                 React.DOM.thead({ className: "tablehead" },
                     <tr className="tableheadrow">
-                        <td className="tableheadDT" >مسح</td>
+                        {/* <td className="tableheadDT" >مسح</td> */}
 
                         <td className="tableheadDT" >تعديل</td>
 
@@ -141,7 +141,7 @@ class Specialists extends Component {
                                 // console.log(row)
                                 var Id = row._id;
 
-                                re.push("./Group 1633.png")
+                                // re.push("./Group 1633.png")
                                 re.push("./Path 1161.png")
                                 // re.push("./Group 1410.png"
                                 if (row.branch) {
@@ -183,11 +183,11 @@ class Specialists extends Component {
                                             return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(that, row._id)}>{col}</div></td>
                                         }
                                         else { */}
-                                        if (typeof col === "string" && col.slice(0, 12) === "./Group 1633") {
+                                        {/* if (typeof col === "string" && col.slice(0, 12) === "./Group 1633") {
                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /></div> </td>
-                                            {/* return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(that, row._id, row.firstName)} /></div> </td> */ }
-                                        }
-                                        else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                                             }
+                                        else  */}
+                                        if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateBranch.bind(that, row._id)} /></div> </td>
                                         }
                                         else {
