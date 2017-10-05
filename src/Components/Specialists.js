@@ -214,7 +214,7 @@ class Specialists extends Component {
             <div id="tabss">
                 <Tabs>
                     <TabList>
-                        <Tab >كل الفروع</Tab>
+                        <Tab ></Tab>
                         {/* <Tab >السائقين الناشطين</Tab>
                         <Tab >موقوف</Tab>
                         <Tab >في الإنتظار</Tab> */}
@@ -372,7 +372,7 @@ class Specialists extends Component {
                         </div>
 
                         <div className="profileP">
-                            <p>إنشاء فرع</p>
+                            <p>إنشاء أخصائي</p>
                         </div>
                     </div>
 

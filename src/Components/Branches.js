@@ -240,7 +240,7 @@ class Branches extends Component {
             <div id="tabss">
                 <Tabs>
                     <TabList>
-                        <Tab >كل الفروع</Tab>
+                        <Tab ></Tab>
                         {/* <Tab >السائقين الناشطين</Tab>
                         <Tab >موقوف</Tab>
                         <Tab >في الإنتظار</Tab> */}

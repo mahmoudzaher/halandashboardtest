@@ -168,6 +168,7 @@ class CreateBranch extends Component {
             // }
             axios.post('/operator/createBranch', object).then(function (response) {
                 console.log(response)
+                ReactRouter.goTo('/Branches')
             }).catch(function (error) {
                 console.log(error.response.data.message)
                 that.setState({

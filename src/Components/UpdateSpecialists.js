@@ -358,6 +358,7 @@ class UpdateSpecialists extends Component {
             axios.post("/operator/editSpecialist", object).then(function (response) {
                 console.log(response.data.data, "createSpecialist Response")
                 var x = response.data.data;
+                ReactRouter.goTo('/Specialists')
                 // console.log(x, "x Response")
             }).catch(function (error) {
                 alert(error.message, "what");

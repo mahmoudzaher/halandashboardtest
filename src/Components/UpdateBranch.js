@@ -193,6 +193,7 @@ class UpdateBranch extends Component {
             // }
             axios.post('/operator/editBranch', object).then(function (response) {
                 console.log(response)
+                ReactRouter.goTo('/Branches')
             }).catch(function (error) {
                 console.log(error.response.data.message)
                 that.setState({
