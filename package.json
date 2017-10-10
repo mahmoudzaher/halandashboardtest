@@ -6,7 +6,7 @@
     "axios": "^0.16.2",
     "flux-react-router": "^0.6.1",
     "lightbox2": "^2.9.0",
-    "moment": "^2.18.1",
+    "moment": "^2.18.0",
     "react": "^15.5.4",
     "react-datepicker": "^0.54.0",
     "react-dom": "^15.5.4",
