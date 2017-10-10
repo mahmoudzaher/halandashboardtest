@@ -1734,7 +1734,7 @@ p.dudeP{
 
 table.tableclasstwo {
            width: 80%;
-    margin-left: 10%;
+    /* margin-left: 1%; */
     /* min-height: 653px; */
     /* margin-right: 30%; */
     border: transparent;
@@ -3112,7 +3112,7 @@ input.blockTextImput {
         display: -webkit-box;
     }
     .thisisnew {
-        min-width: 1903px;
+        min-width: 1650px;
     }
 
     .Options-GroupsTheyyonew {
@@ -3141,4 +3141,11 @@ input.blockTextImput {
         /* padding-right: 0%; */
         width: 15%;
         /* padding-left: 10%; */
+    }
+    .DriversdivNew {
+        font-size: 12px;
+        display: -webkit-box;
+        text-align: -webkit-center;
+        min-height: 662px;
+        /* padding-right: 25%; */
     }
