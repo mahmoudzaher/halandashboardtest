@@ -432,6 +432,7 @@ img#profile-Img {
 
 .Driversdiv {
     font-size: 12px;
+    min-height: 662px;
     /*padding-right: 25%;*/
 }
 
@@ -1787,6 +1788,7 @@ legend.heyheyhey {
     /* margin-left: 50%; */
     /* padding-bottom: 10%; */
     margin-top: 1%;
+    direction: rtl;
 }
 
 
@@ -1829,22 +1831,24 @@ img.deletebutton {
 
 p.statisticsP {
     font-size: 18px;
-    margin-bottom: 5px;
+    margin: 0;
     color: #2C2D72;
 }
 
 p.statisticsPNew {
-      font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 18px;
+    margin: 0;
+    /* margin-bottom: 5px; */
     color: #2C2D72;
-    margin-right: 4%;
+    /* padding-right: 4%; */
+    padding-left: 5%;
 }
 
 img#statisticsImg{
-        float: left;
+        /* float: left;
     margin-left: 45%;
     /* margin-bottom: -12%; */
-    margin-top: -2%;
+    /* margin-top: -2%;  */
 }  
 
 img#statisticsImg2{
@@ -1854,10 +1858,10 @@ img#statisticsImg2{
     margin-top: 4%;
 } 
 img#statisticsImgnew{
-      float: left;
+      /* float: left;
     margin-left: 39%;
     /* margin-bottom: -12%; */
-    margin-top: -2%;
+    margin-top: 15%; 
 }  
 
 img#statisticsImgPop{
@@ -1870,9 +1874,17 @@ img#statisticsImgPop{
 
 
 .statistics {
-    /* float: right; */
+    display: -webkit-inline-box;
     padding-bottom: 5%;
-    margin-right: -90%;
+    width: 100%;
+    direction: rtl;
+}
+
+.statisticstwo {
+    padding-bottom: 5%;
+    display: -webkit-inline-box;
+    direction: rtl;
+    width: 100%;
 }
 /*button.ril-close.ril-toolbar__item__child.toolbarItemChild___2U_MP.builtinButton___1zqo6.closeButton___3BdAF{
     display: none;
@@ -3063,4 +3075,70 @@ input.blockTextImput {
         height: 30px;
         width: 5%;
         padding-right: 1%;
+    }
+    p.BranchPopP {
+        font-size: 24px;
+    }
+    .BranchPopClass {
+        text-align: center;
+        padding-top: 10%;
+    }
+    .PopUpRow2 {
+        width: 100%;
+        text-align: center;
+        /* display: flex; */
+        padding-top: 5%;
+    }
+    p.NumericClass {
+        font-size: 16px;
+        width: 53%;
+        /* margin-right: 0%; */
+        /* padding-right: 0%; */
+        text-align: right;
+        margin: 0;
+    }
+    p.CharactersClass {
+        font-size: 16px;
+        width: 33%;
+        padding-left: 14%;
+        /* float: right; */
+        height: -2%;
+        margin: 0;
+    }
+    .newplanPlate {
+        width: 100%;
+        /* padding-bottom: 0.5%; */
+        min-height: 25px;
+        display: -webkit-box;
+    }
+    .thisisnew {
+        min-width: 1903px;
+    }
+
+    .Options-GroupsTheyyonew {
+        direction: rtl;
+        padding-bottom: 5%;
+        padding-top: 1%;
+    }
+
+    .OptionsOTCome {
+        float: left;
+        margin-left: 20%;
+        margin-right: 5%;
+        width: 15%;
+    }
+
+    .OptionsTTCome {
+        float: left;
+        width: 15%;
+        /* padding-left: 4%; */
+        margin-right: 5%;
+        padding-right: 5%;
+    }
+    .OptionsThTCome {
+        float: left;
+        float: left;
+        /* padding-right: 0%; */
+        width: 15%;
+        /* padding-left: 10%; */
     }

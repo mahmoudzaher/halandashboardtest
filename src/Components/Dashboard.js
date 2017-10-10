@@ -23,7 +23,7 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-console.log(this.state.token,"token")
+// console.log(this.state.token,"token")
     var itemIds3 = [];
 
 

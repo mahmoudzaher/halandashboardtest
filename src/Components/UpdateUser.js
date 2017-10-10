@@ -67,8 +67,9 @@ class UpdateUser extends Component {
             branchesOptions: [],
             Branch: "",
             AllBranches: [],
-            currentBranch: "",
-            CurrentSpecialist: "",
+            currentBranch: null,
+            CurrentSpecialist: null,
+            driverPicture: "/Group 1548.png"
         })
         // this.getSpecialistsAPI();
         // this.getBranchesAPI();
@@ -206,7 +207,7 @@ class UpdateUser extends Component {
                     }
                     else {
                         that.setState({
-                            driverPicture: "/Group 1548.png"
+                            driverPicture: "Group 1548.png"
                         })
                     }
                     // if (x.driverLicense) {
@@ -782,67 +783,6 @@ class UpdateUser extends Component {
 
         }
         else {
-            // console.log(this.state.birthdaydate, "asdafasdfasdgfasdfjkahsdflkasjnfkl")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //        if (this.refs.songname.value) {
-            //     if (this.refs.albums.value) {
-            //         if (imgpost) {
-            //             if (artistID) {
-            //                 var track = {
-            //                     name: this.refs.songname.value,             //1
-            //                     album: this.refs.albums.value,           //2
-            //                     picture: imgpost,
-            //                     artist: artistID,
-            //                     genres: genrez,
-            //                     hash: hashz,
-            //                     Tags: tagz,
-            //                     path: tracka,
-            //                     fullSongPath: tracka,
-            //                     source: "offline",
-            //                     songType: songtyp,
-            //                 }
-            //             }
-            //             else {
-            //                 alert("Artist is missing");
-            //             }
-            //         }
-            //         else {
-            //             alert("Picture is missing");
-            //         }
-            //     }
-            //     else {
-            //         alert("Album is missing");
-            //     }
-            // }
-            // else {
-            //     alert("Label is missing");
-            // }
-
-
-
-
-
-
-
-
-
-
-
             var templicensenumber;
             var templicenseexpdate;
             if (this.state.birthdaydate) {
@@ -1028,11 +968,11 @@ class UpdateUser extends Component {
                         <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
                         <li className="active li" ><a className="active" onClick={this.handleDrivers.bind(this)} >السائقين</a></li>
                         {/*}<li><a >رحلات</a></li>{*/}
-              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
+                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a >دعم</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
@@ -1079,8 +1019,6 @@ class UpdateUser extends Component {
 
                         <div className="NewCreateBigDiv7aram">
                             <p className="NewNewNewCreateBigDiv7aram">إختر الفرع</p>
-                            {/* <div className="Options-GroupsFiNewNew">
-                                <div className="Inner-options-DivReally"> */}
                             <div className="OptionsRightboom">
                                 <Select
                                     ref="Branch"
@@ -1090,15 +1028,11 @@ class UpdateUser extends Component {
                                     options={this.state.branchesOptions}
                                     onChange={this.handleBranchoptions.bind(this, "currentBranch")}
                                 />
-                                {/* </div>
-                                </div> */}
                             </div>
                         </div>
 
                         <div className="NewCreateBigDiv7aram">
                             <p className="NewNewNewCreateBigDiv7aram">إختر أخصائي</p>
-                            {/* <div className="Options-GroupsFiNewNew">
-                                <div className="Inner-options-DivReally"> */}
                             <div className="OptionsRightboom">
                                 <Select
                                     ref="Specialist"
@@ -1108,39 +1042,16 @@ class UpdateUser extends Component {
                                     options={this.state.SpecialistsOptions}
                                     onChange={this.handleSpecialitsoptions.bind(this, "CurrentSpecialist")}
                                 />
-                                {/* </div>
-                                </div> */}
                             </div>
                         </div>
-
-
-                        {/*<div className="CreateBigDiv-right-right7aram">
-                            <p className="CreateBigDiv7aram">الإسم</p>
-                            <p className="CreateBigDiv7aram">رقم الهاتف</p>
-                            <p className="CreateBigDiv7aram">البريد الإلكتروني</p>
-                            <p className="CreateBigDiv7aram">كلمة المرور</p>
-                        </div>
-
-                        <div className="CreateBigDiv-right-left">
-                            <div className="CreateBigDivPDiv">
-                                <input type="text" className="DriverProfileText" ref="Fname" required value={this.state.Name} onChange={this.handleOnchangeTextName.bind(this)} />
-                                <input type="text" className="DriverProfileText" ref="pNumber" required value={this.state.PNumber} onChange={this.handleOnchangeTextPNumber.bind(this)} />
-                                <input type="email" className="DriverProfileText" ref="email" value={this.state.Email} onChange={this.handleOnchangeTextEmail.bind(this)} />
-                                <input type="password" className="DriverProfileText" ref="password" required value={this.state.Password} onChange={this.handleOnchangeTextPword.bind(this)} />
-                            </div>
-
-                        </div>*/}
-
                     </div>
 
                     <div className="CreateBigDiv-left-what2">
 
 
 
-                        <div className="NewClassUser" >
-
+                        {/* <div className="NewClassUser" >
                             <p className="NewNewNewCreateBigDivLeft">صورة شخصية</p>
-                            {/*<input type="text" ref="address" className="NewNewNewNewCreateBigDivPTTT" value={this.state.Address} onChange={this.handleOnchangeTextAddress.bind(this)} />*/}
                             <div className="NewNewNewcustom-file-upload-inner-divLol">
                                 <div className="NewNewNewcustom-file-upload-inner-div-right">
                                     <label className="NewNewNewcustom-file-upload">
@@ -1152,17 +1063,31 @@ class UpdateUser extends Component {
                                     <p className="ANewClass">اضغط لتغير الصورة الشخصية</p>
                                 </div>
                             </div>
+                        </div> */}
+
+                        <div className="NewClassUser" >
+                            <p className="NewNewNewCreateBigDivLeft">صورة شخصية</p>
+                            <div className="NewNewNewcustom-file-upload-inner-divLol">
+                                <div className="NewNewNewcustom-file-upload-inner-div-right">
+                                    <label className="NewNewNewcustom-file-upload">
+                                        <input type="file" onChange={this.voo.bind(this)} />
+                                        <img src="./redashboard/Group 1548.png" className="NewNewNewcustom-file-upload-img" />
+                                    </label>
+                                </div >
+                                <div className="NewNewNewcustom-file-upload-inner-div-left">
+                                    <p className="ANewClass">اضغط لتغير الصورة الشخصية</p>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="NewClassUserNewNewNew" >
-                            <p className="NewNewNewCreateBigDivLeftNew">تاريخ الميلاد</p>
+                            <p className="NewNewNewCreateBigDivLeftNew">تاريخ الميلاد *</p>
                             <div className="Options-GroupsTNewNewcomecome">
 
                                 <div className="OptionsOTNewNewcomecome ">
                                     <Select
                                         ref="startyear"
                                         placeholder="سنة"
-                                        //className="menu-outer-top"
                                         value={this.state.Year}
                                         options={this.state.startyearoptions}
                                         onChange={this.handleYearoptions.bind(this, "startyear")}
@@ -1173,7 +1098,6 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startmonth"
                                         placeholder="شهر"
-                                        //className="menu-outer-top"
                                         value={this.state.Month}
                                         options={this.state.startmonthoptions}
                                         onChange={this.handleMonthoptions.bind(this, "startmonth")}
@@ -1184,7 +1108,6 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="startday"
                                         placeholder="يوم"
-                                        //className="menu-outer-top2"
                                         value={this.state.Day}
                                         options={this.state.startdayoptions}
                                         onChange={this.handleDayoptions.bind(this, "startday")}
@@ -1210,7 +1133,6 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endyear"
                                         placeholder="سنة"
-                                        //className="menu-outer-top"
                                         value={this.state.Year2}
                                         options={this.state.endyearoptions}
                                         onChange={this.handleYearoptionsE.bind(this, "endyear")}
@@ -1221,7 +1143,6 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endmonth"
                                         placeholder="شهر"
-                                        //className="menu-outer-top"
                                         value={this.state.Month2}
                                         options={this.state.endmonthoptions}
                                         onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
@@ -1231,7 +1152,6 @@ class UpdateUser extends Component {
                                     <Select
                                         ref="endday"
                                         placeholder="يوم"
-                                       // className="menu-outer-top"
                                         value={this.state.Day2}
                                         options={this.state.enddayoptions}
                                         onChange={this.handleDayoptionsE.bind(this, "endday")}
@@ -1240,109 +1160,8 @@ class UpdateUser extends Component {
 
                             </div>
                         </div>
-
-                        {/*<div className="CreateBigDiv-left-right">
-                            <p className="CreateBigDivLeft">صورة شخصية</p>
-                            <p className="CreateBigDivLeft">تاريخ الميلاد</p>
-                            <p className="CreateBigDivLeft">العنوان</p>
-                            <p className="CreateBigDivLeft">رقم رخصة السائق</p>
-                            <p className="CreateBigDivLeft">تاريخ إنتهاء الرخصة</p>
-                        </div>
-
-                        <div className="CreateBigDiv-left-leftLolLol">
-                            <div className="custom-file-upload-inner-divLol">
-                                <div className="custom-file-upload-inner-div-right">
-                                    <label className="custom-file-upload">
-                                        <input type="file" onChange={this.voo.bind(this)} />
-                                        <img src={this.state.driverPicture} className="custom-file-upload-img" />
-                                    </label>
-                                </div >
-                                <div className="custom-file-upload-inner-div-left">
-                                    <p>اضغط لتغير الصورة الشخصية</p>
-                                </div>
-                            </div>
-
-                            <div className="Options-GroupsT">
-                                <div className="OptionsOT">
-                                    <Select
-                                        ref="startyear"
-                                        placeholder="سنة"
-                                        className="menu-outer-top"
-                                        value={this.state.Year}
-                                        options={this.state.startyearoptions}
-                                        onChange={this.handleYearoptions.bind(this, "startyear")}
-                                    />
-                                </div>
-
-                                <div className="OptionsTT">
-                                    <Select
-                                        ref="startmonth"
-                                        placeholder="شهر"
-                                        className="menu-outer-top"
-                                        value={this.state.Month}
-                                        options={this.state.startmonthoptions}
-                                        onChange={this.handleMonthoptions.bind(this, "startmonth")}
-                                    />
-                                </div>
-
-                                <div className="OptionsThT">
-                                    <Select
-                                        ref="startday"
-                                        placeholder="يوم"
-                                        className="menu-outer-top"
-                                        value={this.state.Day}
-                                        options={this.state.startdayoptions}
-                                        onChange={this.handleDayoptions.bind(this, "startday")}
-                                    />
-                                </div>
-                            </div>
-                            <input type="text" ref="address" className="CreateBigDivPTTT" value={this.state.Address} onChange={this.handleOnchangeTextAddress.bind(this)} />
-
-
-
-
-
-                            <input type="text" className="CreateBigDivPTTTT" ref="driverLicenseNumber" required value={this.state.LNumber} onChange={this.handleOnchangeTextLNumber.bind(this)} />
-                            <div className="Options-GroupsTTTT">
-                                <div className="OptionsOT">
-                                    <Select
-                                        ref="endyear"
-                                        placeholder="سنة"
-                                        className="menu-outer-top"
-                                        value={this.state.Year2}
-                                        options={this.state.endyearoptions}
-                                        onChange={this.handleYearoptionsE.bind(this, "endyear")}
-                                    />
-                                </div>
-
-                                <div className="OptionsTT">
-                                    <Select
-                                        ref="endmonth"
-                                        placeholder="شهر"
-                                        className="menu-outer-top"
-                                        value={this.state.Month2}
-                                        options={this.state.endmonthoptions}
-                                        onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
-                                    />
-                                </div>
-
-                                <div className="OptionsThT">
-                                    <Select
-                                        ref="endday"
-                                        placeholder="يوم"
-                                        className="menu-outer-top"
-                                        value={this.state.Day2}
-                                        options={this.state.enddayoptions}
-                                        onChange={this.handleDayoptionsE.bind(this, "endday")}
-                                    />
-                                </div>
-                            </div>
-                        </div>*/}
                     </div>
-
                 </div>
-
-
                 <br /><br />
 
                 <div className="buttonTT">

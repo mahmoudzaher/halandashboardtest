@@ -778,7 +778,7 @@ class Promo extends Component {
             // backgroundColor: '#00897B',
             // color: '#ffffff',
             width: '70%',
-            height: '600px',
+            height: '700px',
             marginTop: '-300px',
             marginLeft: '-35%',
             // overflow: 'scroll',
@@ -936,6 +936,9 @@ class Promo extends Component {
                         <div className="PopUpRow" >
                             <p className="newPopP">عدد إستخدام البرومو</p>
                             <input type="text" className="NewTextFieldPopPer" ref="redemptinTimes" />
+                        </div>
+                        <div className="PopUpRow2">
+                            <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
                         </div>
                     </div>
                 </SkyLight>
@@ -1197,6 +1200,9 @@ class Promo extends Component {
                             <p className="newPopP">عدد إستخدام البرومو</p>
                             <input type="text" className="NewTextFieldPopPer" ref="redemptinTimesEdit" value={this.state.editpromoAllowedRedemptionTimes}/>
                         </div>
+                        <div className="PopUpRow2">
+                                <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleEdit.bind(this)} />
+                            </div>
                     </div>
                 </SkyLight>
 

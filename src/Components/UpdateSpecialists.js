@@ -93,7 +93,7 @@ class UpdateSpecialists extends Component {
                 SpecialistBranch: x.branch,
             })
         }).catch(function (error) {
-            alert(error.message);
+            // alert(error.message);
             console.log(error)
         })
     }

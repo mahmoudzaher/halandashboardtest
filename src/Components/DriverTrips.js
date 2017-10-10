@@ -19,6 +19,9 @@ let yearID = "";
 let dayIDE = "";
 let monthIDE = "";
 let yearIDE = "";
+let from = "";
+let to = "";
+let showDate = true;
 class DriverTrips extends Component {
 
     constructor(props) {
@@ -44,9 +47,14 @@ class DriverTrips extends Component {
             searchfilter: "",
             driverRating: "",
             driverName: "",
-            startday: "",
-            startmonth: "",
-            startyear: "",
+            startday: null,
+            startmonth: null,
+            startyear: null,
+            endday: null,
+            endmonth: null,
+            endyear: null,
+            birthdaydate: null,
+            birthdaydateE: null,
             cash: 0,
             tripsCount: 0,
             greaterThanAll: 15,
@@ -143,7 +151,7 @@ class DriverTrips extends Component {
         var itemIds4 = [];
         var itemIds5 = [];
         var itemIds6 = [];
-        for (var i = 0; i < 32; i++) {
+        for (var i = 1; i < 32; i++) {
             itemIds.push(
                 {
                     value: i,
@@ -151,7 +159,7 @@ class DriverTrips extends Component {
                 }
             );
         }
-        for (var i = 0; i < 13; i++) {
+        for (var i = 1; i < 13; i++) {
             itemIds2.push(
                 {
                     value: i,
@@ -168,7 +176,7 @@ class DriverTrips extends Component {
             );
         }
 
-        for (var i = 0; i < 32; i++) {
+        for (var i = 1; i < 32; i++) {
             itemIds4.push(
                 {
                     value: i,
@@ -176,7 +184,7 @@ class DriverTrips extends Component {
                 }
             );
         }
-        for (var i = 0; i < 13; i++) {
+        for (var i = 1; i < 13; i++) {
             itemIds5.push(
                 {
                     value: i,
@@ -225,7 +233,7 @@ class DriverTrips extends Component {
                         <td className="tableheadDT" >تقيم</td>
 
                         <td className="tableheadF" >المدة</td>
-                        
+
                         <td className="tableheadF" >بداية الرحلة</td>
 
                         <td className="tableheadF" >المسافة</td>
@@ -255,13 +263,7 @@ class DriverTrips extends Component {
                         var minutes = datee.getMinutes();
                         var seconds = datee.getSeconds();
                         var formattedTime = Year + '/' + Month + '/' + Day;
-                        // console.log(formattedTime,"formattedTime  ",index)
-                        // console.log(datee,"row.date",index)
-                        // console.log(Year, "Year")
-                        // console.log(Month, "Month")
-                        // console.log(Day, "Day")
-                        // console.log(formattedTime, "formattedTime")
-                        // console.log(datee, "datee")
+
 
 
 
@@ -299,46 +301,6 @@ class DriverTrips extends Component {
 
 
 
-                        // if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
-                        //     if ((row.user.phoneNumber.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
-                        //         if (that.state.birthdaydate && that.state.birthdaydateE) {
-                        //             if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
-
-                        //                 counter++;
-                        //                 usedCounter++;
-                        //                 re.push(row.tripCost)
-                        //                 re.push(row.userRatingByDriver)
-                        //                 re.push(durationtrip)
-                        //                 re.push(newStart)
-                        //                 re.push(row._toString)
-                        //                 re.push(row._fromString)
-                        //                 re.push(row.user.phoneNumber)
-                        //                 re.push(row.user.firstName)
-                        //                 re.push(formattedTime)
-                        //             }
-                        //         }
-
-                        //         else {
-                        //             counter++;
-                        //             usedCounter++;
-                        //             re.push(row.tripCost)
-                        //             re.push(row.userRatingByDriver)
-                        //             re.push(durationtrip)
-                        //             re.push(newStart)
-                        //             re.push(row._toString)
-                        //             re.push(row._fromString)
-                        //             re.push(row.user.phoneNumber)
-                        //             re.push(row.user.firstName)
-                        //             re.push(formattedTime)
-                        //         }
-                        //     }
-                        // }
-                        // var ColImg = "/Path 1236.png";
-
-
-
-
-
                         if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
                             if (row.user.phoneNumber.includes(that.state.searchfilter)) {
                                 if (that.state.birthdaydate && that.state.birthdaydateE) {
@@ -350,7 +312,7 @@ class DriverTrips extends Component {
                                         re.push(row.userRatingByDriver)
                                         re.push(durationtrip)
                                         re.push(newStart)
-                                        if (row.distanceTaken>-1) {
+                                        if (row.distanceTaken > -1) {
                                             console.log(row.distanceTaken, "distance")
                                             re.push(row.distanceTaken)
                                         }
@@ -371,8 +333,8 @@ class DriverTrips extends Component {
                                     re.push(row.userRatingByDriver)
                                     re.push(durationtrip)
                                     re.push(newStart)
-                                    if (row.distanceTaken>=0) {
-                                        console.log(row.distanceTaken, "distance")
+                                    if (row.distanceTaken >= 0) {
+                                        // console.log(row.distanceTaken, "distance")
                                         re.push(row.distanceTaken)
                                     }
                                     else {
@@ -457,94 +419,98 @@ class DriverTrips extends Component {
     }
 
     handleDayoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({ [type]: value.value });
         if (value) {
-            dayID = value.value + 1;
+            dayID = value.value;
         } else {
             dayID = "";
         }
-        this.handleBirthday()
+        // this.handleBirthday()
         console.log(value);
         console.log(dayID);
     }
 
     handleMonthoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({ [type]: value.value });
         if (value) {
-            monthID = value.value - 1;
+            monthID = value.value;
         } else {
             monthID = "";
         }
-        this.handleBirthday()
+        // this.handleBirthday()
         console.log(value);
         console.log(monthID);
     }
 
     handleYearoptions(type, value) {
-        this.setState({ [type]: value });
+        this.setState({ [type]: value.value });
         if (value) {
             yearID = value.value;
         } else {
             yearID = "";
         }
-        this.handleBirthday()
+        // this.handleBirthday()
         console.log(value);
         console.log(yearID);
     }
 
 
     handleDayoptionsE(type, value) {
-        this.setState({ [type]: value });
+        this.setState({ [type]: value.value });
         if (value) {
-            dayIDE = value.value + 1;
+            dayIDE = value.value;
         } else {
             dayIDE = "";
         }
-        this.handleBirthday()
+        // this.handleBirthday()
         console.log(value);
         console.log(dayIDE);
     }
 
     handleMonthoptionsE(type, value) {
-        this.setState({ [type]: value });
+        this.setState({ [type]: value.value });
         if (value) {
-            monthIDE = value.value - 1;
+            monthIDE = value.value;
         } else {
             monthIDE = "";
         }
-        this.handleBirthday()
+        // this.handleBirthday()
         console.log(value);
         console.log(monthIDE);
     }
 
     handleYearoptionsE(type, value) {
-        this.setState({ [type]: value });
+        this.setState({ [type]: value.value });
         if (value) {
             yearIDE = value.value;
         } else {
             yearIDE = "";
         }
-        this.handleBirthday()
+        // this.handleBirthday()
         console.log(value);
         console.log(yearIDE);
     }
 
 
     handleBirthday() {
-        console.log(yearID, monthID, dayID, "yearID, monthID + 1, dayID")
-        console.log(yearIDE, monthIDE, dayIDE, "yearIDE, monthIDE, dayIDE")
+        console.log(this.state.startyear, this.state.startmonth, this.state.startday, "yearID, monthID + 1, dayID")
+        console.log(this.state.endyear, this.state.endmonth, this.state.endday, "yearIDE, monthIDE, dayIDE")
+        console.log(new Date(this.state.startyear, this.state.startmonth - 1, this.state.startday).getTime(), "yearID, monthID + 1, dayID")
+        console.log(new Date(this.state.endyear, this.state.endmonth - 1, this.state.endday).getTime(), "yearIDE, monthIDE, dayIDE")
+        from = this.state.startyear + "/" + this.state.startmonth + "/" + this.state.startday
+        to = this.state.endyear + "/" + this.state.endmonth + "/" + this.state.endday;
         var that = this;
         let money = 0;
         let tripscounter = 0;
         let newday = dayIDE + 1;
         this.setState({
-            birthdaydate: new Date(yearID, monthID, dayID - 1).getTime(),
-            birthdaydateE: new Date(yearIDE, monthIDE, dayIDE).getTime(),
+            birthdaydate: new Date(this.state.startyear, this.state.startmonth - 1, this.state.startday).getTime(),
+            birthdaydateE: new Date(this.state.endyear, this.state.endmonth - 1, this.state.endday).getTime(),
         });
-        this.state.birthdaydateE = new Date(yearIDE, monthIDE, newday).getTime()
+        // this.state.birthdaydateE = new Date(yearIDE, monthIDE, newday).getTime()
 
-        console.log(new Date(yearID, monthID, dayID).getTime(), "new Date(yearID, monthID , dayID).getTime()")
-        console.log(new Date(yearIDE, monthIDE, dayIDE).getTime(), "new Date(yearIDE, monthIDE , dayIDE).getTime()")
+        console.log(new Date(yearID, monthID - 1, dayID).getTime(), "new Date(yearID, monthID , dayID).getTime()")
+        console.log(new Date(yearIDE, monthIDE - 1, dayIDE).getTime(), "new Date(yearIDE, monthIDE , dayIDE).getTime()")
         that.state.objects.forEach(function (item) {
             // console.log(item)
             if (that.state.birthdaydate <= item.date && that.state.birthdaydateE >= item.date) {
@@ -565,9 +531,9 @@ class DriverTrips extends Component {
             tripsCount: tripscounter
         })
 
+        showDate=false;
 
-
-        console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
+        // console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
 
     searchtable(event) {
@@ -605,31 +571,42 @@ class DriverTrips extends Component {
 
         e.preventDefault();
     }
+    reset(){
+        this.setState({
+            birthdaydate: null,
+            birthdaydateE: null
+        })
+        from= "";
+        to= "";
+        showDate=true;
+    }
 
     render() {
         var sky = {
-            width: '25%',
-            height: '25%',
+            width: '40%',
+            height: '40%',
             align: 'center',
             textAlign: 'center',
             fontFamily: 'Cairo',
-            fontSize: 'large'
+            fontSize: 'large',
+            top: '60%',
+            marginLeft: '-20%'
         };
 
         return (
-            <div>
+            <div className="thisisnew">
 
                 <div className="Navdiv">
                     <ul className="NavdivUl">
-                         <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-              <li className="active li"><a className="active" onClick={()=>{ReactRouter.goTo('/DashBoard')}}>السائقين</a></li>
-              {/*}<li><a >رحلات</a></li>{*/}
-              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
-              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+                        <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
+                        <li className="active li"><a className="active" onClick={() => { ReactRouter.goTo('/DashBoard') }}>السائقين</a></li>
+                        {/*}<li><a >رحلات</a></li>{*/}
+                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a >دعم</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
+                        <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
 
@@ -682,101 +659,16 @@ class DriverTrips extends Component {
                                 <img src="/Group 1793.png" id="statisticsImg" onClick={() => this.refs.PromoDialog.show()} />
                             </div>
 
-                            <div className="statistics" >
-                                <p className="statisticsPNew" >تصفية حسب التاريخ</p>
+                            <div className="statisticstwo" >
+                                <p className="statisticsPNew" style={{ paddingLeft: "2%" }}>تصفية حسب التاريخ</p>
                                 <img src="/Group 1803.png" id="statisticsImgnew" onClick={() => this.refs.FilterDialog.show()} />
+                                <p className="statisticsPNew"style={{ paddingRight: "5%" }} hidden={showDate}> من:</p>
+                                <p className="statisticsPNew" style={{ minWidth: "10%" }} hidden={showDate}>{from}</p>
+                                <p className="statisticsPNew" hidden={showDate}> إلى:</p>
+                                <p className="statisticsPNew" style={{ minWidth: "10%" }} hidden={showDate}>{to}</p>
+                                <img src="/Group 1633.png" id="statisticsImgnew" onClick={this.reset.bind(this)} hidden={showDate}/>
                             </div>
 
-                            {/*<form className="hahahaxD">
-                                <fieldset className="yowazap">
-                                    <legend className="heyheyhey" >تاريخ الرحلات</legend>
-
-                                    <div className="rightidkm8">
-                                        <div className="idkm8Div">
-                                            <p className="idkm8" >من</p>
-                                        </div>
-
-                                        <div className="idkm8Div">
-                                            <p className="idkm8" >إلى</p>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="leftidkm8" >
-                                        <div className="Options-GroupsTheyyo">
-                                            <div className="OptionsOT">
-                                                <Select
-                                                    ref="startyear"
-                                                    placeholder="سنة"
-                                                    className="menu-outer-top"
-                                                    value={this.state.startyear}
-                                                    options={this.state.startyearoptions}
-                                                    onChange={this.handleYearoptions.bind(this, "startyear")}
-                                                />
-                                            </div>
-
-                                            <div className="OptionsTT">
-                                                <Select
-                                                    ref="startmonth"
-                                                    placeholder="شهر"
-                                                    className="menu-outer-top"
-                                                    value={this.state.startmonth}
-                                                    options={this.state.startmonthoptions}
-                                                    onChange={this.handleMonthoptions.bind(this, "startmonth")}
-                                                />
-                                            </div>
-
-                                            <div className="OptionsThT">
-                                                <Select
-                                                    ref="startday"
-                                                    placeholder="يوم"
-                                                    className="menu-outer-top"
-                                                    value={this.state.startday}
-                                                    options={this.state.startdayoptions}
-                                                    onChange={this.handleDayoptions.bind(this, "startday")}
-                                                />
-                                            </div>
-                                        </div>
-
-
-                                        <div className="Options-GroupsTheyyoyo">
-                                            <div className="OptionsOT">
-                                                <Select
-                                                    ref="endyear"
-                                                    placeholder="سنة"
-                                                    className="menu-outer-top"
-                                                    value={this.state.endyear}
-                                                    options={this.state.endyearoptions}
-                                                    onChange={this.handleYearoptionsE.bind(this, "endyear")}
-                                                />
-                                            </div>
-
-                                            <div className="OptionsTT">
-                                                <Select
-                                                    ref="endmonth"
-                                                    placeholder="شهر"
-                                                    className="menu-outer-top"
-                                                    value={this.state.endmonth}
-                                                    options={this.state.endmonthoptions}
-                                                    onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
-                                                />
-                                            </div>
-
-                                            <div className="OptionsThT">
-                                                <Select
-                                                    ref="endday"
-                                                    placeholder="يوم"
-                                                    className="menu-outer-top"
-                                                    value={this.state.endday}
-                                                    options={this.state.enddayoptions}
-                                                    onChange={this.handleDayoptionsE.bind(this, "endday")}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </fieldset>
-                            </form>*/}
                         </div>
                     </div>
 
@@ -843,33 +735,30 @@ class DriverTrips extends Component {
 
                                     <div className="leftidkm8" >
                                         <div className="Options-GroupsTheyyonew">
-                                            <div className="OptionsOT">
+                                            <div className="OptionsOTCome">
                                                 <Select
                                                     ref="startyear"
                                                     placeholder="سنة"
-                                                    className="menu-outer-top"
                                                     value={this.state.startyear}
                                                     options={this.state.startyearoptions}
                                                     onChange={this.handleYearoptions.bind(this, "startyear")}
                                                 />
                                             </div>
 
-                                            <div className="OptionsTT">
+                                            <div className="OptionsTTCome">
                                                 <Select
                                                     ref="startmonth"
                                                     placeholder="شهر"
-                                                    className="menu-outer-top"
                                                     value={this.state.startmonth}
                                                     options={this.state.startmonthoptions}
                                                     onChange={this.handleMonthoptions.bind(this, "startmonth")}
                                                 />
                                             </div>
 
-                                            <div className="OptionsThT">
+                                            <div className="OptionsThTCome">
                                                 <Select
                                                     ref="startday"
                                                     placeholder="يوم"
-                                                    className="menu-outer-top"
                                                     value={this.state.startday}
                                                     options={this.state.startdayoptions}
                                                     onChange={this.handleDayoptions.bind(this, "startday")}
@@ -879,7 +768,7 @@ class DriverTrips extends Component {
 
 
                                         <div className="Options-GroupsTheyyoyonew">
-                                            <div className="OptionsOT">
+                                            <div className="OptionsOTCome">
                                                 <Select
                                                     ref="endyear"
                                                     placeholder="سنة"
@@ -890,7 +779,7 @@ class DriverTrips extends Component {
                                                 />
                                             </div>
 
-                                            <div className="OptionsTT">
+                                            <div className="OptionsTTCome">
                                                 <Select
                                                     ref="endmonth"
                                                     placeholder="شهر"
@@ -901,7 +790,7 @@ class DriverTrips extends Component {
                                                 />
                                             </div>
 
-                                            <div className="OptionsThT">
+                                            <div className="OptionsThTCome">
                                                 <Select
                                                     ref="endday"
                                                     placeholder="يوم"
@@ -917,7 +806,11 @@ class DriverTrips extends Component {
                                 </fieldset>
 
                             </form>
-                        </div></div>
+                            <div className="PopUpRow2">
+                                <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleBirthday.bind(this)} />
+                            </div>
+                        </div>
+                    </div>
                 </SkyLight>
 
 

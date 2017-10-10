@@ -108,12 +108,12 @@ class CreateUser extends Component {
     var that = this;
     this.setState({
       objects: [],
-      startday: "",
-      startmonth: "",
-      startyear: "",
-      endday: "",
-      endmonth: "",
-      endyear: "",
+      startday: null,
+      startmonth: null,
+      startyear: null,
+      endday: null,
+      endmonth: null,
+      endyear: null,
       blur: "",
       loginErrorModal: false,
       CreateErrorModal: false,
@@ -124,10 +124,10 @@ class CreateUser extends Component {
       errorMessage: "",
       SpecialistsOptions: [],
       Specialists: [],
-      Specialist: "",
+      Specialist: null,
       AllSpecialists: [],
       branchesOptions: [],
-      Branch: "",
+      Branch: null,
       AllBranches: [],
     })
     imgStyle = {
@@ -801,15 +801,15 @@ class CreateUser extends Component {
 
         <div className="Navdiv">
           <ul className="NavdivUl">
-             <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-              <li className="active li"><a className="active" onClick={()=>{ReactRouter.goTo('/Reports')}}>السائقين</a></li>
-              {/*}<li><a >رحلات</a></li>{*/}
-              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
-              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+            <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
+            <li className="active li"><a className="active" onClick={() => { ReactRouter.goTo('/Reports') }}>السائقين</a></li>
+            {/*}<li><a >رحلات</a></li>{*/}
+            <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+            <li><a >دعم</a></li>
+            <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+            <li><a onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+            <li><a onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
+            <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
           </ul>
         </div>
 
@@ -933,7 +933,6 @@ class CreateUser extends Component {
 
 
             <div className="NewClassUser" >
-
               <p className="NewNewNewCreateBigDivLeft">صورة شخصية</p>
               <div className="NewNewNewcustom-file-upload-inner-divLol">
                 <div className="NewNewNewcustom-file-upload-inner-div-right">
@@ -1030,117 +1029,8 @@ class CreateUser extends Component {
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-            {/*<div className="CreateBigDiv-left-right">
-              <p className="CreateBigDivLeft">صورة شخصية</p>
-              <p className="CreateBigDivLeft">تاريخ الميلاد</p>
-              <p className="CreateBigDivLeft">العنوان</p>
-              <p className="CreateBigDivLeft">رقم رخصة السائق</p>
-              <p className="CreateBigDivLeft">تاريخ إنتهاء الرخصة</p>
-            </div>
-
-            <div className="CreateBigDiv-left-leftLolLol">
-              <div className="custom-file-upload-inner-divLol">
-                <div className="custom-file-upload-inner-div-right">
-                  <label className="custom-file-upload">
-                    <input type="file" onChange={this.voo.bind(this)} />
-                    <img src="./redashboard/Group 1548.png" className="custom-file-upload-img" />
-                  </label>
-                </div >
-                <div className="custom-file-upload-inner-div-left">
-                  <p>اضغط لتحميل صورة شخصية</p>
-                </div>
-              </div>
-
-              <div className="Options-GroupsT">
-                <div className="OptionsOT">
-                  <Select
-                    ref="startyear"
-                    placeholder="سنة"
-                    className="menu-outer-top"
-                    value={this.state.startyear}
-                    options={this.state.startyearoptions}
-                    onChange={this.handleYearoptions.bind(this, "startyear")}
-                  />
-                </div>
-
-                <div className="OptionsTT">
-                  <Select
-                    ref="startmonth"
-                    placeholder="شهر"
-                    className="menu-outer-top"
-                    value={this.state.startmonth}
-                    options={this.state.startmonthoptions}
-                    onChange={this.handleMonthoptions.bind(this, "startmonth")}
-                  />
-                </div>
-
-                <div className="OptionsThT">
-                  <Select
-                    ref="startday"
-                    placeholder="يوم"
-                    className="menu-outer-top"
-                    value={this.state.startday}
-                    options={this.state.startdayoptions}
-                    onChange={this.handleDayoptions.bind(this, "startday")}
-                  />
-                </div>
-              </div>
-              <input type="text" ref="address" className="CreateBigDivPTTT" />
-
-              <input type="text" className="CreateBigDivPTTTT" ref="driverLicenseNumber" required />
-              <div className="Options-GroupsTTTT">
-                <div className="OptionsOT">
-                  <Select
-                    ref="endyear"
-                    placeholder="سنة"
-                    className="menu-outer-top"
-                    value={this.state.endyear}
-                    options={this.state.endyearoptions}
-                    onChange={this.handleYearoptionsE.bind(this, "endyear")}
-                  />
-                </div>
-
-                <div className="OptionsTT">
-                  <Select
-                    ref="endmonth"
-                    placeholder="شهر"
-                    className="menu-outer-top"
-                    value={this.state.endmonth}
-                    options={this.state.endmonthoptions}
-                    onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
-                  />
-                </div>
-
-                <div className="OptionsThT">
-                  <Select
-                    ref="endday"
-                    placeholder="يوم"
-                    className="menu-outer-top"
-                    value={this.state.endday}
-                    options={this.state.enddayoptions}
-                    onChange={this.handleDayoptionsE.bind(this, "endday")}
-                  />
-                </div>
-              </div>
-            </div>*/}
-
           </div>
-
         </div>
-
-
         <br /><br />
 
         <div className="buttonTT">

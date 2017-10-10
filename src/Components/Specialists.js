@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Modal from 'react-modal'
 import Select from 'react-select';
+import SkyLight from 'react-skylight';
 var ReactRouter = require('flux-react-router');
 
 
@@ -106,6 +107,20 @@ class Specialists extends Component {
         console.log("yahoooooooooooooooooooooooooooooooooo")
         ReactRouter.goTo(`/UpdateSpecialists/${event}`);
     }
+    Delete(event, index) {
+        var that = this;
+        var obj = {
+            specialistId: event
+        }
+        axios.post('/operator/deleteSpecialist', obj).then(function (response) {
+            console.log(response)
+            that.getSpecialistsAPI();
+        }).catch(function (error) {
+            that.refs.ErrorDialog.show();
+            console.log(error)
+        })
+
+    }
 
     tableAll() {
 
@@ -118,7 +133,7 @@ class Specialists extends Component {
             React.DOM.table({ className: "tableclass" },
                 React.DOM.thead({ className: "tablehead" },
                     <tr className="tableheadrow">
-                        {/* <td className="tableheadDT" >مسح</td> */}
+                        <td className="tableheadDT" >مسح</td>
 
                         <td className="tableheadDT" >تعديل</td>
 
@@ -141,7 +156,7 @@ class Specialists extends Component {
                                 // console.log(row)
                                 var Id = row._id;
 
-                                // re.push("./Group 1633.png")
+                                re.push("./Group 1633.png")
                                 re.push("./Path 1161.png")
                                 // re.push("./Group 1410.png"
                                 if (row.branch) {
@@ -187,7 +202,14 @@ class Specialists extends Component {
                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /></div> </td>
                                              }
                                         else  */}
-                                        if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                                        /* if (typeof col === "string" && col.slice(0, 2) === "./") {
+                                             return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
+                                         }
+                                         else*/
+                                        if (typeof col === "string" && col.slice(0, 12) === "./Group 1633") {
+                                            return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.Delete.bind(that, row._id)} /></div> </td>
+                                        }
+                                        else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateBranch.bind(that, row._id)} /></div> </td>
                                         }
                                         else {
@@ -349,20 +371,30 @@ class Specialists extends Component {
                 padding: "0px"
             },
         };
+        var sky = {
+            // backgroundColor: '#00897B',
+            // color: '#ffffff',
+            width: '50%',
+            height: '400px',
+            marginTop: '-300px',
+            marginLeft: '-25%',
+            // overflow: 'scroll',
+            direction: 'rtl',
+        };
         return (
             <div>
                 <div className={this.state.blur}>
                     <div className="Navdiv">
                         <ul className="NavdivUl">
-                             <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-              <li className="active li"><a onClick={()=>{ReactRouter.goTo('/DashBoard')}}>السائقين</a></li>
-              {/*}<li><a >رحلات</a></li>{*/}
-              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a className="active" onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
-              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+                            <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
+                            <li className="active li"><a onClick={() => { ReactRouter.goTo('/DashBoard') }}>السائقين</a></li>
+                            {/*}<li><a >رحلات</a></li>{*/}
+                            <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                            <li><a >دعم</a></li>
+                            <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+                            <li><a onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+                            <li><a className="active" onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
+                            <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                         </ul>
                     </div>
                     <br />
@@ -397,6 +429,11 @@ class Specialists extends Component {
                         </div>
                     </div>
                 </div>
+                <SkyLight hideOnOverlayClicked ref="ErrorDialog" dialogStyles={sky}>
+                    <div className="BranchPopClass">
+                        <p className="BranchPopP" >لا يمكن مسح أخصائي تحته سائقين</p>
+                    </div>
+                </SkyLight>
             </div>
         );
     }

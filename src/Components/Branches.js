@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Modal from 'react-modal'
 import Select from 'react-select';
+import SkyLight from 'react-skylight';
 var ReactRouter = require('flux-react-router');
 
 
@@ -128,10 +129,24 @@ class Branches extends Component {
     gotoDriverProfile(event, index) {
         ReactRouter.goTo(`/DriverProfile/${event}`);
     }
-    
+
     gotoUpdateBranch(event, index) {
         console.log("yahoooooooooooooooooooooooooooooooooo")
         ReactRouter.goTo(`/UpdateBranch/${event}`);
+    }
+    Delete(event, index) {
+        var that = this;
+        var obj = {
+            branchId: event
+        }
+        axios.post('/operator/deleteBranch', obj).then(function (response) {
+            console.log(response)
+            that.getBranchesAPI();
+        }).catch(function (error) {
+            that.refs.ErrorDialog.show();
+            console.log(error)
+        })
+
     }
 
     tableAll() {
@@ -145,7 +160,7 @@ class Branches extends Component {
             React.DOM.table({ className: "tableclass" },
                 React.DOM.thead({ className: "tablehead" },
                     <tr className="tableheadrow">
-                        {/* <td className="tableheadDT" >وقف</td> */}
+                        <td className="tableheadDT" >مسح</td>
 
                         <td className="tableheadDT" >تعديل</td>
 
@@ -171,7 +186,7 @@ class Branches extends Component {
                                 // console.log(counter)
                                 // console.log(row)
                                 var Id = row._id;
-
+                                re.push("./Group 1633.png")
                                 // re.push("./Group 1433.png")
                                 re.push("./Path 1161.png")
                                 // re.push("./Group 1410.png")
@@ -191,25 +206,28 @@ class Branches extends Component {
                             <tr key={index}>
                                 {
                                     re.map(function (col, index) {
-                                        {/*console.log(col)*/ }
-                                        {/* if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
+                                        /*console.log(col)*/
+                                        /* if (typeof col === "string" && col.slice(0, 12) === "./Group 1433") {
                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.SuspendDriver.bind(that, row._id, row.firstName)} /></div> </td>
-                                        }
-                                        else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
-                                            return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(that, row._id)} /></div> </td>
+                                         }*/
+                                        /* else if (typeof col === "string" && col.slice(0, 12) === "./Group 1410") {
+                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.GotoShowTripsOfDriverById.bind(that, row._id)} /></div> </td>
+                                         }
+                                         else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
+                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(that, row._id)} /></div> </td>
+                                         }
+                                         else if (typeof col === "string" && col.slice(0, 2) === "./") {
+                                             return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
+                                         }
+                                      
+                                         else if (index === 5) {
+                                             return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(that, row._id)}>{col}</div></td>
+                                         }
+                                         else { */
+                                        if (typeof col === "string" && col.slice(0, 12) === "./Group 1633") {
+                                            return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.Delete.bind(that, row._id)} /></div> </td>
                                         }
                                         else if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
-                                            return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateDriver.bind(that, row._id)} /></div> </td>
-                                        }
-                                        else if (typeof col === "string" && col.slice(0, 2) === "./") {
-                                            return <td className="PTD" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} /> </div> </td>
-                                        }
-                                     
-                                        else if (index === 5) {
-                                            return <td className="PTD" key={index}> <div className="tdDiv" onClick={that.gotoDriverProfile.bind(that, row._id)}>{col}</div></td>
-                                        }
-                                        else { */}
-                                        if (typeof col === "string" && col.slice(0, 11) === "./Path 1161") {
                                             return <td className="PTDS" key={index} > <div className="tdDiv"> <img className="tdImg" src={col} onClick={that.gotoUpdateBranch.bind(that, row._id)} /></div> </td>
                                         }
                                         else {
@@ -423,20 +441,30 @@ class Branches extends Component {
                 padding: "0px"
             },
         };
+        var sky = {
+            // backgroundColor: '#00897B',
+            // color: '#ffffff',
+            width: '50%',
+            height: '400px',
+            marginTop: '-300px',
+            marginLeft: '-25%',
+            // overflow: 'scroll',
+            direction: 'rtl',
+        };
         return (
             <div>
                 <div className={this.state.blur}>
                     <div className="Navdiv">
                         <ul className="NavdivUl">
                             <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-              <li className="active li"><a onClick={()=>{ReactRouter.goTo('/DashBoard')}}>السائقين</a></li>
-              {/*}<li><a >رحلات</a></li>{*/}
-              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a  onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a className="active" onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
-              <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
+                            <li className="active li"><a onClick={() => { ReactRouter.goTo('/DashBoard') }}>السائقين</a></li>
+                            {/*}<li><a >رحلات</a></li>{*/}
+                            <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                            <li><a >دعم</a></li>
+                            <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+                            <li><a className="active" onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+                            <li><a onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
+                            <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                         </ul>
                     </div>
                     <br />
@@ -471,6 +499,11 @@ class Branches extends Component {
                         </div>
                     </div>
                 </div>
+                <SkyLight hideOnOverlayClicked ref="ErrorDialog" dialogStyles={sky}>
+                    <div className="BranchPopClass">
+                            <p className="BranchPopP" >لا يمكن مسح فرع عنده اخصائيين</p>
+                    </div>
+                </SkyLight>
             </div>
         );
     }

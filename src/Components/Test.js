@@ -325,6 +325,19 @@ class Test extends Component {
         ReactRouter.goTo("/DashBoard")
         e.preventDefault();
     }
+    NumericMethod(e) {
+        const re = /[0-9]+/g;
+        if (!re.test(e.key)) {
+            e.preventDefault();
+        }
+    }
+
+    CharactersMethod(e) {
+        const re = /[a-zA-Z]+/g;
+        if (!re.test(e.key)) {
+            e.preventDefault();
+        }
+    }
     render() {
         // console.log(this.state.userID, "user ID prop in render")
         const customStyles = {
@@ -388,6 +401,9 @@ class Test extends Component {
                             onChange={this.handleBranchoptions.bind(this, "branch")}
                         />
                     </div>
+
+                    <input ref="third" type="text" placeholder="hey" onKeyPress={(e) => this.CharactersMethod(e)} />
+                    <input ref="fourth" type="text" onKeyPress={(e) => this.NumericMethod(e)} />
                 </div>
                 <br /><br />
 

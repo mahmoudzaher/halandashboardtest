@@ -93,7 +93,6 @@ class UpdateVehicle extends Component {
                 // Month: birthdate.getMonth() + 1,
                 // Day: birthdate.getDate(),
 
-
             })
 
             axios.get('/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
@@ -163,7 +162,7 @@ class UpdateVehicle extends Component {
 
 
         }).catch(function (error) {
-            alert(error.message, "what");
+            // alert(error.message, "what");
             console.log(error.message)
         })
     }
@@ -197,97 +196,11 @@ class UpdateVehicle extends Component {
                 }
             );
         }
-        // console.log(itemIds)
         this.setState({
             startdayoptions: itemIds,
             startmonthoptions: itemIds2,
             startyearoptions: itemIds3,
         })
-
-        // axios.get('/operator/getDriverById?' + "driverId=" + this.state.driverId).then(function (response) {
-        //     console.log(response, "getDriverById Response")
-        //     var y = response.data.data;
-
-        //     that.setState({
-        //         vehicleId: y.vehicle._id,
-        //     })
-
-        //     axios.get('/operator/getdrivervehicle?' + "vehicleId=" + that.state.vehicleId).then(function (response) {
-        //         console.log(response.data, "getdrivervehicle Response")
-        //         var x = response.data;
-        //         // console.log(x, "x Response")
-        //         if (x.vehicleOwner) {
-        //             that.setState({
-        //                 vehicleOwnerName: x.vehicleOwner.name,
-        //                 vehicleOwnerId: x.vehicleOwner.nationalIdNo,
-        //                 vehicleOwnerPNumber: x.vehicleOwner.phoneNumber,
-
-        //             })
-        //         }
-        //         that.setState({
-        //             vehicleType: x.vehicletype,
-        //             vehicleDateofMake: x.model,
-        //             vehicleMake: x.make,
-        //             vehicleLabel: x.label,
-        //             vehicleShaseeh: x.shaseehNo,
-        //             vehicleMotor: x.motorNo,
-
-        //         })
-
-        //         if (that.state.vehicleType === "toktok") {
-        //             that.setState({
-        //                 TokTokActive: "active"
-        //             })
-        //         }
-        //         else if (that.state.vehicleType === "motorcycle") {
-        //             that.setState({
-        //                 MotocycleActive: "active"
-        //             })
-        //         }
-        //         else if (that.state.vehicleType === "tricycle") {
-        //             that.setState({
-        //                 TricycleActive: "active"
-        //             })
-        //         }
-
-        //     }).catch(function (error) {
-        //         alert(error.message, "what");
-        //         console.log(error.message)
-        //     })
-
-
-        // }).catch(function (error) {
-        //     alert(error.message, "what");
-        //     console.log(error.message)
-        // })
-
-
-        // console.log(this.state.vehicleId, "this.state.vehicleId")
-        // axios.get('/operator/getdrivervehicle?' + "vehicleId=" + this.state.vehicleId).then(function (response) {
-        //     console.log(response, "getdrivervehicle Response")
-        //     var x = response.data.data;
-
-        //     that.setState({
-        //         vehicleOwnerName: x.vehicleOwner.name,
-        //         vehicleOwnerId: x.vehicleOwner.nationalIdNo,
-        //         vehicleOwnerPNumber: x.vehicleOwner.phoneNumber,
-        //         vehicleType: x.vehicletype,
-        //         vehicleDateofMake: x.model,
-        //         vehicleMake: x.make,
-        //         vehicleLabel: x.label,
-        //         vehicleShaseeh: x.shaseehNo,
-        //         vehicleMotor: x.motorNo,
-
-        //     })
-
-        // }).catch(function (error) {
-        //     alert(error.message);
-        //     console.log(error)
-        // })
-
-        // {this.state.yaaay.bind(this)}
-
-
     }
 
 
@@ -497,11 +410,11 @@ class UpdateVehicle extends Component {
     }
 
     handleOnchangeTextvehicleLabel(type, value) {
-        this.setState({ 
+        this.setState({
             // vehicleLabel: event.target.value,
             [type]: value,
-         });
-         console.log("type: ",type," value: ",value)
+        });
+        console.log("type: ", type, " value: ", value)
     }
 
     handleOnchangeTextvehicleShaseeh(event) {
@@ -627,11 +540,18 @@ class UpdateVehicle extends Component {
         })
     }
 
+    NumericMethod(e) {
+        const re = /[0-9]+/g;
+        if (!re.test(e.key)) {
+            e.preventDefault();
+        }
+    }
 
-    handleChangeDisable() {
-        console("fk meeeeeeeeee")
-        // this.setState({disabledd: e.target.value})
-        console.log("helloooooooooooooooooooooooooooooooo")
+    CharactersMethod(e) {
+        const re = /[a-zA-Z]+/g;
+        if (!re.test(e.key)) {
+            e.preventDefault();
+        }
     }
 
     render() {
@@ -647,13 +567,13 @@ class UpdateVehicle extends Component {
                 <div className="Navdiv">
                     <ul className="NavdivUl">
                         <li className="Header Logo"><img src="/Group 11.png" alt="Header Logo" /></li>
-                        <li className="active li"><a className="active" onClick={()=>{ReactRouter.goTo('/DashBoard')}}>السائقين</a></li>
+                        <li className="active li"><a className="active" onClick={() => { ReactRouter.goTo('/DashBoard') }}>السائقين</a></li>
                         {/*}<li><a >رحلات</a></li>{*/}
-              <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
-              <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
+                        <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
+                        <li><a >دعم</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+                        <li><a onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
                         <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
                     </ul>
                 </div>
@@ -698,38 +618,6 @@ class UpdateVehicle extends Component {
                                 onChange={this.handleOnchangeTextvehicleOwnerId.bind(this)} disabled={this.state.isChecked} />
                         </div>
 
-                        {/*<input type="checkbox" className="checkmate" onChange={this.handleCheckboxChange.bind(this)} checked={this.state.isChecked} />*/}
-                        {/*<p className="CreateBigDivNewLol" >أسم مالك المركبة</p>*/}
-                        {/*<p className="CreateBigDivNewLol">رقم المالك</p>*/}
-                        {/*<p className="CreateBigDivNewLol">رقم بطاقة المالك</p>*/}
-
-                        {/*<div className="NewBOOMMM"><p className="NewCreateBigDivPIdk">هل السائق هو نفس مالك المركبة</p></div>*/}
-
-                        {/*<input type="text" className="CreateBigDivP" ref="oName" value={this.state.vehicleOwnerName} onChange={this.handleOnchangeTextvehicleOwnerName.bind(this)} disabled={this.state.isChecked} />*/}
-                        {/*<input type="text" className="CreateBigDivP" ref="OPNumber" value={this.state.vehicleOwnerPNumber} onChange={this.handleOnchangeTextvehicleOwnerPNumber.bind(this)} disabled={this.state.isChecked} />*/}
-                        {/*<input type="text" className="CreateBigDivP" ref="nID" value={this.state.vehicleOwnerId} onChange={this.handleOnchangeTextvehicleOwnerId.bind(this)} disabled={this.state.isChecked} />*/}
-
-
-
-                        {/*<div className="CreateBigDiv-right-right">
-                            <input type="checkbox" className="checkmate" onChange={this.handleCheckboxChange.bind(this)} checked={this.state.isChecked} />
-                            <p className="CreateBigDivNewLol" >أسم مالك المركبة</p>
-                            <p className="CreateBigDivNewLol">رقم المالك</p>
-                            <p className="CreateBigDivNewLol">رقم بطاقة المالك</p>
-                        </div>
-
-                        <div className="CreateBigDiv-right-left">
-                            <div className="CreateBigDivPDiv">
-                                <div className="BOOMMM">
-                                    <p className="CreateBigDivPIdk">هل السائق هو نفس مالك المركبة</p>
-                                </div>
-                                <input type="text" className="CreateBigDivP" ref="oName" value={this.state.vehicleOwnerName} onChange={this.handleOnchangeTextvehicleOwnerName.bind(this)} disabled={this.state.isChecked} />
-                                <input type="text" className="CreateBigDivP" ref="OPNumber" value={this.state.vehicleOwnerPNumber} onChange={this.handleOnchangeTextvehicleOwnerPNumber.bind(this)} disabled={this.state.isChecked} />
-                                <input type="text" className="CreateBigDivP" ref="nID" value={this.state.vehicleOwnerId} onChange={this.handleOnchangeTextvehicleOwnerId.bind(this)} disabled={this.state.isChecked} />
-                            </div>
-
-                        </div>*/}
-
                     </div>
 
 
@@ -769,19 +657,24 @@ class UpdateVehicle extends Component {
 
                         </div>
 
-                        <div className="newplan">
+                        <div className="newplan" style={{ paddingBottom: "0", minHeight: "40px" }}>
                             <p className="NewNewCreateBigDivLol">ماركة المركبة</p>
                             <input type="text" ref="make" className="NewNewCreateBigDivPTLol" value={this.state.vehicleMake} onChange={this.handleOnchangeTextvehicleMake.bind(this)} />
 
                         </div>
 
+                        <div className="newplanPlate" >
+                            <p className="NumericClass">الأرقام</p>
+                            <p className="CharactersClass">الحروف</p>
+                        </div>
+
                         <div className="newplan">
-                            <p className="NewNewCreateBigDivLol">رقم اللوحة</p> 
+                            <p className="NewNewCreateBigDivLol">رقم اللوحة</p>
                             <div className="DivNewNewCreateBigDivPTLol123and4">
-                                <div className="DivNewNewCreateBigDivPTLol121">    <input type="text" ref="labelnum1" className="NewNewCreateBigDivPTLol123" value={this.state.vehicleLabelnum1} onChange={(e) => {this.setState({vehicleLabelnum1: e.target.value})}} />  </div>
-                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" className="NewNewCreateBigDivPTLol1236" value={this.state.vehicleLabelnum2} onChange={(e) => {this.setState({vehicleLabelnum2: e.target.value})}} />    </div>
-                                <div className="DivNewNewCreateBigDivPTLol123">   <input type="text" ref="labelnum3" className="NewNewCreateBigDivPTLol1235" value={this.state.vehicleLabelnum3} onChange={(e) => {this.setState({vehicleLabelnum3: e.target.value})}} />   </div>
-                                <div className="DivNewNewCreateBigDivPTLol124">   <input type="text" ref="labeltext" className="NewNewCreateBigDivPTLol1234"  value={this.state.vehicleLabeltext} onChange={(e) => {this.setState({vehicleLabeltext: e.target.value})}} />   </div>
+                                <div className="DivNewNewCreateBigDivPTLol121">    <input type="text" ref="labelnum1" maxLength="1"  onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol123" value={this.state.vehicleLabelnum1} onChange={(e) => { this.setState({ vehicleLabelnum1: e.target.value }) }} />  </div>
+                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" maxLength="1"  onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol1236" value={this.state.vehicleLabelnum2} onChange={(e) => { this.setState({ vehicleLabelnum2: e.target.value }) }} />    </div>
+                                <div className="DivNewNewCreateBigDivPTLol123">   <input type="text" ref="labelnum3" maxLength="1"  onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol1235" value={this.state.vehicleLabelnum3} onChange={(e) => { this.setState({ vehicleLabelnum3: e.target.value }) }} />   </div>
+                                <div className="DivNewNewCreateBigDivPTLol124">   <input type="text" ref="labeltext" maxLength="4" onKeyPress={(e) => this.NumericMethod(e)} className="NewNewCreateBigDivPTLol1234" value={this.state.vehicleLabeltext} onChange={(e) => { this.setState({ vehicleLabeltext: e.target.value }) }} />   </div>
                             </div>
                             {/* <input type="text" ref="label" className="NewNewCreateBigDivPTLol" value={this.state.vehicleLabel} onChange={this.handleOnchangeTextvehicleLabel.bind(this)} /> */}
 
@@ -802,100 +695,8 @@ class UpdateVehicle extends Component {
 
                         <div className="newplan">
                             <p className="NewNewCreateBigDivLol">تاريخ الإنتاج</p>
-                            {/* <div className="Options-GroupsFiNewNew">
-                                <div className="Inner-options-Div"> */}
 
-                                    {/*<div className="OptionsThTNew">
-                                        <Select
-                                            ref="startday"
-                                            placeholder="يوم"
-                                            className="menu-outer-top"
-                                            value={this.state.Day}
-                                            options={this.state.startdayoptions}
-                                            onChange={this.handleDayoptions.bind(this, "startday")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsTTNew">
-                                        <Select
-                                            ref="startmonth"
-                                            placeholder="شهر"
-                                            className="menu-outer-top"
-                                            value={this.state.Month}
-                                            options={this.state.startmonthoptions}
-                                            onChange={this.handleMonthoptions.bind(this, "startmonth")}
-                                        />
-                                    </div>*/}
-
-                                    <div className="OptionsOTNewBoomBoom">
-                                        <Select
-                                            ref="startyear"
-                                            placeholder="سنة"
-                                            //className="menu-outer-top3"
-                                            value={this.state.Year}
-                                            options={this.state.startyearoptions}
-                                            onChange={this.handleYearoptions.bind(this, "startyear")}
-                                        />
-                                    </div>
-                                {/* </div>
-
-                            </div> */}
-
-                        </div>
-
-
-
-
-
-                        {/*<p className="CreateBigDivLol">نوع المركبة</p>*/}
-                        {/*<p className="CreateBigDivLol">الموديل</p>*/}
-                        {/*<p className="CreateBigDivLol">رقم اللوحة</p>*/}
-                        {/*<p className="CreateBigDivLol">تاريخ الإنتاج</p>*/}
-                        {/*<p className="CreateBigDivLol">رقم الشاسيه</p>*/}
-                        {/*<p className="CreateBigDivLol">رقم الموتور</p>*/}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        {/*<div id="maincontainerLol">
-                            <div className="three" >
-                                <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
-                            </div>
-                            <div className="four">
-                                <img src="\Line 515.png" className="two" />
-                            </div>
-
-                            <div className="three" >
-                                <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
-                            </div>
-                            <div className="four">
-                                <img src="\Line 515.png" className="two" />
-                            </div>
-
-                            <div className="three" >
-                                <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
-                            </div>
-
-                        </div>*/}
-
-                        {/*<input type="text" ref="make" className="CreateBigDivPTLol" value={this.state.vehicleMake} onChange={this.handleOnchangeTextvehicleMake.bind(this)} />*/}
-                        {/*<input type="text" ref="label" className="CreateBigDivPTLol" value={this.state.vehicleLabel} onChange={this.handleOnchangeTextvehicleLabel.bind(this)} />*/}
-
-                        {/*<div className="Options-GroupsFi">
-                            <div className="OptionsOT">
+                            <div className="OptionsOTNewBoomBoom">
                                 <Select
                                     ref="startyear"
                                     placeholder="سنة"
@@ -904,116 +705,7 @@ class UpdateVehicle extends Component {
                                     onChange={this.handleYearoptions.bind(this, "startyear")}
                                 />
                             </div>
-
-                            <div className="OptionsTT">
-                                <Select
-                                    ref="startmonth"
-                                    placeholder="شهر"
-                                    value={this.state.Month}
-                                    options={this.state.startmonthoptions}
-                                    onChange={this.handleMonthoptions.bind(this, "startmonth")}
-                                />
-                            </div>
-
-                            <div className="OptionsThT">
-                                <Select
-                                    ref="startday"
-                                    placeholder="يوم"
-                                    value={this.state.Day}
-                                    options={this.state.startdayoptions}
-                                    onChange={this.handleDayoptions.bind(this, "startday")}
-                                />
-                            </div>
-                        </div>*/}
-                        {/*<input type="text" ref="shaseehNo" className="CreateBigDivPTLol" value={this.state.vehicleShaseeh} onChange={this.handleOnchangeTextvehicleShaseeh.bind(this)} />*/}
-                        {/*<input type="text" ref="motorNo" className="CreateBigDivPTLol" value={this.state.vehicleMotor} onChange={this.handleOnchangeTextvehicleMotor.bind(this)} />*/}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        {/*<div className="CreateBigDiv-left-rightLol">
-                            <p className="CreateBigDivLol">نوع المركبة</p>
-                            <p className="CreateBigDivLol">الموديل</p>
-                            <p className="CreateBigDivLol">رقم اللوحة</p>
-                            <p className="CreateBigDivLol">تاريخ الإنتاج</p>
-                            <p className="CreateBigDivLol">رقم الشاسيه</p>
-                            <p className="CreateBigDivLol">رقم الموتور</p>
                         </div>
-
-                        <div className="CreateBigDiv-left-leftLol">
-                            <div id="maincontainerLol">
-                                <div className="three" >
-                                    <img src="\Group 1524.png" className={this.state.TricycleActive == "active" ? "one active" : "one"} ref="tricycle" onClick={this.handleVehicleType1.bind(this)} />
-                                </div>
-                                <div className="four">
-                                    <img src="\Line 515.png" className="two" />
-                                </div>
-
-                                <div className="three" >
-                                    <img src="\Group 1523.png" className={this.state.MotocycleActive == "active" ? "one active" : "one"} ref="motorcycle" onClick={this.handleVehicleType2.bind(this)} />
-                                </div>
-                                <div className="four">
-                                    <img src="\Line 515.png" className="two" />
-                                </div>
-
-                                <div className="three" >
-                                    <img src="\Group 1522.png" className={this.state.TokTokActive == "active" ? "one active" : "one"} ref="toktok" onClick={this.handleVehicleType3.bind(this)} />
-                                </div>
-
-                            </div>
-
-                            <input type="text" ref="make" className="CreateBigDivPTLol" value={this.state.vehicleMake} onChange={this.handleOnchangeTextvehicleMake.bind(this)} />
-                            <input type="text" ref="label" className="CreateBigDivPTLol" value={this.state.vehicleLabel} onChange={this.handleOnchangeTextvehicleLabel.bind(this)} />
-
-                            <div className="Options-GroupsFi">
-                                <div className="OptionsOT">
-                                    <Select
-                                        ref="startyear"
-                                        placeholder="سنة"
-                                        value={this.state.Year}
-                                        options={this.state.startyearoptions}
-                                        onChange={this.handleYearoptions.bind(this, "startyear")}
-                                    />
-                                </div>
-
-                                <div className="OptionsTT">
-                                    <Select
-                                        ref="startmonth"
-                                        placeholder="شهر"
-                                        value={this.state.Month}
-                                        options={this.state.startmonthoptions}
-                                        onChange={this.handleMonthoptions.bind(this, "startmonth")}
-                                    />
-                                </div>
-
-                                <div className="OptionsThT">
-                                    <Select
-                                        ref="startday"
-                                        placeholder="يوم"
-                                        value={this.state.Day}
-                                        options={this.state.startdayoptions}
-                                        onChange={this.handleDayoptions.bind(this, "startday")}
-                                    />
-                                </div>
-                            </div>
-                            <input type="text" ref="shaseehNo" className="CreateBigDivPTLol" value={this.state.vehicleShaseeh} onChange={this.handleOnchangeTextvehicleShaseeh.bind(this)} />
-                            <input type="text" ref="motorNo" className="CreateBigDivPTLol" value={this.state.vehicleMotor} onChange={this.handleOnchangeTextvehicleMotor.bind(this)} />
-                        </div>*/}
                     </div>
 
                 </div>
