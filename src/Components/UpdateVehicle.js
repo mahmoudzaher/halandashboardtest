@@ -542,14 +542,18 @@ class UpdateVehicle extends Component {
 
     NumericMethod(e) {
         const re = /[0-9]+/g;
-        if (!re.test(e.key)) {
+        const rw =  /[\u0660-\u0669]+/g;
+        const rq =  /[\u06F0-\u06F9]+/g;
+        if (!(re.test(e.key) || rw.test(e.key) || rq.test(e.key))) {
             e.preventDefault();
         }
     }
 
     CharactersMethod(e) {
         const re = /[a-zA-Z]+/g;
-        if (!re.test(e.key)) {
+        const rw = /[\u0620-\u064A]+/g;
+        const rq = /[\u066E-\u06D1]+/g;
+        if (!(re.test(e.key) || rw.test(e.key) || rq.test(e.key))) {
             e.preventDefault();
         }
     }
