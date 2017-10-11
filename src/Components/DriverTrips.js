@@ -300,20 +300,43 @@ class DriverTrips extends Component {
 
 
 
+                        if (row.user) {
 
-                        if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
-                            if (row.user.phoneNumber.includes(that.state.searchfilter)) {
-                                if (that.state.birthdaydate && that.state.birthdaydateE) {
-                                    if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
 
+                            if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
+                                if (row.user.phoneNumber.includes(that.state.searchfilter)) {
+                                    if (that.state.birthdaydate && that.state.birthdaydateE) {
+                                        if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
+
+                                            counter++;
+                                            usedCounter++;
+                                            re.push(row.tripCost)
+                                            re.push(row.userRatingByDriver)
+                                            re.push(durationtrip)
+                                            re.push(newStart)
+                                            if (row.distanceTaken > -1) {
+                                                console.log(row.distanceTaken, "distance")
+                                                re.push(row.distanceTaken)
+                                            }
+                                            else {
+                                                re.push("-")
+                                            }
+                                            re.push(row._toString)
+                                            re.push(row._fromString)
+                                            re.push(row.user.phoneNumber)
+                                            re.push(row.user.firstName)
+                                            re.push(formattedTime)
+                                        }
+                                    }
+                                    else {
                                         counter++;
                                         usedCounter++;
                                         re.push(row.tripCost)
                                         re.push(row.userRatingByDriver)
                                         re.push(durationtrip)
                                         re.push(newStart)
-                                        if (row.distanceTaken > -1) {
-                                            console.log(row.distanceTaken, "distance")
+                                        if (row.distanceTaken >= 0) {
+                                            // console.log(row.distanceTaken, "distance")
                                             re.push(row.distanceTaken)
                                         }
                                         else {
@@ -325,31 +348,11 @@ class DriverTrips extends Component {
                                         re.push(row.user.firstName)
                                         re.push(formattedTime)
                                     }
-                                }
-                                else {
-                                    counter++;
-                                    usedCounter++;
-                                    re.push(row.tripCost)
-                                    re.push(row.userRatingByDriver)
-                                    re.push(durationtrip)
-                                    re.push(newStart)
-                                    if (row.distanceTaken >= 0) {
-                                        // console.log(row.distanceTaken, "distance")
-                                        re.push(row.distanceTaken)
-                                    }
-                                    else {
-                                        re.push("-")
-                                    }
-                                    re.push(row._toString)
-                                    re.push(row._fromString)
-                                    re.push(row.user.phoneNumber)
-                                    re.push(row.user.firstName)
-                                    re.push(formattedTime)
-                                }
 
+                                }
+                            } else {
+                                counter++;
                             }
-                        } else {
-                            counter++;
                         }
                         var ColImg = "/Path 1236.png";
 
@@ -531,7 +534,7 @@ class DriverTrips extends Component {
             tripsCount: tripscounter
         })
 
-        showDate=false;
+        showDate = false;
 
         // console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
@@ -571,14 +574,14 @@ class DriverTrips extends Component {
 
         e.preventDefault();
     }
-    reset(){
+    reset() {
         this.setState({
             birthdaydate: null,
             birthdaydateE: null
         })
-        from= "";
-        to= "";
-        showDate=true;
+        from = "";
+        to = "";
+        showDate = true;
     }
 
     render() {
@@ -662,11 +665,11 @@ class DriverTrips extends Component {
                             <div className="statisticstwo" >
                                 <p className="statisticsPNew" style={{ paddingLeft: "2%" }}>تصفية حسب التاريخ</p>
                                 <img src="/Group 1803.png" id="statisticsImgnew" onClick={() => this.refs.FilterDialog.show()} />
-                                <p className="statisticsPNew"style={{ paddingRight: "5%" }} hidden={showDate}> من:</p>
+                                <p className="statisticsPNew" style={{ paddingRight: "5%" }} hidden={showDate}> من:</p>
                                 <p className="statisticsPNew" style={{ minWidth: "10%" }} hidden={showDate}>{from}</p>
                                 <p className="statisticsPNew" hidden={showDate}> إلى:</p>
                                 <p className="statisticsPNew" style={{ minWidth: "10%" }} hidden={showDate}>{to}</p>
-                                <img src="/Group 1633.png" id="statisticsImgnew" onClick={this.reset.bind(this)} hidden={showDate}/>
+                                <img src="/Group 1633.png" id="statisticsImgnew" onClick={this.reset.bind(this)} hidden={showDate} />
                             </div>
 
                         </div>
