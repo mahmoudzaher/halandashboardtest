@@ -76,7 +76,7 @@ class UpdateUser extends Component {
         var allbranchesOptions = [];
         var branchesoptions2 = [];
         axios.get('/operator/getAllBranches').then(function (response) {
-            console.log(response, "getAllBranches Response")
+            // console.log(response, "getAllBranches Response")
             var x = response.data.data;
             var objects = [];
             x.forEach(function (item, index) {
@@ -98,7 +98,7 @@ class UpdateUser extends Component {
             var SpecialistsList = []
             var allSpecialistsOptions = [];
             axios.get('/operator/getAllSpecialists').then(function (response) {
-                console.log(response.data, "getAllSpecialists Response")
+                // console.log(response.data, "getAllSpecialists Response")
                 var z = response.data.data;
                 // console.log(x, "x")
                 var objects = [];
@@ -130,21 +130,26 @@ class UpdateUser extends Component {
                     var parser = parseInt(y.birthday)
 
                     var birthdate = new Date(parser);
+                    var driverlicensex;
                     var licenseNumber;
                     var LicenseExpDate;
                     var parserExp;
                     if (y.driverLicense) {
-                        licenseNumber = y.driverLicense.number;
+                        // console.log(JSON.parse(y.driverLicense),"driverlicense")
+                        // driverlicensex = JSON.parse(y.driverLicense);
+                        driverlicensex = y.driverLicense;
+                        licenseNumber = driverlicensex.number;
                         // LicenseExpDate = x.driverLicense.expirationDate;
                         // console.log(x.driverLicense.expirationDate)
                         // parserExp = parseInt(JSON.parse(x.driverLicense).expirationDate)
-                        parserExp = parseInt(y.driverLicense.expirationDate)
+                        parserExp = parseInt(driverlicensex.expirationDate)
                         LicenseExpDate = new Date(parserExp);
                         // console.log("hello world")
                         // console.log(LicenseExpDate)
                         // console.log(x.driverLicense.expirationDate)
                         that.setState({
-                            driverLicenseExpDate: y.driverLicense,
+                            driverLicenseExpDate: driverlicensex,
+                            LNumber: licenseNumber,
                             Year2: LicenseExpDate.getFullYear(),
                             Month2: LicenseExpDate.getMonth() + 1,
                             Day2: LicenseExpDate.getDate(),
@@ -152,18 +157,18 @@ class UpdateUser extends Component {
                         if (y.operator) {
                             var opID = y.operator;
 
-                            console.log(opID, "opID")
-                            console.log("hello")
-                            console.log(SpecialistsList)
+                            // console.log(opID, "opID")
+                            // console.log("hello")
+                            // console.log(SpecialistsList)
                             SpecialistsList.forEach(function (item, index) {
                                 if (item.branch) {
                                     var res = item._id.toString();
                                     // console.log(res,"res")
                                     // console.log(item._id,"branchId")
                                     if (opID === res) {
-                                        console.log(item, "item")
-                                        console.log(item.branch._id, "branchId")
-                                        console.log(item.branch.name, "branchName")
+                                        // console.log(item, "item")
+                                        // console.log(item.branch._id, "branchId")
+                                        // console.log(item.branch.name, "branchName")
                                         // console.log(opID, "opID")
                                         that.setState({
                                             currentBranch: {
@@ -329,7 +334,7 @@ class UpdateUser extends Component {
         var that = this;
         var allSpecialistsOptions = [];
         axios.get('/operator/getAllSpecialists').then(function (response) {
-            console.log(response.data, "getAllSpecialists Response")
+            // console.log(response.data, "getAllSpecialists Response")
             var x = response.data.data;
             // console.log(x, "x")
             var objects = [];
@@ -358,7 +363,7 @@ class UpdateUser extends Component {
         var that = this;
         var allbranchesOptions = [];
         axios.get('/operator/getAllBranches').then(function (response) {
-            console.log(response, "getAllBranches Response")
+            // console.log(response, "getAllBranches Response")
             var x = response.data.data;
             var objects = [];
             x.forEach(function (item, index) {
@@ -406,7 +411,7 @@ class UpdateUser extends Component {
                             value: item._id,
                             label: item.firstName
                         })
-                    console.log(item)
+                    // console.log(item)
                 }
             }
         })
@@ -567,68 +572,129 @@ class UpdateUser extends Component {
 
 
     handleDayoptions(type, value) {
-        this.setState({
-            [type]: value,
-            Day: value
-        });
-        if (value) {
-            if (value.value < 10) {
-                dayID = '0' + value.value;
-            }
-            else {
-                dayID = value.value;
-            }
-        } else {
-            dayID = "";
+        // this.setState({
+        //     // [type]: value,
+        //     Day: value.value
+        // });
+        const _this = this;
+        if (value.value < 10) {
+            // dayID = '0' + value.value;
+            _this.setState({
+                // [type]: value,
+                [type]: parseInt('0' + value.value)
+            }, () => {
+                _this.handleBirthday()
+            });
+        }
+        else {
+            _this.setState({
+                // [type]: value,
+                [type]: value.value
+            }, () => {
+                _this.handleBirthday()
+            });
         }
 
-        console.log(value);
-        console.log(dayID);
+        // console.log(value);
+        // console.log(type);
     }
 
-    handleMonthoptions(type, value) {
-        this.setState({
-            [type]: value,
-            Month: value
-        });
-        if (value) {
-            if (value.value < 10) {
-                monthID = '0' + value.value;
-            }
-            else {
-                monthID = value.value;
-            }
-        } else {
-            monthID = "";
-        }
 
-        console.log(value);
-        console.log(monthID);
+    // async handleDayoptions(type, value) {
+    //     // this.setState({
+    //     //     // [type]: value,
+    //     //     Day: value.value
+    //     // });
+    //    const _this = this;
+    //         if (value.value < 10) {
+    //             // dayID = '0' + value.value;
+    //          await   _this.setState({
+    //                 // [type]: value,
+    //                 [type] : parseInt('0' + value.value)
+    //             }, ()=>{
+    //                 _this.handleBirthday()
+    //             });
+    //         }
+    //         else {
+    //             await   _this.setState({
+    //                 // [type]: value,
+    //                 [type] : value.value
+    //             });
+    //         }
+    //         _this.handleBirthday()
+
+    //     console.log(value);
+    //     console.log(type);
+    // }
+
+    handleMonthoptions(type, value) {
+        // this.setState({
+        //     // [type]: value,
+        //     Month: value.value
+        // });
+        const _this = this;
+        if (value.value < 10) {
+            // dayID = '0' + value.value;
+            _this.setState({
+                // [type]: value,
+                [type]: parseInt('0' + value.value)
+            }, () => {
+                _this.handleBirthday()
+            });
+        }
+        else {
+            _this.setState({
+                // [type]: value,
+                [type]: value.value
+            }, () => {
+                _this.handleBirthday()
+            });
+        }
+        // console.log(value);
+        // console.log(monthID);
     }
 
     handleYearoptions(type, value) {
-        this.setState({
-            [type]: value,
-            Year: value
+        // this.setState({
+        //     // [type]: value,
+        //     Year: value.value
+        // });
+        const _this = this;
+
+        _this.setState({
+            // [type]: value,
+            [type]: value.value
+        }, () => {
+            _this.handleBirthday()
         });
-        if (value) {
-            yearID = value.value;
-        } else {
-            yearID = "";
-        }
-        this.handleBirthday()
+
+        // if (value) {
+        //     yearID = value.value;
+        // } else {
+        //     yearID = "";
+        // }
         console.log(value);
-        console.log(yearID);
+        // console.log(yearID);
     }
 
     handleBirthday() {
-        console.log(yearID, monthID, dayID)
+        // console.log(yearID, monthID, dayID) 
+        // console.log(this.state.Year,"this.state.Year")
+        // console.log(this.state.Month,"this.state.Month")
+        // console.log(this.state.Day,"this.state.Day")
         this.setState({
-            birthdaydate: new Date(yearID, monthID - 1, dayID).getTime(),
-            birthdaydateE: new Date(yearIDE, monthIDE - 1, dayIDE).getTime(),
+            birthdaydate: new Date(this.state.Year, this.state.Month - 1, this.state.Day).getTime(),
+            birthdaydateE: new Date(this.state.Year2, this.state.Month2 - 1, this.state.Day2).getTime(),
         });
-        console.log(new Date(yearID, monthID - 1, dayID).getTime(), "new Date(yearID, monthID + 1, dayID).getTime()")
-        console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
+        var x = new Date(this.state.Year, this.state.Month - 1, this.state.Day).getTime()
+        //var y = new Date(monthID,dayID,yearID)
+        // console.log(dayID)
+        // console.log(yearID)
+        // console.log(monthID)
+        console.log(x, "new Date(yearID, monthID - 1, dayID).getTime()")
+        //console.log(y.valueOf(), "new Date(yearID, monthID - 1, dayID).getTime()")
+
+        // console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
     }
 
 
@@ -641,7 +707,7 @@ class UpdateUser extends Component {
     }
     handleAddV(e) {
 
-        console.log("WoHOOOOOOOOOOOOOOOO");
+        // console.log("WoHOOOOOOOOOOOOOOOO");
         ReactRouter.goTo("/AddVehicle")
 
         e.preventDefault();
@@ -650,7 +716,7 @@ class UpdateUser extends Component {
 
     handleAddP(e) {
 
-        console.log("WoHOOOOOOOOOOOOOOOO");
+        // console.log("WoHOOOOOOOOOOOOOOOO");
         ReactRouter.goTo("/AddDriverPapers")
 
         e.preventDefault();
@@ -658,63 +724,83 @@ class UpdateUser extends Component {
 
 
     handleDayoptionsE(type, value) {
-        this.setState({
-            [type]: value,
-            Day2: value
-        });
-        if (value) {
-            if (value.value < 10) {
-                dayIDE = '0' + value.value;
-            }
-            else {
-                dayIDE = value.value;
-            }
-        } else {
-            dayIDE = "";
+        const _this = this;
+        if (value.value < 10) {
+            // dayID = '0' + value.value;
+            _this.setState({
+                // [type]: value,
+                [type]: parseInt('0' + value.value)
+            }, () => {
+                _this.handleBirthday()
+            });
+        }
+        else {
+            _this.setState({
+                // [type]: value,
+                [type]: value.value
+            }, () => {
+                _this.handleBirthday()
+            });
         }
 
+        // this.setState({
+        //     [type]: value,
+        //     Day2: value
+        // });
+        // if (value) {
+        //     if (value.value < 10) {
+        //         dayIDE = '0' + value.value;
+        //     }
+        //     else {
+        //         dayIDE = value.value;
+        //     }
+        // } else {
+        //     dayIDE = "";
+        // }
+        // this.handleBirthday()
         console.log(value);
-        console.log(dayIDE);
+        console.log(type);
     }
 
     handleMonthoptionsE(type, value) {
-        this.setState({
-            [type]: value,
-            Month2: value
-        });
-        if (value) {
-            if (value.value < 10) {
-                monthIDE = '0' + value.value;
-            }
-            else {
-                monthIDE = value.value;
-            }
-        } else {
-            monthIDE = "";
+        const _this = this;
+        if (value.value < 10) {
+            // dayID = '0' + value.value;
+            _this.setState({
+                // [type]: value,
+                [type]: parseInt('0' + value.value)
+            }, () => {
+                _this.handleBirthday()
+            });
         }
-
+        else {
+            _this.setState({
+                // [type]: value,
+                [type]: value.value
+            }, () => {
+                _this.handleBirthday()
+            });
+        }
         console.log(value);
         console.log(monthIDE);
     }
 
     handleYearoptionsE(type, value) {
-        this.setState({
-            [type]: value,
-            Year2: value
+        const _this = this;
+
+        _this.setState({
+            // [type]: value,
+            [type]: value.value
+        }, () => {
+            _this.handleBirthday()
         });
-        if (value) {
-            yearIDE = value.value;
-        } else {
-            yearIDE = "";
-        }
-        this.handleBirthday()
-        console.log(value);
-        console.log(yearIDE);
+        // console.log(value);
+        // console.log(yearIDE);
     }
 
     handleDate(e) {
 
-        console.log(this.refs.birthday.value)
+        // console.log(this.refs.birthday.value)
     }
     handleBack(e) {
         console.log("WoHOOOOOOOOOOOOOOOO");
@@ -723,7 +809,7 @@ class UpdateUser extends Component {
     }
     handleDrivers(e) {
 
-        console.log("WoHOOOOOOOOOOOOOOOO");
+        // console.log("WoHOOOOOOOOOOOOOOOO");
         ReactRouter.goTo('/DashBoard')
 
         e.preventDefault();
@@ -776,31 +862,77 @@ class UpdateUser extends Component {
         var that = this;
         { this.handleBirthday() }
 
-        console.log("asdasd");
+        // console.log("asdasd");
         // if (this.refs.email.value === '' || this.refs.password.value === '' || this.refs.Fname.value === '' || this.refs.Lname.value === '') {
         if (false) {
             alert('Something is missing');
 
         }
         else {
+            const data = new FormData();
+            data.append('action', 'ADD');
+            data.append('param', 0);
+            data.append('driverId', this.state.driverId);
+            
             var templicensenumber;
             var templicenseexpdate;
             if (this.state.birthdaydate) {
                 var timestampp = Math.floor(this.state.birthdaydate);
             }
+            else {
+                var timestampp = this.state.driverBirthday;
+            }
+
             if (this.state.birthdaydateE) {
                 var timestamppE = Math.floor(this.state.birthdaydateE);
             }
+            else {
+                var timestamppE = this.state.driverLicenseExpDate;
+            }
 
 
-            console.log(this.state.driverBirthday, "driverbirthday")
-            console.log(timestampp, "timestampp")
 
-            const data = new FormData();
-            data.append('action', 'ADD');
-            data.append('param', 0);
-            data.append('driverId', this.state.driverId);
-            data.append('operator', this.state.CurrentSpecialist)
+            var driverLicense = {};
+            if (this.state.birthdaydateE && this.state.LNumber) {
+                console.log("hey")
+                driverLicense = {
+                    number: that.state.LNumber,
+                    expirationDate: that.state.birthdaydateE
+                }
+                console.log(driverLicense,"drivelicense")
+                data.append('driverLicense', JSON.stringify(driverLicense))
+            }
+            else {
+                if (that.refs.driverLicenseNumber.value) {
+                    driverLicense["number"] = that.state.LNumber
+                    data.append('driverLicense', JSON.stringify(driverLicense))
+                }
+                if (that.state.birthdaydateE) {
+                    driverLicense["expirationDate"] = that.state.birthdaydateE
+                    data.append('driverLicense', JSON.stringify(driverLicense))
+                }
+            }
+
+
+            // console.log(this.state.driverBirthday, "driverbirthday")
+            // console.log(timestampp, "timestampp")
+
+            // const data = new FormData();
+            // data.append('action', 'ADD');
+            // data.append('param', 0);
+            // data.append('driverId', this.state.driverId);
+            // console.log(typeof(this.state.CurrentSpecialist),"currentSpecialist")
+            if (typeof (this.state.CurrentSpecialist) === "object") {
+                // console.log("its object")
+                // console.log(this.state.CurrentSpecialist.value)
+                data.append('operator', this.state.CurrentSpecialist.value)
+            }
+            else {
+                data.append('operator', this.state.CurrentSpecialist.value)
+                // console.log("its not an object")
+            }
+            // console.log(this.state.CurrentSpecialist,"currentSpecialist")
+
 
             if (this.state.img) {
                 data.append('picture', this.state.img)
@@ -860,43 +992,44 @@ class UpdateUser extends Component {
             }
 
 
-            if (timestamppE) {
-                templicenseexpdate = timestamppE;
-            }
-            else {
-                templicenseexpdate = this.state.driverLicenseExpDate;
-            }
-
-            if (this.refs.driverLicenseNumber.value) {
-                templicensenumber = this.refs.driverLicenseNumber.value;
-            }
-            else {
-                // templicensenumber = that.state.driverLicenseNo;
-                templicensenumber = this.state.LNumber;
-            }
 
 
-            var driverLicense = {
-                number: templicensenumber,
-                expirationDate: templicenseexpdate
-            }
-            console.log(driverLicense, "driverLicense")
-            if (driverLicense) {
-                // data.append('driverLicense', JSON.stringify(driverLicense))
-                data.append('driverLicense', JSON.stringify(driverLicense))
-            }
-            else {
 
-            }
+
+            // if (timestamppE) {
+            //     templicenseexpdate = timestamppE;
+            // }
+            // else {
+            //     templicenseexpdate = this.state.driverLicenseExpDate;
+            // }
+
+            // if (this.refs.driverLicenseNumber.value) {
+            //     templicensenumber = this.refs.driverLicenseNumber.value;
+            // }
+            // else {
+            //     templicensenumber = this.state.LNumber;
+            // }
+
+
+            // var driverLicense = {
+            //     number: templicensenumber,
+            //     expirationDate: templicenseexpdate
+            // }
+            // if (driverLicense) {
+            //     data.append('driverLicense', JSON.stringify(driverLicense))
+            // }
+            // else {
+
+            // }
 
 
             for (var pair of data.entries()) {
                 // console.log(pair)
             }
             axios.post('/operator/updatedriver', data).then(function (response) {
-                console.log(response)
+                // console.log(response)
                 var ID = response.data.data._id;
-                console.log(ID, "Id in post method")
+                // console.log(ID, "Id in post method")
                 var ObjectID = {
                     ID: ID
                 }
@@ -1071,7 +1204,7 @@ class UpdateUser extends Component {
                                 <div className="NewNewNewcustom-file-upload-inner-div-right">
                                     <label className="NewNewNewcustom-file-upload">
                                         <input type="file" onChange={this.voo.bind(this)} />
-                                        <img src="./redashboard/Group 1548.png" className="NewNewNewcustom-file-upload-img" />
+                                        <img src={this.state.driverPicture} className="NewNewNewcustom-file-upload-img" />
                                     </label>
                                 </div >
                                 <div className="NewNewNewcustom-file-upload-inner-div-left">
@@ -1090,7 +1223,7 @@ class UpdateUser extends Component {
                                         placeholder="سنة"
                                         value={this.state.Year}
                                         options={this.state.startyearoptions}
-                                        onChange={this.handleYearoptions.bind(this, "startyear")}
+                                        onChange={this.handleYearoptions.bind(this, "Year")}
                                     />
                                 </div>
 
@@ -1100,7 +1233,7 @@ class UpdateUser extends Component {
                                         placeholder="شهر"
                                         value={this.state.Month}
                                         options={this.state.startmonthoptions}
-                                        onChange={this.handleMonthoptions.bind(this, "startmonth")}
+                                        onChange={this.handleMonthoptions.bind(this, "Month")}
                                     />
                                 </div>
 
@@ -1110,7 +1243,7 @@ class UpdateUser extends Component {
                                         placeholder="يوم"
                                         value={this.state.Day}
                                         options={this.state.startdayoptions}
-                                        onChange={this.handleDayoptions.bind(this, "startday")}
+                                        onChange={this.handleDayoptions.bind(this, "Day")}
                                     />
                                 </div>
                             </div>
@@ -1135,7 +1268,7 @@ class UpdateUser extends Component {
                                         placeholder="سنة"
                                         value={this.state.Year2}
                                         options={this.state.endyearoptions}
-                                        onChange={this.handleYearoptionsE.bind(this, "endyear")}
+                                        onChange={this.handleYearoptionsE.bind(this, "Year2")}
                                     />
                                 </div>
 
@@ -1145,7 +1278,7 @@ class UpdateUser extends Component {
                                         placeholder="شهر"
                                         value={this.state.Month2}
                                         options={this.state.endmonthoptions}
-                                        onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
+                                        onChange={this.handleMonthoptionsE.bind(this, "Month2")}
                                     />
                                 </div>
                                 <div className="OptionsThTNewNewcomecome">
@@ -1154,7 +1287,7 @@ class UpdateUser extends Component {
                                         placeholder="يوم"
                                         value={this.state.Day2}
                                         options={this.state.enddayoptions}
-                                        onChange={this.handleDayoptionsE.bind(this, "endday")}
+                                        onChange={this.handleDayoptionsE.bind(this, "Day2")}
                                     />
                                 </div>
 

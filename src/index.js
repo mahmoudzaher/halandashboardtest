@@ -27,8 +27,8 @@ import CreateSpecialist from './Components/CreateSpecialist';
 import UpdateSpecialists from './Components/UpdateSpecialists';
 import Test from './Components/Test';
 
-localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
-// localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
+// localStorage.setItem('baseURL', ' https://halanapp.herokuapp.com/api/v1');
+localStorage.setItem('baseURL', 'https://halan-dev.herokuapp.com/api/v1');
     // localStorage.setItem('baseURL', 'http://192.168.1.30:4000/api/v1');
 
 
@@ -79,7 +79,6 @@ Flux.createRoute('/CreateUser', function () {
         render(<Application />, document.getElementById('root'));
     }
 });
-Test
 Flux.createRoute('/Branches', function () {
     unmountComponentAtNode(document.getElementById('root'));
     /* unmountComponentAtNode(document.getElementById('menu'));*/

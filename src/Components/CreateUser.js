@@ -229,10 +229,13 @@ class CreateUser extends Component {
     console.log(MonthNID, "MonthNID")
     console.log(DayNID, "DayNID")
     console.log(yearID, "yearID")
-    var year2n = yearID.toString();
+    var year2n = this.state.startyear.toString();
     year2n = year2n.substring(2, 4);
     year2n = parseInt(year2n);
     console.log(year2n, "year2n")
+    console.log(this.state.startyear,"this.state.startyear")
+    console.log(this.state.startday,"this.state.startday")
+    console.log(this.state.startmonth,"this.state.startmonth")
     if (yearNID === year2n) {
       console.log("years are equal")
       checkyear = true;
@@ -241,7 +244,7 @@ class CreateUser extends Component {
       console.log("years arent equal")
     }
 
-    if (MonthNID === parseInt(monthID)) {
+    if (MonthNID === this.state.startmonth) {
       console.log("months are equal")
       checkmonth = true;
     }
@@ -250,7 +253,7 @@ class CreateUser extends Component {
     }
     console.log(DayNID, "DayNID")
     console.log(dayID, "dayID")
-    if (DayNID === parseInt(dayID)) {
+    if (DayNID === this.state.startday) {
       console.log("days are equal")
       checkday = true;
     }
@@ -445,47 +448,60 @@ class CreateUser extends Component {
 
 
   handleDayoptions(type, value) {
-    this.setState({ [type]: value });
-    if (value) {
-      if (value.value < 10) {
-        dayID = '0' + value.value;
-      }
-      else {
-        dayID = value.value;
-      }
-    } else {
-      dayID = "";
+    const _this = this;
+    if (value.value < 10) {
+        // dayID = '0' + value.value;
+        _this.setState({
+            // [type]: value,
+            [type] : parseInt('0' + value.value)
+        }, ()=>{
+            _this.handleBirthday()
+        });
     }
-    this.handleBirthday()
+    else {
+           _this.setState({
+            // [type]: value,
+            [type] : value.value
+        }, ()=>{
+            _this.handleBirthday()
+        });
+    }
     console.log(value);
     console.log(dayID);
   }
 
   handleMonthoptions(type, value) {
-    this.setState({ [type]: value });
-    if (value) {
-      if (value.value < 10) {
-        monthID = '0' + value.value;
-      }
-      else {
-        monthID = value.value;
-      }
-    } else {
-      monthID = "";
+    const _this = this;
+    if (value.value < 10) {
+        // dayID = '0' + value.value;
+        _this.setState({
+            // [type]: value,
+            [type] : parseInt('0' + value.value)
+        }, ()=>{
+            _this.handleBirthday()
+        });
     }
-    this.handleBirthday()
+    else {
+           _this.setState({
+            // [type]: value,
+            [type] : value.value
+        }, ()=>{
+            _this.handleBirthday()
+        });
+    }
     console.log(value);
     console.log(monthID);
   }
 
   handleYearoptions(type, value) {
-    this.setState({ [type]: value });
-    if (value) {
-      yearID = value.value;
-    } else {
-      yearID = "";
-    }
-    this.handleBirthday()
+    const _this = this;
+    
+             _this.setState({
+              // [type]: value,
+              [type] : value.value
+          }, ()=>{
+              _this.handleBirthday()
+          });
     console.log(value);
     console.log(yearID);
   }
@@ -493,8 +509,8 @@ class CreateUser extends Component {
   handleBirthday() {
     console.log(yearID, monthID - 1, dayID)
     this.setState({
-      birthdaydate: new Date(yearID, monthID - 1, dayID).getTime(),
-      birthdaydateE: new Date(yearIDE, monthIDE - 1, dayIDE).getTime(),
+      birthdaydate: new Date(this.state.startyear, this.state.startmonth - 1, this.state.startday).getTime(),
+      birthdaydateE: new Date(this.state.endyear, this.state.endmonth - 1, this.state.endday).getTime(),
     });
     console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");
   }
@@ -546,8 +562,6 @@ class CreateUser extends Component {
       }
 
       if (this.state.birthdaydateE && this.refs.driverLicenseNumber.value) {
-        // vehicleLicence["number"] = this.refs.driverLicenseNumber.value;
-        // vehicleLicence["expirationDate"] = timestamppE;
         var vehicleLicence = {
           number: this.refs.driverLicenseNumber.value,
           expirationDate: timestamppE
@@ -556,12 +570,10 @@ class CreateUser extends Component {
       }
       else if (this.refs.driverLicenseNumber.value) {
         vehicleLicence["number"] = this.refs.driverLicenseNumber.value
-        // data.append('driverLicense', JSON.stringify(vehicleLicence))
         data.append('driverLicense', JSON.stringify(vehicleLicence))
       }
       else if (this.state.birthdaydateE) {
         vehicleLicence["expirationDate"] = timestamppE
-        // data.append('driverLicense', JSON.stringify(vehicleLicence))
         data.append('driverLicense', JSON.stringify(vehicleLicence))
       }
       else {
@@ -650,47 +662,60 @@ class CreateUser extends Component {
   }
 
   handleDayoptionsE(type, value) {
-    this.setState({ [type]: value });
-    if (value) {
-      if (value.value < 10) {
-        dayIDE = '0' + value.value;
-      }
-      else {
-        dayIDE = value.value;
-      }
-    } else {
-      dayIDE = "";
+    const _this = this;
+    if (value.value < 10) {
+        // dayID = '0' + value.value;
+        _this.setState({
+            // [type]: value,
+            [type] : parseInt('0' + value.value)
+        }, ()=>{
+            _this.handleBirthday()
+        });
     }
-    this.handleBirthday()
+    else {
+           _this.setState({
+            // [type]: value,
+            [type] : value.value
+        }, ()=>{
+            _this.handleBirthday()
+        });
+    }
     console.log(value);
     console.log(dayIDE);
   }
 
   handleMonthoptionsE(type, value) {
-    this.setState({ [type]: value });
-    if (value) {
-      if (value.value < 10) {
-        monthIDE = '0' + value.value;
-      }
-      else {
-        monthIDE = value.value;
-      }
-    } else {
-      monthIDE = "";
+    const _this = this;
+    if (value.value < 10) {
+        // dayID = '0' + value.value;
+        _this.setState({
+            // [type]: value,
+            [type] : parseInt('0' + value.value)
+        }, ()=>{
+            _this.handleBirthday()
+        });
     }
-    this.handleBirthday()
+    else {
+           _this.setState({
+            // [type]: value,
+            [type] : value.value
+        }, ()=>{
+            _this.handleBirthday()
+        });
+    }
     console.log(value);
     console.log(monthIDE);
   }
 
   handleYearoptionsE(type, value) {
-    this.setState({ [type]: value });
-    if (value) {
-      yearIDE = value.value;
-    } else {
-      yearIDE = "";
-    }
-    this.handleBirthday()
+    const _this = this;
+    
+             _this.setState({
+              // [type]: value,
+              [type] : value.value
+          }, ()=>{
+              _this.handleBirthday()
+          });
     console.log(value);
     console.log(yearIDE);
   }
@@ -802,7 +827,7 @@ class CreateUser extends Component {
         <div className="Navdiv">
           <ul className="NavdivUl">
             <li className="Header Logo"><img src="Group 11.png" alt="Header Logo" /></li>
-            <li className="active li"><a className="active" onClick={() => { ReactRouter.goTo('/Reports') }}>السائقين</a></li>
+            <li className="active li"><a className="active" onClick={() => { ReactRouter.goTo('/DashBoard') }}>السائقين</a></li>
             {/*}<li><a >رحلات</a></li>{*/}
             <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
             <li><a >دعم</a></li>

@@ -432,7 +432,7 @@ class AddDriverPapers extends Component {
                     that.setState({
                         loadinghiden: true,
                     })
-
+                    that.refs.PromoDialog.show()
 
                 }).catch(function (error) {
                     that.setState({

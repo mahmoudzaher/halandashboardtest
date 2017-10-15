@@ -283,10 +283,12 @@ class AddVehicle extends Component {
     // }
 
     handleBirthday() {
-        console.log(yearID, monthID - 1, dayID)
+        var x = new Date(`1/1/${yearID}`)
+        var y = x.valueOf()
+        console.log(y,"dope")
+        // console.log
         this.setState({
-            birthdaydate: new Date(yearID).getTime(),
-            birthdaydateE: new Date(yearIDE).getTime(),
+            birthdaydate: y,
             endday: "sadjkhasdk"
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");

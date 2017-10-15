@@ -229,37 +229,37 @@ class UpdateVehicle extends Component {
         })
     }
 
-    handleDayoptions(type, value) {
-        this.setState({
-            [type]: value,
-            Day: value
-        });
-        //  artistID = value.value;
-        if (value) {
-            dayID = value.value;
-        } else {
-            dayID = "";
-        }
-        this.handleBirthday()
-        console.log(value);
-        console.log(dayID);
-    }
+    // handleDayoptions(type, value) {
+    //     this.setState({
+    //         [type]: value,
+    //         Day: value
+    //     });
+    //     //  artistID = value.value;
+    //     if (value) {
+    //         dayID = value.value;
+    //     } else {
+    //         dayID = "";
+    //     }
+    //     this.handleBirthday()
+    //     console.log(value);
+    //     console.log(dayID);
+    // }
 
-    handleMonthoptions(type, value) {
-        this.setState({
-            [type]: value,
-            Month: value
-        });
-        //  artistID = value.value;
-        if (value) {
-            monthID = value.value;
-        } else {
-            monthID = "";
-        }
-        this.handleBirthday()
-        console.log(value);
-        console.log(monthID);
-    }
+    // handleMonthoptions(type, value) {
+    //     this.setState({
+    //         [type]: value,
+    //         Month: value
+    //     });
+    //     //  artistID = value.value;
+    //     if (value) {
+    //         monthID = value.value;
+    //     } else {
+    //         monthID = "";
+    //     }
+    //     this.handleBirthday()
+    //     console.log(value);
+    //     console.log(monthID);
+    // }
 
     handleYearoptions(type, value) {
         this.setState({
@@ -280,9 +280,12 @@ class UpdateVehicle extends Component {
 
 
     handleBirthday() {
-        console.log(yearID)
+        var x = new Date(`1/1/${yearID}`)
+        var y = x.valueOf()
+        console.log(y,"dope")
+        // console.log
         this.setState({
-            birthdaydate: new Date(yearID).getTime(),
+            birthdaydate: y,
             endday: "sadjkhasdk"
         });
         console.log(this.state, "dakjsbdjhalsgdlkhjhagsdkjlhhaksjdhlk");

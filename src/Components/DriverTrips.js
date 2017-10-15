@@ -69,14 +69,20 @@ class DriverTrips extends Component {
 
             x.forEach(function (item) {
                 // console.log(item)
-                objects.push(item);
-                if (item.tripCost) {
-                    money = money + item.tripCost;
+                if (!item.cancelTime) {
+                    if (item.user) {
+                        if (item.tripDistance) {
+                            objects.push(item);
+                            if (item.tripCost) {
+                                money = money + item.tripCost;
+                            }
+
+                            tripscounter = tripscounter + 1;
+                        }
+                    }
                 }
-
-                tripscounter = tripscounter + 1;
-
             })
+            console.log(objects,"objects")
             that.setState({
 
                 objects: objects,
@@ -201,7 +207,7 @@ class DriverTrips extends Component {
             );
         }
 
-        console.log(itemIds)
+        // console.log(itemIds)
         this.setState({
             startdayoptions: itemIds,
             startmonthoptions: itemIds2,
@@ -265,7 +271,9 @@ class DriverTrips extends Component {
                         var formattedTime = Year + '/' + Month + '/' + Day;
 
 
-
+                        if (!row.tripStartTime) {
+                            console.log(row, index)
+                        }
 
                         var start = new Date(row.tripStartTime);
                         var startYear = start.getFullYear();
@@ -300,60 +308,67 @@ class DriverTrips extends Component {
 
 
 
-                        if (row.user) {
+                        // if (row.user) {
+                        //     if (row.tripDistance) {
+                        var x = row.tripDistance / 1000;
+                        var y = x.toString()
+                        // console.log(row.tripDistance / 1000)
+                        var Distance = y.substring(0, 5);
+                        if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
+                            if (row.user.phoneNumber.includes(that.state.searchfilter)) {
+                                if (that.state.birthdaydate && that.state.birthdaydateE) {
+                                    if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
 
-
-                            if (that.state.lessThanAll < counter && counter < that.state.greaterThanAll) {
-                                if (row.user.phoneNumber.includes(that.state.searchfilter)) {
-                                    if (that.state.birthdaydate && that.state.birthdaydateE) {
-                                        if (that.state.birthdaydate <= row.date && that.state.birthdaydateE >= row.date) {
-
-                                            counter++;
-                                            usedCounter++;
-                                            re.push(row.tripCost)
-                                            re.push(row.userRatingByDriver)
-                                            re.push(durationtrip)
-                                            re.push(newStart)
-                                            if (row.distanceTaken > -1) {
-                                                console.log(row.distanceTaken, "distance")
-                                                re.push(row.distanceTaken)
-                                            }
-                                            else {
-                                                re.push("-")
-                                            }
-                                            re.push(row._toString)
-                                            re.push(row._fromString)
-                                            re.push(row.user.phoneNumber)
-                                            re.push(row.user.firstName)
-                                            re.push(formattedTime)
-                                        }
-                                    }
-                                    else {
                                         counter++;
                                         usedCounter++;
                                         re.push(row.tripCost)
                                         re.push(row.userRatingByDriver)
                                         re.push(durationtrip)
                                         re.push(newStart)
-                                        if (row.distanceTaken >= 0) {
-                                            // console.log(row.distanceTaken, "distance")
-                                            re.push(row.distanceTaken)
-                                        }
-                                        else {
-                                            re.push("-")
-                                        }
+                                        re.push(Distance)
+                                        // if (row.tripDistance >= 0) {
+                                        //     console.log(row.tripDistance, "distance")
+                                        //     re.push(row.tripDistance)
+                                        // }
+                                        // else {
+                                        //     re.push("-")
+                                        // }
                                         re.push(row._toString)
                                         re.push(row._fromString)
                                         re.push(row.user.phoneNumber)
                                         re.push(row.user.firstName)
                                         re.push(formattedTime)
                                     }
-
                                 }
-                            } else {
-                                counter++;
+                                else {
+                                    counter++;
+                                    usedCounter++;
+                                    re.push(row.tripCost)
+                                    re.push(row.userRatingByDriver)
+                                    re.push(durationtrip)
+                                    re.push(newStart)
+
+                                    re.push(Distance)
+                                    // if (row.tripDistance >= 0) {
+                                    //     // console.log(row.distanceTaken, "distance")
+                                    //     re.push(row.tripDistance)
+                                    // }
+                                    // else {
+                                    //     re.push("-")
+                                    // }
+                                    re.push(row._toString)
+                                    re.push(row._fromString)
+                                    re.push(row.user.phoneNumber)
+                                    re.push(row.user.firstName)
+                                    re.push(formattedTime)
+                                }
+
                             }
+                        } else {
+                            counter++;
                         }
+                        //     }
+                        // }
                         var ColImg = "/Path 1236.png";
 
                         return (

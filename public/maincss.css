@@ -3021,11 +3021,19 @@ span.Select-clear-zone {
  }
  .PopClassReports {
     direction: rtl;
+    width: 50%;
+    text-align: center;
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-top: 10%;
 }
 p.blockP {
     display: -webkit-inline-box;
     padding-left: 5%;
-    min-width: 10%;
+    min-width: 20%;
+}
+.buttonReports {
+    padding-top: 10%;
 }
 
 input.blockTextImput {
