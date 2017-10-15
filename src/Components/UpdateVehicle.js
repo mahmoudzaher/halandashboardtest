@@ -542,18 +542,23 @@ class UpdateVehicle extends Component {
 
     NumericMethod(e) {
         const re = /[0-9]+/g;
-        const rw =  /[\u0660-\u0669]+/g;
-        const rq =  /[\u06F0-\u06F9]+/g;
-        if (!(re.test(e.key) || rw.test(e.key) || rq.test(e.key))) {
+        // const rw = /[٠١٢٣٤٥٦٧٨٩]/g;
+        // const rq =  /[\u06F0-\u06F9]/;
+        if (!re.test(e.key))
+        // if ((!re.test(e.key)) && (!rw.test(e.key)))
+        // if (!(re.test(e.key) && rw.test(e.key))) 
+        {
             e.preventDefault();
         }
     }
 
     CharactersMethod(e) {
         const re = /[a-zA-Z]+/g;
-        const rw = /[\u0620-\u064A]+/g;
-        const rq = /[\u066E-\u06D1]+/g;
-        if (!(re.test(e.key) || rw.test(e.key) || rq.test(e.key))) {
+        const rw = /[\u0620-\u064A]/;
+        const rq = /[\u066E-\u06D1]/;
+        if ((!re.test(e.key)) && (!rw.test(e.key)) && (!rq.test(e.key)))
+        // if (!(re.test(e.key) && rw.test(e.key) && rq.test(e.key))) 
+        {
             e.preventDefault();
         }
     }
@@ -675,9 +680,11 @@ class UpdateVehicle extends Component {
                         <div className="newplan">
                             <p className="NewNewCreateBigDivLol">رقم اللوحة</p>
                             <div className="DivNewNewCreateBigDivPTLol123and4">
-                            {/*    <div className="DivNewNewCreateBigDivPTLol121">    <input type="text" ref="labelnum1" maxLength="1"  onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol123" value={this.state.vehicleLabelnum1} onChange={(e) => { this.setState({ vehicleLabelnum1: e.target.value }) }} />  </div>
-                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" maxLength="1"  onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol1236" value={this.state.vehicleLabelnum2} onChange={(e) => { this.setState({ vehicleLabelnum2: e.target.value }) }} />    </div>
-                                <div className="DivNewNewCreateBigDivPTLol123">   <input type="text" ref="labelnum3" maxLength="1"  onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol1235" value={this.state.vehicleLabelnum3} onChange={(e) => { this.setState({ vehicleLabelnum3: e.target.value }) }} />   </div>
+
+                            {/* 
+                                <div className="DivNewNewCreateBigDivPTLol121">    <input type="text" ref="labelnum1" maxLength="1" onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol123" value={this.state.vehicleLabelnum1} onChange={(e) => { this.setState({ vehicleLabelnum1: e.target.value }) }} />  </div>
+                                <div className="DivNewNewCreateBigDivPTLol122">  <input type="text" ref="labelnum2" maxLength="1" onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol1236" value={this.state.vehicleLabelnum2} onChange={(e) => { this.setState({ vehicleLabelnum2: e.target.value }) }} />    </div>
+                                <div className="DivNewNewCreateBigDivPTLol123">   <input type="text" ref="labelnum3" maxLength="1" onKeyPress={(e) => this.CharactersMethod(e)} className="NewNewCreateBigDivPTLol1235" value={this.state.vehicleLabelnum3} onChange={(e) => { this.setState({ vehicleLabelnum3: e.target.value }) }} />   </div>
                                 <div className="DivNewNewCreateBigDivPTLol124">   <input type="text" ref="labeltext" maxLength="4" onKeyPress={(e) => this.NumericMethod(e)} className="NewNewCreateBigDivPTLol1234" value={this.state.vehicleLabeltext} onChange={(e) => { this.setState({ vehicleLabeltext: e.target.value }) }} />   </div>
                             */}
                             
