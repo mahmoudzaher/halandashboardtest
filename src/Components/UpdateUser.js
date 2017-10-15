@@ -153,6 +153,7 @@ class UpdateUser extends Component {
                             Year2: LicenseExpDate.getFullYear(),
                             Month2: LicenseExpDate.getMonth() + 1,
                             Day2: LicenseExpDate.getDate(),
+                            birthdaydateE: new Date(LicenseExpDate.getFullYear(), LicenseExpDate.getMonth() + 1, LicenseExpDate.getDate()).getTime()
                         })
                         if (y.operator) {
                             var opID = y.operator;
@@ -204,6 +205,7 @@ class UpdateUser extends Component {
                         Email: y.email,
                         Password: y.password,
                         Address: y.address,
+                        nationalIdNo: y.nationalIdNo,
                     })
                     if (y.picture) {
                         that.setState({
@@ -841,9 +843,12 @@ class UpdateUser extends Component {
     handleOnchangeTextPNumber(event) {
         this.setState({ PNumber: event.target.value });
     }
-
+    
     handleOnchangeTextEmail(event) {
         this.setState({ Email: event.target.value });
+    }
+    handleOnchangeTextNID(event) {
+        this.setState({ nationalIdNo: event.target.value });
     }
 
     handleOnchangeTextPword(event) {
@@ -873,7 +878,7 @@ class UpdateUser extends Component {
             data.append('action', 'ADD');
             data.append('param', 0);
             data.append('driverId', this.state.driverId);
-            
+
             var templicensenumber;
             var templicenseexpdate;
             if (this.state.birthdaydate) {
@@ -1136,8 +1141,8 @@ class UpdateUser extends Component {
                         </div>
 
                         <div className="NewCreateBigDiv7aram">
-                            <p className="NewNewNewCreateBigDiv7aram">الرقم القومي *</p>
-                            <input type="text" className="NewDriverProfileText" ref="nationalIdNo" required />
+                            <p className="NewNewNewCreateBigDiv7aram">الرقم القومي *</p> 
+                            <input type="text" className="NewDriverProfileText" ref="nationalIdNo" required value={this.state.nationalIdNo}  onChange={this.handleOnchangeTextNID.bind(this)}/>
                         </div>
 
                         <div className="NewCreateBigDiv7aram">
