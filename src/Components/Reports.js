@@ -275,9 +275,9 @@ class Reports extends Component {
                     var imageURL;
                     var imageURL2 = "greenTick.png";
                     if (row.vehicleType === "motorcycle") {
-                        imageURL = "Group 1522.png"
-                    } else if (row.vehicleType === "toktok") {
                         imageURL = "Group 1523.png"
+                    } else if (row.vehicleType === "toktok") {
+                        imageURL = "Group 1522.png"
                     } else {
                         imageURL = "Group 1524.png"
                     }
