@@ -3292,3 +3292,7 @@ input.blockTextImput {
         /* padding-top: 0%; */
         padding-right: 25%;
     }
+
+    a.skylight-close-button{
+        display: none !important;
+    }
