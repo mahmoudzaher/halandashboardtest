@@ -233,9 +233,9 @@ class CreateUser extends Component {
     year2n = year2n.substring(2, 4);
     year2n = parseInt(year2n);
     console.log(year2n, "year2n")
-    console.log(this.state.startyear,"this.state.startyear")
-    console.log(this.state.startday,"this.state.startday")
-    console.log(this.state.startmonth,"this.state.startmonth")
+    console.log(this.state.startyear, "this.state.startyear")
+    console.log(this.state.startday, "this.state.startday")
+    console.log(this.state.startmonth, "this.state.startmonth")
     if (yearNID === year2n) {
       console.log("years are equal")
       checkyear = true;
@@ -268,49 +268,10 @@ class CreateUser extends Component {
       console.log("not all are equal")
       missingArray.push("NID and birthdate aren't matching")
     }
-    // if (!this.refs.Fname.value && !this.refs.pNumber.value && !this.refs.password.value) {
-    //   missingfields = "Name, Phonenumber and Passowrd are missing"
-    //   console.log("Name, Phonenumber and Passowrd are missing")
-    // }
-    // else if (!this.refs.Fname.value && !this.refs.pNumber.value) {
-    //   missingfields = "Name and Phonenumber are missing"
-    //   console.log("Name and Phonenumber are missing")
-    // }
-
-    // else if (!this.refs.Fname.value && !this.refs.password.value) {
-    //   missingfields = "Name and Passowrd are missing"
-    //   console.log("Name and Passowrd are missing")
-    // }
-    // else if (!this.refs.pNumber.value && !this.refs.password.value) {
-    //   missingfields = "Phonenumber and Passowrd are missing"
-    //   console.log("Phonenumber and Passowrd are missing")
-    // }
-    // else if (!this.refs.Fname.value) {
-    //   missingfields = "Name is missing"
-    //   console.log("Name is missing")
-    // }
-    // else if (!this.refs.pNumber.value) {
-    //   missingfields = "Phonenumber is missing"
-    //   console.log("Phonenumber is missing")
-    // }
-    // else if (!this.refs.password.value) {
-    //   missingfields = "Password is missing"
-    //   console.log("Password is missing")
-    // }
-    // else if (!this.refs.nationalIdNo.value) {
-    //   missingfields = "National ID is missing"
-    //   console.log("Password is missing")
-    // }
     if (this.refs.pNumber.value) {
       console.log(" this.refs.pNumber.value exist")
       if (isNaN(this.refs.pNumber.value) || this.refs.pNumber.value.length !== 11) {
-        // missingfields = missingfields + " Phonenumber is wrong"
         missingArray.push("Phonenumber is wrong")
-        // console.log(isNaN(this.refs.pNumber.value))
-        // console.log(" Phonenumber is wrong 2")
-        // console.log(!isNaN(this.refs.pNumber.value), "!isNaN(this.refs.pNumber.value)")
-        // console.log(this.refs.pNumber.value.length, "this.refs.pNumber.value.length)")
-        // console.log(Number(this.refs.pNumber.value.length) !== 11, "this.refs.pNumber.value.length !== 11")
       }
     }
 
@@ -344,12 +305,7 @@ class CreateUser extends Component {
       console.log(missingArray, "missingArray")
     }
 
-
-    // var arrayz = missingArray.toString();
-    // console.log(arrayz,"arrayz")
     console.log(missingArray.length, "missingArray.length")
-
-    // missingArray.join();
 
     var multi = 1;
     if (multi < missingArray.length) {
@@ -369,19 +325,6 @@ class CreateUser extends Component {
     }
 
     console.log(missingArray, "missingArray")
-
-
-
-
-
-
-    // if (missingfields !== "") {
-    //   this.setState({
-    //     [type]: true,
-    //     blur: "blur",
-    //     missingRequiredFields: missingfields,
-    //   });
-    // }
 
     if (missingArray[0] != null) {
       this.setState({
@@ -450,21 +393,21 @@ class CreateUser extends Component {
   handleDayoptions(type, value) {
     const _this = this;
     if (value.value < 10) {
-        // dayID = '0' + value.value;
-        _this.setState({
-            // [type]: value,
-            [type] : parseInt('0' + value.value)
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      // dayID = '0' + value.value;
+      _this.setState({
+        // [type]: value,
+        [type]: parseInt('0' + value.value)
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     else {
-           _this.setState({
-            // [type]: value,
-            [type] : value.value
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      _this.setState({
+        // [type]: value,
+        [type]: value.value
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     console.log(value);
     console.log(dayID);
@@ -473,21 +416,21 @@ class CreateUser extends Component {
   handleMonthoptions(type, value) {
     const _this = this;
     if (value.value < 10) {
-        // dayID = '0' + value.value;
-        _this.setState({
-            // [type]: value,
-            [type] : parseInt('0' + value.value)
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      // dayID = '0' + value.value;
+      _this.setState({
+        // [type]: value,
+        [type]: parseInt('0' + value.value)
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     else {
-           _this.setState({
-            // [type]: value,
-            [type] : value.value
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      _this.setState({
+        // [type]: value,
+        [type]: value.value
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     console.log(value);
     console.log(monthID);
@@ -495,13 +438,13 @@ class CreateUser extends Component {
 
   handleYearoptions(type, value) {
     const _this = this;
-    
-             _this.setState({
-              // [type]: value,
-              [type] : value.value
-          }, ()=>{
-              _this.handleBirthday()
-          });
+
+    _this.setState({
+      // [type]: value,
+      [type]: value.value
+    }, () => {
+      _this.handleBirthday()
+    });
     console.log(value);
     console.log(yearID);
   }
@@ -610,6 +553,7 @@ class CreateUser extends Component {
       data.append('password', this.refs.password.value)
       data.append('phoneNumber', this.refs.pNumber.value)
       data.append('nationalIdNo', this.refs.nationalIdNo.value)
+      data.append('code', this.refs.driverCode.value)
 
       // data.append('birthday', timestampp)
       // data.append('address', this.refs.address.value)
@@ -664,21 +608,21 @@ class CreateUser extends Component {
   handleDayoptionsE(type, value) {
     const _this = this;
     if (value.value < 10) {
-        // dayID = '0' + value.value;
-        _this.setState({
-            // [type]: value,
-            [type] : parseInt('0' + value.value)
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      // dayID = '0' + value.value;
+      _this.setState({
+        // [type]: value,
+        [type]: parseInt('0' + value.value)
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     else {
-           _this.setState({
-            // [type]: value,
-            [type] : value.value
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      _this.setState({
+        // [type]: value,
+        [type]: value.value
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     console.log(value);
     console.log(dayIDE);
@@ -687,21 +631,21 @@ class CreateUser extends Component {
   handleMonthoptionsE(type, value) {
     const _this = this;
     if (value.value < 10) {
-        // dayID = '0' + value.value;
-        _this.setState({
-            // [type]: value,
-            [type] : parseInt('0' + value.value)
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      // dayID = '0' + value.value;
+      _this.setState({
+        // [type]: value,
+        [type]: parseInt('0' + value.value)
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     else {
-           _this.setState({
-            // [type]: value,
-            [type] : value.value
-        }, ()=>{
-            _this.handleBirthday()
-        });
+      _this.setState({
+        // [type]: value,
+        [type]: value.value
+      }, () => {
+        _this.handleBirthday()
+      });
     }
     console.log(value);
     console.log(monthIDE);
@@ -709,13 +653,13 @@ class CreateUser extends Component {
 
   handleYearoptionsE(type, value) {
     const _this = this;
-    
-             _this.setState({
-              // [type]: value,
-              [type] : value.value
-          }, ()=>{
-              _this.handleBirthday()
-          });
+
+    _this.setState({
+      // [type]: value,
+      [type]: value.value
+    }, () => {
+      _this.handleBirthday()
+    });
     console.log(value);
     console.log(yearIDE);
   }
@@ -853,14 +797,6 @@ class CreateUser extends Component {
 
           <div className="CreateBigDiv-right2">
 
-
-
-
-
-
-
-
-
             <div className="NewCreateBigDiv7aram">
               <p className="NewNewNewCreateBigDiv7aram">الإسم       *</p>
               <input type="text" className="NewDriverProfileText" ref="Fname" required />
@@ -888,8 +824,6 @@ class CreateUser extends Component {
 
             <div className="NewCreateBigDiv7aram">
               <p className="NewNewNewCreateBigDiv7aram">إختر الفرع</p>
-              {/* <div className="Options-GroupsFiNewNew"> */}
-              {/* <div className="Inner-options-DivReally"> */}
               <div className="OptionsRightboom">
                 <Select
                   ref="Branch"
@@ -899,15 +833,11 @@ class CreateUser extends Component {
                   options={this.state.branchesOptions}
                   onChange={this.handleBranchoptions.bind(this, "Branch")}
                 />
-                {/* </div> */}
-                {/* </div> */}
               </div>
             </div>
 
             <div className="NewCreateBigDiv7aram">
               <p className="NewNewNewCreateBigDiv7aram">إختر أخصائي</p>
-              {/* <div className="Options-GroupsFiNewNew"> */}
-              {/* <div className="Inner-options-DivReally"> */}
               <div className="OptionsRightboom">
                 <Select
                   ref="branch"
@@ -917,45 +847,12 @@ class CreateUser extends Component {
                   options={this.state.SpecialistsOptions}
                   onChange={this.handleSpecialitsoptions.bind(this, "Specialist")}
                 />
-                {/* </div> */}
-                {/* </div> */}
               </div>
             </div>
-
-
-
-
-
-
-
-
-            {/*<div className="CreateBigDiv-right-right7aram">
-              <div className="newdivclass"><p className="CreateBigDiv7aram">الإسم</p> <p className="PAstrix">*</p></div>
-              <div className="newdivclass2"><p className="CreateBigDiv7aram">رقم الهاتف</p> <p className="PAstrix">*</p></div>
-              <p className="CreateBigDiv7aram">البريد الإلكتروني</p>
-              <div className="newdivclass3"><p className="CreateBigDiv7aram">كلمة المرور</p> <p className="PAstrix">*</p></div>
-            </div>
-
-            <div className="CreateBigDiv-right-left">
-              <div className="CreateBigDivPDiv">
-                <input type="text" className="DriverProfileText" ref="Fname" required />
-                <input id="phonenum" type="tel" pattern="^\d{11}$" className="DriverProfileText" ref="pNumber" required />
-                <input type="email" className="DriverProfileText" ref="email" />
-                <input type="password" className="DriverProfileText" ref="password" required />
-              </div>
-
-            </div>*/}
 
           </div>
 
           <div className="CreateBigDiv-left-what2">
-
-
-
-
-
-
-
 
             <div className="NewClassUser" >
               <p className="NewNewNewCreateBigDivLeft">صورة شخصية</p>
@@ -1054,6 +951,11 @@ class CreateUser extends Component {
                 </div>
               </div>
             </div>
+
+            <div className="NewClassUseryay" >
+              <p className="NewNewNewCreateBigDivLeft">كود السائق *</p>
+              <input type="text" className="NewNewNewNewCreateBigDivPTTT2comecome" maxLength="12"  required ref="driverCode" />
+            </div>
           </div>
         </div>
         <br /><br />
@@ -1072,3 +974,5 @@ class CreateUser extends Component {
 }
 
 export default CreateUser;
+
+

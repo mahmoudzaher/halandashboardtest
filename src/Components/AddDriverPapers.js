@@ -750,7 +750,7 @@ class AddDriverPapers extends Component {
                         <div className="CreateBigDiv-left-rightcool">
                             <p className="CreateBigDiv223">صورة العنوان</p>
                             <p className="CreateBigDiv223">فيش و تشبيه</p>
-                            <p className="CreateBigDiv223">تحليل مخدرات</p>
+                            <p className="CreateBigDiv223">طلب الالتحاق</p>
                             <p className="CreateBigDiv223">عقد شراكة</p>
                         </div>
                         <div className="CreateBigDiv-left-leftDis2Cool">

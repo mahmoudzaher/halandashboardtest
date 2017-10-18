@@ -884,7 +884,7 @@ input[type="file"] {
     text-align: right;
 }
 input.CreateBigDivP {
-         width: 70%;
+    width: 69%;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -893,6 +893,7 @@ input.CreateBigDivP {
     /* width: 62%; */
     margin-left: 20%;
     text-align: right;
+    padding-right: 1%;
     margin-bottom: 4%;
     margin-top: 0%;
 }
@@ -1111,7 +1112,7 @@ input.CreateBigDivPTTT {
 }
 
 input.CreateBigDivPTLol {
-          width: 70%;
+    width: 69%;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -1121,6 +1122,7 @@ input.CreateBigDivPTLol {
     /* width: 62%; */
     margin-right: -10%;
     padding-left: 0%;
+    padding-right: 1%;
     margin-bottom: 1%;
     margin-top: 5%;
 }
@@ -1558,7 +1560,7 @@ input.DriverProfileText{
 }
 
 input.DriverProfileTextT{
-            width: 70%;
+    width: 69%;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -1568,10 +1570,11 @@ input.DriverProfileTextT{
     margin-left: 65%;
     margin-top: 4%;
     margin-bottom: 0%;
+    padding-right: 1%;
     text-align: right;
 }
 input.DriverProfileTextF{
-           width: 70%;
+    width: 69%;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -1581,6 +1584,7 @@ input.DriverProfileTextF{
     margin-left: 65%;
     margin-top: 4%;
     /* margin-bottom: 3%; */
+    padding-right: 1%;
     text-align: right;
 }
 .Driver-Right-Right-P {
@@ -2268,6 +2272,7 @@ p.NewNewNewCreateBigDivLeftNew {
 .NewClassUserHelloz {
     width: 100%;
     height: 36px;
+    padding-bottom: 3%;
 }
 .NewClassUseryay {
      padding-bottom: 4%;
@@ -2556,7 +2561,7 @@ input.NewNewNewNewCreateBigDivPTTTcomebaby {
 
 .CreateBigDivyoman{
           width: 100%;
-    padding-top: 10%;
+    padding-top: 12%;
 }
 
 .dunnonew {
@@ -3021,11 +3026,12 @@ span.Select-clear-zone {
  }
  .PopClassReports {
     direction: rtl;
-    width: 50%;
-    text-align: center;
-    padding-left: 25%;
-    padding-right: 25%;
-    padding-top: 10%;
+    width: 100%;
+    /* text-align: center; */
+    /* padding-left: 25%; */
+    display: initial;
+    /* padding-right: 0%; */
+    padding-top: 0%;
 }
 p.blockP {
     display: -webkit-inline-box;
@@ -3034,6 +3040,7 @@ p.blockP {
 }
 .buttonReports {
     padding-top: 10%;
+    padding-right: 40%
 }
 
 input.blockTextImput {
@@ -3156,4 +3163,132 @@ input.blockTextImput {
         text-align: -webkit-center;
         min-height: 662px;
         /* padding-right: 25%; */
+    }
+
+    input.CreateBigDivPTLolnewz {
+        width: 15%;
+        float: right;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #2C2D72;
+        height: 40px;
+        text-align: right;
+        /* width: 62%; */
+        margin-right: -28%;
+        padding-left: 0%;
+        padding-right: 5%;
+        margin-bottom: 1%;
+        margin-top: 5%;
+    }
+
+    .CreateBigDivPTLolnewzClass {
+        width: 70%;
+        padding-bottom: 16%;
+    }
+
+    p.poppy.p {
+        color: #2C2D72;
+        font-family: Cairo;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .poppy {
+        display: -webkit-box;
+        /* padding-right: 0%; */
+        padding-left: 20%;
+        width: 55%;
+    }
+
+    p.poppy.p2 {
+        color: #2C2D72;
+        font-family: Cairo;
+        font-size: 16px;
+        /* padding-left: 0%; */
+        margin: 0;
+        width: 100px;
+        font-weight: bold;
+        padding: 0;
+    }
+    p.poppy.p3 {
+        color: #2C2D72;
+        font-family: Cairo;
+        font-size: 16px;
+        /* padding-left: 0%; */
+        width: 60px;
+        /* min-width: 60px; */
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+    }
+
+    .poppyImg {
+        width: 100%;
+        text-align: right;
+    }
+    p.poppy.p5 {
+        color: #2C2D72;
+        font-family: Cairo;
+        font-size: 16px;
+        /* padding-left: 0%; */
+        width: 60px;
+        /* min-width: 60px; */
+        padding: 0;
+        font-weight: bold;
+        padding-right: 25%;
+        /* padding: 0; */
+        margin: 0;
+    }
+
+    .poppy3 {
+        display: -webkit-box;
+        /* padding-right: 0%; */
+        padding-left: 0%;
+        width: 100%;
+        padding-bottom: 1%;
+    }
+
+    .poppy2 {
+        padding-bottom: 2%;
+    }
+
+    p.poppy.p6 {
+        color: #2C2D72;
+        font-family: Cairo;
+        font-size: 24px;
+        /* padding-left: 0%; */
+        margin: 0;
+        width: 100px;
+        font-weight: bold;
+        padding: 0;
+        padding-right: 45%;
+    }
+
+    p.poppy.p7 {
+        color: #2C2D72;
+        font-family: Cairo;
+        font-size: 16px;
+        /* padding-left: 0%; */
+        width: 60px;
+        /* min-width: 60px; */
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        float: left;
+    }
+
+
+
+    .block7 {
+        display: block;
+        padding-top: 5%;
+        padding-right: 25%;
+    }
+
+    .block9 {
+        display: block;
+        /* padding-top: 0%; */
+        padding-right: 25%;
     }

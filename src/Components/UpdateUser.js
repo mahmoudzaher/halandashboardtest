@@ -69,7 +69,8 @@ class UpdateUser extends Component {
             AllBranches: [],
             currentBranch: null,
             CurrentSpecialist: null,
-            driverPicture: "/Group 1548.png"
+            driverPicture: "/Group 1548.png",
+            DriverCode: "",
         })
         // this.getSpecialistsAPI();
         // this.getBranchesAPI();
@@ -121,7 +122,7 @@ class UpdateUser extends Component {
                 axios.get('/operator/getDriverById?' + "driverId=" + that.state.driverId).then(function (response) {
                     console.log(response, "getDriverById Response")
                     var y = response.data.data;
-
+                    console.log(y, "y")
 
                     //  driverBirthday : new Date(parseInt(x.birthday))
                     //     Year : driverBirthday.getFullYear(),
@@ -134,6 +135,40 @@ class UpdateUser extends Component {
                     var licenseNumber;
                     var LicenseExpDate;
                     var parserExp;
+
+                    console.log(y.operator, "y,operator")
+                    if (y.operator) {
+                        var opID = y.operator;
+
+                        console.log(opID, "opID")
+                        console.log("hello")
+                        console.log(SpecialistsList)
+                        SpecialistsList.forEach(function (item, index) {
+                            if (item.branch) {
+                                var res = item._id.toString();
+                                console.log(res, "res")
+                                console.log(item._id, "branchId")
+                                if (opID === res) {
+                                    console.log(item, "item")
+                                    console.log(item.branch._id, "branchId")
+                                    console.log(item.branch.name, "branchName")
+                                    console.log(opID, "opID")
+                                    that.setState({
+                                        currentBranch: {
+                                            value: item.branch._id,
+                                            label: item.branch.name
+                                        },
+                                        CurrentSpecialist: {
+                                            value: item._id,
+                                            label: item.firstName
+                                        }
+                                    })
+                                }
+                            }
+                        })
+
+
+                    }
                     if (y.driverLicense) {
                         // console.log(JSON.parse(y.driverLicense),"driverlicense")
                         // driverlicensex = JSON.parse(y.driverLicense);
@@ -155,38 +190,7 @@ class UpdateUser extends Component {
                             Day2: LicenseExpDate.getDate(),
                             birthdaydateE: new Date(LicenseExpDate.getFullYear(), LicenseExpDate.getMonth() + 1, LicenseExpDate.getDate()).getTime()
                         })
-                        if (y.operator) {
-                            var opID = y.operator;
 
-                            // console.log(opID, "opID")
-                            // console.log("hello")
-                            // console.log(SpecialistsList)
-                            SpecialistsList.forEach(function (item, index) {
-                                if (item.branch) {
-                                    var res = item._id.toString();
-                                    // console.log(res,"res")
-                                    // console.log(item._id,"branchId")
-                                    if (opID === res) {
-                                        // console.log(item, "item")
-                                        // console.log(item.branch._id, "branchId")
-                                        // console.log(item.branch.name, "branchName")
-                                        // console.log(opID, "opID")
-                                        that.setState({
-                                            currentBranch: {
-                                                value: item.branch._id,
-                                                label: item.branch.name
-                                            },
-                                            CurrentSpecialist: {
-                                                value: item._id,
-                                                label: item.firstName
-                                            }
-                                        })
-                                    }
-                                }
-                            })
-
-
-                        }
                         // if (y.branch) {
                         //     console.log(y.branch, "x.branch")
                         //     that.setState({
@@ -206,6 +210,7 @@ class UpdateUser extends Component {
                         Password: y.password,
                         Address: y.address,
                         nationalIdNo: y.nationalIdNo,
+                        DriverCode: y.code,
                     })
                     if (y.picture) {
                         that.setState({
@@ -843,7 +848,7 @@ class UpdateUser extends Component {
     handleOnchangeTextPNumber(event) {
         this.setState({ PNumber: event.target.value });
     }
-    
+
     handleOnchangeTextEmail(event) {
         this.setState({ Email: event.target.value });
     }
@@ -863,6 +868,9 @@ class UpdateUser extends Component {
         this.setState({ LNumber: event.target.value });
     }
 
+    handleOnchangeTextCode(event) {
+        this.setState({ DriverCode: event.target.value });
+    }
     handleSubmit(e) {
         var that = this;
         { this.handleBirthday() }
@@ -904,7 +912,7 @@ class UpdateUser extends Component {
                     number: that.state.LNumber,
                     expirationDate: that.state.birthdaydateE
                 }
-                console.log(driverLicense,"drivelicense")
+                console.log(driverLicense, "drivelicense")
                 data.append('driverLicense', JSON.stringify(driverLicense))
             }
             else {
@@ -928,13 +936,13 @@ class UpdateUser extends Component {
             // data.append('driverId', this.state.driverId);
             // console.log(typeof(this.state.CurrentSpecialist),"currentSpecialist")
             if (typeof (this.state.CurrentSpecialist) === "object") {
-                // console.log("its object")
-                // console.log(this.state.CurrentSpecialist.value)
+                console.log("its object")
+                // console.log(this.state.CurrentSpecialist.value)  
                 data.append('operator', this.state.CurrentSpecialist.value)
             }
             else {
-                data.append('operator', this.state.CurrentSpecialist.value)
-                // console.log("its not an object")
+                data.append('operator', this.state.CurrentSpecialist)
+                console.log("its not an object")
             }
             // console.log(this.state.CurrentSpecialist,"currentSpecialist")
 
@@ -996,8 +1004,19 @@ class UpdateUser extends Component {
                 data.append('email', this.state.Email.value)
             }
 
+            if (this.refs.driverCode.value) {
+                data.append('code', this.refs.driverCode.value)
+            }
+            else {
+                data.append('code', this.state.DriverCode)
+            }
 
-
+            if (this.refs.driverCode.value) {
+                data.append('code', this.refs.driverCode.value)
+            }
+            else {
+                data.append('code', this.state.DriverCode)
+            }
 
 
 
@@ -1141,8 +1160,8 @@ class UpdateUser extends Component {
                         </div>
 
                         <div className="NewCreateBigDiv7aram">
-                            <p className="NewNewNewCreateBigDiv7aram">الرقم القومي *</p> 
-                            <input type="text" className="NewDriverProfileText" ref="nationalIdNo" required value={this.state.nationalIdNo}  onChange={this.handleOnchangeTextNID.bind(this)}/>
+                            <p className="NewNewNewCreateBigDiv7aram">الرقم القومي *</p>
+                            <input type="text" className="NewDriverProfileText" ref="nationalIdNo" required value={this.state.nationalIdNo} onChange={this.handleOnchangeTextNID.bind(this)} />
                         </div>
 
                         <div className="NewCreateBigDiv7aram">
@@ -1297,6 +1316,10 @@ class UpdateUser extends Component {
                                 </div>
 
                             </div>
+                        </div>
+                        <div className="NewClassUseryay" >
+                            <p className="NewNewNewCreateBigDivLeft">كود السائق *</p>
+                            <input type="text" className="NewNewNewNewCreateBigDivPTTT2comecome" ref="driverCode" maxLength="12" required value={this.state.DriverCode} onChange={this.handleOnchangeTextCode.bind(this)} />
                         </div>
                     </div>
                 </div>
