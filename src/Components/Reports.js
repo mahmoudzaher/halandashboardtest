@@ -161,7 +161,7 @@ class Reports extends Component {
                                     checked={this.state.AmountRadio === "FullAmountRadio"}
                                     onChange={this.handleChange.bind(this)} />
                                 {/* <input type="radio" name="radgroup" value="A"/> */}
-                                <p className="blockP">Full Payment </p>
+                                <p className="blockP">المبلغ بالكامل</p>
                                 <input type="text" className="blockTextImput" value={this.state.DriverToPay} />
                             </div>
                             <div className="block9">
@@ -169,7 +169,7 @@ class Reports extends Component {
                                     checked={this.state.AmountRadio === "SpecifiedAmountRadio"}
                                     onChange={this.handleChange.bind(this)} />
                                 {/* <input type="radio" name="radgroup" value="B"/> */}
-                                <p className="blockP">Specify Amount  </p>
+                                <p className="blockP">حدد المبلغ</p>
                                 {/* <input type="text" className="blockTextImput" value={this.state.SpecifiedAmount} onChange={this.handleOnChange.bind(this, "SpecifiedAmount")}/> */}
                                 <input type="text" className="blockTextImput" name="SpecifiedAmount" value={this.state.SpecifiedAmount} onChange={this.handleChange.bind(this)} />
                             </div>
