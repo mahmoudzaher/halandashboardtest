@@ -212,16 +212,31 @@ class UpdateUser extends Component {
                         nationalIdNo: y.nationalIdNo,
                         DriverCode: y.code,
                     })
-                    if (y.picture) {
+                    console.log(y.picture, "y.picture ")
+                    // if (y.picture !== undefined && y.picture !== "") {
+                    //     that.setState({
+                    //         driverPicture: y.picture
+                    //     })
+                    // }
+                    // else {
+                    //     that.setState({
+                    //         driverPicture: "Group 1548.png"
+                    //     })
+                    // }
+
+
+                    if (y.picture === "undefined" || y.picture === "") {
                         that.setState({
-                            driverPicture: y.picture
+                            driverPicture: "/Group 1548.png"
                         })
                     }
                     else {
                         that.setState({
-                            driverPicture: "Group 1548.png"
+                            driverPicture: y.picture
                         })
                     }
+
+
                     // if (x.driverLicense) {
                     //     that.setState({
                     //         DriverLicense: x.driverLicense,

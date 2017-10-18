@@ -2523,8 +2523,13 @@ input.NewNewNewNewCreateBigDivPTTT2comecome {
 }
 img.NewNewNewcustom-file-upload-img {
     max-width: 80px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
+    max-height: 80px;
     border-radius: 0.5;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
 }
 
 
