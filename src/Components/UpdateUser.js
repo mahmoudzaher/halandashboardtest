@@ -413,6 +413,9 @@ class UpdateUser extends Component {
 
     handleSpecialitsoptions(type, value) {
         console.log(value.value)
+        console.log(type)
+        console.log(value)
+
         this.setState({ [type]: value.value });
 
     }
@@ -1020,18 +1023,18 @@ class UpdateUser extends Component {
             }
 
             if (this.refs.driverCode.value) {
-                data.append('code', this.refs.driverCode.value)
+                data.append('code', this.refs.driverCode.value.toString())
             }
             else {
-                data.append('code', this.state.DriverCode)
+                data.append('code', this.state.DriverCode.toString())
             }
 
-            if (this.refs.driverCode.value) {
-                data.append('code', this.refs.driverCode.value)
-            }
-            else {
-                data.append('code', this.state.DriverCode)
-            }
+            // if (this.refs.driverCode.value) {
+            //     data.append('code', this.refs.driverCode.value)
+            // }
+            // else {
+            //     data.append('code', this.state.DriverCode)
+            // }
 
 
 

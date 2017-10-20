@@ -3,6 +3,7 @@ import axios from 'axios';
 import SkyLight from 'react-skylight';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import { CSVLink, CSVDownload } from 'react-csv';
 var ReactRouter = require('flux-react-router');
 let dayID = "";
 let monthID = "";
@@ -518,19 +519,6 @@ class Promo extends Component {
         console.log(obj, "obj again")
         console.log(objType, "objType again")
         console.log(objValue, "objValue again")
-        // that.setState({
-        //     editpromoAllowedRedemptionTimes: obj.allowedRedemptionTimes,
-        //     editpromoCodeType: objType,
-        //     editpromoCodeValue: objValue,
-        //     editpromoDescription: obj.description,
-        //     editpromoStartDate: obj.startDate,
-        //     editpromoExpiryDate: obj.expiryDate,
-        //     editpromoDiscountPercent: obj.discountPercent,
-        //     editpromoDiscountAmount: obj.discountAmount,
-        //     editpromoMaximumAmount: obj.maximumAmount,
-        //     editpromoStatus: obj.status
-        // })
-
 
 
     }
@@ -562,7 +550,7 @@ class Promo extends Component {
                 React.DOM.tbody(null,
                     that.state.objects.map(function (row, index) {
                         let re = [];
-                        console.log(row)
+                        // console.log(row)
                         if (that.state.lessThanAll < index && index < that.state.greaterThanAll) {
                             if (row.status === true) {
                                 re.push("enabled")
@@ -577,7 +565,7 @@ class Promo extends Component {
                             var month = birthdate.getMonth() + 1
                             var year = birthdate.getDate()
                             var startFormattedTime = day + '/' + month + '/' + year;
-                            console.log(startFormattedTime, "startFormattedTime")
+                            // console.log(startFormattedTime, "startFormattedTime")
 
                             var parser2 = row.expiryDate
                             var birthdate2 = new Date(parser2);
@@ -585,9 +573,9 @@ class Promo extends Component {
                             var month2 = birthdate2.getMonth() + 1
                             var year2 = birthdate2.getDate()
                             var startFormattedTime2 = day2 + '/' + month2 + '/' + year2;
-                            console.log(row.startDate, "row.startDate    ", row.startDate, "row.startDate")
-                            console.log(birthdate, "birthdate    ", birthdate2, "birthdate")
-                            console.log(startFormattedTime2, "startFormattedTime2")
+                            // console.log(row.startDate, "row.startDate    ", row.startDate, "row.startDate")
+                            // console.log(birthdate, "birthdate    ", birthdate2, "birthdate")
+                            // console.log(startFormattedTime2, "startFormattedTime2")
 
                             re.push("./Path 1161.png")
                             re.push(startFormattedTime)
@@ -600,7 +588,7 @@ class Promo extends Component {
                                 {
                                     re.map(function (col, index) {
                                         {/*console.log(col)*/ }
-                                        console.log(col)
+                                        // console.log(col)
                                         if (typeof col === "string" && col.slice(0, 2) === "./") {
                                             return <td className="PTD"><img className="tdImg" src={col} onClick={() => that.qq.apply(that, [this, row])} /></td>
                                             {/*return <td className="PTD"><img className="tdImg" src={col} src={col} onClick={that.setPromoData.bind(this, row._id)} /></td>*/ }
@@ -678,16 +666,6 @@ class Promo extends Component {
 
         }
 
-        //  var object = {
-        //     driver: this.state.userID,
-        //     vehicletype: tempVehicleType,
-        //     model: tempvehicleDateofMake,
-        //     make: tempVehicleMake,
-        //     label: tempvehicleLabel,
-        //     vehicleOwner: vehicleOwner,
-        //     shaseehNo: tempvehicleShaseeh,
-        //     motorNo: tempvehicleMotor
-        // }
 
         console.log()
 
@@ -748,16 +726,7 @@ class Promo extends Component {
 
         }
 
-        //  var object = {
-        //     driver: this.state.userID,
-        //     vehicletype: tempVehicleType,
-        //     model: tempvehicleDateofMake,
-        //     make: tempVehicleMake,
-        //     label: tempvehicleLabel,
-        //     vehicleOwner: vehicleOwner,
-        //     shaseehNo: tempvehicleShaseeh,
-        //     motorNo: tempvehicleMotor
-        // }
+
 
         console.log()
 
@@ -769,6 +738,118 @@ class Promo extends Component {
             console.log(error)
         })
     }
+
+
+    ToCSV(event) {
+        if (this.state.objects.length) {
+
+            var promos = this.state.objects;
+            var tempArray = [];
+            tempArray.length = this.state.objects.length;
+            var anotherTempArray = []
+            // console.log(tempArray, "tempArray")
+            // console.log(promos, "promos")
+            // console.log(promos[1], "promos[1]")
+            // console.log(promos[1].codeValue, "promos[1].codeValue")
+            // console.log(this.state.objects.length, "this.state.objects.length")
+            var start, startFormattedTime, startday, startmonth, startyear, end, endday, endmonth, endyear, endFormattedTime;
+            for (var x = 0; x < this.state.objects.length; x++) {
+                // console.log(promos[x], "promos["+x+"]")
+                tempArray[x] = []
+                if (promos[x].codeValue) {
+                    tempArray[x].push(promos[x].codeValue)
+                }
+                else {
+                    tempArray[x].push("-")
+                }
+                if (promos[x].codeType) {
+                    tempArray[x].push(promos[x].codeType)
+                }
+                else {
+                    tempArray[x].push("-")
+                }
+                // tempArray[x].push(promos[x].codeValue)
+                // tempArray[x].push(promos[x].codeType)
+                if (promos[x].startDate && promos[x].expiryDate) {
+
+                    start = new Date(promos[x].startDate)
+                    startday = start.getFullYear()
+                    startmonth = start.getMonth() + 1
+                    startyear = start.getDate()
+                    startFormattedTime = startday + '/' + startmonth + '/' + startyear;
+
+                    end = new Date(promos[x].expiryDate)
+                    endday = end.getFullYear()
+                    endmonth = end.getMonth() + 1
+                    endyear = end.getDate()
+                    endFormattedTime = endday + '/' + endmonth + '/' + endyear;
+                    tempArray[x].push(startFormattedTime)
+                    tempArray[x].push(endFormattedTime)
+                }
+                else {
+                    tempArray[x].push("-")
+                    tempArray[x].push("-")
+                }
+                console.log(tempArray[x], "tempArray["+x+"]")
+            }
+
+
+
+            // for (var x = 0; x < this.state.objects.length; x++) {
+            //     // console.log(promos[x], "promos["+x+"]")
+            //     promos[x] = []
+            //     if (promos[x].codeValue) {
+            //         anotherTempArray[x].push(promos[x].codeValue)
+            //     }
+            //     else {
+            //         anotherTempArray[x].push("-")
+            //     }
+            //     if (promos[x].codeType) {
+            //         anotherTempArray[x].push(promos[x].codeType)
+            //     }
+            //     else {
+            //         anotherTempArray[x].push("-")
+            //     }
+            //     // tempArray[x].push(promos[x].codeValue)
+            //     // tempArray[x].push(promos[x].codeType)
+            //     if (promos[x].startDate && promos[x].expiryDate) {
+
+            //         start = new Date(promos[x].startDate)
+            //         startday = start.getFullYear()
+            //         startmonth = start.getMonth() + 1
+            //         startyear = start.getDate()
+            //         startFormattedTime = startday + '/' + startmonth + '/' + startyear;
+
+            //         end = new Date(promos[x].expiryDate)
+            //         endday = end.getFullYear()
+            //         endmonth = end.getMonth() + 1
+            //         endyear = end.getDate()
+            //         endFormattedTime = endday + '/' + endmonth + '/' + endyear;
+            //         anotherTempArray[x].push(startFormattedTime)
+            //         anotherTempArray[x].push(endFormattedTime)
+            //     }
+            //     else {
+            //         anotherTempArray[x].push("-")
+            //         anotherTempArray[x].push("-")
+            //     }
+            //     console.log(anotherTempArray[x], "tempArray[" + x + "]")
+            // }
+
+
+            this.setState({ tempcsv: tempArray })
+        }
+
+    }
+
+
+    ToCSVRend() {
+        if (this.state.tempcsv) {
+            return (
+                < CSVLink data={this.state.tempcsv} > Download me</CSVLink >
+            )
+        }
+    }
+
 
 
 
@@ -784,7 +865,7 @@ class Promo extends Component {
             // overflow: 'scroll',
             direction: 'rtl',
         };
-        console.log(this.state.StartDay, "StartDay  ", this.state.StartMonth, "StartMonth   ", this.state.StartYear, "StartYear")
+        // console.log(this.state.StartDay, "StartDay  ", this.state.StartMonth, "StartMonth   ", this.state.StartYear, "StartYear")
         return (
             <div >
 
@@ -814,6 +895,10 @@ class Promo extends Component {
                 <br /><br /><br />
                 <div className="fake-input">
                     <div className="fake-input-left">
+                        <div className="newFake">
+                            <input type="button" value="Click Here" onClick={this.ToCSV.bind(this)} className="LinkSubmit" />
+                            {this.ToCSVRend()}
+                        </div>
                         <div className="fake-input-left-search">
                             <input type="text" placeholder="بحث" className="fake-input-left-text" />
                             <img src="./Group 1392.png" />
@@ -943,160 +1028,8 @@ class Promo extends Component {
                     </div>
                 </SkyLight>
 
-                {/* <SkyLight hideOnOverlayClicked ref="PromoDialog" dialogStyles={sky}>
-                    <div className="PopClass">
-                        <div className="PopClass-Right">
-                            <div className="PopClass-Right-Div">
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">أسم البرومو كود</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">نوع البرومو كود</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">وصف</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">تاريخ البدء</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">تاريخ الإنتهاء</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">نسبة التخفيض</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">كمية التخفيض</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">الحد الأقصى للمبلغ</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">عدد إستخدام البرومو</p>
-                                </div>
-                            </div>
 
-                        </div>
-                        <div className="PopClass-Left">
-                            <div className="PopClass-Left-Div">
-                                <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="value" />
-                                </div>
-                                <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="type" />
-                                </div>
-                                <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="description" />
-                                </div>
-                                <div className="Options-Groups">
-
-                                    <div className="OptionsTh">
-                                        <Select
-                                            ref="startday"
-                                            placeholder="يوم"
-                                            value={this.state.startday}
-                                            options={this.state.startdayoptions}
-                                            onChange={this.handleDayoptions.bind(this, "startday")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsT">
-                                        <Select
-                                            ref="startmonth"
-                                            placeholder="شهر"
-                                            value={this.state.startmonth}
-                                            options={this.state.startmonthoptions}
-                                            onChange={this.handleMonthoptions.bind(this, "startmonth")}
-                                        />
-                                    </div>
-                                    <div className="OptionsO">
-                                        <Select
-                                            ref="startyear"
-                                            placeholder="سنة"
-                                            value={this.state.startyear}
-                                            options={this.state.startyearoptions}
-                                            onChange={this.handleYearoptions.bind(this, "startyear")}
-                                        />
-                                    </div>
-
-                                </div>
-
-                                <div className="Options-Groups">
-
-                                    <div className="OptionsTh">
-                                        <Select
-                                            ref="endday"
-                                            placeholder="يوم"
-                                            value={this.state.endday}
-                                            options={this.state.enddayoptions}
-                                            onChange={this.handleDayoptionsE.bind(this, "endday")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsT">
-                                        <Select
-                                            ref="endmonth"
-                                            placeholder="شهر"
-                                            value={this.state.endmonth}
-                                            options={this.state.endmonthoptions}
-                                            onChange={this.handleMonthoptionsE.bind(this, "endmonth")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsO">
-                                        <Select
-                                            ref="endyear"
-                                            placeholder="سنة"
-                                            value={this.state.endyear}
-                                            options={this.state.endyearoptions}
-                                            onChange={this.handleYearoptionsE.bind(this, "endyear")}
-                                        />
-                                    </div>
-
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="percentage" />
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="amount" />
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="maxAmount" />
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="redemptinTimes" />
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div className="buttonPopNew">
-                            <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleSubmit.bind(this)} />
-                        </div>
-                    </div>
-                </SkyLight> */}
-
-
-
-
-
-
-
-                {/*
-     //     editpromoAllowedRedemptionTimes: obj.allowedRedemptionTimes,
-        //     editpromoCodeType: objType,
-        //     editpromoCodeValue: objValue,
-        //     editpromoDescription: obj.description,
-        //     editpromoStartDate: obj.startDate,
-        //     editpromoExpiryDate: obj.expiryDate,
-        //     editpromoDiscountPercent: obj.discountPercent,
-        //     editpromoDiscountAmount: obj.discountAmount,
-        //     editpromoMaximumAmount: obj.maximumAmount,
-        //     editpromoStatus: obj.status*/}
-
-
-
-        <SkyLight hideOnOverlayClicked ref="EditPromoDialog" dialogStyles={sky}>
+                <SkyLight hideOnOverlayClicked ref="EditPromoDialog" dialogStyles={sky}>
                     <div className="NewPopClass">
                         <div className="PopUpRow" >
                             <p className="newPopP">أسم البرومو كود</p>
@@ -1105,241 +1038,106 @@ class Promo extends Component {
 
                         <div className="PopUpRow" >
                             <p className="newPopP">نوع البرومو كود</p>
-                            <input type="text" className="NewTextFieldPopCode" ref="typeEdit" value={this.state.editpromoCodeType}/>
+                            <input type="text" className="NewTextFieldPopCode" ref="typeEdit" value={this.state.editpromoCodeType} />
                         </div>
 
                         <div className="PopUpRow" >
                             <p className="newPopP">وصف</p>
-                            <input type="text" className="NewTextFieldPopCode" ref="descriptionEdit" value={this.state.editpromoDescription}/>
+                            <input type="text" className="NewTextFieldPopCode" ref="descriptionEdit" value={this.state.editpromoDescription} />
                         </div>
 
                         <div className="PopUpRow" >
                             <p className="newPopP">تاريخ البدء</p>
                             <div className="Options-Groups">
-                            <div className="OptionsTh">
-                                <Select
-                                    ref="startdayEdit"
-                                    placeholder="يوم"
-                                    value={this.state.StartDay}
-                                    options={this.state.startdayoptionsEdit}
-                                    onChange={this.handleDayoptionsEdit.bind(this, "startdayEdit")}
-                                />
-                            </div>
+                                <div className="OptionsTh">
+                                    <Select
+                                        ref="startdayEdit"
+                                        placeholder="يوم"
+                                        value={this.state.StartDay}
+                                        options={this.state.startdayoptionsEdit}
+                                        onChange={this.handleDayoptionsEdit.bind(this, "startdayEdit")}
+                                    />
+                                </div>
 
-                            <div className="OptionsT">
-                                <Select
-                                    ref="startmonthEdit"
-                                    placeholder="شهر"
-                                    value={this.state.StartMonth}
-                                    options={this.state.startmonthoptionsEdit}
-                                    onChange={this.handleMonthoptionsEdit.bind(this, "startmonthEdit")}
-                                />
-                            </div>
-                            <div className="OptionsO">
-                                <Select
-                                    ref="startyearEdit"
-                                    placeholder="سنة"
-                                    value={this.state.StartYear}
-                                    options={this.state.startyearoptionsEdit}
-                                    onChange={this.handleYearoptionsEdit.bind(this, "startyearEdit")}
-                                />
-                            </div>
+                                <div className="OptionsT">
+                                    <Select
+                                        ref="startmonthEdit"
+                                        placeholder="شهر"
+                                        value={this.state.StartMonth}
+                                        options={this.state.startmonthoptionsEdit}
+                                        onChange={this.handleMonthoptionsEdit.bind(this, "startmonthEdit")}
+                                    />
+                                </div>
+                                <div className="OptionsO">
+                                    <Select
+                                        ref="startyearEdit"
+                                        placeholder="سنة"
+                                        value={this.state.StartYear}
+                                        options={this.state.startyearoptionsEdit}
+                                        onChange={this.handleYearoptionsEdit.bind(this, "startyearEdit")}
+                                    />
+                                </div>
 
-                        </div>
+                            </div>
                         </div>
 
                         <div className="PopUpRow" >
                             <p className="newPopP">تاريخ الإنتهاء</p>
                             <div className="Options-Groups">
-                            <div className="OptionsTh">
-                                <Select
-                                    ref="enddayEdit"
-                                    placeholder="يوم"
-                                    value={this.state.EndDay}
-                                    options={this.state.enddayoptionsEdit}
-                                    onChange={this.handleDayoptionsEEdit.bind(this, "enddayEdit")}
-                                />
-                            </div>
-                            <div className="OptionsT">
-                                <Select
-                                    ref="endmonthEdit"
-                                    placeholder="شهر"
-                                    value={this.state.EndMonth}
-                                    options={this.state.endmonthoptionsEdit}
-                                    onChange={this.handleMonthoptionsEEdit.bind(this, "endmonthEdit")}
-                                />
-                            </div>
-                            <div className="OptionsO">
-                                <Select
-                                    ref="endyearEdit"
-                                    placeholder="سنة"
-                                    value={this.state.EndYear}
-                                    options={this.state.endyearoptionsEdit}
-                                    onChange={this.handleYearoptionsEEdit.bind(this, "endyearEdit")}
-                                />
-                            </div>
+                                <div className="OptionsTh">
+                                    <Select
+                                        ref="enddayEdit"
+                                        placeholder="يوم"
+                                        value={this.state.EndDay}
+                                        options={this.state.enddayoptionsEdit}
+                                        onChange={this.handleDayoptionsEEdit.bind(this, "enddayEdit")}
+                                    />
+                                </div>
+                                <div className="OptionsT">
+                                    <Select
+                                        ref="endmonthEdit"
+                                        placeholder="شهر"
+                                        value={this.state.EndMonth}
+                                        options={this.state.endmonthoptionsEdit}
+                                        onChange={this.handleMonthoptionsEEdit.bind(this, "endmonthEdit")}
+                                    />
+                                </div>
+                                <div className="OptionsO">
+                                    <Select
+                                        ref="endyearEdit"
+                                        placeholder="سنة"
+                                        value={this.state.EndYear}
+                                        options={this.state.endyearoptionsEdit}
+                                        onChange={this.handleYearoptionsEEdit.bind(this, "endyearEdit")}
+                                    />
+                                </div>
 
-                        </div>
+                            </div>
                         </div>
                         <div className="PopUpRow" >
                             <p className="newPopP">نسبة التخفيض</p>
-                            <input type="text" className="NewTextFieldPopPer" ref="percentageEdit" value={this.state.editpromoDiscountPercent}/>
+                            <input type="text" className="NewTextFieldPopPer" ref="percentageEdit" value={this.state.editpromoDiscountPercent} />
                         </div>
 
                         <div className="PopUpRow" >
                             <p className="newPopP">كمية التخفيض</p>
-                            <input type="text" className="NewTextFieldPopPer" ref="amountEdit" value={this.state.editpromoDiscountAmount}/>
+                            <input type="text" className="NewTextFieldPopPer" ref="amountEdit" value={this.state.editpromoDiscountAmount} />
                         </div>
 
                         <div className="PopUpRow" >
                             <p className="newPopP">الحد الأقصى للمبلغ</p>
-                            <input type="text" className="NewTextFieldPopPer" ref="maxAmountEdit" value={this.state.editpromoMaximumAmount}/>
+                            <input type="text" className="NewTextFieldPopPer" ref="maxAmountEdit" value={this.state.editpromoMaximumAmount} />
                         </div>
 
                         <div className="PopUpRow" >
                             <p className="newPopP">عدد إستخدام البرومو</p>
-                            <input type="text" className="NewTextFieldPopPer" ref="redemptinTimesEdit" value={this.state.editpromoAllowedRedemptionTimes}/>
+                            <input type="text" className="NewTextFieldPopPer" ref="redemptinTimesEdit" value={this.state.editpromoAllowedRedemptionTimes} />
                         </div>
                         <div className="PopUpRow2">
-                                <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleEdit.bind(this)} />
-                            </div>
+                            <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleEdit.bind(this)} />
+                        </div>
                     </div>
                 </SkyLight>
-
-
-
-
-                
-
-                {/* <SkyLight hideOnOverlayClicked ref="EditPromoDialog" dialogStyles={sky}>
-                    <div className="PopClass">
-                        <div className="PopClass-Right">
-                            <div className="PopClass-Right-Div">
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">أسم البرومو كود</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">نوع البرومو كود</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">وصف</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">تاريخ البدء</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">تاريخ الإنتهاء</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">نسبة التخفيض</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">كمية التخفيض</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">الحد الأقصى للمبلغ</p>
-                                </div>
-                                <div className="PopClass-Right-Div-Contents-DivNew">
-                                    <p className="PopP">عدد إستخدام البرومو</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className="PopClass-Left">
-                            <div className="PopClass-Left-Div">
-                                <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="valueEdit" value={this.state.editpromoCodeValue} />
-                                </div>
-                                <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="typeEdit" value={this.state.editpromoCodeType} />
-                                </div>
-                                <div className="TextFieldPopCodeDiv">
-                                    <input type="text" className=" TextFieldPopCode" ref="descriptionEdit" value={this.state.editpromoDescription} />
-                                </div>
-                                <div className="Options-Groups">
-                                    <div className="OptionsTh">
-                                        <Select
-                                            ref="startdayEdit"
-                                            placeholder="يوم"
-                                            value={this.state.StartDay}
-                                            options={this.state.startdayoptionsEdit}
-                                            onChange={this.handleDayoptionsEdit.bind(this, "startdayEdit")}
-                                        />
-                                    </div>
-
-                                    <div className="OptionsT">
-                                        <Select
-                                            ref="startmonthEdit"
-                                            placeholder="شهر"
-                                            value={this.state.StartMonth}
-                                            options={this.state.startmonthoptionsEdit}
-                                            onChange={this.handleMonthoptionsEdit.bind(this, "startmonthEdit")}
-                                        />
-                                    </div>
-                                    <div className="OptionsO">
-                                        <Select
-                                            ref="startyearEdit"
-                                            placeholder="سنة"
-                                            value={this.state.StartYear}
-                                            options={this.state.startyearoptionsEdit}
-                                            onChange={this.handleYearoptionsEdit.bind(this, "startyearEdit")}
-                                        />
-                                    </div>
-
-                                </div>
-
-                                <div className="Options-Groups">
-                                    <div className="OptionsTh">
-                                        <Select
-                                            ref="enddayEdit"
-                                            placeholder="يوم"
-                                            value={this.state.EndDay}
-                                            options={this.state.enddayoptionsEdit}
-                                            onChange={this.handleDayoptionsEEdit.bind(this, "enddayEdit")}
-                                        />
-                                    </div>
-                                    <div className="OptionsT">
-                                        <Select
-                                            ref="endmonthEdit"
-                                            placeholder="شهر"
-                                            value={this.state.EndMonth}
-                                            options={this.state.endmonthoptionsEdit}
-                                            onChange={this.handleMonthoptionsEEdit.bind(this, "endmonthEdit")}
-                                        />
-                                    </div>
-                                    <div className="OptionsO">
-                                        <Select
-                                            ref="endyearEdit"
-                                            placeholder="سنة"
-                                            value={this.state.EndYear}
-                                            options={this.state.endyearoptionsEdit}
-                                            onChange={this.handleYearoptionsEEdit.bind(this, "endyearEdit")}
-                                        />
-                                    </div>
-
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="percentageEdit" value={this.state.editpromoDiscountPercent} />
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="amountEdit" value={this.state.editpromoDiscountAmount} />
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="maxAmounEditt" value={this.state.editpromoMaximumAmount} />
-                                </div>
-                                <div className="TextFieldPopPerDiv">
-                                    <input type="text" className="TextFieldPopPer" ref="redemptinTimesEdit" value={this.state.editpromoAllowedRedemptionTimes} />
-                                </div>
-                            </div>
-
-                            <div className="buttonPop">
-                                <input type="button" value="تفعيل" className="button" className="coolT" onClick={this.handleEdit.bind(this)} />
-                            </div>
-                        </div>
-
-                    </div>
-
-                </SkyLight> */}
 
 
 
@@ -1352,22 +1150,11 @@ class Promo extends Component {
                 <div className="promotable" >
                     {this.table()}
                 </div>
-                {/*<div className="nextprevious" >
-                    <button onClick={this.nextAll.bind(this)}>next</button>
-                    <button onClick={this.previousAll.bind(this)}>previous</button>
-                </div>*/}
                 <div className="nextprevious" >
                     <button className="nextpreviousButtons" onClick={this.nextAll.bind(this)}>&lt;</button>
                     <p className="nextpreviousP">{this.state.lessThanAll + 2} to {this.state.greaterThanAll}</p>
                     <button className="nextpreviousButtons" onClick={this.previousAll.bind(this)}>&gt;</button>
                 </div>
-                {/*<br /> <br /> <br />*/}
-
-
-
-                {/*<div className="Tablediv">
-         
-        </div>*/}
 
             </div>
         );

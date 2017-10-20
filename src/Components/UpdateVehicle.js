@@ -158,6 +158,7 @@ class UpdateVehicle extends Component {
             }).catch(function (error) {
                 // alert(error.message, "what");
                 console.log(error.message)
+                console.log(error)
             })
 
 

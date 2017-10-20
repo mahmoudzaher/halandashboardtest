@@ -23,7 +23,7 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-// console.log(this.state.token,"token")
+    // console.log(this.state.token,"token")
     var itemIds3 = [];
 
 
@@ -405,6 +405,10 @@ class Dashboard extends Component {
 
             <td className="tableheadF" >عرض الرحلات</td>
 
+            <td className="tableheadD" >الفرع</td>
+
+            <td className="tableheadD" >الأخصائي</td>
+
             <td className="tableheadD" >رقم الهاتف</td>
 
             <td className="tableheadD" >نوع المركبة</td>
@@ -424,31 +428,33 @@ class Dashboard extends Component {
               if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 usedCounter++;
-                // console.log(counter)
+                // console.log(counter) 
                 // console.log(row)
                 var Id = row._id;
 
                 re.push("./Group 1433.png")
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
+                re.push(row.operator.branch.name)
+                re.push(row.operator.firstName)
                 if (row.phoneNumber.length < 12) {
                   re.push(row.phoneNumber)
                 }
                 else {
                   re.push("-")
                 }
-                if (row.vehicle) {
-                  if (row.vehicle.vehicletype === "toktok") {
+                if (row.vehicle[0]) {
+                  if (row.vehicle[0].vehicletype === "toktok") {
 
                     re.push("./Group 1367.png")
                   }
 
-                  if (row.vehicle.vehicletype === "motorcycle") {
+                  if (row.vehicle[0].vehicletype === "motorcycle") {
 
                     re.push("./Group 1355.png")
                   }
 
-                  if (row.vehicle.vehicletype === "tricycle") {
+                  if (row.vehicle[0].vehicletype === "tricycle") {
 
                     re.push("./Group 1368.png")
                   }
@@ -517,6 +523,10 @@ class Dashboard extends Component {
 
             <td className="tableheadF" >عرض الرحلات</td>
 
+            <td className="tableheadD" >الفرع</td>
+
+            <td className="tableheadD" >الأخصائي</td>
+
             <td className="tableheadD" >رقم الهاتف</td>
 
             <td className="tableheadD" >نوع المركبة</td>
@@ -530,29 +540,31 @@ class Dashboard extends Component {
             // console.log(row)
 
             if (that.state.lessThanActive < counter && counter < that.state.greaterThanActive) {
-               if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
+              if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 re.push("./Group 1433.png")
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
+                re.push(row.operator.branch.name)
+                re.push(row.operator.firstName)
                 if (row.phoneNumber.length < 12) {
                   re.push(row.phoneNumber)
                 }
                 else {
                   re.push("-")
                 }
-                if (row.vehicle) {
-                  if (row.vehicle.vehicletype === "toktok") {
+                if (row.vehicle[0]) {
+                  if (row.vehicle[0].vehicletype === "toktok") {
 
                     re.push("./Group 1367.png")
                   }
 
-                  if (row.vehicle.vehicletype === "motorcycle") {
+                  if (row.vehicle[0].vehicletype === "motorcycle") {
 
                     re.push("./Group 1355.png")
                   }
 
-                  if (row.vehicle.vehicletype === "tricycle") {
+                  if (row.vehicle[0].vehicletype === "tricycle") {
 
                     re.push("./Group 1368.png")
                   }
@@ -621,6 +633,10 @@ class Dashboard extends Component {
 
             <td className="tableheadF" >عرض الرحلات</td>
 
+            <td className="tableheadD" >الفرع</td>
+
+            <td className="tableheadD" >الأخصائي</td>
+
             <td className="tableheadD" >رقم الهاتف</td>
 
             <td className="tableheadD" >نوع المركبة</td>
@@ -635,29 +651,31 @@ class Dashboard extends Component {
 
             // console.log(that.state.suspendedN, "suspendedN")
             if (that.state.lessThanSuspended < counter && counter < that.state.greaterThanSuspended) {
-               if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
+              if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 re.push("./Group 1792.png")
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
+                re.push(row.operator.branch.name)
+                re.push(row.operator.firstName)
                 if (row.phoneNumber.length < 12) {
                   re.push(row.phoneNumber)
                 }
                 else {
                   re.push("-")
                 }
-                if (row.vehicle) {
-                  if (row.vehicle.vehicletype === "toktok") {
+                if (row.vehicle[0]) {
+                  if (row.vehicle[0].vehicletype === "toktok") {
 
                     re.push("./Group 1367.png")
                   }
 
-                  if (row.vehicle.vehicletype === "motorcycle") {
+                  if (row.vehicle[0].vehicletype === "motorcycle") {
 
                     re.push("./Group 1355.png")
                   }
 
-                  if (row.vehicle.vehicletype === "tricycle") {
+                  if (row.vehicle[0].vehicletype === "tricycle") {
 
                     re.push("./Group 1368.png")
                   }
@@ -732,6 +750,10 @@ class Dashboard extends Component {
 
             <td className="tableheadF" >عرض الرحلات</td>
 
+            <td className="tableheadD" >الفرع</td>
+
+            <td className="tableheadD" >الأخصائي</td>
+
             <td className="tableheadD" >رقم الهاتف</td>
 
             <td className="tableheadD" >نوع المركبة</td>
@@ -745,28 +767,30 @@ class Dashboard extends Component {
             // console.log(row)
             // console.log(that.state.pendingN, "pendingN")
             if (that.state.lessThanPending < counter && counter < that.state.greaterThanPending) {
-               if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
+              if ((row.firstName.includes(that.state.searchfilter)) || (row.phoneNumber.includes(that.state.searchfilter))) {
                 counter++;
                 re.push("./Path 1161.png")
                 re.push("./Group 1410.png")
+                re.push(row.operator.branch.name)
+                re.push(row.operator.firstName)
                 if (row.phoneNumber.length < 12) {
                   re.push(row.phoneNumber)
                 }
                 else {
                   re.push("-")
                 }
-                if (row.vehicle) {
-                  if (row.vehicle.vehicletype === "toktok") {
+                if (row.vehicle[0]) {
+                  if (row.vehicle[0].vehicletype === "toktok") {
 
                     re.push("./Group 1367.png")
                   }
 
-                  if (row.vehicle.vehicletype === "motorcycle") {
+                  if (row.vehicle[0].vehicletype === "motorcycle") {
 
                     re.push("./Group 1355.png")
                   }
 
-                  if (row.vehicle.vehicletype === "tricycle") {
+                  if (row.vehicle[0].vehicletype === "tricycle") {
 
                     re.push("./Group 1368.png")
                   }
@@ -1140,9 +1164,9 @@ class Dashboard extends Component {
               {/*}<li><a >رحلات</a></li>{*/}
               <li><a onClick={this.handlePromo.bind(this)}>برومو كود</a></li>
               <li><a >دعم</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Reports')}}>تقارير</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Branches')}}>فروع</a></li>
-              <li><a onClick={()=>{ReactRouter.goTo('/Specialists')}}>الأخصائيين</a></li>
+              <li><a onClick={() => { ReactRouter.goTo('/Reports') }}>تقارير</a></li>
+              <li><a onClick={() => { ReactRouter.goTo('/Branches') }}>فروع</a></li>
+              <li><a onClick={() => { ReactRouter.goTo('/Specialists') }}>الأخصائيين</a></li>
               <li className="NavP"><p onClick={this.logOut.bind(this)} >تسجيل خروج</p></li>
             </ul>
           </div>

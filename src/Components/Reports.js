@@ -6,10 +6,9 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import SkyLight from 'react-skylight';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 var ReactRouter = require('flux-react-router');
 
-let imgStyle;
-let divStyle;
 
 class Reports extends Component {
 
@@ -57,6 +56,122 @@ class Reports extends Component {
         });
     }
 
+
+
+
+
+    tabs() {
+        //console.log(this.state)
+        return (
+
+            <div id="tabss">
+                <Tabs>
+                    <TabList>
+                        <Tab >تاريخ الرحلات</Tab>
+                        <Tab >عدد السائقين</Tab>
+                        <Tab >عدد الرحلات</Tab>
+                    </TabList>
+
+
+                    <div id="tabspanels">
+                        <TabPanel>
+
+
+                            <div style={{}}>
+                                <div style={{ width: "100%", textAlign: "center", color: "#2C2D72", display: "-webkit-inline-box", textAlign: "-webkit-center" }}>
+                                    {this.showStartDate()}
+                                    <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openStart: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>من</span>
+
+
+                                    {this.state.openStart &&
+                                        <DatePicker
+                                            selected={this.state.startDate}
+                                            onChange={this.handleStartDateChange.bind(this)}
+                                            dateFormat="DD/MM/YYYY"
+                                            inline
+                                            showYearDropdown
+                                            showMonthDropdown
+                                            withPortal
+                                            onClickOutside={() => { this.setState({ openStart: false }) }}
+                                        />
+                                    }
+
+                                </div>
+                                <div style={{ width: "100%", textAlign: "center", color: "#2C2D72", display: "-webkit-inline-box", textAlign: "-webkit-center" }}>
+                                    {this.showEndDate()}
+
+
+                                    <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openEnd: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>إلى</span>
+
+                                    {this.state.openEnd &&
+                                        <DatePicker
+                                            selected={this.state.endDate}
+                                            onChange={this.handleEndDateChange.bind(this)}
+                                            dateFormat="DD/MM/YYYY"
+                                            inline
+                                            showYearDropdown
+                                            showMonthDropdown
+                                            withPortal
+                                            onClickOutside={() => { this.setState({ openEnd: false }) }}
+                                        />
+                                    }
+                                </div>
+
+
+                            </div>
+
+                            <div style={{ width: "100%", textAlign: "center" }}>
+                                <input type="button" value="عرض بيانات" onClick={this.submit.bind(this)} className="gradientButton" style={{ cursor: "pointer", border: "none", padding: "0px 20px", borderRadius: "25px", marginTop: "50px", fontSize: "18px", color: "white", fontFamily: "Cairo" }} />
+
+                            </div>
+
+                            <table style={{ width: "50%", paddingLeft: "25%", paddingRight: "25%,", border: "0px", paddingTop: "5%", paddingBottom: "5%", height: "567px", display: "table-cell", }}>
+                                <thead>
+                                    {<td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>سداد</td>}
+                                    {<td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>إجمالي السداد</td>}
+                                    <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>عدد الرحلات</td>
+                                    <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>نوع المركبة</td>
+                                    <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>تقييم</td>
+                                    <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>رقم الهاتف</td>
+                                    <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>السائق</td>
+                                </thead>
+                                <tbody>
+                                    {this.createTable()}
+                                </tbody>
+                            </table>
+
+                            <div className="TotalDiv">
+                                <p className="TotalP" >Total Trips:   {this.state.totalTrips}</p>
+                                <p className="TotalP">Total Money:   {this.state.totalMoney}</p>
+
+                            </div>
+
+
+
+                        </TabPanel>
+
+
+                        <TabPanel>
+
+
+                        </TabPanel>
+
+
+                        <TabPanel>
+
+                        </TabPanel>
+                    </div>
+                </Tabs>
+            </div>
+
+        )
+    }
+
+
+
+
+
+
     render() {
         var sky = {
             width: '50%',
@@ -81,77 +196,11 @@ class Reports extends Component {
                         </ul>
                     </div>
 
-                    <div style={{ color: "#2C2D72", textAlign: "center", fontSize: "25px", marginTop: "15px", marginBottom: "15px" }}>تاريخ الرحلات</div>
-
-                    <div style={{}}>
-                        <div style={{ width: "100%", textAlign: "center", color: "#2C2D72", display: "-webkit-inline-box", textAlign: "-webkit-center" }}>
-                            {this.showStartDate()}
-                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openStart: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>من</span>
 
 
-                            {this.state.openStart &&
-                                <DatePicker
-                                    selected={this.state.startDate}
-                                    onChange={this.handleStartDateChange.bind(this)}
-                                    dateFormat="DD/MM/YYYY"
-                                    inline
-                                    showYearDropdown
-                                    showMonthDropdown
-                                    withPortal
-                                    onClickOutside={() => { this.setState({ openStart: false }) }}
-                                />
-                            }
-
-                        </div>
-                        <div style={{ width: "100%", textAlign: "center", color: "#2C2D72", display: "-webkit-inline-box", textAlign: "-webkit-center" }}>
-                            {this.showEndDate()}
+                    {this.tabs()}
 
 
-                            <img src="calendar2.png" style={{ cursor: "pointer", verticalAlign: "middle", width: "40px" }} onClick={() => { this.setState({ openEnd: true }) }} />&nbsp;&nbsp;<span style={{ marginLeft: "20px", fontSize: "18px" }}>إلى</span>
-
-                            {this.state.openEnd &&
-                                <DatePicker
-                                    selected={this.state.endDate}
-                                    onChange={this.handleEndDateChange.bind(this)}
-                                    dateFormat="DD/MM/YYYY"
-                                    inline
-                                    showYearDropdown
-                                    showMonthDropdown
-                                    withPortal
-                                    onClickOutside={() => { this.setState({ openEnd: false }) }}
-                                />
-                            }
-                        </div>
-
-
-                    </div>
-
-                    <div style={{ width: "100%", textAlign: "center" }}>
-                        <input type="button" value="عرض بيانات" onClick={this.submit.bind(this)} className="gradientButton" style={{ cursor: "pointer", border: "none", padding: "0px 20px", borderRadius: "25px", marginTop: "50px", fontSize: "18px", color: "white", fontFamily: "Cairo" }} />
-
-                    </div>
-
-                    <table style={{ width: "50%", paddingLeft: "25%", paddingRight: "25%,", border: "0px", paddingTop: "5%", paddingBottom: "5%", height: "567px", display: "table-cell", }}>
-                        <thead>
-                            {<td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>سداد</td>}
-                            {/* <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px" }}>إجمالي السداد</td> */}
-                            {<td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>إجمالي السداد</td>}
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>عدد الرحلات</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>نوع المركبة</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>تقييم</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>رقم الهاتف</td>
-                            <td style={{ border: "0px", fontSize: "20px", paddingBottom: "10px", paddingLeft: "75px" }}>السائق</td>
-                        </thead>
-                        <tbody>
-                            {this.createTable()}
-                        </tbody>
-                    </table>
-
-                    <div className="TotalDiv">
-                        <p className="TotalP" >Total Trips:   {this.state.totalTrips}</p>
-                        <p className="TotalP">Total Money:   {this.state.totalMoney}</p>
-
-                    </div>
 
                     <SkyLight hideOnOverlayClicked ref="PaymentDialog" dialogStyles={sky}>
                         <div className="PopClassReports">
@@ -299,8 +348,21 @@ class Reports extends Component {
 
 
 
-        // console.log(new Date(start.getFullYear(), start.getMonth() + 1, start.getDate()).getTime())
+
+        var dateBeggining = new Date(0).valueOf();
+
+
+        var datenow = new Date().valueOf();
+
+
+
+        console.log(datenow, "datenow", dateBeggining, "datebeggin")
+
+
+        console.log(start, end)
         axios.get('/operator/gettrips?from=' + start + '&to=' + end).then(function (response) {
+            // axios.get('/operator/gettrips?from=' + dateBeggining + '&to=' + datenow).then(function (response) {
+            // axios.get('/operator/gettrips').then(function (response) {
             console.log(response)
             response.data.data.forEach(function (item, index) {
                 console.log(item)
@@ -494,6 +556,92 @@ class Reports extends Component {
         localStorage.setItem('baseURL', myItem);
         ReactRouter.goTo('/Login');
     }
+
+
+
+
+    submit() {
+            
+        // var CurrentTime = new Date
+
+        // var YearCurrent = CurrentTime.getFullYear();
+        // var MonthCurrent = CurrentTime.getMonth() + 1;
+        // var DayCurrent = CurrentTime.getDate();
+        // var formattedTimeCurrent = YearCurrent + '/' + MonthCurrent + '/' + DayCurrent;
+
+        var that = this;
+        var reponseData = [];
+        var total = 0;
+        var trips = 0;
+        var objects = [];
+        // console.log(start)
+        // console.log(end)
+
+
+        // var dateStart = new Date(start);
+        // var YearStart = dateStart.getFullYear();
+        // var MonthStart = dateStart.getMonth() + 1;
+        // var DayStart = dateStart.getDate();
+        // var formattedTimeStart = YearStart + '/' + MonthStart + '/' + DayStart;
+
+        // var dateEnd = new Date(end);
+        // var YearEnd = dateEnd.getFullYear();
+        // var MonthEnd = dateEnd.getMonth() + 1;
+        // var DayEnd = dateEnd.getDate();
+        // var formattedTimeEnd = YearEnd + '/' + MonthEnd + '/' + DayEnd;
+
+
+
+
+        var dateBeggining = new Date(0).valueOf();
+
+
+        var datenow = new Date().valueOf();
+
+
+
+        console.log(datenow, "datenow", dateBeggining, "datebeggin")
+
+
+        // console.log(start, end)
+        // axios.get('/operator/gettrips?from=' + start + '&to=' + end).then(function (response) {
+            axios.get('/operator/gettrips?from=' + dateBeggining + '&to=' + datenow).then(function (response) {
+            // axios.get('/operator/gettrips').then(function (response) {
+            console.log(response)
+            response.data.data.forEach(function (item, index) {
+                console.log(item)
+                if (item._id) {
+                    console.log("has ID")
+                    if ((item.total / 5) - item._id.credit > 0) {
+                        console.log("all good")
+                        objects.push(item)
+                        total = total + item.total
+                        trips = trips + item.count
+                    }
+                }
+            })
+            that.setState({
+                data: objects,
+                totalMoney: total,
+                totalTrips: trips,
+                // StartTime: formattedTimeStart,
+                // EndTime: formattedTimeEnd,
+                // currentTime: formattedTimeCurrent,
+
+            })
+        }).catch(function (error) {
+            console.log(error)
+        })
+    }
+
+
+
+    // akteb 
+    // al 
+    // funcitons 
+    // beto3ak
+    //  hena
+    
 }
 
 export default Reports;
