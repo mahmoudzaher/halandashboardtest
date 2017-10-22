@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import {CSVLink, CSVDownload} from 'react-csv';
 import SkyLight from 'react-skylight';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -37,9 +38,23 @@ class Reports extends Component {
             totalMoney: 0,
             totalTrips: 0,
             SpecifiedAmount: 0,
+            objects: [],
+            alloprators: [],
+            drivercounter: [],
+            drivercounter2: [],
+            allbranchs:[],
+            sel: 0,
+            countt:0,
+            csvdata1:[],
+            toktoks:[],
+            motors:[],
+            toktoks1:[],
+            motors1:[],
+
+
         })
-
-
+        this.driversapi();
+      
     }
 
     handleStartDateChange(date) {
@@ -55,8 +70,6 @@ class Reports extends Component {
             openEnd: false
         });
     }
-
-
 
 
 
@@ -152,8 +165,36 @@ class Reports extends Component {
 
 
                         <TabPanel>
-
-
+                            {<div className="showdrivers">
+                            <div  className="radiodivs" >
+                            <div className="newlab" >
+                            <label  className="totallabel" >
+                                اجمالي عدد السائقين  {this.state.objects.length}                                        
+                            </label>
+                            </div>
+                                <div className="radio">
+                                    <label>
+                                        كل اخصائي
+                                        <input type="radio" value="option1" name="myGroupName" onClick={()=>{this.setState({sel:1,})}} />
+                                       
+                                       </label>
+                                </div>
+                                <div className="radio1">
+                                       <label>
+                                           كل فرع
+                                        <input type="radio" value="option2" name="myGroupName" onClick={()=>{this.setState({sel:2,})}} />
+                                        
+                                      </label>
+                                       </div>
+                                  
+                         
+                            </div >                                     
+                            {this.handleradio() }
+                            {/* {<button onClick={()=>{this.loadda()}} >هنا</button>} */}
+                            <CSVLink  data={this.state.csvdata1} onClick={()=>{this.loadda()}}  >تحميل التقرير</CSVLink>
+                            </div>
+                           }
+                           
                         </TabPanel>
 
 
@@ -558,90 +599,268 @@ class Reports extends Component {
     }
 
 
+//---------------------------------------------------
 
-
-    submit() {
-            
-        // var CurrentTime = new Date
-
-        // var YearCurrent = CurrentTime.getFullYear();
-        // var MonthCurrent = CurrentTime.getMonth() + 1;
-        // var DayCurrent = CurrentTime.getDate();
-        // var formattedTimeCurrent = YearCurrent + '/' + MonthCurrent + '/' + DayCurrent;
-
+    driversapi() {
         var that = this;
-        var reponseData = [];
-        var total = 0;
-        var trips = 0;
-        var objects = [];
-        // console.log(start)
-        // console.log(end)
-
-
-        // var dateStart = new Date(start);
-        // var YearStart = dateStart.getFullYear();
-        // var MonthStart = dateStart.getMonth() + 1;
-        // var DayStart = dateStart.getDate();
-        // var formattedTimeStart = YearStart + '/' + MonthStart + '/' + DayStart;
-
-        // var dateEnd = new Date(end);
-        // var YearEnd = dateEnd.getFullYear();
-        // var MonthEnd = dateEnd.getMonth() + 1;
-        // var DayEnd = dateEnd.getDate();
-        // var formattedTimeEnd = YearEnd + '/' + MonthEnd + '/' + DayEnd;
-
-
-
-
-        var dateBeggining = new Date(0).valueOf();
-
-
-        var datenow = new Date().valueOf();
-
-
-
-        console.log(datenow, "datenow", dateBeggining, "datebeggin")
-
-
-        // console.log(start, end)
-        // axios.get('/operator/gettrips?from=' + start + '&to=' + end).then(function (response) {
-            axios.get('/operator/gettrips?from=' + dateBeggining + '&to=' + datenow).then(function (response) {
-            // axios.get('/operator/gettrips').then(function (response) {
-            console.log(response)
-            response.data.data.forEach(function (item, index) {
-                console.log(item)
-                if (item._id) {
-                    console.log("has ID")
-                    if ((item.total / 5) - item._id.credit > 0) {
-                        console.log("all good")
-                        objects.push(item)
-                        total = total + item.total
-                        trips = trips + item.count
-                    }
+        axios.get('/operator/getalldrivers').then(function (response) {
+            var x = response.data.data;
+            
+            var objects = [];
+            var oprats = [];
+            var opids = [];
+            var countrs = [];
+            var counttoktok=[];
+            var countmotor=[];
+            var counttoktok1=[];
+            var countmotor1=[];
+            var countrs2=[];
+            var branchs = [];
+            var brids = [];
+            x.forEach(function (item, index) {
+                objects.push(item);
+                if (!opids.includes(item.operator._id)) {
+                    oprats.push(item.operator);
+                    opids.push(item.operator._id);
+                    countrs.push(0);
+                    counttoktok.push(0);
+                    countmotor.push(0);
+                }
+                if (!brids.includes(item.operator.branch._id)) {
+                    branchs.push(item.operator.branch);
+                    brids.push(item.operator.branch._id);
+                    countrs2.push(0);
+                    counttoktok1.push(0);
+                    countmotor1.push(0);
                 }
             })
-            that.setState({
-                data: objects,
-                totalMoney: total,
-                totalTrips: trips,
-                // StartTime: formattedTimeStart,
-                // EndTime: formattedTimeEnd,
-                // currentTime: formattedTimeCurrent,
+            x.forEach(function (item, index) {
+                if (opids.includes(item.operator._id)) {
+                    var a = opids.indexOf(item.operator._id);
+                    countrs[a]++;
+                    if(item.vehicle && item.vehicle[0]){
+                    if(item.vehicle[0].vehicletype==="motorcycle"){   
+                       
+                        countmotor[a]++;
+                    }
+                    else if(item.vehicle[0].vehicletype==="toktok"){
+                        
+                        counttoktok[a]++;
+                    }
+                }
+                   
+                }
+                if (brids.includes(item.operator.branch._id)) {
+                    var a = brids.indexOf(item.operator.branch._id);
+                    countrs2[a]++;
+                    if(item.vehicle && item.vehicle[0]){
+                        if(item.vehicle[0].vehicletype==="motorcycle"){   
+                           
+                            countmotor1[a]++;
+                        }
+                        else if(item.vehicle[0].vehicletype==="toktok"){
+                            
+                            counttoktok1[a]++;
+                        }
+                    }
+                }
 
             })
+          
+            console.log("gotalldata")
+            that.setState({
+                objects: objects,
+                alloprators: oprats,
+                drivercounter: countrs,
+                allbranchs:branchs,
+                drivercounter2:countrs2,
+               toktoks:counttoktok,
+               motors:countmotor,
+               toktoks1:counttoktok1,
+               motors1:countmotor1,
+            })
+
+
+
         }).catch(function (error) {
+            alert(error.message);
             console.log(error)
         })
+
+     
     }
 
-
-
-    // akteb 
-    // al 
-    // funcitons 
-    // beto3ak
-    //  hena
+ 
+   handleradio() {  
+     if(this.state.sel===1){
+        
+     return(this.tablespecialists())
+    }
+     if(this.state.sel===2){
+     return(this.tablebranches())
+}
+    }
+loadda(){
+    var that=this;
+   var operators= that.state.alloprators;
+   var brachs=that.state.allbranchs;
+   if(that.state.sel===1){
+    var reportdata=[["motorcyle","tokok","Drivers","Branch","Phone","Name"]];
+    var couter=that.state.drivercounter;
+    var c1=that.state.toktoks;
+    var c2=that.state.motors; 
+       operators.forEach(function (item, index) {
+    var g=[];
+    g.push(c2[index])
+    g.push(c1[index])
+    g.push(couter[index])
+    g.push(item.branch.name)
+    if (item.phoneNumber.length < 12) {
+        g.push(item.phoneNumber)
+    }
+    else {
+        g.push("-")
+    }
     
+    g.push(item.firstName) 
+    
+    reportdata.push(g);
+    })
+    that.setState({
+        csvdata1:reportdata,
+    })
+   }
+   if(that.state.sel===2){
+    var reportdata=[["motorcycle","tokok","Drivers","Address","Phone","Name"]];
+    var couter=that.state.drivercounter2;
+    var c1=that.state.toktoks1;
+    var c2=that.state.motors1;
+    brachs.forEach(function (item, index) {
+    var g=[];
+    g.push(c2[index])
+    g.push(c1[index])
+    g.push(that.state.drivercounter2[index])
+    if(item.address)
+    {g.push(item.address)} 
+    else{
+        g.push("-")
+    }
+     if (item.phone.length < 12) {
+         g.push(item.phone)
+     }
+     else {
+         g.push("-")
+     }
+
+     g.push(item.name)
+    
+    reportdata.push(g);
+    })
+    that.setState({
+        csvdata1:reportdata,
+    })
+}
+}
+
+    tablespecialists() {
+        var that = this;
+        var opreators = that.state.alloprators;
+        return (
+            React.DOM.table({ className: "tableclass" },
+                React.DOM.thead({ className: "tablehead" },
+                    <tr className="tableheadrow">
+                        <td className="tableheadD"  > <img src="./Group 1355.png"></img></td>
+                       <td className="tableheadD"  > <img src="./Group 1367.png"></img></td>
+                        <td className="tableheadD" >عدد السائقين</td>
+
+                        <td className="tableheadD" >الفرع</td>
+
+                        <td className="tableheadD" >رقم الهاتف</td>
+
+                        <td className="tableheadDTR" >الإسم</td>
+                    </tr>
+                ),
+                React.DOM.tbody(null,
+                    that.state.alloprators.map(function (row, index) {
+                        let re = [];   
+                        re.push(that.state.motors[index])
+                        re.push(that.state.toktoks[index])
+                        re.push(that.state.drivercounter[index])
+                        re.push(row.branch.name)
+                        if (row.phoneNumber.length < 12) {
+                            re.push(row.phoneNumber)
+                        }
+                        else {
+                            re.push("-")
+                        }
+
+                        re.push(row.firstName)    
+                        return (
+                            <tr key={index}>
+                                {
+                                    re.map(function (col, index) {
+                                        return React.DOM.td({ key: index }, col);
+                                    })
+                                }
+                            </tr>
+                        )
+                    })
+                )
+            )
+        )
+
+    }
+    tablebranches() {
+        var that = this;
+        var opreators = that.state.allbranchs;
+        return (
+            React.DOM.table({ className: "tableclass" },
+                React.DOM.thead({ className: "tablehead" },
+                    <tr className="tableheadrow">
+                       <td className="tableheadD"  > <img src="./Group 1355.png"></img></td>
+                       <td className="tableheadD"  > <img src="./Group 1367.png"></img></td>
+                        <td className="tableheadD" >عدد السائقين</td>
+
+                        <td className="tableheadD" >العنوان</td>
+
+                        <td className="tableheadD" >رقم الهاتف</td>
+
+                        <td className="tableheadDTR" >الإسم</td>
+                    </tr>
+                ),
+                React.DOM.tbody(null,
+                    that.state.allbranchs.map(function (row, index) {
+                        let re = [];
+                        re.push(that.state.motors1[index])
+                        re.push(that.state.toktoks1[index])
+                        re.push(that.state.drivercounter2[index])
+                       if(row.address)
+                       {re.push(row.address)} 
+                       else{
+                           re.push("-")
+                       }
+                        if (row.phone.length < 12) {
+                            re.push(row.phone)
+                        }
+                        else {
+                            re.push("-")
+                        }
+
+                        re.push(row.name)
+                        return (
+                            <tr key={index}>
+                                {
+                                    re.map(function (col, index) {
+                                        return React.DOM.td({ key: index }, col);
+                                    })
+                                }
+                            </tr>
+                        )
+                    })
+                )
+            ))
+
+    }
 }
 
 export default Reports;
