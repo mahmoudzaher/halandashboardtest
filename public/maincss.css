@@ -1442,7 +1442,7 @@ ul.react-tabs__tab-list {
     /*position: fixed;*/
     top: 0;
     width: 100%;
-    height: 115px;
+    height: 92px;
     /*float:right;*/
     color: #BEC0C2; 
 }
@@ -3301,3 +3301,30 @@ input.blockTextImput {
     a.skylight-close-button{
         display: none !important;
     }
+
+.radio{
+    margin-left: 36%;
+    text-align: -webkit-center;
+    color: rgb(44, 45, 114);
+}
+.radio1{
+    margin-left: 39%;
+    text-align: -webkit-center;
+    color: rgb(44, 45, 114);
+}
+    .radiodivs{   
+        
+        padding-left: 42%;
+        padding-bottom: 3%;}
+    
+        .newlab{  
+            position:absolute;
+            margin-left: -28%;
+            text-align: -webkit-center;
+            color: rgb(44, 45, 114);
+        }
+
+
+        .totallabel{
+            padding-left: 3%;
+        }
